@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://shinsj4653.github.io/sitemap/sitemap-index.xml
+Host: https://shinsj4653.github.io
