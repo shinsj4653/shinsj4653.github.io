@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `주니어 개발자의 개발 블로그`,
-    description: `주니어 개발자로서의 저를 표현한 블로그입니다.`,
-    author: `Shin`,
+    title: `Shin's Dev Blog`,
+    description: `One step foward to becoming a Junior Web Developer`,
+    author: `SeongJun Shin`,
     siteUrl: 'https://shinsj4653.github.io/', // 배포 후 변경 예정
   },
   plugins: [

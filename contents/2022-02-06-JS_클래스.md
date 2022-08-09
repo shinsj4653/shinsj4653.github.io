@@ -1,0 +1,182 @@
+---
+date: '2022-02-06'
+title: 'JS Class'
+categories: ['JavaScript', 'FastCampus']
+summary: '패스트캠퍼스 JS 강의 중, JS-클래스, this 부분을 정리'
+thumbnail: './images/thumbnail-javascript.png'
+---
+
+# 생성자 함수(prototype)
+
+```js
+function User(first, last) {
+  this.firstName = first // 속성
+  this.lastName = last
+  this.getFullName = function () {
+    //메소드
+    return `${this.firstName} ${this.lastName}`
+  }
+  // =>  객체 생성 될때마다 메모리가 늘어남
+}
+
+// 메모리 문제해결 : prototype 활용
+
+User.prototype.getFullName = function () {
+  // heropy, amy, neo 등등 User 객체 많이 생성해도, 이 함수는 여러번 생성되는게 아니라 '참조'만 됨! 메모리 관리 더 효율적
+  return `${this.firstName} ${this.lastName}`
+}
+```
+
+- 객체 데이터 할당된 변수 => instance
+- 객체 데이터 생성 : 리터럴 방식
+
+```js
+const heropy = new User('Heropy', 'Park')
+const amy = new User('Amy', 'Clarke')
+const neo = new User('Neo', 'Smith')
+
+heropy.getFullName() // 함수 참조
+```
+
+<br>
+
+# this
+
+## 일반(Normal) 함수 : 호출 위치에 따라서 this정의
+
+## 화살표(Arrow) 함수 : 자신이 선언된 함수 범위에서 this 정의
+
+```js
+const shin = {
+  name: 'seongJun',
+  normal: function () {
+    console.log(this.name)
+  },
+  // normal() {
+  //  console.log(this.name);
+  //} : 위 함수 이렇게 축약가능
+  arrow: () => {
+    console.log(this.name)
+  },
+}
+
+shin.normal() // seongJun
+shin.arrow() // undefined
+```
+
+- normal() 함수가 **호출**될때 연결된 객체 : shin -> this는 곧 shin이 됨
+
+- arrow() 함수는 만들어지는 그 위치에서 this가 정의됨 -> 어느 걸 this로 정의해야하는지 모름!
+
+## protoype 사용할 때의 this
+
+```js
+function User(name) {
+  this.name = name
+}
+User.prototype.normal = function () {
+  console.log(this.name)
+}
+User.prototype.arrow = () => {
+  console.log(this.name)
+}
+// 화살표 함수 : 선언된 함수영역에서 this가 정의됨
+// => arrow 함수가 정의된 또 다른 함수 범위가 존재 x
+// this가 정의 되지 않음..
+
+const heropy = new User('Heropy')
+
+heropy.normal() // heropy 라는 인스턴스와 연결되면서 heropy가 곧 this가 됨
+// 'Heropy'라는 데이터가 매개변수로 받아져서 this.name으로 정의됨!
+heropy.arrow() // undefined
+```
+
+## timer 사용할때의 this
+
+- 일반 함수
+
+```js
+const timer = {
+  name: 'timer',
+  timeout: function () {
+    setTimeout(function () {
+      console.log(this.name) // undefined
+    }, 2000)
+  },
+}
+timer.timeout()
+// 여기서 호출됨
+// setTimeout()의 로직안 어딘가에서 this.name 있는 부분의 함수가 실행됨
+// 거기선 name을 찾을 수 없음! => undefined
+```
+
+- 화살표 함수
+
+```js
+const timerEx = {
+  name: 'timerWithArrow',
+  timeout: function () {
+    // arrow함수가 정의된 부분을 감싸는 또다른 함수 : timeout
+    // 즉, 함수 범위인 timeout에서 this가 정의됨 -> timerEx의 메소드이므로 this는 timerEx 객체를 가리키게 됨
+    // this.name이 "timerWithArrow"로 정의됨
+    setTimeout(() => {
+      console.log(this.name)
+    }, 2000)
+  },
+}
+
+timerEx.timeout()
+```
+
+=> setTimeout, setInterval에선 콜백함수로 arrow function이 더 이득!
+
+<br>
+
+# ES6 Classes
+
+```js
+class User {
+  constructor(first, last) {
+    this.firstName = first
+    this.lastName = last
+  }
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`
+  }
+}
+```
+
+- 생성자 함수때와 똑같이 getFullName()은 **prototype 영역안에 정의됨**
+
+<br>
+
+# 상속(확장)
+
+```js
+class Vehicle {
+  constructor(name, wheel) {
+    this.name = name
+    this.wheel = wheel
+  }
+}
+const myVehicle = new Vehicle('운송수단', 2)
+console.log(myVehicle)
+
+class Bicycle extends Vehicle {
+  constructor(name, wheel) {
+    super(name, wheel)
+  }
+}
+const myBicycle = new Bicycle('삼천리', 2)
+const daughtersBicycle = new Bicycle('세발', 3)
+console.log(myBicycle)
+
+class Car extends Vehicle {
+  constructor(name, wheel, license) {
+    super(name, wheel)
+    this.license = license
+  }
+}
+
+const myCar = new Car('벤츠', 4, true)
+```

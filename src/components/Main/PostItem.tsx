@@ -16,10 +16,12 @@ type PostItemProps = PostFrontmatterType & { link: string }
 //   }
 //   link: string
 // }
+let backgroundColor
 
 const ThumbnailImage = styled(GatsbyImage)`
   width: 100%;
   height: 200px;
+
   border-radius: 10px 10px 0 0;
 `
 
@@ -72,7 +74,6 @@ const CategoryItem = styled.div`
   margin: 2.5px 5px;
   padding: 3px 5px;
   border-radius: 3px;
-  background: black;
   font-size: 14px;
   font-weight: 700;
   color: white;
@@ -109,9 +110,46 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
         <Title>{title}</Title>
         <Date>{date}</Date>
         <Category>
-          {categories.map(item => (
-            <CategoryItem key={item}>{item}</CategoryItem>
-          ))}
+          {categories.map(item => {
+            switch (item) {
+              case 'MarkDown':
+                return (
+                  <CategoryItem style={{ backgroundColor: '#000' }} key={item}>
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'FastCampus':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#E62249' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'JavaScript':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#FFE300', color: '#000' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'NodeJS':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#85BD6F', color: '#FFF' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+            }
+          })}
         </Category>
         <Summary>{summary}</Summary>
       </PostItemContent>
