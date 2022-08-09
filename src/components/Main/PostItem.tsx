@@ -148,6 +148,36 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'CSS':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#2794CD', color: '#FFF' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'HTML':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#F1672B', color: '#FFF' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'Github':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#E4E4E4', color: '#000' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>

@@ -29,7 +29,11 @@ const Template: FunctionComponent<TemplateProps> = function ({
     <Container>
       <Helmet>
         <title>{title}</title>
-
+        <link
+          href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA"
+          rel="icon"
+          type="image/x-icon"
+        />
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
