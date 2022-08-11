@@ -19,6 +19,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.tsx"],
+  "include": ["src/**/*.tsx", "src/components/Common/TopBtn.jsx"],
   "exclude": ["node_modules"]
 }

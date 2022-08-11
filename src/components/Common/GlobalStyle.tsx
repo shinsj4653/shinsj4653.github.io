@@ -17,6 +17,21 @@ const defaultStyle = css`
     height: 100%;
   }
 
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: #747474;
+
+    border-radius: 10px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, 0.1);
+  }
+
   a,
   a:hover {
     color: inherit;

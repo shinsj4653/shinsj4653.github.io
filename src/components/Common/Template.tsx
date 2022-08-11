@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
 import { Helmet } from 'react-helmet'
+import TopBtn from 'components/Common/TopBtn'
 
 type TemplateProps = {
   title: string
@@ -34,6 +35,11 @@ const Template: FunctionComponent<TemplateProps> = function ({
           rel="icon"
           type="image/x-icon"
         />
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        ></link>
+
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
@@ -68,6 +74,7 @@ const Template: FunctionComponent<TemplateProps> = function ({
       <GlobalStyle />
       {children}
       <Footer />
+      <TopBtn showBelow={250} />
     </Container>
   )
 }

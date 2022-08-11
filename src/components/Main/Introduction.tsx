@@ -2,16 +2,18 @@ import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import ProfileImage from 'components/Main/ProfileImage'
-import backgroundImg from '../../assets/blog-banner-gray.jpg'
+import backgroundImage from '../../assets/banner.png'
+import { FaGithub } from 'react-icons/fa'
+import { SiNotion } from 'react-icons/si'
 
 type IntroductionProps = {
   profileImage: IGatsbyImageData
 }
 // background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-
+// const backgroundImage = '../../assets/banner.png'
 const Background = styled.div`
   width: 100%;
-  background-image: url(${backgroundImg});
+  background-image: url(${backgroundImage});
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
@@ -49,7 +51,19 @@ const Title = styled.div`
   @media (max-width: 768px) {
     font-size: 25px;
   }
+  margin-bottom: 20px;
 `
+
+const goTo = (location: string) => {
+  if (location == 'github') {
+    window.open('https://github.com/shinsj4653', '_blank')
+  } else if (location === 'notion') {
+    window.open(
+      'https://forested-dive-1ea.notion.site/Welcome-to-my-Notion-Page-0fda5a0b60d94c0bbd0ea579a226fc31',
+      '_blank',
+    )
+  }
+}
 
 const Introduction: FunctionComponent<IntroductionProps> = function ({
   profileImage,
@@ -58,10 +72,29 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
     <Background>
       <Wrapper>
         <ProfileImage profileImage={profileImage} />
-
         <div>
           <SubTitle>Nice to Meet You,</SubTitle>
           <Title>I'm Junior Frontend Developer Shin.</Title>
+        </div>
+        <div style={{ display: 'flex' }}>
+          <FaGithub
+            size="30"
+            color="black"
+            style={{ cursor: 'pointer', marginRight: '15px' }}
+            title="Visit Github"
+            onClick={() => {
+              goTo('github')
+            }}
+          />
+          <SiNotion
+            size="30"
+            color="black"
+            style={{ cursor: 'pointer' }}
+            title="Visit Notion"
+            onClick={() => {
+              goTo('notion')
+            }}
+          />
         </div>
       </Wrapper>
     </Background>

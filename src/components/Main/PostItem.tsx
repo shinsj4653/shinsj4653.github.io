@@ -198,6 +198,46 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'Redux':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#8041C4', color: '#FFF' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'TypeScript':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#3178C6', color: '#FFF' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'MobX':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#e25f13', color: '#FFF' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'Gatsby':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#663399', color: '#FFF' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>

@@ -10,6 +10,7 @@ import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { PostListItemType } from 'types/PostItem.types'
 import queryString, { ParsedQuery } from 'query-string'
 import Template from 'components/Common/Template'
+import TopBtn from 'components/Common/TopBtn'
 
 const Container = styled.div`
   display: flex;
@@ -85,19 +86,22 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   )
 
   return (
-    <Template
-      title={title}
-      description={description}
-      url={siteUrl}
-      image={publicURL}
-    >
-      <Introduction profileImage={gatsbyImageData} />
-      <CategoryList
-        selectedCategory={selectedCategory}
-        categoryList={categoryList}
-      />
-      <PostList selectedCategory={selectedCategory} posts={edges} />
-    </Template>
+    <>
+      <Template
+        title={title}
+        description={description}
+        url={siteUrl}
+        image={publicURL}
+      >
+        <Introduction profileImage={gatsbyImageData} />
+        <CategoryList
+          selectedCategory={selectedCategory}
+          categoryList={categoryList}
+        />
+        <PostList selectedCategory={selectedCategory} posts={edges} />
+      </Template>
+      <TopBtn showBelow={250} />
+    </>
   )
 }
 
