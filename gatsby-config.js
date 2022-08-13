@@ -6,6 +6,7 @@ module.exports = {
     siteUrl: 'https://shinsj4653.github.io/', // 배포 후 변경 예정
   },
   plugins: [
+    'gatsby-plugin-dark-mode',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {

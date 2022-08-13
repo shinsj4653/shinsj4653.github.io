@@ -1,10 +1,16 @@
-import React, { FunctionComponent, ReactNode } from 'react'
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react'
 import styled from '@emotion/styled'
 import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
 import { Helmet } from 'react-helmet'
 import TopBtn from 'components/Common/TopBtn'
-
+import ThemeButton from 'components/Common/ThemeButton'
 type TemplateProps = {
   title: string
   description: string
@@ -27,7 +33,13 @@ const Template: FunctionComponent<TemplateProps> = function ({
   children,
 }) {
   return (
-    <Container>
+    <Container
+      style={{
+        backgroundColor: 'var(--bg)',
+        color: 'var(--textNormal)',
+        transition: 'color 0.2s ease-out, background 0.2s ease-out',
+      }}
+    >
       <Helmet>
         <title>{title}</title>
         <link
@@ -74,6 +86,7 @@ const Template: FunctionComponent<TemplateProps> = function ({
       <GlobalStyle />
       {children}
       <Footer />
+      <ThemeButton />
       <TopBtn showBelow={250} />
     </Container>
   )

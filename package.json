@@ -15,6 +15,7 @@
     "@types/react-helmet": "^6.1.5",
     "gatsby": "^4.16.0",
     "gatsby-plugin-canonical-urls": "^4.20.0",
+    "gatsby-plugin-dark-mode": "^1.1.2",
     "gatsby-plugin-emotion": "^7.20.0",
     "gatsby-plugin-image": "^2.17.0",
     "gatsby-plugin-offline": "^5.16.0",
@@ -37,7 +38,9 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "styled-components": "^5.3.5",
+    "styles": "^0.2.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.28.0",

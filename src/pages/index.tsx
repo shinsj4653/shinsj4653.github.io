@@ -86,22 +86,19 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   )
 
   return (
-    <>
-      <Template
-        title={title}
-        description={description}
-        url={siteUrl}
-        image={publicURL}
-      >
-        <Introduction profileImage={gatsbyImageData} />
-        <CategoryList
-          selectedCategory={selectedCategory}
-          categoryList={categoryList}
-        />
-        <PostList selectedCategory={selectedCategory} posts={edges} />
-      </Template>
-      <TopBtn showBelow={250} />
-    </>
+    <Template
+      title={title}
+      description={description}
+      url={siteUrl}
+      image={publicURL}
+    >
+      <Introduction profileImage={gatsbyImageData} />
+      <CategoryList
+        selectedCategory={selectedCategory}
+        categoryList={categoryList}
+      />
+      <PostList selectedCategory={selectedCategory} posts={edges} />
+    </Template>
   )
 }
 

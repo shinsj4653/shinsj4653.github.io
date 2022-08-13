@@ -240,4 +240,6 @@ setTimeout(
 
 4. mobx-react-lite 패키지의 observer를 사용하여 React 컴포넌트가 진정으로 reactive 하도록 만들면 된다. 거대한 양의 데이터를 사용하는 복잡한 애플리케이션에 사용되더라도 자동적으로, 효율적으로 업데이트하는 효과를 누릴 수 있다.
 
-[참고링크](https://ko.mobx.js.org/getting-started.html)
+# 참고사이트
+
+- [10분만에 알아보는 MobX와 React](https://ko.mobx.js.org/getting-started.html)

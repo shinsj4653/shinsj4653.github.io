@@ -5,6 +5,7 @@ import ProfileImage from 'components/Main/ProfileImage'
 import backgroundImage from '../../assets/banner.png'
 import { FaGithub } from 'react-icons/fa'
 import { SiNotion } from 'react-icons/si'
+import { SiGmail } from 'react-icons/si'
 
 type IntroductionProps = {
   profileImage: IGatsbyImageData
@@ -62,6 +63,8 @@ const goTo = (location: string) => {
       'https://forested-dive-1ea.notion.site/Welcome-to-my-Notion-Page-0fda5a0b60d94c0bbd0ea579a226fc31',
       '_blank',
     )
+  } else if (location === 'gmail') {
+    window.open('mailto:shinsj4653@gmail.com', '_blank')
   }
 }
 
@@ -89,10 +92,19 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
           <SiNotion
             size="30"
             color="black"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', marginRight: '15px' }}
             title="Visit Notion"
             onClick={() => {
               goTo('notion')
+            }}
+          />
+          <SiGmail
+            size="30"
+            color="black"
+            style={{ cursor: 'pointer' }}
+            title="shinsj4653@gmail.com"
+            onClick={() => {
+              goTo('gmail')
             }}
           />
         </div>

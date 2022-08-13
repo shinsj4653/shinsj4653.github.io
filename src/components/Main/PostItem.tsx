@@ -16,12 +16,10 @@ type PostItemProps = PostFrontmatterType & { link: string }
 //   }
 //   link: string
 // }
-let backgroundColor
 
 const ThumbnailImage = styled(GatsbyImage)`
   width: 100%;
   height: 200px;
-
   border-radius: 10px 10px 0 0;
 `
 

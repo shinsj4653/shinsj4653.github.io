@@ -4,6 +4,8 @@ import styled from '@emotion/styled'
 interface PostContentProps {
   html: string
 }
+const theme = document.body.className
+console.log(theme)
 
 const MarkdownRenderer = styled.div`
   // Renderer Style
@@ -79,8 +81,16 @@ const MarkdownRenderer = styled.div`
 
   // Adjust Link Element Style
   a {
-    color: #4263eb;
+    color: #0800ff;
     text-decoration: underline;
+  }
+
+  // Adjust highlight Element Style
+  mark {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #ffe300;
+    color: #000;
   }
 
   // Adjust Code Style
