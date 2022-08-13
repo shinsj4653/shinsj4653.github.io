@@ -40,6 +40,13 @@ const defaultStyle = css`
       color: #333;
       border: 2px solid #333;
     }
+    .table-of-content {
+      background-color: #fafafa;
+    }
+    .content a {
+      color: #0800ff;
+      text-decoration: underline;
+    }
   }
   body.dark {
     --bg: #212529;
@@ -62,6 +69,13 @@ const defaultStyle = css`
       background-color: #333;
       color: #fff;
       border: 2px solid #fff;
+    }
+    .table-of-content {
+      background-color: #2d2d2d;
+    }
+    .content a {
+      color: var(--textLink);
+      text-decoration: underline;
     }
   }
 
@@ -94,6 +108,95 @@ const defaultStyle = css`
 
   input[type='checkbox'] {
     display: none;
+  }
+  .blog-post-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0 200px;
+    margin-top: 100px;
+    .content {
+      flex-grow: 0;
+      max-width: calc(100% * 2 / 3);
+      flex-basis: calc(100% * 2 / 3);
+      margin-right: 50px;
+    }
+    .table-of-content::before {
+      width: 100%;
+      display: block;
+      content: '📃 On This Page';
+      background-color: gray;
+      color: white;
+      font-weight: 900;
+      padding: 5px;
+    }
+    .table-of-content {
+      box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.25);
+      border-radius: 7px;
+      top: 90px;
+      flex-grow: 0;
+      min-width: 400px;
+      max-width: calc(100% / 3);
+      flex-basis: calc(100% / 3);
+      margin-left: 1rem;
+      max-width: 18rem;
+      max-height: calc(100vh - 200px);
+      position: sticky;
+      overflow: auto;
+
+      ul li a {
+        padding: 8px;
+        width: 100%;
+        border-bottom: 1px solid lightgray;
+      }
+
+      // h1
+      ul li a {
+        display: block;
+
+        font-size: 15px;
+      }
+
+      // h2
+      ul li ul li a {
+        display: block;
+        font-size: 14px;
+        padding-left: 15px;
+      }
+
+      // h3
+      ul li ul li ul li a {
+        display: block;
+        font-size: 13px;
+        padding-left: 30px;
+      }
+    }
+  }
+  .table-of-content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .table-of-content::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: #747474;
+
+    border-radius: 10px;
+  }
+
+  .table-of-content::-webkit-scrollbar-track {
+    background: #d0d0d0;
+  }
+  @media (max-width: 1460px) {
+    .blog-post-container {
+      padding: 0 50px;
+      flex-direction: column-reverse;
+      .table-of-content {
+        min-width: calc(100% * 2 / 3);
+        top: 0;
+        position: relative;
+        margin-bottom: 50px;
+      }
+    }
   }
 `
 

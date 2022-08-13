@@ -4,6 +4,7 @@ import { PostPageItemType } from 'types/PostItem.types' // 바로 아래에서 �
 import Template from 'components/Common/Template'
 import PostHead from 'components/Post/PostHead'
 import PostContent from 'components/Post/PostContent'
+import TableOfContents from 'components/Common/TableOfContents'
 import CommentWidget from 'components/Post/CommentWidget'
 
 type PostTemplateProps = {
@@ -26,6 +27,7 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
   const {
     node: {
       html,
+      tableOfContents,
       frontmatter: {
         title,
         summary,
@@ -47,7 +49,12 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
         categories={categories}
         thumbnail={gatsbyImageData}
       />
-      <PostContent html={html} />
+      <div className="blog-post-container">
+        <div className="content">
+          <PostContent html={html} />
+        </div>
+        <TableOfContents content={tableOfContents} />
+      </div>
       <CommentWidget />
     </Template>
   )
@@ -60,6 +67,7 @@ export const queryMarkdownDataBySlug = graphql`
     allMarkdownRemark(filter: { fields: { slug: { eq: $slug } } }) {
       edges {
         node {
+          tableOfContents
           html
           frontmatter {
             title

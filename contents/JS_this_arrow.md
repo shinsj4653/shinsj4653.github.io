@@ -32,7 +32,7 @@ console.log(pre.prefixArray(['Lee', 'Kim']))
 <br />
 **Q. 콜백 함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하고 싶으면?**
 
-### Solution 1
+## Solution 1
 
 ```js
 // Solution 1: that = this
@@ -51,7 +51,7 @@ let pre = new Prefixer('Hi')
 console.log(pre.prefixArray(['Lee', 'Kim']))
 ```
 
-### Solution 2
+## Solution 2
 
 ```js
 // Solution 2: map(func, this)
@@ -69,7 +69,7 @@ let pre = new Prefixer('Hi')
 console.log(pre.prefixArray(['Lee', 'Kim']))
 ```
 
-### Solution 3: ES5에 추가된 function.prototype.bind()로 this를 바인딩한다.
+## Solution 3: ES5에 추가된 function.prototype.bind()로 this를 바인딩한다.
 
 ```js
 // Solution 3: bind(this)

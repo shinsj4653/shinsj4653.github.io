@@ -6,6 +6,8 @@ summary: '패스트캠퍼스 JS 강의의 this개념이 잘 이해가 되지 않
 thumbnail: './images/thumbnail-javascript.png'
 ---
 
+# this
+
 자바스크립트의 함수는 호출될 때, 매개변수로 전달되는 인자값 이외에, arguments 객체와 this를 암묵적으로 받는다.
 
 ```js
@@ -18,8 +20,6 @@ function square(number) {
 
 square(2)
 ```
-
-# this
 
 > this를 이용하는 함수를 어떤 방식으로 실행하느냐에 따라서 this값이 결정된다.
 > 즉, this에 바인딩할 객체가 동적으로 결정된다.

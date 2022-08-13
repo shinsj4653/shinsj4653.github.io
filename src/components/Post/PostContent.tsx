@@ -4,8 +4,6 @@ import styled from '@emotion/styled'
 interface PostContentProps {
   html: string
 }
-const theme = document.body.className
-console.log(theme)
 
 const MarkdownRenderer = styled.div`
   // Renderer Style
@@ -13,7 +11,7 @@ const MarkdownRenderer = styled.div`
   flex-direction: column;
   width: 768px;
   margin: 0 auto;
-  padding: 100px 0;
+  padding-bottom: 100px;
   word-break: break-all;
 
   // Markdown Style
@@ -31,13 +29,13 @@ const MarkdownRenderer = styled.div`
   h2,
   h3 {
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 
   * + h1,
   * + h2,
   * + h3 {
-    margin-top: 10px;
+    margin-top: 30px;
   }
 
   hr + h1,
@@ -85,14 +83,6 @@ const MarkdownRenderer = styled.div`
     text-decoration: underline;
   }
 
-  // Adjust highlight Element Style
-  mark {
-    padding: 5px;
-    border-radius: 10px;
-    background-color: #ffe300;
-    color: #000;
-  }
-
   // Adjust Code Style
   pre[class*='language-'] {
     margin: 30px 0;
@@ -113,7 +103,7 @@ const MarkdownRenderer = styled.div`
   // Markdown Responsive Design
   @media (max-width: 768px) {
     width: 100%;
-    padding: 80px 20px;
+    padding: 40px 20px;
     line-height: 1.6;
     font-size: 14px;
 

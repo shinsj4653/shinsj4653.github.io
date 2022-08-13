@@ -10,7 +10,6 @@ import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { PostListItemType } from 'types/PostItem.types'
 import queryString, { ParsedQuery } from 'query-string'
 import Template from 'components/Common/Template'
-import TopBtn from 'components/Common/TopBtn'
 
 const Container = styled.div`
   display: flex;
