@@ -191,6 +191,7 @@ const defaultStyle = css`
       width: 100%;
       padding: 0 50px;
       flex-direction: column-reverse;
+      align-items: center;
       .content {
         width: inherit;
       }
