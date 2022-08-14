@@ -189,7 +189,7 @@ const defaultStyle = css`
   @media (max-width: 1460px) {
     .blog-post-container {
       width: 100%;
-      padding: 0 50px;
+      padding: 0 20px;
       flex-direction: column-reverse;
       align-items: center;
       .content {
