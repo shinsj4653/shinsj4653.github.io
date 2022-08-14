@@ -188,8 +188,12 @@ const defaultStyle = css`
   }
   @media (max-width: 1460px) {
     .blog-post-container {
+      width: 100%;
       padding: 0 50px;
       flex-direction: column-reverse;
+      .content {
+        width: inherit;
+      }
       .table-of-content {
         min-width: calc(100% * 2 / 3);
         top: 0;
