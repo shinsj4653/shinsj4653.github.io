@@ -236,6 +236,16 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'Velopert':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#f7f7f7', color: '#000' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>

@@ -11,6 +11,8 @@ const defaultStyle = css`
     font-family: 'Nanum Myeongjo', serif;
   }
 
+  // font-family: 'Nanum Myeongjo', serif;
+
   html,
   body,
   #___gatsby {
@@ -85,7 +87,8 @@ const defaultStyle = css`
   }
 
   body::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
+    height: 10px;
   }
 
   body::-webkit-scrollbar-thumb {
