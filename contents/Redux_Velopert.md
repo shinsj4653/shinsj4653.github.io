@@ -551,3 +551,7 @@ const object = {
 
 위 코드에서 가장 겉에 있는 값은 `object.a, object.b, object.c`이다.  
 object.a.x 또는 object.c[0]의 값은 비교하지 않는다.
+
+# 참고링크
+
+- [Velopert - Redux](https://react.vlpt.us/redux/)
