@@ -256,6 +256,16 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'CodingAngma':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#1E1E1E', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>
