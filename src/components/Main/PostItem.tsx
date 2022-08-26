@@ -266,6 +266,16 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'React Native':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#04A6CF', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>
