@@ -114,14 +114,14 @@ const defaultStyle = css`
   }
   .blog-post-container {
     display: flex;
-    flex-direction: row;
-    padding: 0 200px;
-    margin-top: 100px;
+    margin: 100px auto 0;
+
+    width: calc(100% * 2 / 3);
     .content {
       flex-grow: 0;
-      max-width: calc(100% * 2 / 3);
+      width: 100%;
       flex-basis: calc(100% * 2 / 3);
-      margin-right: 50px;
+      margin-right: 1rem;
     }
     .table-of-content::before {
       width: 100%;
@@ -138,13 +138,13 @@ const defaultStyle = css`
       top: 90px;
       flex-grow: 0;
       min-width: 400px;
-      max-width: calc(100% / 3);
+      width: 90%;
       flex-basis: calc(100% / 3);
-      margin-left: 1rem;
-      max-width: 18rem;
+      margin-left: 0rem;
       max-height: calc(100vh - 200px);
       position: sticky;
       overflow: auto;
+      margin-left: 1rem;
 
       ul li a {
         padding: 8px;
