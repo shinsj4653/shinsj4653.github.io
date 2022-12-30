@@ -276,6 +276,15 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+              case 'React Query':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#264057', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>
