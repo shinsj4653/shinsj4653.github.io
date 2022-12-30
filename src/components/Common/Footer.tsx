@@ -16,10 +16,13 @@ const FooterWrapper = styled.footer`
 `
 
 const Footer: FunctionComponent = function () {
+  const now = new Date()
+  const year: number = now.getFullYear()
+
   return (
     <FooterWrapper>
       Thank You for Visiting My Blog, Have a Good Day 😆
-      <br />© 2022 Web Developer Shin, Powered By Gatsby.
+      <br />© {year} Web Developer Shin, Powered By Gatsby.
     </FooterWrapper>
   )
 }
