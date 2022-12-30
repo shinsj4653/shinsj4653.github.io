@@ -71,6 +71,49 @@ const fetchUsers = async () => {
 }
 ```
 
+# Infinite Scrolling
+
+page로 구분되어 있는 데이터들을 fetch해와서, 무한 스크롤링을 구현할 수 있다.
+
+```js
+const fetchInfiniteUsers = async ({ pageParam = 1 }) => {
+  const response = await fetch(`https://reqres.in/api/users?page=${pageParam}`)
+  if (!response.ok) {
+    throw new Error('Network response was not ok')
+  }
+  return response.json()
+}
+```
+
+pageParam값을 매개변수로 받아서 링크를 완성한 후, `useInfiniteQuery` Hooks를 사용하면 된다.
+
+```js
+const { data, isLoading, isFetching, fetchNextPage, hasNextPage, error } =
+  useInfiniteQuery('users', fetchInfiniteUsers, {
+    getNextPageParam: (lastpage, pages) => {
+      if (lastpage.page >= lastpage.total_pages) return false
+      return lastpage.page + 1
+    },
+  })
+```
+
+data의 pages에 각 데이터들이 page로 구분이 되어 있으므로, return 구문안에는 다음과 같이 작성을 해주면 된다.
+
+```js
+data.pages.map(page =>
+  page.data.map(user => (
+    <p key={user.id}>
+      {user.first_name} {user.last_name}
+    </p>
+  )),
+)
+{
+  hasNextPage && <button onClick={fetchNextPage}>Load More</button>
+}
+```
+
+hasNextPage 값이 true면 데이터를 더 불러올 수 있다는 뜻이다.
+
 # Settings
 
 useQuery를 사용할 때 다양한 옵션값들을 부여할 수 있다.
