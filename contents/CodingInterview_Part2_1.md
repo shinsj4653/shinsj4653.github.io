@@ -1,6 +1,6 @@
 ---
 date: '2023-01-09'
-title: 'Python Coding Interview - 2부 | 파이썬'
+title: 'Python Coding Interview - 2부 3장 | 파이썬'
 categories: ['Coding Test']
 summary: '파이썬 알고리즘 인터뷰 책에서 2부의 내용을 읽고 요약정리'
 thumbnail: './images/thumbnail-coding-test.png'
