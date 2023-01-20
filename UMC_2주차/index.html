@@ -1,0 +1,1570 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="UMC 동아리에서 진행한 2주차 세미나 및 스터디에서 배운 내용정리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="UMC NodeJS - 2주차"/><meta data-react-helmet="true" property="og:description" content="UMC 동아리에서 진행한 2주차 세미나 및 스터디에서 배운 내용정리"/><meta data-react-helmet="true" property="og:image" content="/static/4d9e1219247fe3b8a31b442f85663761/thumbnail-nodejs.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="UMC NodeJS - 2주차"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="UMC NodeJS - 2주차"/><meta data-react-helmet="true" name="twitter:description" content="UMC 동아리에서 진행한 2주차 세미나 및 스터디에서 배운 내용정리"/><meta data-react-helmet="true" name="twitter:image" content="/static/4d9e1219247fe3b8a31b442f85663761/thumbnail-nodejs.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/UMC_2주차/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">UMC NodeJS - 2주차</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1024px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;576&#x27; width=&#x27;1024&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAABf0lEQVQoz6VSQUsCQRTenyXiwTYF21MwByGMjSw6WEcraLFfEBiJdMiD0cVEpWBz0YpFCqRDoNma5KXFNWEPwahN4OxM6IiKegj6Lu97b9733pt5w9E/gBCCMZ6Nc/Qf4CZrW5bFXItYFulzFqlUKplMhrkYY0LIWEwGGJHRGSGk1+tRSguFgtvtbrfbUzkcMxBCWZZbrRZTvZuvja8PVqLZbEYiEQAAQghCqCgKhJBV6Xc2TdPv9/M8DwB4q9ZuG8lQbuMgtfNsPKn3qiAINpvN5/NpmiaKosPh8Hq9hmEMxy6VSna7vV6vC0tC4jJxVDwM5Ta34ivRxxNpX9rd283n8wCAVCrFL/LXD1fh47BpmkNxuVwOBAKUUkmSlGz2tBgVz5e3L1ZvNDmdTDsXnC6XKxgMaprm8XjW1kXWdjg2QqjT6fTJD/rudjGx1Npd9fOF3VlV1Xg8jhCilOq6HjuL6bo+FjM2929MvvxszrxVUWIRzPZMKcUDsISpPf8CVQk6/x4pOksAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/4d9e1219247fe3b8a31b442f85663761/0841e/thumbnail-nodejs.webp 256w,/static/4d9e1219247fe3b8a31b442f85663761/cd676/thumbnail-nodejs.webp 512w,/static/4d9e1219247fe3b8a31b442f85663761/75203/thumbnail-nodejs.webp 1024w" sizes="(min-width: 1024px) 1024px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1024px) 1024px, 100vw" decoding="async" loading="lazy" data-src="/static/4d9e1219247fe3b8a31b442f85663761/8e4fb/thumbnail-nodejs.png" data-srcset="/static/4d9e1219247fe3b8a31b442f85663761/889c2/thumbnail-nodejs.png 256w,/static/4d9e1219247fe3b8a31b442f85663761/6108e/thumbnail-nodejs.png 512w,/static/4d9e1219247fe3b8a31b442f85663761/8e4fb/thumbnail-nodejs.png 1024w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/4d9e1219247fe3b8a31b442f85663761/0841e/thumbnail-nodejs.webp 256w,/static/4d9e1219247fe3b8a31b442f85663761/cd676/thumbnail-nodejs.webp 512w,/static/4d9e1219247fe3b8a31b442f85663761/75203/thumbnail-nodejs.webp 1024w" sizes="(min-width: 1024px) 1024px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1024px) 1024px, 100vw" decoding="async" loading="lazy" src="/static/4d9e1219247fe3b8a31b442f85663761/8e4fb/thumbnail-nodejs.png" srcSet="/static/4d9e1219247fe3b8a31b442f85663761/889c2/thumbnail-nodejs.png 256w,/static/4d9e1219247fe3b8a31b442f85663761/6108e/thumbnail-nodejs.png 512w,/static/4d9e1219247fe3b8a31b442f85663761/8e4fb/thumbnail-nodejs.png 1024w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">UMC NodeJS - 2주차</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>NodeJS</div><div>2023.01.21.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p>UMC 동아리에서 2주차때 배운 내용을 정리해보았다. 이번 주차땐 주로 네트워크 관련 개념과 실습을 진행하였다.</p>
+<h1 id="개념-키워드" style="position:relative;">개념 키워드<a href="#%EA%B0%9C%EB%85%90-%ED%82%A4%EC%9B%8C%EB%93%9C" aria-label="개념 키워드 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="외부접속-내부접속" style="position:relative;">외부접속, 내부접속<a href="#%EC%99%B8%EB%B6%80%EC%A0%91%EC%86%8D-%EB%82%B4%EB%B6%80%EC%A0%91%EC%86%8D" aria-label="외부접속 내부접속 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>외부접속이란, <code class="language-text">내부에 있는 서버로 접속하는 행위</code> 이다.
+어디가 외부인지는 상대적인 개념이다. 사용자, 서버, 공유기, 개발자 등이 될 수 있다.</p>
+<h2 id="code-classlanguage-text포트포워딩code이-필요한-이유" style="position:relative;"><code class="language-text">포트포워딩</code>이 필요한 이유<a href="#code-classlanguage-text%ED%8F%AC%ED%8A%B8%ED%8F%AC%EC%9B%8C%EB%94%A9code%EC%9D%B4-%ED%95%84%EC%9A%94%ED%95%9C-%EC%9D%B4%EC%9C%A0" aria-label="code classlanguage text포트포워딩code이 필요한 이유 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0f251eafe0cb92ac4e6367ccfdde34f8/f97d7/portforwarding.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 53.125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABaklEQVQoz6VTy26DMBDk/78m/YOoh+YMiEIUUlKSAMa8acA8p1pTiJqkh7YjrRCGHc/s2Mo4jvhrDcOAWyjzR8JvCQlxHMP3fXieh6IooMzMTdM8JMbX2hXXf7Isg6Zp4BFHWZaSVCpkjMldTqcTqqr61t6PI6quh+j66dkPSNMU74eDVKSqKlZPK1iWhTzPoXDOQUVo2xau60rSWgh0jYCTlnjLa7hFBe9D4DXKwdJs2ZCEbLcW9vu9VKwEQYCua8FChr7vpVrHcRCGIVjgw2YRLk2DQohpZpcaLuOIOAcLQ+i6DsMwECeJ7FWoMUmSReHxeFxmSXCzEs/GFrswlgqtKINp28jSqWe322G9XsM0TelMoehJNimlGdJwCbROxILGQPNlDGUt0A4jhBAygCiKpIDz+SzfKfEl5bqupeW7lO9wXSNFmqZC1zVpX1q+bfzpAA/D40NNIW42L7Bte7L8n5sy1+yMbsonqpRRhbyioNIAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/0f251eafe0cb92ac4e6367ccfdde34f8/a59e9/portforwarding.webp 192w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/0ca9f/portforwarding.webp 384w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/dc9b9/portforwarding.webp 768w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/e2c2f/portforwarding.webp 1152w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/f3efb/portforwarding.webp 1536w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/fab06/portforwarding.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/0f251eafe0cb92ac4e6367ccfdde34f8/3b721/portforwarding.png 192w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/66595/portforwarding.png 384w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/fe486/portforwarding.png 768w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/d2d74/portforwarding.png 1152w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/e8464/portforwarding.png 1536w,
+/static/0f251eafe0cb92ac4e6367ccfdde34f8/f97d7/portforwarding.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/0f251eafe0cb92ac4e6367ccfdde34f8/fe486/portforwarding.png"
+            alt="portforwarding"
+            title="portforwarding"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>PC1 에서 서버가 돌아간다면,</p>
+<ol>
+<li>공유기를 공유하는 기기에서 접근</li>
+<li>공유기에 연결되지 않은 다른 네트워크 기기에서 접근</li>
+</ol>
+<p>2가지 방법이 존재한다.</p>
+<blockquote>
+<p>공유기를 공유하는 기기에서 접근하는 방법</p>
+</blockquote>
+<p>노트북에서는 192.168.0.1:[포트번호] 를 통해 접근한다.<br>
+-> 방화벽에서 <code class="language-text">인바운드 규칙</code> 을 추가해야 한다.</p>
+<blockquote>
+<p>공유기에 연결되지 않은 다른 네트워크 기기에서 접근</p>
+</blockquote>
+<p>다른 기기에서는 172.20x.xx.xx:[포트번호] 를 통해 접근해야한다.<br>
+만약 외부에서 172.20x.xx.xx:8080 으로 접근을 요청했다면 공유기에 접근을 요청한 것 이다. 그러나, 공유기는 이 요청을 어디에 전달해야할 지 모른다.<br>
+이 때 필요한 것이 <code class="language-text">포트포워딩</code> 이다.<br>
+공유기에 미리 8080포트로 연락이 오면 <code class="language-text">어떤 기기에 어떤 포트로 요청을 전달해</code> 라고 알려주는 것 이다.<br>
+즉, 접속을 시도하려고 하는 곳에 <code class="language-text">이정표</code>를 달아주는 작업이라 할 수 있다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/96e42cd99d03c08adab76c994844cc3c/f97d7/portforwarding-ppt.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 57.8125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABuklEQVQoz12SbU8aQRSF9///kibt98aWKgmJH2hRqBCsqIGIyPsu7yzs7jHP0THFTWZn5t4755z7EhVpoSzNlB9yFcfC++ezMjkGG7ty+bxerDWfzHXYHeQvk6Lr33Wd/zxX+VdZl5VLXZQudPb9h+q1umrVmm2Nq4ZKZyVVyhV9/fJNt61bqZCmo6kW84W2q602y42O+6Oiq+q1Wn9buqnf+OGfak3NRtMrmSVm58FuvVM8jTUZTjQajOxjYRs8DdR96GoZLxXlaW4W0PebvWWn29SMbynFzuaYZgZbJSvHYwdw/DL2HWLKEPGDHQNOaoICznftO7WbbfUee2ZHKWQQcWdxRkRYBqQeACbTxApoBHceP3X7eug82gZxv9d3NvEscQ1DPGAfCg2a66TbfKijMagABH9IjTjuofsngFyQT7rsoQSdf/dWgZ/6hnQh/z/NAOaUSRcW6uNRSjMDEkAtOQeAMIdBZbCdKIQZFXSQMysEjV8mb0TFu4JCzoIRmY1nHwMeAK2Q1g+fhwakLmHO2IfPIwMGP+VYzJcGI/3PCg1Ise18V4FaRoZahR0/qYZYdzXXCVAAfAUiUZa7Q/RhLgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/96e42cd99d03c08adab76c994844cc3c/a59e9/portforwarding-ppt.webp 192w,
+/static/96e42cd99d03c08adab76c994844cc3c/0ca9f/portforwarding-ppt.webp 384w,
+/static/96e42cd99d03c08adab76c994844cc3c/dc9b9/portforwarding-ppt.webp 768w,
+/static/96e42cd99d03c08adab76c994844cc3c/e2c2f/portforwarding-ppt.webp 1152w,
+/static/96e42cd99d03c08adab76c994844cc3c/f3efb/portforwarding-ppt.webp 1536w,
+/static/96e42cd99d03c08adab76c994844cc3c/fab06/portforwarding-ppt.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/96e42cd99d03c08adab76c994844cc3c/3b721/portforwarding-ppt.png 192w,
+/static/96e42cd99d03c08adab76c994844cc3c/66595/portforwarding-ppt.png 384w,
+/static/96e42cd99d03c08adab76c994844cc3c/fe486/portforwarding-ppt.png 768w,
+/static/96e42cd99d03c08adab76c994844cc3c/d2d74/portforwarding-ppt.png 1152w,
+/static/96e42cd99d03c08adab76c994844cc3c/e8464/portforwarding-ppt.png 1536w,
+/static/96e42cd99d03c08adab76c994844cc3c/f97d7/portforwarding-ppt.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/96e42cd99d03c08adab76c994844cc3c/fe486/portforwarding-ppt.png"
+            alt="portforwarding-ppt"
+            title="portforwarding-ppt"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>위 사진의 a.com:6 의 6은 외부포트이고, 안에 있는 PC 서버의 포트는 내부포트이다.<br>
+이 두 포트, 즉, 문과 문을 연결해주는 작업을 포트포워딩이라 할 수 있다.</p>
+<h2 id="클라이언트---서버-모델-vs-p2p-모델" style="position:relative;">클라이언트 - 서버 모델 VS P2P 모델<a href="#%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8---%EC%84%9C%EB%B2%84-%EB%AA%A8%EB%8D%B8-vs-p2p-%EB%AA%A8%EB%8D%B8" aria-label="클라이언트   서버 모델 vs p2p 모델 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h3 id="클라이언트---서버" style="position:relative;">클라이언트 - 서버<a href="#%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8---%EC%84%9C%EB%B2%84" aria-label="클라이언트   서버 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/340b425bd7c539e6cc8d64f547c326cd/f97d7/client-server-model.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAACeUlEQVQoz32TzU8TURTFu3XtxrUL/RdcGBOWLtwYE1waE1kIrjAxUTe60GhEE4OQYBojiakkmArlU4EoVZhSS4EWqLRUJLSlH9PpTKcz02mnP9MpbYqJnuTl5b1373nnvneuo1ar0RyWZWGYJkVNo6Tp1NF+3j7qyGQyrAWDbG2GWAsG0LQSDtqQyEpcezDC1fsunOM+rFqV/0FVVX5Goywsh5n7vk5BVnBomkYylULK5zgUFc7fGOJs50tu9Y0jyjLpfIFMXkIzdJRSCUlRKZtmi3RywUe/axG3d4+ZpQiOumxBEGzZ+6ksznE/zjEfn4QI1KocZBXC+wqhfZVousp2wmQnUcSsVGxCl/sz3ff7eTQwivODt1Hy9k6ci53dfJxaOFaSpOoIEQnfdh5hU8S7nmIlIuPfrRBLiFQsi/dj89y818/jQTdDI18bhN+WfZw6c46+wbcYVo2DTJ6sVCC4m2U2oOD5EmV8MY7H+4tpv8RsUGbvMG9fOjG/RNedFzjdAqNzkQbhRniLEydPc/fhEztI0w17PhRVJn/ITATBswruAHj8MrtJ2T5PpkSevxrheu9Tnr2Z4d1ksEGoFFVb+vpWjJplUqmaSHIew1BRdYNQPMdcMEkgVkAv1+3UsI1hlFnbiDHsmmZ2cZW0WMDR9FQTwqrAhY4Oenpvk8omUVTN/mXTNFox9ZS/85pwNM1bqVRtY8d/x7l0+QoDr50oJZVcQW4lW7Wm0TnWDNbRXF872rvBfrdMluGxKeaXfGRE8ag0g1HPBPrR2/5L3TGFzaC6acVCgXQ2h1Eu23srfj9d3T2EwuEWYV2RoigUi0V0XUeWZXvvD8rmZBr/J5qxAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/340b425bd7c539e6cc8d64f547c326cd/a59e9/client-server-model.webp 192w,
+/static/340b425bd7c539e6cc8d64f547c326cd/0ca9f/client-server-model.webp 384w,
+/static/340b425bd7c539e6cc8d64f547c326cd/dc9b9/client-server-model.webp 768w,
+/static/340b425bd7c539e6cc8d64f547c326cd/e2c2f/client-server-model.webp 1152w,
+/static/340b425bd7c539e6cc8d64f547c326cd/f3efb/client-server-model.webp 1536w,
+/static/340b425bd7c539e6cc8d64f547c326cd/fab06/client-server-model.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/340b425bd7c539e6cc8d64f547c326cd/3b721/client-server-model.png 192w,
+/static/340b425bd7c539e6cc8d64f547c326cd/66595/client-server-model.png 384w,
+/static/340b425bd7c539e6cc8d64f547c326cd/fe486/client-server-model.png 768w,
+/static/340b425bd7c539e6cc8d64f547c326cd/d2d74/client-server-model.png 1152w,
+/static/340b425bd7c539e6cc8d64f547c326cd/e8464/client-server-model.png 1536w,
+/static/340b425bd7c539e6cc8d64f547c326cd/f97d7/client-server-model.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/340b425bd7c539e6cc8d64f547c326cd/fe486/client-server-model.png"
+            alt="client-server-model"
+            title="client-server-model"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+클라이언트가 요청을 보내면, 서버가 요청된 데이터를 확인하고 응답과 함께 다시 보낸다.
+모든 서비스가 중앙 집중식 서버에 의해 제공되므로 <code class="language-text">병목현상</code> 이 발생하여 시스템의 효율성이 저하될 수 있다.<br>
+P2P 보다 비싸지만, 확정성 및 안정성을 확보 가능하다.<br>
+여기서 병목현상이란, 한 구성요소로 인해서 더 강력한 성능의 구성요소가 최고의 성능을 발휘하지 못하는 영상이다.</p>
+<h3 id="p2p" style="position:relative;">P2P<a href="#p2p" aria-label="p2p permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/129f4f7c1f8d8ebf9226934a9f2a8609/f97d7/p2p-model.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 84.375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABJ0AAASdAHeZh94AAADTElEQVQ4y2WU32ubVRjH8z8oil6ICIJeO6zeeCEiIl7IBBEG/Se8EITqhQoqDKyWOey21mnb0NHVbggr2Iu6udY2dbFlbZI2dcmbJW/yJuf9/TPJ+5FzujX98cCbc/jmPOc5z/d5nm8mTVOkyfXoJ80PPAqlbX6/tUguv0G3lyi8n6b0+321HvWHlEx6ApQHH+/DJODLb77iiaeeJXt9jjgJSbpdTtrAHzInQWnSyXZcojji9t+rfPz5F5T2y/hhgO04NIwW9VaLut4gjsNjGWYeXxRFPrn8OudHf2B2YR7XtxVe/K/CtcUltoolFSilx5WrEzz3/At8d/FH4m5w+kKVatplKjvFk08/w8XJK/TTROGW67Kn1WkKQZzEiqfVtVXOnhtmNZfDjwKiOCbt9w9Slj+9Xg/H99gpl/n6wjj57W38wMf2PJodget76n95qcQ27u8wcf0ma/l/EZZNOuBtwGHcTdAaDRbvrLC0ssa+9pCWEAjbwTBN9dK2adISHSoNnXuFXRzPpWXU+TU7w/jPV6nWKmRq9RqfjoxwfmwMzzMRjoPWbGH7HvVWW6UZRiFhFBBEEQ9bhrpYazZVwEqtwqtDQ7x39gMMYZCpaBVefOllPhn5DNt32H1QpW2ZVBs6wrYwhGC3WqP4QEM3DEzXpqrrCEugNXTapmB8epbp+QV1PtOxLH7KzrF0Z4WOZaqoEpNpBlFIEIaKNy/wiZJY8WjK1hGW4i5JEta37rO2uYXREWRc32ertMtWoaj6TlpVN9A7Ak1vEkYRjudhey5eEKC322yWdrkw8QuT0zPUGhqh8jsozWFRZPmFafDH8jKXp6+xWdjBMC1VDBnU8V1Vafm6QrnEK2fO8P6HH1Ft1FTDp+nBKB72oQQLe0WGXnudN995F61eVS/W2x3VNp7vqr0skOs5jF6aZGb+BqZtH9OAw0mRM+x6Lt9fnuDSVBbXd1VUmU7TtGiatkpfmuf73N7Ic/denrYQxyeFI+IgDy7n/uHWn39R05sKs+wOczd+49vRMYrlAv1+Dy8MH/F2Wgcyx+VnIA6SN/nZrsW54WHeeOttSvt7ikdZ+ZNSd2qWT8qXrFocH+jf3fUcsws31b77SL4GfsfX/wEs+N3PzMU0OgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/129f4f7c1f8d8ebf9226934a9f2a8609/a59e9/p2p-model.webp 192w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/0ca9f/p2p-model.webp 384w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/dc9b9/p2p-model.webp 768w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/e2c2f/p2p-model.webp 1152w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/f3efb/p2p-model.webp 1536w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/fab06/p2p-model.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/129f4f7c1f8d8ebf9226934a9f2a8609/3b721/p2p-model.png 192w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/66595/p2p-model.png 384w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/fe486/p2p-model.png 768w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/d2d74/p2p-model.png 1152w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/e8464/p2p-model.png 1536w,
+/static/129f4f7c1f8d8ebf9226934a9f2a8609/f97d7/p2p-model.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/129f4f7c1f8d8ebf9226934a9f2a8609/fe486/p2p-model.png"
+            alt="p2p-model"
+            title="p2p-model"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+각 노드가 서비스를 요청하는지, 또는 제공하는지에 따라 각 노드가 클라이언트 또는 서버가 될 수 있다. 각 노드는 피어로 간주가 된다.<br>
+특정 서비스를 원하는 노드는 p2p 시스템의 다른 모든 노드에 서비스 요청을 <code class="language-text">브로드캐스트</code> 한다. 요청된 서비스를 제공하는 노드는 요청한 노드에 응답을 하는 방식이다.<br>
+분산된 여러 노드에 의해 서비스가 제공되므로 병목현상은 존재하지 않는다.</p>
+<h2 id="api---application-programming-interface" style="position:relative;">API - Application Programming Interface<a href="#api---application-programming-interface" aria-label="api   application programming interface permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>어떠한 응용프로그램에서 데이터를 주고받기 위한 방법이다.<br>
+어떤 특정사이트에서 특정 데이터를 공유할 경우, <code class="language-text">어떠한 방식으로 정보를 요청</code>해야하는지, 그리고 <code class="language-text">어떠한 데이터를 제공받을 수 있는지</code>에 대한 <code class="language-text">규격(=인터페이스)</code> 이라 정의가능하다.<br>
+더 쉽고 활용하기 편한 규약인 XML 이나 JSON을 예로 들 수 있다.</p>
+<h2 id="ip" style="position:relative;">IP<a href="#ip" aria-label="ip permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>인터넷 환경에서의 주소 체계
+IP를 사람이 보기 좋게 바꾼것이 <code class="language-text">도메인</code> 이다.</p>
+<h3 id="ipv4-vs-ipv6" style="position:relative;">IPv4 vs IPv6<a href="#ipv4-vs-ipv6" aria-label="ipv4 vs ipv6 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>최초의 안정적인 인터넷 프로토콜(IP) 버전은 IPv4 이다.<br>
+NAT를 없앰으로써 주소 공간을 32비트에서 128비트로 확장을 하였다.<br>
+처리 오버헤드가 줄어든 개선된 헤더구조라 할 수 있다.<br>
+여기서 <code class="language-text">NAT</code> 란, Network Addess Translation 으로, 사설 IP 주소를 공인 IP 주소로 바꿔주는데 사용하는 통신망의 주소 변환기이다.<br>
+인터넷의 공인 IP 주소를 절약할 수 있기 떄문에 NAT를 사용한다. 또한, NAT 내부의 사용자들이 NAT를 통해 인터넷과 같은 공공망에 접속하기 때문에 NAT 외부의 침입자들로부터 보호될 수 있다는 점이 있다.
+하지만 왜 NAT를 IPv6에선 없앴을까?? 그 이유는 패킷 헤더의 소스 주소를 수정하는 데서 비롯되는 익명성을 줄여 보안성을 더 높였기 떄문이다.</p>
+<h2 id="dns" style="position:relative;">DNS<a href="#dns" aria-label="dns permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Domain Name Server 이다. 인터넷은 서버들을 유일하게 구분할 수 있는 IP 주소를 기본 체계로 이용하는데 숫자로 이루어진 조합이라 인간이 기억하기에는 한계가 있다.<br>
+따라서, DNS를 이용해 IP 주소를 인간이 기억하기 편한 <code class="language-text">언어체계</code>로 변환할 수 있기 때문에 사용을 한다.</p>
+<h2 id="외부-ip-내부-ip" style="position:relative;">외부 IP, 내부 IP<a href="#%EC%99%B8%EB%B6%80-ip-%EB%82%B4%EB%B6%80-ip" aria-label="외부 ip 내부 ip permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>외부 IP는 공인 아이피라고 할 수 있다. 공인 IP는 1개가 존재한다. 즉, 공유기가 가진 IP라고 할 수 있다.<br>
+내부 IP는 공유기에 연결된 네트워크 기기가 가지는 IP 이다. 외부 IP 만으로는 부족해서 생겨난 개념이다.</p>
+<h2 id="proxy" style="position:relative;">Proxy<a href="#proxy" aria-label="proxy permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>서버와 클라이언트 사이에 중계기로서 대리로 통신을 수행하는 것을 가리켜 <code class="language-text">프록시</code>, 그 중계기능을 하는 것을 <code class="language-text">프록시 서버</code>라고 한다. 프록시 서버 중 일부는 프록시 서버에 요청된 내용들을 캐시를 이용하여 저장해준다.</p>
+<h3 id="forward-proxy" style="position:relative;">Forward Proxy<a href="#forward-proxy" aria-label="forward proxy permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/70dafbadb5c79eee82abf7d4fcf013f2/f97d7/forward-proxy.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 37.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABkElEQVQoz22SsWsUQRjF96/xT7Czt7KxFeysYmGrhRiDhY0ELFSOVMEQNiIYQtQknKAxxQknRiVFCHgxuZy53O7M7M7O7M7OT26OOy/qg2E+vu/NY968iZyrmYb3PiznHL72k954r3094Yz7Q3SPeiSDlOj24xlc5Sh0EUT+xv8Ow596KDLE7K05ni+8JGosPkVpQWkr0iQNBJlK3m/tcHzYPSdeFhXdo5OgZ41FCokUKszW4nVaHz8TPYvn8Q6qqkJrjdaGg+97XLpwmZXlrUBWSmHyitetmIebN/j0bRscFEVBnunAaTxa4M3qO6LZ+TsIlYQbKqnIMs3+1z2uXLzKh3gJXxWkQqKFJd5+woPmNXZ2m9SlJ8syRCrPC642V0YWrEUkIhBOjns01zZQXzbwNptYPjsd0G63KbShLMtgOVOj+dtXm7Rbu0Qz96+jcokJpCoMjTF0Oj9J83IUQV1P+pnMg9g4sLN+Euq7N++x2HhB1P81wFrzT6rDR/e1C4n6qa8zzZvGj4MOp70+vwFxV1HUbLY6YgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/70dafbadb5c79eee82abf7d4fcf013f2/a59e9/forward-proxy.webp 192w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/0ca9f/forward-proxy.webp 384w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/dc9b9/forward-proxy.webp 768w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/e2c2f/forward-proxy.webp 1152w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/f3efb/forward-proxy.webp 1536w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/fab06/forward-proxy.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/70dafbadb5c79eee82abf7d4fcf013f2/3b721/forward-proxy.png 192w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/66595/forward-proxy.png 384w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/fe486/forward-proxy.png 768w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/d2d74/forward-proxy.png 1152w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/e8464/forward-proxy.png 1536w,
+/static/70dafbadb5c79eee82abf7d4fcf013f2/f97d7/forward-proxy.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/70dafbadb5c79eee82abf7d4fcf013f2/fe486/forward-proxy.png"
+            alt="forward-proxy"
+            title="forward-proxy"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>클라이언트(사용자)가 인터넷에 직접 접근하는게 아니라, 포워드 프록시 서버가 요청을 받고 인터넷에 연결하여 결과를 클라이언트에게 전달 (forward) 해준다.</p>
+<h3 id="reverse-proxy" style="position:relative;">Reverse Proxy<a href="#reverse-proxy" aria-label="reverse proxy permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/f161afcc8a515aaa282b00961edbbd01/f97d7/reverse-proxy.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 35.9375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAABTklEQVQoz3WQz0oCURSHfYieo02r3qEWvUZ7F0VJUbsoSWhTRLUq+ofUwjaBWSZlhGQYGJllLbJ0zJlxxpl754u5g2JG53I5nN/58XHOCQFojTp226Y3PM9DSIH0ZFD7z/OQUqrc8fgdXxOuUDnkN6YXwxwld5XJMAyEEH/gHUi/1q8rYCqdInuXUYJlWWj1Bi3TIlu44P2j0jWbusFadJPb6/ueCeHuJs/2+j6FfDEAzsWmOEnHVVM3mrRbDrmHLJOJUQ4yq9i6wGyZvD69MDI0xs7GofLWaxp6UycyHmFwYJj5ieUAeJ5JcZO/6q5c+9Sofn0Qv9yiUMqBRN3yq1ojNhOlfLoL0sFxXHW3ZOKMpdkV0slsAJxaCHOc2gsmbOq4rosUHlrVwG453ZUdx6FcesX8bvBfKGCl8sbjc/FfU+/xbctGCPlL96fs/B/15whijT4THgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/f161afcc8a515aaa282b00961edbbd01/a59e9/reverse-proxy.webp 192w,
+/static/f161afcc8a515aaa282b00961edbbd01/0ca9f/reverse-proxy.webp 384w,
+/static/f161afcc8a515aaa282b00961edbbd01/dc9b9/reverse-proxy.webp 768w,
+/static/f161afcc8a515aaa282b00961edbbd01/e2c2f/reverse-proxy.webp 1152w,
+/static/f161afcc8a515aaa282b00961edbbd01/f3efb/reverse-proxy.webp 1536w,
+/static/f161afcc8a515aaa282b00961edbbd01/fab06/reverse-proxy.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/f161afcc8a515aaa282b00961edbbd01/3b721/reverse-proxy.png 192w,
+/static/f161afcc8a515aaa282b00961edbbd01/66595/reverse-proxy.png 384w,
+/static/f161afcc8a515aaa282b00961edbbd01/fe486/reverse-proxy.png 768w,
+/static/f161afcc8a515aaa282b00961edbbd01/d2d74/reverse-proxy.png 1152w,
+/static/f161afcc8a515aaa282b00961edbbd01/e8464/reverse-proxy.png 1536w,
+/static/f161afcc8a515aaa282b00961edbbd01/f97d7/reverse-proxy.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/f161afcc8a515aaa282b00961edbbd01/fe486/reverse-proxy.png"
+            alt="reverse-proxy"
+            title="reverse-proxy"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>클라이언트가 인터넷에 데이터를 요청하면 리버스 프록시 이 요청을 받아 내부 서버에 데이터를 받은 후 클라이언트에게 전달하는 방식이다.<br>
+클라이언트가 내부 서버에 대한 정보를 알 필요 없이 리버스 프록시에만 요청을 하면 된다.<br>
+내부 서버(WAS) 에 직접적으로 접근한다면 DB에 접근할 수 있기 때문에 리버스 프록시를 두고 클라이언트와 내부 서버 사이의 통신을 담당하는게 중요하다.<br>
+내부 서버에 대한 설정으로 로드 밸런싱이나 서버 확장에 유리하다.</p>
+<h3 id="forward-proxy-vs-reverse-proxy" style="position:relative;">Forward Proxy VS Reverse Proxy<a href="#forward-proxy-vs-reverse-proxy" aria-label="forward proxy vs reverse proxy permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ol>
+<li>End Point</li>
+</ol>
+<p>포워드 프록시는 클라이언트가 요청하는 End Point가 실제 서버 도메인이고, 프록시는 둘 사이의 통신을 담당하는 반면, 리버스 프록시는 클라이언트가 요청하는 End Point가 프록시 서버의 도메인이고, 실제 서버의 정보는 알 수 없다.</p>
+<ol start="2">
+<li>감춰지는 대상</li>
+</ol>
+<p>포워드 프록시는 클라이언트가 감춰진다.<br>
+요청받는 서버는 포워드 프록시 서버를 통해서 요청을 받기 때문에 클라이언트의 정보를 알 수 없다.<br>
+반면, 리버스 프록시는 서버가 감춰진다.<br>
+클라이언트는 리버스 프록시 서버에게 요청하기 때문에 실제 서버의 정보를 알 수 없다.</p>
+<h2 id="네트워크-장비" style="position:relative;">네트워크 장비<a href="#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%9E%A5%EB%B9%84" aria-label="네트워크 장비 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h3 id="허브" style="position:relative;">허브<a href="#%ED%97%88%EB%B8%8C" aria-label="허브 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/168b7161a3b9af6344de51428d6e7264/f97d7/hub.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 94.79166666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABJ0AAASdAHeZh94AAAC0ElEQVQ4y31U7U4aQRTlOZs+Qpu0ae2ftmraBzCppFbEaG0pVQsVgRWrVkwQSG2sRRMTE8UGFdnla0HYj5nlNHeXXVhEh9xld+bMnTPnnhkPYwyGYdwZnU4H/Y1z4168hx52syfTX++9g8PDI0xMhJBK/R0yDteiTsJBJnZrNhtIJNYw8mwa3skAGFeH4mg+/Tz929J1HalUGuPjAWQyObNPFCVsb28jHF7C7Kwf1Wq1i9UcbDZz6CR1JaxUyohGYxh5/gHzc8swDGaOKYqC09Mz3Nzc3It1tmyDrq+vsbOTRCi0iGDwC1qtdk+nAZ2LxUFsy0rIOXd0oOSqquLi4hKqpoPxjpnA7NcttpSdGx1oOjexhcIFyCnOlk0xzUnUOcQiXXY6t8boW2eGC2cYRIpbCVVVQTK5g6dPZrC58csEMMZhdLd2eXmFvb3f2N//g4ODA9TlprMYQUSxCK83iNHXAZRKJXhEsQRBWMP42AxmfJ+hqAqIgNxo4iz/D3FhDT6fDwufFhAMBnGWPzcZkwQ64zg+PoLf/xWvXr5HejcND2XNZDKIRL7h+0oYzabFQNc0SJIIqVyFVK5AlCqo1WpotXs+NDjHyckJNjd/YHEpgGw2a1WZolqt3TJ3/1dXQnObGuMubLvdhiw33CfFbvV6HYXCFRrNFnjXUqSXptv2sqrMDdKRg3HNdVpcPiQvra7G8fDBBCIryT4gwDjrVtTCkmU2Nrbw+NE0fm7tDU9YLF5BEAR4Jz9iasoPTVNNOTLZLF6M+BGPpZ1FxFIJsVgcY6M+zPoD4Fy/bWwSPZfLIZEQkE7vQtcZZFnG+vo63r6Zw+S7eSiKdSIkSeoWM4RoNNI7KYMaWh7rLUKXAVUvGg1jeXnR1Lj/ZNnFcK6vRqNhWoWC3inoEujvJ+b5/LmZjJjY/YSjCtvfFB6iXqlUUC6XhwaN0aVBOGJ7F86O/xv0iNCTjSkzAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/168b7161a3b9af6344de51428d6e7264/a59e9/hub.webp 192w,
+/static/168b7161a3b9af6344de51428d6e7264/0ca9f/hub.webp 384w,
+/static/168b7161a3b9af6344de51428d6e7264/dc9b9/hub.webp 768w,
+/static/168b7161a3b9af6344de51428d6e7264/e2c2f/hub.webp 1152w,
+/static/168b7161a3b9af6344de51428d6e7264/f3efb/hub.webp 1536w,
+/static/168b7161a3b9af6344de51428d6e7264/fab06/hub.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/168b7161a3b9af6344de51428d6e7264/3b721/hub.png 192w,
+/static/168b7161a3b9af6344de51428d6e7264/66595/hub.png 384w,
+/static/168b7161a3b9af6344de51428d6e7264/fe486/hub.png 768w,
+/static/168b7161a3b9af6344de51428d6e7264/d2d74/hub.png 1152w,
+/static/168b7161a3b9af6344de51428d6e7264/e8464/hub.png 1536w,
+/static/168b7161a3b9af6344de51428d6e7264/f97d7/hub.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/168b7161a3b9af6344de51428d6e7264/fe486/hub.png"
+            alt="hub"
+            title="hub"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>전기적인 신호를 증폭시켜 LAN(Local Area Network)의 전송거리를 연장시키고, 여러대의 장비를 LAN에 접속할 수 있도록 한다. 한 장비에서 전송된 데이터 프레임을 허브로 연결된 모든 장비에게 다 전송하며 이를 플러딩(flooding) 이라한다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/9563dfe5ff827890d7d01c7499bcdd50/f97d7/hub-problem.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60.9375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABwklEQVQoz52SzW/TQBDF/WfDGXEtZ4I4QIBbr0iEAweaRO0FFSo1rZo4CXH9EWKvv7322j+0TtLGhUqIkZ52dnfm7c7MM5RS1HX9X8jSGGhQarvXXIZ2/tUajaZp/aLIGXwa4XnB/X3TbAm1sw/c+3/D3qSCq+srnj454vPgK3meYppzkiTp/nCbyA5N51xbLhWOn7H0EmzH4/v5N6bTG6SULVlRFBg6WAgfKfPOD7VVVbkrr8DxNngiJ8nLu4d0XqcluuQ8T3j/7iMnJz86l5VSjMdjTs/OWFgeN3OLIJGIROLHJSvbpffymMlk0cZnWUZVVRi2fUuv1+fN22OWTsD5ZMGl6WJaG8ajEcPRmOlqTZSWRKkmK9jEJReXE14cvWIw+EIcR8xmJlEUYRSFxLYtfP9X+4pl3eJ6a+r6vodRkvHT2bAOc9Su53rKy6VJGIq7clvZHDb/oe0VUJaSNE3bchdujO1nyFJhrSzKSj0umy66Ez5UY5BUXM8WPH/2mtPTC+q6wnW97ZQfJ/xTf4f7+dyk3//AcDgiTRNs2yaOY4wwDBFCoNeHEGK7uq6L4zgH54JACNZrjyAIWiKtQz2U32m7l8rPOYzIAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/9563dfe5ff827890d7d01c7499bcdd50/a59e9/hub-problem.webp 192w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/0ca9f/hub-problem.webp 384w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/dc9b9/hub-problem.webp 768w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/e2c2f/hub-problem.webp 1152w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/f3efb/hub-problem.webp 1536w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/fab06/hub-problem.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/9563dfe5ff827890d7d01c7499bcdd50/3b721/hub-problem.png 192w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/66595/hub-problem.png 384w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/fe486/hub-problem.png 768w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/d2d74/hub-problem.png 1152w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/e8464/hub-problem.png 1536w,
+/static/9563dfe5ff827890d7d01c7499bcdd50/f97d7/hub-problem.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/9563dfe5ff827890d7d01c7499bcdd50/fe486/hub-problem.png"
+            alt="hub-problem"
+            title="hub-problem"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>그림에서 보이듯이, PC4 에서 PC3 으로 프레임을 전송하면 PC3 뿐만 아니라 PC1, PC2 에게도 전송된다.<br>
+결과적으로 충돌이 많이 발생할 수 밖에 없다. 그래서 하나의 허브에 많은 장비를 연결할 수 없다. 같은 이유 때문에 보안성도 떨어진다.<br>
+또한, 하프 듀플렉스(half duplex) 로만 동작하기 때문에 이더넷 프레임의 충돌이 발생할 가능성이 높고, 네트워크 성능도 떨어진다.<br>
+여기서 half duplex란, 한 쪽이 송신하는 동안, 다른 쪽에서 수신하는 방식이다. 데이터를 송신하는 동안엔 수신하지 못한다.</p>
+<h3 id="스위치" style="position:relative;">스위치<a href="#%EC%8A%A4%EC%9C%84%EC%B9%98" aria-label="스위치 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/2486a997c4bfa4366d055b5128d24290/f97d7/switch.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 62.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAAB3UlEQVQ4y52Sz27TQBDG/VY8Ba/TcipPUCGRG5eKAyCOcICqJIhDpaJKlcy/KsGJk8aGxE4c2/H6v9c/tA6O0iKEwkjf2jvzzezst6NJKdkXdV2T5xlZljT/VVVtobGnqQLKLOsH5+d6U2Q3pqllH/xO5fS0y+FBB3NkEgQ+s9mMPM83HSreJoE7iZvYbgdJXuGFMYZh8K57hm1ZRCLC8zyyLENTOkhZbE9uLU9j1r4HSFarFcE6JowLRLrhVmVBUaS35FD6ar3eRy4uvm1Ism6g7NPQ4uX7Syw3pD+ycLw1ZaUeQDZxwzB5/eq86aot1mjY6Tzl+PiEn96aGyfCXgjMWcj9gyfcO3rBycUI318TipQoKQhEThhnvHl7xoPDRxjfDRxnjmmOSZIUrd+/5vMXHSEEw9EIczwhLwquh1N6ukGY5I1mfpRtu6+lxLYtrq4ucV2XmpqiKCjL8vbYtLNU13J3UHAch/ky5MYVzFcJVQ1lWZAk0Z8aqnu39999TeVTet31L8OU6SJG17/y/FkXIeJtM01B/sNkLen1PvDw6DGDwQB34TKeTEjTFE0t/4LSd3cfxzHT6RRdv2o0bDlJkqAtl8tmKP8GFbdtm5bXfoMgIIoEvu9vucr3C/gK4MP4KzfYAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/2486a997c4bfa4366d055b5128d24290/a59e9/switch.webp 192w,
+/static/2486a997c4bfa4366d055b5128d24290/0ca9f/switch.webp 384w,
+/static/2486a997c4bfa4366d055b5128d24290/dc9b9/switch.webp 768w,
+/static/2486a997c4bfa4366d055b5128d24290/e2c2f/switch.webp 1152w,
+/static/2486a997c4bfa4366d055b5128d24290/f3efb/switch.webp 1536w,
+/static/2486a997c4bfa4366d055b5128d24290/fab06/switch.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/2486a997c4bfa4366d055b5128d24290/3b721/switch.png 192w,
+/static/2486a997c4bfa4366d055b5128d24290/66595/switch.png 384w,
+/static/2486a997c4bfa4366d055b5128d24290/fe486/switch.png 768w,
+/static/2486a997c4bfa4366d055b5128d24290/d2d74/switch.png 1152w,
+/static/2486a997c4bfa4366d055b5128d24290/e8464/switch.png 1536w,
+/static/2486a997c4bfa4366d055b5128d24290/f97d7/switch.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/2486a997c4bfa4366d055b5128d24290/fe486/switch.png"
+            alt="switch"
+            title="switch"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>MAC 주소와 포트번호가 기록된 MAC 주소 테이블을 가지고 있어, 목적지 MAC 주소를 가진 장비가 연결된 포트로만 프레임을 전송한다.<br>
+PC4 에서 목적지 MAC 주소인 PC3로 프레임을 스위치로 전송하면, 해당 PC가 연결되어 있는 포트3 으로만 프레임이 전송된다.<br>
+다른 포트가 전송하는 프레임과 충돌이 일어나지 않는다. 네트워크 성능이 허브보다 향상되고 보안성도 좋아진다.</p>
+<h3 id="라우터" style="position:relative;">라우터<a href="#%EB%9D%BC%EC%9A%B0%ED%84%B0" aria-label="라우터 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6b61bf7ea1e90594e2e29f8f82bc40e6/f97d7/router.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 28.645833333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABNUlEQVQY021PTU/CQBTsj/Xm1X/ByYOe9Cd4IEETlcR4ETXUeEGqQoGgLuzSdj/bBdod0614ME6yebM7s/PeC7jUIMsVhDRwzqGqKl93p75vtiXKsoLzWqOXP76UK3x8UejcokYQvc3Akuz3oYZz8J/rMKELJMJAqKLRAB++Q5oKLGiCl2iCLOMI7nqhd51cPKJ1HoJyg73DNo6unrEtHcaTKaLhAMqssUwU9o87aHX6kKrAweklriOCTbFGnWOMQRDHM8znBE/DGN1w6Luede8Rvk79NAuW4pMskYjcT96+eUBvMPa+9m0fI7LC6D0GIbRZmTEGpSTWRQ5rlO+ytTXX0FpjlXC/kpSNtikMbK4bbg1yJSGlAGMU1loEnHNwLvz+mef8D8/AKAX/V2uq4AJCCB/4DcpIwpqSlbW2AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6b61bf7ea1e90594e2e29f8f82bc40e6/a59e9/router.webp 192w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/0ca9f/router.webp 384w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/dc9b9/router.webp 768w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/e2c2f/router.webp 1152w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/f3efb/router.webp 1536w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/fab06/router.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6b61bf7ea1e90594e2e29f8f82bc40e6/3b721/router.png 192w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/66595/router.png 384w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/fe486/router.png 768w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/d2d74/router.png 1152w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/e8464/router.png 1536w,
+/static/6b61bf7ea1e90594e2e29f8f82bc40e6/f97d7/router.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6b61bf7ea1e90594e2e29f8f82bc40e6/fe486/router.png"
+            alt="router"
+            title="router"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+IP 주소등, 레이어3에 있는 주소를 참조하여 목적지와 연결되는 포트로 패킷을 전송시켜준다.<br>
+서브넷이 다른 IP 주소를 가진 장비간에 통신이 이루어지게 하려면 반드시 레이어3 장비를 거쳐야만 한다.<br>
+스위치는 멀티캐스트, 브로드캐스트 및 목적지를 모르는 유니캐스트 프레임을 수신하면 수신 포트를 제외한 모든 포트로 플러딩시키는 반면, 라우터는 이런 프레임을 모두 차단한다.<br>
+네트워크 주소가 서로 다른 장비들을 연결할 때 사용한다.</p>
+<h3 id="code-classlanguage-text공유기code" style="position:relative;"><code class="language-text">공유기</code><a href="#code-classlanguage-text%EA%B3%B5%EC%9C%A0%EA%B8%B0code" aria-label="code classlanguage text공유기code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>스위치의 기능에 라우터의 기능 일부가 추가된 것이다.</p>
+<blockquote>
+<p>게이트웨이 == 라우팅 + 스위칭</p>
+</blockquote>
+<p>공유기를 인터넷 회선에 연결하고 컴퓨터를 여러 대 연결한 경우 공유기 내부의 DHCP 서버에서 각 PC에 사설 IP 를 할당해준다. 연결된 모든 컴퓨터는 IP 를 할당받기 때문에 모두 인터넷 접속이 가능해진다.<br>
+공유기 내부의 라우터(NAT 기능: 네트워크 주소 변환 기능)에서는 이 사설 IP와 외부 회선의 IP를 분배해서 연결한다.<br>
+공유기는 외부 인터넷 회선(WAN: Wide Area Network)과 내부 네트워크(Local Area Network)를 연결하는 장치여서 WAN과 LAN 포트 구분이 있다.</p>
+<h1 id="미션" style="position:relative;">미션<a href="#%EB%AF%B8%EC%85%98" aria-label="미션 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="스탠다드-미션" style="position:relative;">스탠다드 미션<a href="#%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C-%EB%AF%B8%EC%85%98" aria-label="스탠다드 미션 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<blockquote>
+<p>개인 컴퓨터 환경에서 포트포워딩을 통해 외부에서 접속하여 웹사이트 띄우기</p>
+</blockquote>
+<p>포트포워딩 규칙을 먼저 설정해줬다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0a3e5f6816a99438c1c9cd3b0554bc76/f97d7/pf-mission-1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 69.79166666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB3ElEQVQ4y61R2W7bMBDU/39Q+xCgRYPETRO1cYNE8iHJB+PqpC5SimRLnmIXlqEafWjRLjAgudwdznKM28ktJncT2LYNx3Hguu4v+F3ujNHdcv4V32wTxs3kBu+u3uP60zVM02Riy7IYLy8W5vM5ZrPZOTeAcnRH9bZl4+nxIz7cX8FYeR5fBkEAKSXCMIRtWZg+TmHbFhbLBcR2iyRJIGVyWiWEEPA8j/t834fvh5BJCkPKEI67wGa9QV3XoAiDgBuKIofjLLFeeYjjCGVZoNIaVaXRNg3e3mr0XYfjsWdQGLpSWG9WEOIVSikcDgcEvs+EeZ4zEakKAp/Pqiy5jtY8y9C2DU9FNX3fw/DDHxBig7rS/ELbttxAZ60V6rpiRaQEOJ6A80rKSCmB9kaaSny+f8Cd+QzhS+z3B4RhAM9zIcSW/+dVCFZKSna7HZI4RlmWiOOYVWdZilRKdF0Hg2Q67hpfzO+w5h72bYswyZGpBqmMobVGmqYoioJVkzFkhK40P0JkVXWagkZWSrNbu52AUiX2+xbVyZy+pw8/njHEsL/MsylRFODpeYooijnRNM3Z7csYE1w+MMAgl+pasxmDKQPhuPBPACK8lHxJ+LfBpoxH+S+E4+Z/JfwJipcrj9j4dKYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/0a3e5f6816a99438c1c9cd3b0554bc76/a59e9/pf-mission-1.webp 192w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/0ca9f/pf-mission-1.webp 384w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/dc9b9/pf-mission-1.webp 768w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/e2c2f/pf-mission-1.webp 1152w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/f3efb/pf-mission-1.webp 1536w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/fab06/pf-mission-1.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/0a3e5f6816a99438c1c9cd3b0554bc76/3b721/pf-mission-1.png 192w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/66595/pf-mission-1.png 384w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/fe486/pf-mission-1.png 768w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/d2d74/pf-mission-1.png 1152w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/e8464/pf-mission-1.png 1536w,
+/static/0a3e5f6816a99438c1c9cd3b0554bc76/f97d7/pf-mission-1.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/0a3e5f6816a99438c1c9cd3b0554bc76/fe486/pf-mission-1.png"
+            alt="mission-1"
+            title="mission-1"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>개인 웹사이트 서버를 3000번 포트로 실행을 시켜줬다. 그런다음, 웹 브라우저에 localhost:3000 주소로 접속을 하여 페이지를 띄웠다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/bcc1ab1a0e519b448437b4d953dc8c2a/f97d7/pf-mission-2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 73.4375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACjklEQVQ4y42S604aQRiG/S0tIiBll2XZw+wuoCL2ZNIbs2JNUcqNKdFraE0bqFQ8Yi3HpOjTzKBobWu6ybPz7eyXd+add6b2m6d8OzyicfBN0To54+jjPs1Gk4PWMV+bh7SOTqkfHNI6PmE4HPJzNGI0GjEYDjk6OefkrK04Pm0zdXU1Uk3fLy85PTvj/LxNdzCkNxjQ6/fp9Qd0+306nS6dbpdur/dbLXvGdZ8fnQ5T19fX/M/Tbp/TqNc5bLVo1Bs0Gg3q9TrNZpOLi4tJ35R8ffr8hbfv3lPZ2mJzc5NKpaLYLJcV5XKZ9fV1SuslSqUSq6urrK2t8aFaZatSUXMbGxtUq9Wx4M7uHqHwDHNzc4TDTwmFQoSmp3kSiZCyHRLPEszMzBAOh9UoiUQixGIxxe0/OacEd/f20JIaxRdFCksFXMfBMAxs22b++QsKr1coFAtk5/PML2QJggAhBMJ1xwiB53lqVILb29tEYzGEFPMDdE1D13WMVArXcVkovKJQLJLNCSzbxrIshVzw/rdkbHlnh7lkEsO2cRcX0XWNRCJBSgoKh+XlZVaW3/Dy5QpLz5fI5fJ4QtyJ/iFYqxGdncW0bbKLi5hmmqRcwDAQwiGf9QiEwJU2PaGsOY6jxB4y2WEsFifj2mQX8mRMU1lOG4YScYKcwnZ90uk0pmn+k/EZSsvxOGnHwVuYxxdC7U4F4zhY9g2WTSZjkslkbrhfj1GCtVqNxLMkrmWQywW4rjsO5SbpSQg3Z/YYkx1Go1EsPyDI59VV0DRtIvgY9wOZhCIF4/E4RtpET6VUyreCqvGBLStj3dV/E5SWNV0nldKVkLR7Kyg8XwUjL64cXU/gBz6e7+EHnuqV1+uWXxBxd63gtuAdAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/bcc1ab1a0e519b448437b4d953dc8c2a/a59e9/pf-mission-2.webp 192w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/0ca9f/pf-mission-2.webp 384w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/dc9b9/pf-mission-2.webp 768w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/e2c2f/pf-mission-2.webp 1152w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/f3efb/pf-mission-2.webp 1536w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/fab06/pf-mission-2.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/bcc1ab1a0e519b448437b4d953dc8c2a/3b721/pf-mission-2.png 192w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/66595/pf-mission-2.png 384w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/fe486/pf-mission-2.png 768w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/d2d74/pf-mission-2.png 1152w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/e8464/pf-mission-2.png 1536w,
+/static/bcc1ab1a0e519b448437b4d953dc8c2a/f97d7/pf-mission-2.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/bcc1ab1a0e519b448437b4d953dc8c2a/fe486/pf-mission-2.png"
+            alt="mission-2"
+            title="mission-2"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>내 컴퓨터의 ip 주소를 확인하니, 221.146.39.143 이었고, 휴대폰으로 이 ip 주소로 접속을 해보았더니 성공하였다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/e64a76e8174ba950b1b26f587cbe12bf/f97d7/pf-mission-3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 85.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABhElEQVQ4y+1QzcpBURQ9fmIgMpCBn4kiE+UNvICZbjHwEmY3GUhEIgZGeAZP4e8ayFQGMlciXC6W9v46yuj7+jK0a7X22Xetdfa5QggBs9kMk8kEj8cDv98Pn8/HoF4iEAjA4XCA9BLks1qtbzPhdDoRj8dZnMvlkM1moSgKMpkMI51OI5lMIpVKIRaLsSkcDvMCwWAQiUQCFosFXq/3J5BucblcPIxEIohGo8wEMhJCoRCz2+1mk91uZ7bZbOylnvwcOJ/PMZlMGNPpFOPxGKPR6A2apvH34XDIGjqTTmqlbzabQSwWCxwOB1CtVqtX/3g8GPf7HZvNBvv9nufH4xHr9fqlobper8zb7Rai3++j0+mg1WqhUCigWq2i2+2iXC4jn8+j3W5DVVWUSiUUi0UMBgM0m03UajXU63U0Gg1UKhXmXq8HQcm32w2Xy4W30XUdhmHgfD7zNnS7nC2XS+x2O57RS0hDoPPpdGIWcu1PlZD/6i+gF/ymEfhwfQO/gf8IfAKvU33Nam1gYQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/e64a76e8174ba950b1b26f587cbe12bf/a59e9/pf-mission-3.webp 192w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/0ca9f/pf-mission-3.webp 384w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/dc9b9/pf-mission-3.webp 768w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/e2c2f/pf-mission-3.webp 1152w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/f3efb/pf-mission-3.webp 1536w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/fab06/pf-mission-3.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/e64a76e8174ba950b1b26f587cbe12bf/3b721/pf-mission-3.png 192w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/66595/pf-mission-3.png 384w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/fe486/pf-mission-3.png 768w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/d2d74/pf-mission-3.png 1152w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/e8464/pf-mission-3.png 1536w,
+/static/e64a76e8174ba950b1b26f587cbe12bf/f97d7/pf-mission-3.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/e64a76e8174ba950b1b26f587cbe12bf/fe486/pf-mission-3.png"
+            alt="mission-3"
+            title="mission-3"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>도메인 설정 후, 재접속을 하니 여전히 웹페이지가 잘 뜨는 것을 확인하였다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/83445cbe06cde494e3bdf92ead4a46e7/f97d7/pf-mission-4.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 80.20833333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAABg0lEQVQ4y+1Py6qBYRT9XFMyMFGuI4Qy8AbeQJkQeQlTMpCIJJmYkEfwHO4DIykewIQod0t71W96zsDsnK92e+31r7X2/pVSCnq9HjqdDg6HA263Gy6XCx6PB06nk1g4r9cLq9UK0WslPqPRSCx+8jabDbFYjOJ8Po9cLodMJoNsNotUKoV0Oo1EIoFkMoloNEpTIBBg9/l8iMfjMBgMPIaBMkioyWRCMBhEOBxGKBQilh6JRBjg9/tht9tpslgsvMhsNtMrWLtULZdLTKdT1mw2w2QywWg0wng8Zgmez+f8ruHFYvHxiEY48QmvZNjv93g8HlitVjgcDsT3+/1T2+2WGnnH4xGbzYZYdM/nE+fzmfNut4MaDAbodrvodDoolUqo1+vo9XqoVqsoFovkC4UCKpUKyuUyhsMh2u02Go0Gms0mWq0WarUae7/fh5Jk2XK73div1ys3S5fNcqHGrddrXirc6XTC5XJhyaxp1ev1wjcfA39b8gc/aRS+/P4D/0LgG7TiL3MNX0nXAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/83445cbe06cde494e3bdf92ead4a46e7/a59e9/pf-mission-4.webp 192w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/0ca9f/pf-mission-4.webp 384w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/dc9b9/pf-mission-4.webp 768w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/e2c2f/pf-mission-4.webp 1152w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/f3efb/pf-mission-4.webp 1536w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/fab06/pf-mission-4.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/83445cbe06cde494e3bdf92ead4a46e7/3b721/pf-mission-4.png 192w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/66595/pf-mission-4.png 384w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/fe486/pf-mission-4.png 768w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/d2d74/pf-mission-4.png 1152w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/e8464/pf-mission-4.png 1536w,
+/static/83445cbe06cde494e3bdf92ead4a46e7/f97d7/pf-mission-4.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/83445cbe06cde494e3bdf92ead4a46e7/fe486/pf-mission-4.png"
+            alt="mission-4"
+            title="mission-4"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="챌린지-미션" style="position:relative;">챌린지 미션<a href="#%EC%B1%8C%EB%A6%B0%EC%A7%80-%EB%AF%B8%EC%85%98" aria-label="챌린지 미션 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<blockquote>
+<p>알 FTP 등을 통해 FTP 도 외부에서 접속 가능하게 만든다.</p>
+</blockquote>
+<p><code class="language-text">FTP: File Transfer Protocol</code><br>
+대량의 파일을 네트워크를 통해 주고 받을 때 사용하면 유리하다.<br>
+FileZilla를 활용하여 FTP 서버 구축 및 클라이언트와의 연결을 설정하였다.</p>
+<ol>
+<li>FileZilla Server 다운로드</li>
+</ol>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/9d7f913cc06aba2b328a64fc5a73cb0f/f97d7/ftp-mission-1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 61.979166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABkUlEQVQoz6WTi46bMBBF+f+va6ttozabkA0QMB7AxuZNOBW0ibLq7lZVr3Q0Y8nz0Iwd5JcUVzuqsqJtWrq2YxxGnPObZYHlunC9Xpnn+V2WZaGua4LwHGN8g5QVha3JRKisJ8uFyhm6qcMPnnGeWLUGvsUqKUqCMH1Bu5LcCqnJuVQZUleIK0lsQuYypCmYrn8mfDyvyqUiOLycUZUh1QWpFFy0RklFJiW2s3eGafh7h6Uh+L77hrKGtBBi0US54qILxFgS0UgrmN7eO/xIUaII9oc9rvXoUlCFJhOFLgtKY9CmJCsUqlSIEfp+oGlaxnGktjXee+raUTtH03j2hzPB8XikaRoa3zD0A6IF7zzWGmprt+33fc8wDEzTtPnzfN2StV232TW+61p0YQmMMa/aXlju/vpU/kXWtQRrB7fgtwb93hIeuRXOxRBUleF/dSseXTSBUuo+m9V+9BsemR79adqGlaqC4Munzzw9fWW32/G8f+Z0OhGG4S+Ovwlfs95J4pgoSjie4o3wFPPjEPET+yCf7vTolFUAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/9d7f913cc06aba2b328a64fc5a73cb0f/a59e9/ftp-mission-1.webp 192w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/0ca9f/ftp-mission-1.webp 384w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/dc9b9/ftp-mission-1.webp 768w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/e2c2f/ftp-mission-1.webp 1152w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/f3efb/ftp-mission-1.webp 1536w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/fab06/ftp-mission-1.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/9d7f913cc06aba2b328a64fc5a73cb0f/3b721/ftp-mission-1.png 192w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/66595/ftp-mission-1.png 384w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/fe486/ftp-mission-1.png 768w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/d2d74/ftp-mission-1.png 1152w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/e8464/ftp-mission-1.png 1536w,
+/static/9d7f913cc06aba2b328a64fc5a73cb0f/f97d7/ftp-mission-1.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/9d7f913cc06aba2b328a64fc5a73cb0f/fe486/ftp-mission-1.png"
+            alt="ftp-mission-1"
+            title="ftp-mission-1"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ol start="2">
+<li>Server Config 설정</li>
+</ol>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/516cd674f65a463fbea9b4f09d913d2c/f97d7/ftp-mission-2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 33.854166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAw0lEQVQoz62PXQ6DIBCEuf81xHiE9gDqDXzyqf9VCzWWgizGaaDaxKc2sZN8WRh2ySyT9zuUUiiKAnmeI8uyn0jTdMHss7Is0bYtNpstoogjjmNwHk+VB2aPT56/J0myYO5hVVWhrhs0TYOn1vgmow2klCAikCX0fQ9r6fPO9rsdzqczlHq+myacczDGwFobzt4bhgFd10HcBIQQofowUsjPDDsejtBag8jhH2LXyxXkXIjuNY7jKphf4fFQYbX5wzUJXxm6CK5m5B+jAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/516cd674f65a463fbea9b4f09d913d2c/a59e9/ftp-mission-2.webp 192w,
+/static/516cd674f65a463fbea9b4f09d913d2c/0ca9f/ftp-mission-2.webp 384w,
+/static/516cd674f65a463fbea9b4f09d913d2c/dc9b9/ftp-mission-2.webp 768w,
+/static/516cd674f65a463fbea9b4f09d913d2c/e2c2f/ftp-mission-2.webp 1152w,
+/static/516cd674f65a463fbea9b4f09d913d2c/f3efb/ftp-mission-2.webp 1536w,
+/static/516cd674f65a463fbea9b4f09d913d2c/fab06/ftp-mission-2.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/516cd674f65a463fbea9b4f09d913d2c/3b721/ftp-mission-2.png 192w,
+/static/516cd674f65a463fbea9b4f09d913d2c/66595/ftp-mission-2.png 384w,
+/static/516cd674f65a463fbea9b4f09d913d2c/fe486/ftp-mission-2.png 768w,
+/static/516cd674f65a463fbea9b4f09d913d2c/d2d74/ftp-mission-2.png 1152w,
+/static/516cd674f65a463fbea9b4f09d913d2c/e8464/ftp-mission-2.png 1536w,
+/static/516cd674f65a463fbea9b4f09d913d2c/f97d7/ftp-mission-2.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/516cd674f65a463fbea9b4f09d913d2c/fe486/ftp-mission-2.png"
+            alt="ftp-mission-2"
+            title="ftp-mission-2"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+본인 컴퓨터의 IP 주소를 입력해주어야 한다.<br>
+기본포트는 21인데, 간혹 21번 포트를 인터넷 업체에서 막아두는 경우가 있어서, 212로 설정을 해주었다.
+그런데, 만약 정규포트인 21번을 사용하지 않을 경우 접속 및 로그인은 되지만, 디렉토리 목록을 불러오질 못하거나 데이터 전송이 안되는 경우가 발생할 수 있다.<br>
+이 경우, FTP Client에서 Passive mode를 사용해야 할 수 있다. 그러므로, Passive mode를 설정해주었다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/73a6d879159a740d9cc615490f1d5c52/f97d7/ftp-mission-3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 53.645833333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABYUlEQVQoz52SbWvCMBSF899F/azMFYff9A/NIrOV2jRNX7SmttYKvsAZ9w7LJurYAg83gebmnHsqjMlRVRW22y0OhwP+sy64NHuRJimUCnE8njCdTtHr92FZFjMcvqHf76HVaqHdbt+l0+6g2+lyJURZllgulzidzpjNZhi8DJqG1quF0WiEyWTylPFk3OxFvd9j/jEHWa/rGipQiHSENE1hNhvkef4n+2JXlrBtG67jIopjOI4Dd7GA1hpBEGC9XnNTYwzX3xBlUSCQAYqigMlzSN9HqPXX2RjsdjsOi9RTvUJnCvMWEWkN+91Glm04add1IX2JwJdQSkFKCd/3WS1Vz/Ow9DwOkr6/RazSlDvTIkVxHCNJkqYS9Cdwpbka09inQG8R9BqFcD6fkWUZq5AyYGWhUqwyDEM+ax01F2kk9+AZrlcrlltVe57ZI6jRPZs/LH+PnKyTlWcXHim7KvwEBf8gpQ0w0CMAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/73a6d879159a740d9cc615490f1d5c52/a59e9/ftp-mission-3.webp 192w,
+/static/73a6d879159a740d9cc615490f1d5c52/0ca9f/ftp-mission-3.webp 384w,
+/static/73a6d879159a740d9cc615490f1d5c52/dc9b9/ftp-mission-3.webp 768w,
+/static/73a6d879159a740d9cc615490f1d5c52/e2c2f/ftp-mission-3.webp 1152w,
+/static/73a6d879159a740d9cc615490f1d5c52/f3efb/ftp-mission-3.webp 1536w,
+/static/73a6d879159a740d9cc615490f1d5c52/fab06/ftp-mission-3.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/73a6d879159a740d9cc615490f1d5c52/3b721/ftp-mission-3.png 192w,
+/static/73a6d879159a740d9cc615490f1d5c52/66595/ftp-mission-3.png 384w,
+/static/73a6d879159a740d9cc615490f1d5c52/fe486/ftp-mission-3.png 768w,
+/static/73a6d879159a740d9cc615490f1d5c52/d2d74/ftp-mission-3.png 1152w,
+/static/73a6d879159a740d9cc615490f1d5c52/e8464/ftp-mission-3.png 1536w,
+/static/73a6d879159a740d9cc615490f1d5c52/f97d7/ftp-mission-3.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/73a6d879159a740d9cc615490f1d5c52/fe486/ftp-mission-3.png"
+            alt="ftp-mission-3"
+            title="ftp-mission-3"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>그 다음, 사용자 추가 작업을 진행하였다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/149b7fc9ad72205fd6a5002fb9ebc9e9/f97d7/ftp-mission-4.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 33.854166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABFElEQVQoz41Qy27CMBD0//9KXvAP5VBEuKAkBg5JOWBooryaYGwnnsqOqNJWRV1ptLO79uxqSNd1iKIIjuNguVxisVggCAJ4ngfXdeH7vq3/C8LODGmaYvWywvF4RBzHWL+uEYYhdrsdDoeD7Zu83+9BKX0Kcno7oWlaaK1hQqkBNKHIsgyMMRRFgTzPbe77HpzzP3HjHOTCLlBK4RFmsN1usdmE1gpKEyRJYrcb4bZtUFUVqrKc8ozXdQ1iNkspvwTvQuB8ZvjoeqhhgJASQipIqdD1Pa7Xdzsz19xuEzi/o2lblGUFMphPQswEpRUZx/E7tLZ2mCse741NFoDt8bsAMdbNLxRiEvsd+kepZ3TiwzjiE/bNB1rLOrmtAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/149b7fc9ad72205fd6a5002fb9ebc9e9/a59e9/ftp-mission-4.webp 192w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/0ca9f/ftp-mission-4.webp 384w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/dc9b9/ftp-mission-4.webp 768w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/e2c2f/ftp-mission-4.webp 1152w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/f3efb/ftp-mission-4.webp 1536w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/fab06/ftp-mission-4.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/149b7fc9ad72205fd6a5002fb9ebc9e9/3b721/ftp-mission-4.png 192w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/66595/ftp-mission-4.png 384w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/fe486/ftp-mission-4.png 768w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/d2d74/ftp-mission-4.png 1152w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/e8464/ftp-mission-4.png 1536w,
+/static/149b7fc9ad72205fd6a5002fb9ebc9e9/f97d7/ftp-mission-4.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/149b7fc9ad72205fd6a5002fb9ebc9e9/fe486/ftp-mission-4.png"
+            alt="ftp-mission-4"
+            title="ftp-mission-4"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ul>
+<li>Virtual Path : 실제 경로 노출을 제한하기 위한 경로 -> 미지정시 ”/“만 입력하면 된다.</li>
+<li>Native Path : 실제 경로</li>
+<li>Writable : 해당 경로의 파일을 수정할 수 있는 권한을 주고 싶다면 체크</li>
+</ul>
+<ol start="3">
+<li>포트포워딩 수행</li>
+</ol>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/37f3c547bd8964aea1ce5c380d4c53cc/f97d7/ftp-mission-5.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 18.229166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA30lEQVQY002MDWuDMBiE/f+/zIIMVtcZU5MYk9qyqNEW6vq1ZygMdvByPPcel6RpSpZlbDYpeZ6jtaaqqtX/buH/mVJqZSlLdrtPSlEiioK2bUlqUyOERMo9fT9gG4upa4YhEuPIECPamHWo63qm6UzoAlJKbNOs/3Ga1jFbW5L7bcY7y3y9sKjvA9ZoLudp5Z/Xk9Z7fGM5tge+5yuP24w1Bu8auvDF435bmryed5LCBN5E4EOPKBcp9Imt8JQmoHxEuYHd/si7cGxLTy4PVK4nL/3aW/JCndCHkcoN/AI7nSUdcWlHLQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/37f3c547bd8964aea1ce5c380d4c53cc/a59e9/ftp-mission-5.webp 192w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/0ca9f/ftp-mission-5.webp 384w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/dc9b9/ftp-mission-5.webp 768w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/e2c2f/ftp-mission-5.webp 1152w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/f3efb/ftp-mission-5.webp 1536w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/fab06/ftp-mission-5.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/37f3c547bd8964aea1ce5c380d4c53cc/3b721/ftp-mission-5.png 192w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/66595/ftp-mission-5.png 384w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/fe486/ftp-mission-5.png 768w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/d2d74/ftp-mission-5.png 1152w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/e8464/ftp-mission-5.png 1536w,
+/static/37f3c547bd8964aea1ce5c380d4c53cc/f97d7/ftp-mission-5.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/37f3c547bd8964aea1ce5c380d4c53cc/fe486/ftp-mission-5.png"
+            alt="ftp-mission-5"
+            title="ftp-mission-5"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ol start="4">
+<li>고급 NAT 설정 - FTP 비정규 포트</li>
+</ol>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6312a7c5c5a13705d7e91cf3cf0c422d/f97d7/ftp-mission-6.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.35416666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABU0lEQVQoz42SDW+DIBCG/f+/a8mWtFm6rd9V21kVUGtFFD/Avgt0zbq2S0bywN1xHO8FHEYibLceDocDpJTouhb+NsDz6APvcxdRwi0hK6w/mW0Q0uIcZ/c4oiqxWE4xny1AGYMZlCXYeDu4/g40yVHJHlxIfO5jFLyCqDsI+RinqgUojXE8FmiaBkpp8KKwSptGWrRS0KpH33UYtIbW6hzT9ziEEazWC2RZatUNgwbnJbTWUEpZ+r63XNt/4bRtg7fpFE8vr1i6e3S9Qlnyfx1+WNBMq7WP8WSJ2WqHWrYQ4rdCbdv88W+53neSlGE0fgYl5LvlAWmaIgxDRFGEsizBObdUVQUhxB1mz+QZ2yqsZWUfZBhOOJ1OtpDve2BJgjzPEQQBPM8DIQSMMWRZZi81mO/mui7iOLa5Dm7GReHloEkyK6XUFkzS1MZMIYOxr3O/AJYprxVHrcOeAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6312a7c5c5a13705d7e91cf3cf0c422d/a59e9/ftp-mission-6.webp 192w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/0ca9f/ftp-mission-6.webp 384w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/dc9b9/ftp-mission-6.webp 768w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/e2c2f/ftp-mission-6.webp 1152w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/f3efb/ftp-mission-6.webp 1536w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/fab06/ftp-mission-6.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6312a7c5c5a13705d7e91cf3cf0c422d/3b721/ftp-mission-6.png 192w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/66595/ftp-mission-6.png 384w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/fe486/ftp-mission-6.png 768w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/d2d74/ftp-mission-6.png 1152w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/e8464/ftp-mission-6.png 1536w,
+/static/6312a7c5c5a13705d7e91cf3cf0c422d/f97d7/ftp-mission-6.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6312a7c5c5a13705d7e91cf3cf0c422d/fe486/ftp-mission-6.png"
+            alt="ftp-mission-6"
+            title="ftp-mission-6"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+Passive Mode를 사용할 시에, 비정규 포트 설정을 안하면 오류가 날 수 있다고 한다.</p>
+<ol start="5">
+<li>Windows 방화벽 설정</li>
+</ol>
+<p>FileZilla를 설치 시 자동적으로 방화벽 설정이 되지 않으므로, 수동으로 해줘야 한다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0e8ee011a25e94948e66bbad7cabda49/f97d7/ftp-mission-7.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 54.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABM0lEQVQoz41Ti3KCMBDk/3+w6jgqbUWFJDxCHoSQ7eQQG62tzcyS4bjb2eySTCsFgtZQSmEcHRACQpjwfAVM03RDoN655r1HFlvGcYRzjnZrB9StQtsptNKA1Qo8olFgooc2wx19ShqRxUe64sD+yJAXDHXTEbhowHmDigkYY2GtRVEUkFLOmhOObCksxWFwKJlA0/ZwbrwO3EMbC8YElDJI50nhzZkrYVTwnufk53ykkPg090SFVVWh7/VzhWlRaYPV2wplWeJR/bJHwvj9f4TKYLvZ4vPjCNlJSv+RUGtFHqZH/oNQY73e4HQ6U/KPKS4KL5cLtLavCWMojHGCsQOF4P0EPwUC5wLnc4ndbg9RN78TfvuVvs+hpKC/oKxwyHN0nXyt8P544fldocT9D28j4Rcbv18KJQLd4wAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/0e8ee011a25e94948e66bbad7cabda49/a59e9/ftp-mission-7.webp 192w,
+/static/0e8ee011a25e94948e66bbad7cabda49/0ca9f/ftp-mission-7.webp 384w,
+/static/0e8ee011a25e94948e66bbad7cabda49/dc9b9/ftp-mission-7.webp 768w,
+/static/0e8ee011a25e94948e66bbad7cabda49/e2c2f/ftp-mission-7.webp 1152w,
+/static/0e8ee011a25e94948e66bbad7cabda49/f3efb/ftp-mission-7.webp 1536w,
+/static/0e8ee011a25e94948e66bbad7cabda49/fab06/ftp-mission-7.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/0e8ee011a25e94948e66bbad7cabda49/3b721/ftp-mission-7.png 192w,
+/static/0e8ee011a25e94948e66bbad7cabda49/66595/ftp-mission-7.png 384w,
+/static/0e8ee011a25e94948e66bbad7cabda49/fe486/ftp-mission-7.png 768w,
+/static/0e8ee011a25e94948e66bbad7cabda49/d2d74/ftp-mission-7.png 1152w,
+/static/0e8ee011a25e94948e66bbad7cabda49/e8464/ftp-mission-7.png 1536w,
+/static/0e8ee011a25e94948e66bbad7cabda49/f97d7/ftp-mission-7.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/0e8ee011a25e94948e66bbad7cabda49/fe486/ftp-mission-7.png"
+            alt="ftp-mission-7"
+            title="ftp-mission-7"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+FileZilla Server 와 Client 모두 방화벽 설정을 해주면 된다.</p>
+<ol start="6">
+<li>FileZilla Client를 통해 접속</li>
+</ol>
+<p>아까 C:\Users\server 경로로 FileZilla Server를 세팅해주었다.<br>
+server 폴더에 success 폴더를 생성하니까 바로 내 컴퓨터에도 반영이 되는 것을 확인하였다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d50234260f0ea4ebf295c074442e7cba/f97d7/ftp-mission-8.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 43.22916666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABTklEQVQoz4WS527DMAyE/f4v2RRthof2Xr6CdJ3kV0uAkARKH3kHTZfHjNv1imV5YNs2SCmhlIL3Hs45KCkRY8IZvXc475Fz4aT9um3IJSPKDdPnx4UBzloYYxhEGWNEyRmtDYjlC0at6H2g1IKQAnpvDM+lwFjLzVJtmLSU+C9CcJiXBVIZKOMgpIaQG5TSWIWCdR4pZRjrMN3vD9Ran0mT5ZzQWuNzax0lB1hD0gNPRTWSSyudxxjY953vT0rcMHZg9M5F7yxKyVwspaDWhhg0gjf8CNh5atof51cwcJ2/UUrlLmPssEaj1sI+hhAYKo2FcY4nesFe0BPMQIKRzJQSPya5dIHg1ITC+oj7PCPn/KfXrVVMhx+ZuxOQ4C9PD498iPyFqH56238tes+QEqZ1XZ//TwjBX4hSaw2xrViWmWunrLPxu1xWtB+KfgCDLr1QaxYeRgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d50234260f0ea4ebf295c074442e7cba/a59e9/ftp-mission-8.webp 192w,
+/static/d50234260f0ea4ebf295c074442e7cba/0ca9f/ftp-mission-8.webp 384w,
+/static/d50234260f0ea4ebf295c074442e7cba/dc9b9/ftp-mission-8.webp 768w,
+/static/d50234260f0ea4ebf295c074442e7cba/e2c2f/ftp-mission-8.webp 1152w,
+/static/d50234260f0ea4ebf295c074442e7cba/f3efb/ftp-mission-8.webp 1536w,
+/static/d50234260f0ea4ebf295c074442e7cba/fab06/ftp-mission-8.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d50234260f0ea4ebf295c074442e7cba/3b721/ftp-mission-8.png 192w,
+/static/d50234260f0ea4ebf295c074442e7cba/66595/ftp-mission-8.png 384w,
+/static/d50234260f0ea4ebf295c074442e7cba/fe486/ftp-mission-8.png 768w,
+/static/d50234260f0ea4ebf295c074442e7cba/d2d74/ftp-mission-8.png 1152w,
+/static/d50234260f0ea4ebf295c074442e7cba/e8464/ftp-mission-8.png 1536w,
+/static/d50234260f0ea4ebf295c074442e7cba/f97d7/ftp-mission-8.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d50234260f0ea4ebf295c074442e7cba/fe486/ftp-mission-8.png"
+            alt="ftp-mission-8"
+            title="ftp-mission-8"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h1 id="트러블-슈팅" style="position:relative;">트러블 슈팅<a href="#%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85" aria-label="트러블 슈팅 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<ol>
+<li>LG U+ CHGW Web</li>
+</ol>
+<p>무선랜 암호로 접속하려 했지만 접속이 안되었다.<br>
+이때, 무선랜 암호가 아닌 <code class="language-text">웹 admin 암호</code>로 접속해야 한다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d7f6347bb20f382d7519e0cb6f69a7d2/f97d7/lg_u%2B.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 89.0625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABJ0AAASdAHeZh94AAAEHUlEQVQ4y0WRS28TZxSG56+USq0a1Aq16/6FSqSLIoHUDSzKoosuQOqisKhaKRFqBSJIlaKCQBEJIRCIHRzbceL73XPxjD1OnTTxbS5ObMd2ELk91YxDGenROXPON+9553zCzw8XuTo9z80nfu4/DTC3JhEsbBEtNoirTZKaQapskCoZpMsfiKpNXkV17s8GuTkxx7ffT/DN+C8Iv/82yVNPmqjcJFyokVRaZEoGhYpFsbqHutlBq+6hb/fQNjuom3toWx20zT1KW10qO30q9QG++D9cvjqJMLvgJaw0iSk1YsU6yWLDFYzINRbWVFaSVaJyg6WITiJXQlR0slIFsdJGrrSRdBupbLNRHzATlBH8hW3WxRoxpU6i2CClNsmVLQKJClPTHp69jOPzZ5mdfUPYFyAbWiWVLbqCypmofJbnKm2E1XSVUGGHqFwj7jhUGmQqNuHpeeb+eMKze7NEHi+gPX9O4ekzMo8ek53xUKh2EcsWom5TcFxWbFKqgbCWrhLIbrMu7Zy5rJPSLRKPFlmf8xN+HSPtiyG+CSGuhBFf+8nPLpPf2CVfssiVTfePnJjWTIRQcoOV5Jbr0tlbXKkTV5pklAa5qExhJY4UylGIyMhreQqpMrmSQdYRKVlkS6ZLRjNIFlsIwUQFX2SLYG6HNalG1BVskFBtUuIOWU+cnC9JLq5R8KfJi/+S3dgdibhCI2dJ1bnIJoI/quEN6e5tBnJbhPJbhMVtouIOUbFORDUJayZRtUWsZBIvNkkqo10nlIY7PCbX3YtdzW4jGKZNrWFQb5ojWqPYcGg50aB59u7EZsuiYVhu7/03DafWstxcsG2bdrvNcDjkYDjg7dsD+vv7Lm8PDhgM+gwHffadWn+fQb/PYDBwe/u9Hvv7PXq9HsPhwO0JTtE5cHx0xPGxwzHHJyecnJyM8uNjDo+OODx0OHQ5Ojr6Pzo4509PTzkFhN1Ol/Zel5bZxmp3sO02rVYT07IwTdOd7gx0po9c9l3XTr1/5tYRff8IdqfPXm/IbndIy+pgt3exLQvDNDEMg06n4wq9p9vtfqDTcfvOet69e+ci3L59i+vXf2BycoJEPMb62hqRSIRweJ1gMIDf7ycYDLrR6/XyxuNl2eNh2eNlyeMlEArx5927fHfpEleuXEa4ePEin42Nce3aNTY2Nkin06QSSXLZLJqmUdF1dF13c0mSUJQiiqpRlGTkWIKqUuTv+1N8fO4cY+fPI9y4cYPx8XEeTD2grOuuYDqTQVFVlGKRoqpSLpfRSiUUUSLjWyEVCCJPP6R861eqU38R/PEnvv7oHGNffI5w584d7t29x8zMDGomh5jPk/etknnpJbmwRGpxGUkUkRUFKZdHerWE9GIRef4F0vwC1dUQzycm+erTT7jw5QX+Ax45zwoJzoOXAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d7f6347bb20f382d7519e0cb6f69a7d2/a59e9/lg_u%2B.webp 192w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/0ca9f/lg_u%2B.webp 384w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/dc9b9/lg_u%2B.webp 768w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/e2c2f/lg_u%2B.webp 1152w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/f3efb/lg_u%2B.webp 1536w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/fab06/lg_u%2B.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d7f6347bb20f382d7519e0cb6f69a7d2/3b721/lg_u%2B.png 192w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/66595/lg_u%2B.png 384w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/fe486/lg_u%2B.png 768w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/d2d74/lg_u%2B.png 1152w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/e8464/lg_u%2B.png 1536w,
+/static/d7f6347bb20f382d7519e0cb6f69a7d2/f97d7/lg_u%2B.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d7f6347bb20f382d7519e0cb6f69a7d2/fe486/lg_u%2B.png"
+            alt="lg_u+"
+            title="lg_u+"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ul>
+<li>참고자료</li>
+</ul>
+<p><a href="https://itmanual.net/lg-%EC%9C%A0%ED%94%8C%EB%9F%AC%EC%8A%A4-%EA%B3%B5%EC%9C%A0%EA%B8%B0-%EC%B4%88%EA%B8%B0%ED%99%94-%EB%A6%AC%EC%85%8B-%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%B0%BE%EA%B8%B0/" target="_blank" rel="nofollow">https://itmanual.net/lg-유플러스-공유기-초기화-리셋-비밀번호-찾기/</a></p>
+<ol start="2">
+<li>도메인을 설정하는 과정에서, 클라이언트 접속 차단이 자꾸 뜸</li>
+</ol>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/31284ffd08f6e50ce1860eed8e3b89f0/f97d7/client-cannot-access-reason.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 26.5625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAqklEQVQY05WPSw7EIAxDuf81W6AfEiAjVbBoM3LaotnOwrITsHi4UrKu66pxWcxTSrrvuwl5efbbtlnGPsZoM4Q7b+84DnUiVZlIOWclSsrMWkrRnLM5EVmGaq22QxmyHrNlEdHWmrqcWadpUu+9huAtgwQUIUbzMQdvNK/meb7Pn3siHxDK/QrR+CYxG1miNGhACAKo926yubeR4e48T72u6y+h89t7M/wLXiV9QdInOw8AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/31284ffd08f6e50ce1860eed8e3b89f0/a59e9/client-cannot-access-reason.webp 192w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/0ca9f/client-cannot-access-reason.webp 384w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/dc9b9/client-cannot-access-reason.webp 768w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/e2c2f/client-cannot-access-reason.webp 1152w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/f3efb/client-cannot-access-reason.webp 1536w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/fab06/client-cannot-access-reason.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/31284ffd08f6e50ce1860eed8e3b89f0/3b721/client-cannot-access-reason.png 192w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/66595/client-cannot-access-reason.png 384w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/fe486/client-cannot-access-reason.png 768w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/d2d74/client-cannot-access-reason.png 1152w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/e8464/client-cannot-access-reason.png 1536w,
+/static/31284ffd08f6e50ce1860eed8e3b89f0/f97d7/client-cannot-access-reason.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/31284ffd08f6e50ce1860eed8e3b89f0/fe486/client-cannot-access-reason.png"
+            alt="client-cannot-access-reason"
+            title="client-cannot-access-reason"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+이 문제는 펌웨어 업그레이드를 통해 기존 9.06 버전에서 10.06.8 버전으로 업그레이드하여 문제를 해결하였다.</p>
+<ul>
+<li>참고자료</li>
+</ul>
+<p><a href="https://jb-skin-131.tistory.com/4" target="_blank" rel="nofollow">https://jb-skin-131.tistory.com/4</a></p>
+<ol start="3">
+<li>‘다른사용자의 호스트이름’ 혹은 ‘등록되지 않은 호스트이름’으로 나올 경우</li>
+</ol>
+<p>말 그대로 등록하려 하는 호스트 이름이 다른 사용자에게 이미 등록된 경우에 뜨는 오류이다.
+펌웨어 업그레이드 후, DDNS 설정을 다시 해주니 해결이 되었다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/71c65e4995218486dfb02279326fb1aa/f97d7/another-user-problem.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 28.125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA9klEQVQY041Qy26DQAzk/78OlhC6QAh0n4TnIqUgLlPZKVJU9dDDaHbtscd2pJTCMAx4fj2xriuj7x9QWmMcRyzLgnmemd9Bsff4+Y5utxpN08Iai77vcRwHpnGALAoW0H/bNuz7/i9EWZbBOYeue3DDEAKMMRBCIL1cUFYVjLFYQvhzwt+I4jiB0YZF0zQxtNYoCok8z1HX9x/Djg2J6UR0jnNNqjlNojiOURYlC05R27ZIRYI0FRAiBZle8yvkh0SSCM6HsDBXVcWGUkp8KoXIWovOv1yH8eVMU1hrYI3h9Z11IJ33Ht55ZpqKck3TcENiYy2+AX63vwH6v4+sAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/71c65e4995218486dfb02279326fb1aa/a59e9/another-user-problem.webp 192w,
+/static/71c65e4995218486dfb02279326fb1aa/0ca9f/another-user-problem.webp 384w,
+/static/71c65e4995218486dfb02279326fb1aa/dc9b9/another-user-problem.webp 768w,
+/static/71c65e4995218486dfb02279326fb1aa/e2c2f/another-user-problem.webp 1152w,
+/static/71c65e4995218486dfb02279326fb1aa/f3efb/another-user-problem.webp 1536w,
+/static/71c65e4995218486dfb02279326fb1aa/fab06/another-user-problem.webp 2000w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/71c65e4995218486dfb02279326fb1aa/3b721/another-user-problem.png 192w,
+/static/71c65e4995218486dfb02279326fb1aa/66595/another-user-problem.png 384w,
+/static/71c65e4995218486dfb02279326fb1aa/fe486/another-user-problem.png 768w,
+/static/71c65e4995218486dfb02279326fb1aa/d2d74/another-user-problem.png 1152w,
+/static/71c65e4995218486dfb02279326fb1aa/e8464/another-user-problem.png 1536w,
+/static/71c65e4995218486dfb02279326fb1aa/f97d7/another-user-problem.png 2000w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/71c65e4995218486dfb02279326fb1aa/fe486/another-user-problem.png"
+            alt="another-user-problem"
+            title="another-user-problem"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ul>
+<li>참고자료</li>
+</ul>
+<p><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&#x26;blogId=sde1206&#x26;logNo=220937543007" target="_blank" rel="nofollow">https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&#x26;blogId=sde1206&#x26;logNo=220937543007</a></p>
+<h1 id="참고링크" style="position:relative;">참고링크<a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC" aria-label="참고링크 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<ul>
+<li>
+<p>포트포워딩, 내부IP, 외부IP, 포트포워딩 하는법</p>
+<p><a href="https://etloveguitar.tistory.com/9" target="_blank" rel="nofollow">https://etloveguitar.tistory.com/9</a></p>
+</li>
+<li>
+<p>클라이언트 서버 vs peer to peer</p>
+<p><a href="https://ko.gadget-info.com/difference-between-client-server" target="_blank" rel="nofollow">https://ko.gadget-info.com/difference-between-client-server</a></p>
+</li>
+<li>
+<p>API란?</p>
+<p><a href="https://steemit.com/kr/@yahweh87/it-api" target="_blank" rel="nofollow">https://steemit.com/kr/@yahweh87/it-api</a></p>
+</li>
+<li>
+<p>NAT 기술, 왜 IPv4 주소 고갈의 완전한 해결책이 될 수 없었는가??</p>
+<p><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&#x26;blogId=nackji80&#x26;logNo=220504083147" target="_blank" rel="nofollow">https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&#x26;blogId=nackji80&#x26;logNo=220504083147</a></p>
+</li>
+<li>
+<p>Proxy란? Forward Proxy VS Reverse Proxy</p>
+<p><a href="https://bcp0109.tistory.com/194" target="_blank" rel="nofollow">https://bcp0109.tistory.com/194</a></p>
+</li>
+<li>
+<p>네트워크 장비 정리</p>
+<p><a href="https://yys630.tistory.com/27" target="_blank" rel="nofollow">https://yys630.tistory.com/27</a></p>
+</li>
+<li>
+<p>웹 사이트 보안 강화를 위한 10가지 팁</p>
+<p><a href="https://www.thewordcracker.com/miscellaneous/%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-%EB%B3%B4%EC%95%88-%EA%B0%95%ED%99%94%EB%A5%BC-%EC%9C%84%ED%95%9C-10%EA%B0%80%EC%A7%80-%ED%8C%81/#ftoc-heading-1" target="_blank" rel="nofollow">https://www.thewordcracker.com/miscellaneous/웹사이트-보안-강화를-위한-10가지-팁/#ftoc-heading-1</a></p>
+</li>
+<li>
+<p>Multi Server 환경에서 Session이 구성되는 방법</p>
+<p><a href="https://hyuntaeknote.tistory.com/6" target="_blank" rel="nofollow">https://hyuntaeknote.tistory.com/6</a></p>
+</li>
+<li>
+<p>알 FTP 서버 운영을 위한 공유기 설정방법</p>
+<p><a href="http://www.mygnit.co.kr/bbs/board.php?bo_table=bo_08&#x26;wr_id=31" target="_blank" rel="nofollow">http://www.mygnit.co.kr/bbs/board.php?bo_table=bo_08&#x26;wr_id=31</a></p>
+</li>
+<li>
+<p>남는 윈도우 pc를 설버 및 ftp 설치하여 외부 접속 가능하게 하는 방법</p>
+<p><a href="https://lse626.tistory.com/148" target="_blank" rel="nofollow">https://lse626.tistory.com/148</a></p>
+</li>
+</ul></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#%EA%B0%9C%EB%85%90-%ED%82%A4%EC%9B%8C%EB%93%9C">개념 키워드</a></p>
+<ul>
+<li>
+<p><a href="#%EC%99%B8%EB%B6%80%EC%A0%91%EC%86%8D-%EB%82%B4%EB%B6%80%EC%A0%91%EC%86%8D">외부접속, 내부접속</a></p>
+</li>
+<li>
+<p><a href="#code-classlanguage-text%ED%8F%AC%ED%8A%B8%ED%8F%AC%EC%9B%8C%EB%94%A9code%EC%9D%B4-%ED%95%84%EC%9A%94%ED%95%9C-%EC%9D%B4%EC%9C%A0"><code class="language-text">포트포워딩</code>이 필요한 이유</a></p>
+</li>
+<li>
+<p><a href="#%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8---%EC%84%9C%EB%B2%84-%EB%AA%A8%EB%8D%B8-vs-p2p-%EB%AA%A8%EB%8D%B8">클라이언트 - 서버 모델 VS P2P 모델</a></p>
+<ul>
+<li><a href="#%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8---%EC%84%9C%EB%B2%84">클라이언트 - 서버</a></li>
+<li><a href="#p2p">P2P</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#api---application-programming-interface">API - Application Programming Interface</a></p>
+</li>
+<li>
+<p><a href="#ip">IP</a></p>
+<ul>
+<li><a href="#ipv4-vs-ipv6">IPv4 vs IPv6</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#dns">DNS</a></p>
+</li>
+<li>
+<p><a href="#%EC%99%B8%EB%B6%80-ip-%EB%82%B4%EB%B6%80-ip">외부 IP, 내부 IP</a></p>
+</li>
+<li>
+<p><a href="#proxy">Proxy</a></p>
+<ul>
+<li><a href="#forward-proxy">Forward Proxy</a></li>
+<li><a href="#reverse-proxy">Reverse Proxy</a></li>
+<li><a href="#forward-proxy-vs-reverse-proxy">Forward Proxy VS Reverse Proxy</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%9E%A5%EB%B9%84">네트워크 장비</a></p>
+<ul>
+<li><a href="#%ED%97%88%EB%B8%8C">허브</a></li>
+<li><a href="#%EC%8A%A4%EC%9C%84%EC%B9%98">스위치</a></li>
+<li><a href="#%EB%9D%BC%EC%9A%B0%ED%84%B0">라우터</a></li>
+<li><a href="#code-classlanguage-text%EA%B3%B5%EC%9C%A0%EA%B8%B0code"><code class="language-text">공유기</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#%EB%AF%B8%EC%85%98">미션</a></p>
+<ul>
+<li><a href="#%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C-%EB%AF%B8%EC%85%98">스탠다드 미션</a></li>
+<li><a href="#%EC%B1%8C%EB%A6%B0%EC%A7%80-%EB%AF%B8%EC%85%98">챌린지 미션</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85">트러블 슈팅</a></p>
+</li>
+<li>
+<p><a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC">참고링크</a></p>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/UMC_2주차/";window.___webpackCompilationHash="024634f2622bc171107d";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-1a65b5d7fb70b1cf254a.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-7993bdd723ef1aff0be0.js" async=""></script></body></html>
