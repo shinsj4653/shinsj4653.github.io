@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="UMC 동아리에서 진행한 3주차 세미나 및 스터디에서 배운 내용정리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="UMC NodeJS - 3주차"/><meta data-react-helmet="true" property="og:description" content="UMC 동아리에서 진행한 3주차 세미나 및 스터디에서 배운 내용정리"/><meta data-react-helmet="true" property="og:image" content="/static/4d9e1219247fe3b8a31b442f85663761/thumbnail-nodejs.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="UMC NodeJS - 3주차"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="UMC NodeJS - 3주차"/><meta data-react-helmet="true" name="twitter:description" content="UMC 동아리에서 진행한 3주차 세미나 및 스터디에서 배운 내용정리"/><meta data-react-helmet="true" name="twitter:image" content="/static/4d9e1219247fe3b8a31b442f85663761/thumbnail-nodejs.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/UMC_3주차/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">UMC NodeJS - 3주차</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1024px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;576&#x27; width=&#x27;1024&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAABf0lEQVQoz6VSQUsCQRTenyXiwTYF21MwByGMjSw6WEcraLFfEBiJdMiD0cVEpWBz0YpFCqRDoNma5KXFNWEPwahN4OxM6IiKegj6Lu97b9733pt5w9E/gBCCMZ6Nc/Qf4CZrW5bFXItYFulzFqlUKplMhrkYY0LIWEwGGJHRGSGk1+tRSguFgtvtbrfbUzkcMxBCWZZbrRZTvZuvja8PVqLZbEYiEQAAQghCqCgKhJBV6Xc2TdPv9/M8DwB4q9ZuG8lQbuMgtfNsPKn3qiAINpvN5/NpmiaKosPh8Hq9hmEMxy6VSna7vV6vC0tC4jJxVDwM5Ta34ivRxxNpX9rd283n8wCAVCrFL/LXD1fh47BpmkNxuVwOBAKUUkmSlGz2tBgVz5e3L1ZvNDmdTDsXnC6XKxgMaprm8XjW1kXWdjg2QqjT6fTJD/rudjGx1Npd9fOF3VlV1Xg8jhCilOq6HjuL6bo+FjM2929MvvxszrxVUWIRzPZMKcUDsISpPf8CVQk6/x4pOksAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/4d9e1219247fe3b8a31b442f85663761/0841e/thumbnail-nodejs.webp 256w,/static/4d9e1219247fe3b8a31b442f85663761/cd676/thumbnail-nodejs.webp 512w,/static/4d9e1219247fe3b8a31b442f85663761/75203/thumbnail-nodejs.webp 1024w" sizes="(min-width: 1024px) 1024px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1024px) 1024px, 100vw" decoding="async" loading="lazy" data-src="/static/4d9e1219247fe3b8a31b442f85663761/8e4fb/thumbnail-nodejs.png" data-srcset="/static/4d9e1219247fe3b8a31b442f85663761/889c2/thumbnail-nodejs.png 256w,/static/4d9e1219247fe3b8a31b442f85663761/6108e/thumbnail-nodejs.png 512w,/static/4d9e1219247fe3b8a31b442f85663761/8e4fb/thumbnail-nodejs.png 1024w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/4d9e1219247fe3b8a31b442f85663761/0841e/thumbnail-nodejs.webp 256w,/static/4d9e1219247fe3b8a31b442f85663761/cd676/thumbnail-nodejs.webp 512w,/static/4d9e1219247fe3b8a31b442f85663761/75203/thumbnail-nodejs.webp 1024w" sizes="(min-width: 1024px) 1024px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1024px) 1024px, 100vw" decoding="async" loading="lazy" src="/static/4d9e1219247fe3b8a31b442f85663761/8e4fb/thumbnail-nodejs.png" srcSet="/static/4d9e1219247fe3b8a31b442f85663761/889c2/thumbnail-nodejs.png 256w,/static/4d9e1219247fe3b8a31b442f85663761/6108e/thumbnail-nodejs.png 512w,/static/4d9e1219247fe3b8a31b442f85663761/8e4fb/thumbnail-nodejs.png 1024w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">UMC NodeJS - 3주차</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>NodeJS</div><div>2023.01.21.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p>UMC 활동 3주차 때 세미나에서 배운 내용과 스터디에서 토의한 내용을 정리해보았다.</p>
+<h1 id="개념-키워드" style="position:relative;">개념 키워드<a href="#%EA%B0%9C%EB%85%90-%ED%82%A4%EC%9B%8C%EB%93%9C" aria-label="개념 키워드 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="linux" style="position:relative;">Linux<a href="#linux" aria-label="linux permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>리눅스가 많이 사용되는 이유로는 아무래도 경량된 OS 여서 서버로 많이 쓰일 수 있기 때문이다.<br>
+라즈베리파이에서도 많이 사용되고, IoT 기반 서비스들이 거의 다 리눅스 기반이다.</p>
+<h2 id="linux의-종류" style="position:relative;">Linux의 종류<a href="#linux%EC%9D%98-%EC%A2%85%EB%A5%98" aria-label="linux의 종류 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h3 id="centos" style="position:relative;">centOS<a href="#centos" aria-label="centos permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>The Community ENTerprise Operation System의 약자.<br>
+레드햇(Red Hat) 엔터프라이즈 리눅스와 완전하게 호환되는 무료 기업용 리눅스 운영체제이다.<br>
+리눅스 운영체제의 핵심인 <code class="language-text">커널</code>은 리누스 토르발스에 의해 처음 만들어졌다.<br>
+여기서 커널의 개념을 잠시 설명을 하겠다.</p>
+<p>소프트웨어가 컴퓨터 시스템에서 수행되기 위해서는 메모리에 그 프로그램이 올라가 있어야 한다. 운영체제 역시 컴퓨터 켜짐과 동시에 메모리에 올라가야한다.<br>
+하지만, 운영체제처럼 규모가 큰 프로그램이 모두 메모리에 올라가면 메모리 공간의 낭비가 심해질 것 이다.<br>
+따라서, 운영체제 중 <code class="language-text">항상 필요한 부분</code> 만을 전원이 켜짐과 동시에 메모리에 올려놓고, 그렇지 않은 부분은 필요할 때 메모리에 올려서 사용을 한다.<br>
+이 때 <code class="language-text">메모리에 상주하는 운영체제 부분</code> 을 커널이라 한다.</p>
+<h3 id="ubuntu" style="position:relative;">ubuntu<a href="#ubuntu" aria-label="ubuntu permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>리눅스의 여러 배포판 중 하나인 데비안에서 또 한번 파생된 배포판이다.</p>
+<ol>
+<li>개인용, 데스크탑 환경에 최적화</li>
+</ol>
+<p>대부분의 리눅스 배포판들이 서버용으로 사용되고 있다. 우분투는 개인 사용자와 데스크탑 환경에 최적화 되도록 사용자 편의를 중점으로 개발되고 있다.</p>
+<ol start="2">
+<li>자유 소프트웨어 기반</li>
+</ol>
+<p>누구나 무료로 다운받아서 사용이 가능하다.</p>
+<h2 id="awsamazon-web-service" style="position:relative;">AWS(Amazon Web Service)<a href="#awsamazon-web-service" aria-label="awsamazon web service permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>전세게적으로 분포한 데이터 센터에서 200개가 넘는 완벽한 기능의 서비스를 제공하는, 세계적으로 가장 포괄적이며 널리 채택되고 있는 클라우드 플랫폼</p>
+<h2 id="aws-ec2elastic-compute-cloud" style="position:relative;">AWS EC2(Elastic Compute Cloud)<a href="#aws-ec2elastic-compute-cloud" aria-label="aws ec2elastic compute cloud permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>AWS에서 제공하는 클라우드 컴퓨팅 서비스.<br>
+EC2의 장점은 다음과 같다.</p>
+<ul>
+<li>용량을 쉽게 늘리거나 줄일 수 있다(탄력성)</li>
+<li>저렴하다</li>
+<li>사용자가 인스턴스를 완전히 제어가능하다.</li>
+<li>보안 및 네트워크 구성, 스토리지 관리가 효과적이다.</li>
+</ul>
+<h2 id="aws-spot-instance-vs-on-demand" style="position:relative;">AWS Spot Instance vs On-demand<a href="#aws-spot-instance-vs-on-demand" aria-label="aws spot instance vs on demand permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ul>
+<li>Spot Instance: 온디맨드 가격보다 저렴한 비용으로 제공되는 예비 EC2 용량을 사용하는 인스턴스</li>
+<li>On-demand: 장기 약정 없이 초 단위로 컴퓨팅 용량에 대해 비용을 지불</li>
+</ul>
+<p>수명주기를 완전하게 제어 가능하다.</p>
+<h2 id="aws의-다양한-서비스" style="position:relative;">AWS의 다양한 서비스<a href="#aws%EC%9D%98-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%84%9C%EB%B9%84%EC%8A%A4" aria-label="aws의 다양한 서비스 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h3 id="s3---스토리지" style="position:relative;">S3 - 스토리지<a href="#s3---%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80" aria-label="s3   스토리지 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Amazon Simple Storage Service
+인터넷용 스토리지 서비스<br>
+인터넷을 통해 언제 어디서는 원하는 양의 데이터를 저장하고 검색이 가능하다.</p>
+<h3 id="ec2---컴퓨팅" style="position:relative;">EC2 - 컴퓨팅<a href="#ec2---%EC%BB%B4%ED%93%A8%ED%8C%85" aria-label="ec2   컴퓨팅 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Amazon Elastic Compute Cloud<br>
+크기를 조정할 수 있는 컴퓨팅 용량(=확장식 컴퓨팅)을 제공하는 웹 서비스
+원하는 만큼 <code class="language-text">가상 서버를 구축</code> 하고 보안 및 네트워크 구성과 스토리지 관리가 가능하다.</p>
+<h3 id="rds---데이터베이스" style="position:relative;">RDS - 데이터베이스<a href="#rds---%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4" aria-label="rds   데이터베이스 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Amazon Relational Database Service<br>
+클라우드에서 관계형 데이터베이스를 더욱 쉽게 설치, 운영 및 확장할 수 있는 웹서비스<br>
+산업 표준 관계형 데이터베이스를 위한 경제적이고 크기 조절이 가능한 용량을 제공한다.</p>
+<h3 id="storage-vs-database" style="position:relative;">Storage vs Database<a href="#storage-vs-database" aria-label="storage vs database permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>둘 다 저장장치의 역할을 한다.
+스토리지는 파일저장소, 데이터베이스는 데이터를 저장한다.<br>
+1차 스토리지 : 램(RAM)처럼, <code class="language-text">내부 장치에 들어있는 데이터</code>
+2차 스토리지 : 테이프, 하드디스크 등 <code class="language-text">외부 장치에 저장된 데이터</code></p>
+<h2 id="aws-프리티어-과금aws-reduce-cost" style="position:relative;">AWS 프리티어 과금(AWS Reduce Cost)<a href="#aws-%ED%94%84%EB%A6%AC%ED%8B%B0%EC%96%B4-%EA%B3%BC%EA%B8%88aws-reduce-cost" aria-label="aws 프리티어 과금aws reduce cost permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>아마존에서는 신규 AWS 고객에게 1년간의 프리티어를 제공한다. 12개월동안 무료로 서비스를 이용하게 해주는 전략을 사용중이다. 다만, 12개월동안 AWS 서비스륾 마음대로 사용가능하긴 하지만, 제한된 한도량이 존재한다. 프리티어라도 한달동안 몇시간동안만 무료이며, 용량이나 트래픽 한도량이 존재한다. 만일 이를 초과할 경우, 과금이 되어 잘못하면 요금폭탄을 맞을 수도 있다.<br>
+<code class="language-text">즉, 프리티어라고 해서 그냥 1년내내 모든게 다 무료인 것은 아니다!</code></p>
+<h1 id="미션" style="position:relative;">미션<a href="#%EB%AF%B8%EC%85%98" aria-label="미션 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="스탠다드--aws-elastic-ip를-적용하여-http-외부접속-가능하게-nginx-php-mysql-설치" style="position:relative;">스탠다드 : AWS Elastic IP를 적용하여 http 외부접속 가능하게 Nginx, php, mysql 설치<a href="#%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C--aws-elastic-ip%EB%A5%BC-%EC%A0%81%EC%9A%A9%ED%95%98%EC%97%AC-http-%EC%99%B8%EB%B6%80%EC%A0%91%EC%86%8D-%EA%B0%80%EB%8A%A5%ED%95%98%EA%B2%8C-nginx-php-mysql-%EC%84%A4%EC%B9%98" aria-label="스탠다드  aws elastic ip를 적용하여 http 외부접속 가능하게 nginx php mysql 설치 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>AWS <code class="language-text">EC2</code> 서비스에 들어가서 인스턴스를 하나 생성하였다.<br>
+<code class="language-text">WinSCP</code> 를 활용하여 <code class="language-text">SSH 기반</code> 세션을 하나 생성하여 ubuntu 인스턴스를 외부 접속하였다.<br>
+<code class="language-text">Nginx, php, mysql</code> 패키지를 각각 설치해줬다.</p>
+<ul>
+<li>참고자료 : <a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04" target="_blank" rel="nofollow">ubuntu-18.04 에서 nginx, php, mysql 설치</a></li>
+</ul>
+<p>여기서, php 패키지를 설치할 때 <code class="language-text">php-fpm</code>이 필요하다. 그 이유는 nginx와 php를 연결해주기 때문이다. 설치 후, 이 설정을 nginx configuration 파일에서 해줬다.<br>
+php와 nginx를 연동하였고, Datagrip를 활용하여 mysql에 외부 접속을 테스트하였다.</p>
+<ul>
+<li>참고자료 : <a href="https://r-mango.tistory.com/13" target="_blank" rel="nofollow">datagrip test</a></li>
+</ul>
+<p>phpmyadmin 를 설치후, 페이지를 직접 띄어보기도 하였다.</p>
+<ul>
+<li>참고자료 : <a href="https://choidr.tistory.com/entry/Ubuntu-1804%EC%97%90-phpmyadmin-%EC%84%A4%EC%B9%98Nginx" target="_blank" rel="nofollow">phpmyadmin 설치</a></li>
+</ul>
+<p>Domain 생성 후 연결해주는 작업은 <code class="language-text">가비아</code>에서 해줬다.</p>
+<ul>
+<li>참고자료 : <a href="https://happylulurara.tistory.com/146" target="_blank" rel="nofollow">https://happylulurara.tistory.com/146</a></li>
+</ul>
+<p><code class="language-text">Let's Encrypt</code>를 이용하여 HTTPS 까지 적용을 해줬다.</p>
+<ul>
+<li>참고자료 : <a href="https://yusang.tistory.com/33?category=835611" target="_blank" rel="nofollow">https://yusang.tistory.com/33?category=835611</a></li>
+</ul>
+<h2 id="챌린지--sub-domain-적용dev-prod-redirection-적용ip-to-domain" style="position:relative;">챌린지 : Sub Domain 적용(dev, prod), Redirection 적용(ip to domain)<a href="#%EC%B1%8C%EB%A6%B0%EC%A7%80--sub-domain-%EC%A0%81%EC%9A%A9dev-prod-redirection-%EC%A0%81%EC%9A%A9ip-to-domain" aria-label="챌린지  sub domain 적용dev prod redirection 적용ip to domain permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>dev와 prod용 서버를 각각 생성을 해주었다.</p>
+<ul>
+<li>참고자료 : <a href="https://luminitworld.tistory.com/86" target="_blank" rel="nofollow">https://luminitworld.tistory.com/86</a></li>
+</ul>
+<p>Redirection 적용까지 해봤다. ip주소를 입력하면 자동으로 도메인 주소로 연결되게끔 해주는 것 이다.</p>
+<h1 id="트러블-슈팅" style="position:relative;">트러블 슈팅<a href="#%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85" aria-label="트러블 슈팅 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<ol>
+<li>putty.exe를 찾을 수 없습니다.</li>
+</ol>
+<p>말 그대로 putty가 없어서 생기는 오류였다. 최신버전의 PuTTY를 깔아주니 해결이 되었다.</p>
+<ul>
+<li>참고자료 : <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" rel="nofollow">https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</a></li>
+</ul>
+<ol start="2">
+<li>Netwrok error: Connection timed out</li>
+</ol>
+<p>인바운드 규칙을 제대로 설정을 안해줘서 그렇다. 기존의 SSH 22번 포트에 대한 규칙을 HTTP에 대한 규칙으로 모르고 바꿔버려서 오류가 생겼다.</p>
+<ul>
+<li>참고자료 : <a href="https://jg-han.tistory.com/96" target="_blank" rel="nofollow">https://jg-han.tistory.com/96</a></li>
+</ul>
+<ol start="3">
+<li>phpmyadmin 페이지 : 404 not found</li>
+</ol>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">Nginx 문서 루트 디렉토리의 심볼릭 링크 설정 명령어를 수정함
+<span class="token function">sudo</span> <span class="token function">ln</span> -s <span class="token punctuation">..</span>.
+-<span class="token operator">></span> -s 를 추가함<span class="token operator">!</span></code></pre></div>
+<p>그런데, <code class="language-text">WARNING: Moudle mcrypt ini file doesn't exist</code> 오류가 발생하였다.</p>
+<ul>
+<li>참고자료 : <a href="https://askubuntu.com/questions/998199/warning-module-mcrypt-ini-file-doesnt-exist-under-etc-php-7-2-mods-available" target="_blank" rel="nofollow">mcrypt 문제해결</a></li>
+</ul>
+<ol start="4">
+<li>Domain name needs at least one dot</li>
+</ol>
+<p>https 적용 중, 도메인 이름을 처음에 umc-singjun 으로만 설정해준 것을 알았다…<br>
+umc-singjun.shop 으로 설정을 해야했었다.<br>
+하지만 <code class="language-text">sudo ufw status</code> 명령어를 입력하니 <code class="language-text">Status: inactive</code> 가 떴다.</p>
+<ul>
+<li>참고자료 : <a href="https://kugancity.tistory.com/entry/ubuntu%EC%97%90%EC%84%9C-%EB%B0%A9%ED%99%94%EB%B2%BD-%EC%84%A4%EC%A0%95-UFW" target="_blank" rel="nofollow">https://kugancity.tistory.com/entry/ubuntu에서-방화벽-설정-UFW</a>, <a href="https://surprisecomputer.tistory.com/28" target="_blank" rel="nofollow">https://surprisecomputer.tistory.com/28</a></li>
+</ul>
+<ol start="5">
+<li>sudo chmod -R 777</li>
+</ol>
+<p>위 명령어를 쳤는데도 권한이 거부되었다고 떴다.<br>
+/etc/ssh/sshd_config 파일을 수정하여 권한을 부여하니 에러를 해결할 수 있었다.</p>
+<ul>
+<li>참고자료 : <a href="https://choidr.tistory.com/entry/WinSCP-SFTP-Permission-Denied-ErrorAWS" target="_blank" rel="nofollow">https://choidr.tistory.com/entry/WinSCP-SFTP-Permission-Denied-ErrorAWS</a></li>
+</ul>
+<h1 id="참고자료" style="position:relative;">참고자료<a href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C" aria-label="참고자료 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<ul>
+<li>운영체제와 커널이란</li>
+</ul>
+<p><a href="https://goodmilktea.tistory.com/23" target="_blank" rel="nofollow">https://goodmilktea.tistory.com/23</a></p>
+<ul>
+<li>Servlet이란</li>
+</ul>
+<p><a href="https://mangkyu.tistory.com/14" target="_blank" rel="nofollow">https://mangkyu.tistory.com/14</a></p></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#%EA%B0%9C%EB%85%90-%ED%82%A4%EC%9B%8C%EB%93%9C">개념 키워드</a></p>
+<ul>
+<li>
+<p><a href="#linux">Linux</a></p>
+</li>
+<li>
+<p><a href="#linux%EC%9D%98-%EC%A2%85%EB%A5%98">Linux의 종류</a></p>
+<ul>
+<li><a href="#centos">centOS</a></li>
+<li><a href="#ubuntu">ubuntu</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#awsamazon-web-service">AWS(Amazon Web Service)</a></p>
+</li>
+<li>
+<p><a href="#aws-ec2elastic-compute-cloud">AWS EC2(Elastic Compute Cloud)</a></p>
+</li>
+<li>
+<p><a href="#aws-spot-instance-vs-on-demand">AWS Spot Instance vs On-demand</a></p>
+</li>
+<li>
+<p><a href="#aws%EC%9D%98-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%84%9C%EB%B9%84%EC%8A%A4">AWS의 다양한 서비스</a></p>
+<ul>
+<li><a href="#s3---%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80">S3 - 스토리지</a></li>
+<li><a href="#ec2---%EC%BB%B4%ED%93%A8%ED%8C%85">EC2 - 컴퓨팅</a></li>
+<li><a href="#rds---%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4">RDS - 데이터베이스</a></li>
+<li><a href="#storage-vs-database">Storage vs Database</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#aws-%ED%94%84%EB%A6%AC%ED%8B%B0%EC%96%B4-%EA%B3%BC%EA%B8%88aws-reduce-cost">AWS 프리티어 과금(AWS Reduce Cost)</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#%EB%AF%B8%EC%85%98">미션</a></p>
+<ul>
+<li><a href="#%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C--aws-elastic-ip%EB%A5%BC-%EC%A0%81%EC%9A%A9%ED%95%98%EC%97%AC-http-%EC%99%B8%EB%B6%80%EC%A0%91%EC%86%8D-%EA%B0%80%EB%8A%A5%ED%95%98%EA%B2%8C-nginx-php-mysql-%EC%84%A4%EC%B9%98">스탠다드 : AWS Elastic IP를 적용하여 http 외부접속 가능하게 Nginx, php, mysql 설치</a></li>
+<li><a href="#%EC%B1%8C%EB%A6%B0%EC%A7%80--sub-domain-%EC%A0%81%EC%9A%A9dev-prod-redirection-%EC%A0%81%EC%9A%A9ip-to-domain">챌린지 : Sub Domain 적용(dev, prod), Redirection 적용(ip to domain)</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85">트러블 슈팅</a></p>
+</li>
+<li>
+<p><a href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a></p>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/UMC_3주차/";window.___webpackCompilationHash="024634f2622bc171107d";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-1a65b5d7fb70b1cf254a.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-7993bdd723ef1aff0be0.js" async=""></script></body></html>
