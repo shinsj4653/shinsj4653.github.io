@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="파이썬 알고리즘 인터뷰 책에서 3부 9장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="Python Coding Interview - 3부 9장 | 스택, 큐"/><meta data-react-helmet="true" property="og:description" content="파이썬 알고리즘 인터뷰 책에서 3부 9장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" property="og:image" content="/static/0c8985426a86d22cc5bd019e68c03210/thumbnail-coding-test.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="Python Coding Interview - 3부 9장 | 스택, 큐"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Python Coding Interview - 3부 9장 | 스택, 큐"/><meta data-react-helmet="true" name="twitter:description" content="파이썬 알고리즘 인터뷰 책에서 3부 9장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" name="twitter:image" content="/static/0c8985426a86d22cc5bd019e68c03210/thumbnail-coding-test.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/CI_Part3_Ch9/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">Python Coding Interview - 3부 9장 | 스택, 큐</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1342px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;806&#x27; width=&#x27;1342&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB9ElEQVQoz42SW28SURSF+bfGGOOTL14S64MvNsTEB1AUsG2waLFaoGiaRopt5WKLAxQ6DMO1XK3VamobZg6fYYCBojY+rOyTfXLWWWvvZdHrCiNoQ+gHebRGwTyPYNwP63TfONcVLCbZsGE+KGXQqvtoTRWtXULrlNHTMUR41ahaq3juU23IYzmnsE/aVKGSRSzYEBtBeooEiTA96SOikkOoaXQ5id6vhRR6OXuxwtOqTC22Te/dEmI3wq/cLqfb65ztbHJSynEmRSESQoSD9CJvEcktw8WYcGI2oqFwUswib20Zll7a5/A+dONzevG5XrD8dJ5ns3aiyyvQVulW5b/McKIxUsmXEt/3JeasDr6lojRlmVpeRW/nkOI7+OzzcFimW8v/OcNxo2CSikaBY1liyeHh59caR50Wx/UGHNZp5DMEXB7j027tIoXFDCL2Hj37CdFS+ZFP4bY+pryXoJ5N00xKdBJx4qE1Xj9ZMAlHrnRzyyPCSg49E0cr7Q2XpOB+4OLG5VvcuXqX21dmuHntHtcvzbD5JjRWOEE2ZVkZZK6u0GsoHClZFp2vsN138sjqNuCwurHNuoitf4CWOsjsPxWOUn+Qh2aBqvSZgHeVwGIA/3O/gaA3yIrHT3RtY0DwP4STuewvp9dUTYhhnczttOXfd3lZS5/rBRYAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/0c8985426a86d22cc5bd019e68c03210/7a2cc/thumbnail-coding-test.webp 336w,/static/0c8985426a86d22cc5bd019e68c03210/e8438/thumbnail-coding-test.webp 671w,/static/0c8985426a86d22cc5bd019e68c03210/f0ee1/thumbnail-coding-test.webp 1342w" sizes="(min-width: 1342px) 1342px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1342px) 1342px, 100vw" decoding="async" loading="lazy" data-src="/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png" data-srcset="/static/0c8985426a86d22cc5bd019e68c03210/b82c5/thumbnail-coding-test.png 336w,/static/0c8985426a86d22cc5bd019e68c03210/9de5e/thumbnail-coding-test.png 671w,/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png 1342w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/0c8985426a86d22cc5bd019e68c03210/7a2cc/thumbnail-coding-test.webp 336w,/static/0c8985426a86d22cc5bd019e68c03210/e8438/thumbnail-coding-test.webp 671w,/static/0c8985426a86d22cc5bd019e68c03210/f0ee1/thumbnail-coding-test.webp 1342w" sizes="(min-width: 1342px) 1342px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1342px) 1342px, 100vw" decoding="async" loading="lazy" src="/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png" srcSet="/static/0c8985426a86d22cc5bd019e68c03210/b82c5/thumbnail-coding-test.png 336w,/static/0c8985426a86d22cc5bd019e68c03210/9de5e/thumbnail-coding-test.png 671w,/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png 1342w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">Python Coding Interview - 3부 9장 | 스택, 큐</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>Coding Test</div><div>2023.01.31.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p>스택, 큐에 대한 개념 및 활용방법들에 대해 정리해보았다.</p>
+<h1 id="연결리스트를-이용한-스택-adt-구현" style="position:relative;">연결리스트를 이용한 스택 ADT 구현<a href="#%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%8A%A4%ED%83%9D-adt-%EA%B5%AC%ED%98%84" aria-label="연결리스트를 이용한 스택 adt 구현 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<blockquote>
+<p>ADT : Abstract Data Type, 추상 자료형</p>
+</blockquote>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">,</span> <span class="token builtin">next</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>item <span class="token operator">=</span> item
+		self<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token builtin">next</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Stack</span><span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>last <span class="token operator">=</span> <span class="token boolean">None</span>
+
+	<span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>last <span class="token operator">=</span> Node<span class="token punctuation">(</span>item<span class="token punctuation">,</span> self<span class="token punctuation">.</span>last<span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		item <span class="token operator">=</span> self<span class="token punctuation">.</span>last<span class="token punctuation">.</span>item
+		self<span class="token punctuation">.</span>last <span class="token operator">=</span> self<span class="token punctuation">.</span>last<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token comment"># last 포인터를 한 칸 앞으로 전진</span>
+		<span class="token keyword">return</span> item
+</code></pre></div>
+<p>pop() 은 가장 마지막 아이템을 끄집어내고 last 포인터를 한 칸 앞으로 전진시키는 과정이다. 그림으로 표현하면 다음과 같다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 322px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/fb8031a664f22be9ae23e3fc7aa413de/cb861/stack_adt.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 41.14583333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABCklEQVQoz41Qy2rDQAz0/39PczQNxpcUN5fYaXOwwetndlvqZ4yfU6Rg15hQMqDVCLTSaLRpmjBjzbf1s1wjUhQFsixDVZXouo4jy364qa7rhc99hDRNIaVkniQJlFLMtWEYcLl8wjQMOPYJQSAgfB+2fYKSEh/nM47Hd/5gWRZM00SSxNjvX7HbvSAMQ+i6DsMw7gNJJilTSuJLKbRtywrLslgU5nm2KKyqinlzu3FNuF6viOP4PhD/4Bnf6ELHcfB2OKBpmr+B1PQoxnHkWPNtfxRGEEKg73to9IhIQn3nLD0MQs6e57HZruuyHeSV8MVy5jxsC/aw7wfeTPIpCLMaWvjo3HVeX/ELlVFpZuGNSS0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/fb8031a664f22be9ae23e3fc7aa413de/a59e9/stack_adt.webp 192w,
+/static/fb8031a664f22be9ae23e3fc7aa413de/a8006/stack_adt.webp 322w"
+              sizes="(max-width: 322px) 100vw, 322px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/fb8031a664f22be9ae23e3fc7aa413de/3b721/stack_adt.png 192w,
+/static/fb8031a664f22be9ae23e3fc7aa413de/cb861/stack_adt.png 322w"
+            sizes="(max-width: 322px) 100vw, 322px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/fb8031a664f22be9ae23e3fc7aa413de/cb861/stack_adt.png"
+            alt="연결리스트를 이용한 스택 도식화"
+            title="연결리스트를 이용한 스택 도식화"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h1 id="20-유효한-괄호" style="position:relative;">20. 유효한 괄호<a href="#20-%EC%9C%A0%ED%9A%A8%ED%95%9C-%EA%B4%84%ED%98%B8" aria-label="20 유효한 괄호 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>괄호로 된 입력값이 올바른지 판별해야 하는 문제.
+입력값이 <code class="language-text">()[]{}</code> 면, 출력이 true이다.</p>
+<h2 id="풀이-1-스택-일치-여부-판별" style="position:relative;">풀이 1. 스택 일치 여부 판별<a href="#%ED%92%80%EC%9D%B4-1-%EC%8A%A4%ED%83%9D-%EC%9D%BC%EC%B9%98-%EC%97%AC%EB%B6%80-%ED%8C%90%EB%B3%84" aria-label="풀이 1 스택 일치 여부 판별 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>(, [, { 는 스택에 push 하고, ), ], } 를 만날 떄, 스택에서 팝한 결과가 <code class="language-text">매핑 테이블 결과</code> 와 매칭되는지 확인하면 된다.
+파이썬 리스트는 스택 연산인 <code class="language-text">푸쉬</code> 와 <code class="language-text">팝</code> 이 O(1)에 동작한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">isValid</span><span class="token punctuation">(</span>s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+	table <span class="token operator">=</span> <span class="token punctuation">{</span>
+		<span class="token string">')'</span> <span class="token punctuation">:</span> <span class="token string">'('</span><span class="token punctuation">,</span>
+		<span class="token string">'}'</span> <span class="token punctuation">:</span> <span class="token string">'{'</span><span class="token punctuation">,</span>
+		<span class="token string">']'</span> <span class="token punctuation">:</span> <span class="token string">'['</span><span class="token punctuation">,</span>
+
+	<span class="token punctuation">}</span>
+
+	<span class="token comment"># 스택 이용 예외 처리 및 일치 여부 판별</span>
+	<span class="token keyword">for</span> char <span class="token keyword">in</span> s <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> char <span class="token keyword">not</span> <span class="token keyword">in</span> table <span class="token punctuation">:</span>
+			stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+		<span class="token keyword">elif</span> <span class="token keyword">not</span> stack <span class="token keyword">or</span> table<span class="token punctuation">[</span>char<span class="token punctuation">]</span> <span class="token operator">!=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> <span class="token boolean">False</span>
+</code></pre></div>
+<p><code class="language-text">not stack</code> 부분은 stack이 비어있는지 체크해주는 예외 처리 구문이다.</p>
+<h1 id="code-classlanguage-text21-중복-문자-제거code" style="position:relative;"><code class="language-text">21. 중복 문자 제거</code><a href="#code-classlanguage-text21-%EC%A4%91%EB%B3%B5-%EB%AC%B8%EC%9E%90-%EC%A0%9C%EA%B1%B0code" aria-label="code classlanguage text21 중복 문자 제거code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>중복된 문자를 제거하고 사전식 순서로 나열하라.
+“bcabc” -> “abc”
+상당히 어려운 문제이다.</p>
+<h2 id="code-classlanguage-text풀이-1-재귀를-이용한-분리code" style="position:relative;"><code class="language-text">풀이 1. 재귀를 이용한 분리</code><a href="#code-classlanguage-text%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B6%84%EB%A6%ACcode" aria-label="code classlanguage text풀이 1 재귀를 이용한 분리code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">removeDuplicateLetters</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+
+	<span class="token comment"># 집합으로 정렬</span>
+	<span class="token keyword">for</span> char <span class="token keyword">in</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span><span class="token builtin">set</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		suffix <span class="token operator">=</span> s<span class="token punctuation">[</span>s<span class="token punctuation">.</span>index<span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+		<span class="token comment"># 전체 집합과 접미사 집합이 일치할 때 분리 진행</span>
+		<span class="token keyword">if</span> <span class="token builtin">set</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">set</span><span class="token punctuation">(</span>suffix<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> char <span class="token operator">+</span> self<span class="token punctuation">.</span>removeDuplicateLetters<span class="token punctuation">(</span>suffix<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>char<span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token string">''</span></code></pre></div>
+<h2 id="풀이-2-스택을-이용한-문자-제거" style="position:relative;">풀이 2. 스택을 이용한 문자 제거<a href="#%ED%92%80%EC%9D%B4-2-%EC%8A%A4%ED%83%9D%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AC%B8%EC%9E%90-%EC%A0%9C%EA%B1%B0" aria-label="풀이 2 스택을 이용한 문자 제거 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>스택을 이용한 풀이이다.
+<code class="language-text">collections.Counter()</code> 모듈을 이용해 문자열의 각 문자의 개수를 세어준다.
+그리고 스택에 문자를 넣을 때, 이미 스택에 존재하는 문자라면 넣지 않는다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">removeDuplicateLetters</span><span class="token punctuation">(</span>s<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	counter<span class="token punctuation">,</span> seen<span class="token punctuation">,</span> stack <span class="token operator">=</span> collections<span class="token punctuation">.</span>Counter<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+	<span class="token keyword">for</span> char <span class="token keyword">in</span> s <span class="token punctuation">:</span>
+		counter<span class="token punctuation">[</span>char<span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span>
+		<span class="token keyword">if</span> char <span class="token keyword">in</span> seen <span class="token punctuation">:</span>
+			<span class="token keyword">continue</span>
+		<span class="token comment"># 뒤에 붙일 문자가 남아 있다면 스택에서 제거</span>
+		<span class="token keyword">while</span> stack <span class="token keyword">and</span> char <span class="token operator">&lt;</span> stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">and</span> counter<span class="token punctuation">[</span>stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">:</span>
+			seen<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+		seen<span class="token punctuation">.</span>add<span class="token punctuation">(</span>char<span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>stack<span class="token punctuation">)</span></code></pre></div>
+<p>스택을 이용한 풀이가 조금 더 빠르다.</p>
+<h1 id="22-일일-온도" style="position:relative;">22. 일일 온도<a href="#22-%EC%9D%BC%EC%9D%BC-%EC%98%A8%EB%8F%84" aria-label="22 일일 온도 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>매일의 화씨 온도(F) 리스트를 입력받아서, 더 따뜻한 날씨를 위해서는 며칠을 더 기다려야 하는지를 출력하라.</p>
+<ul>
+<li>
+<p>입력</p>
+<blockquote>
+<p>[73, 74, 75, 71, 69, 72, 76, 73]</p>
+</blockquote>
+</li>
+<li>
+<p>출력</p>
+<blockquote>
+<p>[1, 1, 4, 2, 1, 1, 0, 0]</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="풀이-1-스택-값-비교" style="position:relative;">풀이 1. 스택 값 비교<a href="#%ED%92%80%EC%9D%B4-1-%EC%8A%A4%ED%83%9D-%EA%B0%92-%EB%B9%84%EA%B5%90" aria-label="풀이 1 스택 값 비교 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이 문제는 앞서 7장에서 풀어본 8번 ‘빗물 트래핑’ 문제와 유사한 방법으로 풀이할 수 있다.<br>
+현재의 인덱스를 계속 스택에 쌓아두다가, 이전보다 상승하는 지점에서 현재 온도와 스택에 쌓아둔 인덱스 지점의 온도차이를 비교해서, 더 높다면 다음과 같이 스택의 값을 pop() 해주고, 그 인덱스와 현재 인덱스의 차이를 계산해준다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">dailyTemperatures</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	answer <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span>
+	stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+	<span class="token keyword">for</span> i<span class="token punctuation">,</span> cur <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token comment"># 현재 온도가 스택 값보다 높다면 정답 처리</span>
+		<span class="token keyword">while</span> stack <span class="token keyword">and</span> cur <span class="token operator">></span> T<span class="token punctuation">[</span>stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token punctuation">:</span>
+			last <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+			answer<span class="token punctuation">[</span>last<span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">-</span> last
+		stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> answer</code></pre></div>
+<p>인덱스를 스택에 쌓아두는 것이 핵심이다. 그리고 인덱스간의 차이를 활용하는 연습을 많이 해야할 것 같다.</p>
+<h1 id="큐" style="position:relative;">큐<a href="#%ED%81%90" aria-label="큐 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>큐는 나중에 나올 <code class="language-text">데크(Deque)</code> 나 <code class="language-text">우선순위 큐(Priority Queue)</code> 같은 변형들에 쓰인다.<br>
+이외에도 <code class="language-text">너비 우선 탐색(BFS)</code> 이나 <code class="language-text">캐시</code> 등을 구현할 때도 널리 사용된다.<br>
+사실상 파이썬의 리스트는 큐의 몯느 연산을 지원하기 때문에 그대로 사용해도 무방하지만 좀 더 나은 성능을 위해서는 이후에 살펴볼 양방향 삽입, 삭제가 모두 O(1)에 가능한 데크를 사용하는 편이 좋다.</p>
+<h1 id="23-큐를-이용한-스택-구현" style="position:relative;">23. 큐를 이용한 스택 구현<a href="#23-%ED%81%90%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%8A%A4%ED%83%9D-%EA%B5%AC%ED%98%84" aria-label="23 큐를 이용한 스택 구현 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>큐를 이요해 다음 연산을 지원하는 스택 구현</p>
+<h2 id="풀이-1-push-할-때-큐를-이용해-재정렬" style="position:relative;">풀이 1. push() 할 때 큐를 이용해 재정렬<a href="#%ED%92%80%EC%9D%B4-1-push-%ED%95%A0-%EB%95%8C-%ED%81%90%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EC%9E%AC%EC%A0%95%EB%A0%AC" aria-label="풀이 1 push 할 때 큐를 이용해 재정렬 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">MyStack</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>q <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+		<span class="token comment"># 요소 삽입 후 맨 앞에 두는 상태로 재정렬</span>
+		<span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>q<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+	<span class="token keyword">def</span> <span class="token function">empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>q<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span></code></pre></div>
+<p>시간복잡도가 O(n)인게 단점이다.</p>
+<h1 id="24-스택을-이용한-큐-구현" style="position:relative;">24. 스택을 이용한 큐 구현<a href="#24-%EC%8A%A4%ED%83%9D%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%81%90-%EA%B5%AC%ED%98%84" aria-label="24 스택을 이용한 큐 구현 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="code-classlanguage-text풀이-1-스택-2개-사용code" style="position:relative;"><code class="language-text">풀이 1. 스택 2개 사용</code><a href="#code-classlanguage-text%ED%92%80%EC%9D%B4-1-%EC%8A%A4%ED%83%9D-2%EA%B0%9C-%EC%82%AC%EC%9A%A9code" aria-label="code classlanguage text풀이 1 스택 2개 사용code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">MyQueue</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span><span class="token builtin">input</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+		self<span class="token punctuation">.</span>output <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+	<span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span><span class="token builtin">input</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>peek<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>output<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">peek</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token comment"># output이 없으면 모두 재입력</span>
+		<span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>output <span class="token punctuation">:</span>
+			<span class="token keyword">while</span> self<span class="token punctuation">.</span><span class="token builtin">input</span> <span class="token punctuation">:</span>
+				self<span class="token punctuation">.</span>output<span class="token punctuation">.</span>append<span class="token punctuation">(</span>self<span class="token punctuation">.</span><span class="token builtin">input</span><span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>output<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+	<span class="token keyword">def</span> <span class="token function">empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span><span class="token builtin">input</span> <span class="token operator">==</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">and</span> self<span class="token punctuation">.</span>output <span class="token operator">==</span> <span class="token punctuation">[</span><span class="token punctuation">]</span></code></pre></div>
+<p>2개의 스택을 이용한 풀이이다. input에 차례대로 push를 하고, pop 를 할 떄는 output에 있는 것을 pop하고, 없으면 input에 있는 것을 모두 output으로 옮겨서 pop을 한다.</p>
+<h1 id="25-원형-큐-디자인" style="position:relative;">25. 원형 큐 디자인<a href="#25-%EC%9B%90%ED%98%95-%ED%81%90-%EB%94%94%EC%9E%90%EC%9D%B8" aria-label="25 원형 큐 디자인 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="풀이-1-배열을-이용한-풀이" style="position:relative;">풀이 1. 배열을 이용한 풀이<a href="#%ED%92%80%EC%9D%B4-1-%EB%B0%B0%EC%97%B4%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%92%80%EC%9D%B4" aria-label="풀이 1 배열을 이용한 풀이 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>원형 큐의 삽입과 삭제 원리는 다음과 같다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 525px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4af555754a39f56148addcb354f5212b/635dd/circular_queue.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 57.29166666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB7ElEQVQoz1VSiXLaMBDN//9UO2kbmklJ8IGPGGHiS77xJcA28DIrY9LsjCzp7frt6u0+AMAwnlHVAm13xGxNK1A13R0T4og03yMvK/T9ILG27cDjFFlW4Hic4h7o03UCzPVhOy4Y26Lve/ghh2FtYNoO9vs94iSDohp4U3TY9juEEIiTFIZp48/TM1RNQ5HnE2FdV+A8wm63QxSFGIYBSRJjwxh0fY00TeUKAh9vK0WeyYIggGVZWC6Xcr9erxNhVVUIwxBJkuByuUgH3T3PRxBG8k4+RdGgamtZ3TiOUFUNi8UznhZ/Ecfx15Pph67rcDqd5FnqOgwSm40I8zyXCSeZOqnbOAxo2/Ye9zATnM/nezAZnYl0xshPzfg/KflIb8KIlBLcNKwRRZFcWZbJ7FSR53koigJN08A0Lflc3/fvlXPO8fq6wuOv31BVFYfDYSLkcSK75Wy2CAJqSg/LdsC2LrIsldUx5mKlaGCMoSxLSUgT8ePnIwzD/NKQxKVM7w4Dv4FUwceHJ0l937vNoZAJ9bUhq58xz/fx8vIPruvOhAOEOMALM+RlLfU5HATysoGzDZAkmQys6hYO82HaW6RZMWFVA8tmWKkGdN2YCPthRLFvEPEYnMdSM+omjdLlcr03aW7E9/t3jAg/AQIbQDZfQJtfAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/4af555754a39f56148addcb354f5212b/a59e9/circular_queue.webp 192w,
+/static/4af555754a39f56148addcb354f5212b/0ca9f/circular_queue.webp 384w,
+/static/4af555754a39f56148addcb354f5212b/bca58/circular_queue.webp 525w"
+              sizes="(max-width: 525px) 100vw, 525px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/4af555754a39f56148addcb354f5212b/3b721/circular_queue.png 192w,
+/static/4af555754a39f56148addcb354f5212b/66595/circular_queue.png 384w,
+/static/4af555754a39f56148addcb354f5212b/635dd/circular_queue.png 525w"
+            sizes="(max-width: 525px) 100vw, 525px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/4af555754a39f56148addcb354f5212b/635dd/circular_queue.png"
+            alt="원형 큐의 삽입과 삭제 원리"
+            title="원형 큐의 삽입과 삭제 원리"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>동작하는 원리는 투 포인터와 비슷하다.
+enQueue() 를 하게 되면 rear 포인터가 앞으로 이동하고, deQueue()를 하게 되면 front 포인터가 앞으로 이동한다.
+maxlen 변수를 이용해 큐의 크기를 제한한다. front와 rear 의 자리를 앞으로 이동시킬때, maxlen을 넘어가면 0으로 초기화해줘야 하는데, 이때 <code class="language-text">module</code> 연산을 이용한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">MyCircularQueue</span><span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> k<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>q <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">None</span><span class="token punctuation">]</span> <span class="token operator">*</span> k
+		self<span class="token punctuation">.</span>maxlen <span class="token operator">=</span> k
+		self<span class="token punctuation">.</span>p1 <span class="token operator">=</span> <span class="token number">0</span>
+		self<span class="token punctuation">.</span>p2 <span class="token operator">=</span> <span class="token number">0</span>
+
+	<span class="token comment"># enQueue() : rear 포인터 이동</span>
+	<span class="token keyword">def</span> <span class="token function">enQueue</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p2<span class="token punctuation">]</span> <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p2<span class="token punctuation">]</span> <span class="token operator">=</span> value
+			self<span class="token punctuation">.</span>p2 <span class="token operator">=</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>p2 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> self<span class="token punctuation">.</span>maxlen
+			<span class="token keyword">return</span> <span class="token boolean">True</span>
+		<span class="token keyword">else</span> <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> <span class="token boolean">False</span>
+
+	<span class="token comment"># deQueue() : front 포인터 이동</span>
+	<span class="token keyword">def</span> <span class="token function">deQueue</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p1<span class="token punctuation">]</span> <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> <span class="token boolean">False</span>
+		<span class="token keyword">else</span> <span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p1<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">None</span>
+			self<span class="token punctuation">.</span>p1 <span class="token operator">=</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>p1 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> self<span class="token punctuation">.</span>maxlen
+			<span class="token keyword">return</span> <span class="token boolean">True</span>
+
+	<span class="token keyword">def</span> <span class="token function">Front</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">if</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p1<span class="token punctuation">]</span> <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token keyword">else</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p1<span class="token punctuation">]</span>
+
+	<span class="token keyword">def</span> <span class="token function">Rear</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">if</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p2 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token keyword">else</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p2 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+
+	<span class="token keyword">def</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>p1 <span class="token operator">==</span> self<span class="token punctuation">.</span>p2 <span class="token keyword">and</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p1<span class="token punctuation">]</span> <span class="token keyword">is</span> <span class="token boolean">None</span>
+
+	<span class="token keyword">def</span> <span class="token function">isFull</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>p1 <span class="token operator">==</span> self<span class="token punctuation">.</span>p2 <span class="token keyword">and</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span>self<span class="token punctuation">.</span>p1<span class="token punctuation">]</span> <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span>
+</code></pre></div></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%8A%A4%ED%83%9D-adt-%EA%B5%AC%ED%98%84">연결리스트를 이용한 스택 ADT 구현</a></p>
+</li>
+<li>
+<p><a href="#20-%EC%9C%A0%ED%9A%A8%ED%95%9C-%EA%B4%84%ED%98%B8">20. 유효한 괄호</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%8A%A4%ED%83%9D-%EC%9D%BC%EC%B9%98-%EC%97%AC%EB%B6%80-%ED%8C%90%EB%B3%84">풀이 1. 스택 일치 여부 판별</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#code-classlanguage-text21-%EC%A4%91%EB%B3%B5-%EB%AC%B8%EC%9E%90-%EC%A0%9C%EA%B1%B0code"><code class="language-text">21. 중복 문자 제거</code></a></p>
+<ul>
+<li><a href="#code-classlanguage-text%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B6%84%EB%A6%ACcode"><code class="language-text">풀이 1. 재귀를 이용한 분리</code></a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-%EC%8A%A4%ED%83%9D%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%AC%B8%EC%9E%90-%EC%A0%9C%EA%B1%B0">풀이 2. 스택을 이용한 문자 제거</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#22-%EC%9D%BC%EC%9D%BC-%EC%98%A8%EB%8F%84">22. 일일 온도</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%8A%A4%ED%83%9D-%EA%B0%92-%EB%B9%84%EA%B5%90">풀이 1. 스택 값 비교</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%ED%81%90">큐</a></p>
+</li>
+<li>
+<p><a href="#23-%ED%81%90%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%8A%A4%ED%83%9D-%EA%B5%AC%ED%98%84">23. 큐를 이용한 스택 구현</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-push-%ED%95%A0-%EB%95%8C-%ED%81%90%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EC%9E%AC%EC%A0%95%EB%A0%AC">풀이 1. push() 할 때 큐를 이용해 재정렬</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#24-%EC%8A%A4%ED%83%9D%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%81%90-%EA%B5%AC%ED%98%84">24. 스택을 이용한 큐 구현</a></p>
+<ul>
+<li><a href="#code-classlanguage-text%ED%92%80%EC%9D%B4-1-%EC%8A%A4%ED%83%9D-2%EA%B0%9C-%EC%82%AC%EC%9A%A9code"><code class="language-text">풀이 1. 스택 2개 사용</code></a></li>
+</ul>
+</li>
+<li>
+<p><a href="#25-%EC%9B%90%ED%98%95-%ED%81%90-%EB%94%94%EC%9E%90%EC%9D%B8">25. 원형 큐 디자인</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EB%B0%B0%EC%97%B4%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%92%80%EC%9D%B4">풀이 1. 배열을 이용한 풀이</a></li>
+</ul>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/CI_Part3_Ch9/";window.___webpackCompilationHash="024634f2622bc171107d";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-1a65b5d7fb70b1cf254a.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-7993bdd723ef1aff0be0.js" async=""></script></body></html>
