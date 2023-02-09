@@ -1,0 +1,1362 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="파이썬 알고리즘 인터뷰 책에서 4부 14장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="Python Coding Interview - 4부 14장 | 트리"/><meta data-react-helmet="true" property="og:description" content="파이썬 알고리즘 인터뷰 책에서 4부 14장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" property="og:image" content="/static/0c8985426a86d22cc5bd019e68c03210/thumbnail-coding-test.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="Python Coding Interview - 4부 14장 | 트리"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Python Coding Interview - 4부 14장 | 트리"/><meta data-react-helmet="true" name="twitter:description" content="파이썬 알고리즘 인터뷰 책에서 4부 14장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" name="twitter:image" content="/static/0c8985426a86d22cc5bd019e68c03210/thumbnail-coding-test.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/CI_Part4_Ch14/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">Python Coding Interview - 4부 14장 | 트리</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1342px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;806&#x27; width=&#x27;1342&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB9ElEQVQoz42SW28SURSF+bfGGOOTL14S64MvNsTEB1AUsG2waLFaoGiaRopt5WKLAxQ6DMO1XK3VamobZg6fYYCBojY+rOyTfXLWWWvvZdHrCiNoQ+gHebRGwTyPYNwP63TfONcVLCbZsGE+KGXQqvtoTRWtXULrlNHTMUR41ahaq3juU23IYzmnsE/aVKGSRSzYEBtBeooEiTA96SOikkOoaXQ5id6vhRR6OXuxwtOqTC22Te/dEmI3wq/cLqfb65ztbHJSynEmRSESQoSD9CJvEcktw8WYcGI2oqFwUswib20Zll7a5/A+dONzevG5XrD8dJ5ns3aiyyvQVulW5b/McKIxUsmXEt/3JeasDr6lojRlmVpeRW/nkOI7+OzzcFimW8v/OcNxo2CSikaBY1liyeHh59caR50Wx/UGHNZp5DMEXB7j027tIoXFDCL2Hj37CdFS+ZFP4bY+pryXoJ5N00xKdBJx4qE1Xj9ZMAlHrnRzyyPCSg49E0cr7Q2XpOB+4OLG5VvcuXqX21dmuHntHtcvzbD5JjRWOEE2ZVkZZK6u0GsoHClZFp2vsN138sjqNuCwurHNuoitf4CWOsjsPxWOUn+Qh2aBqvSZgHeVwGIA/3O/gaA3yIrHT3RtY0DwP4STuewvp9dUTYhhnczttOXfd3lZS5/rBRYAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/0c8985426a86d22cc5bd019e68c03210/7a2cc/thumbnail-coding-test.webp 336w,/static/0c8985426a86d22cc5bd019e68c03210/e8438/thumbnail-coding-test.webp 671w,/static/0c8985426a86d22cc5bd019e68c03210/f0ee1/thumbnail-coding-test.webp 1342w" sizes="(min-width: 1342px) 1342px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1342px) 1342px, 100vw" decoding="async" loading="lazy" data-src="/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png" data-srcset="/static/0c8985426a86d22cc5bd019e68c03210/b82c5/thumbnail-coding-test.png 336w,/static/0c8985426a86d22cc5bd019e68c03210/9de5e/thumbnail-coding-test.png 671w,/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png 1342w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/0c8985426a86d22cc5bd019e68c03210/7a2cc/thumbnail-coding-test.webp 336w,/static/0c8985426a86d22cc5bd019e68c03210/e8438/thumbnail-coding-test.webp 671w,/static/0c8985426a86d22cc5bd019e68c03210/f0ee1/thumbnail-coding-test.webp 1342w" sizes="(min-width: 1342px) 1342px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1342px) 1342px, 100vw" decoding="async" loading="lazy" src="/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png" srcSet="/static/0c8985426a86d22cc5bd019e68c03210/b82c5/thumbnail-coding-test.png 336w,/static/0c8985426a86d22cc5bd019e68c03210/9de5e/thumbnail-coding-test.png 671w,/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png 1342w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">Python Coding Interview - 4부 14장 | 트리</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>Coding Test</div><div>2023.02.09.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><h1 id="트리" style="position:relative;">트리<a href="#%ED%8A%B8%EB%A6%AC" aria-label="트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<blockquote>
+<p>루트 값과 부모-자식 관계의 서브트리로 구성되며, 서로 연결된 노드의 집합이다.</p>
+</blockquote>
+<p>트리의 중요한 속성 중 하나는 <code class="language-text">재귀</code>로 정의된 <code class="language-text">자기 참조</code> 자료구조라는 점이다. 트리는 자식도 트리고 또 그 자식도 트리다.</p>
+<h1 id="트리의-각-명칭" style="position:relative;">트리의 각 명칭<a href="#%ED%8A%B8%EB%A6%AC%EC%9D%98-%EA%B0%81-%EB%AA%85%EC%B9%AD" aria-label="트리의 각 명칭 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>트리는 항상 <code class="language-text">루트</code>에서부터 시작된다. <code class="language-text">루트</code>는 <code class="language-text">자식 노드</code>를 가지며, <code class="language-text">간선(Edge)</code>으로 연결되어 있다. 자식 노드의 개수는 <code class="language-text">차수(Degree)</code>라고 하며, <code class="language-text">크기(Size)</code>는 자신을 포함한 모든 자식 노드의 개수이다.<br>
+<code class="language-text">높이(Height)</code>는 현재 위치에서부터 <code class="language-text">리프</code>까지의 거리, <code class="language-text">깊이</code>는 루트에서부터 현재 노드까지의 거리이다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 495px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/e9d2e676dec33987dc395f5ee3ad8180/68bae/tree.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 67.70833333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAACHklEQVQ4y31Ta2/iMBDk//+Zu0/ooNyHA64QrqUUCiFACQQICoE8nThPpvLyLuhGsmLF3vHszm4hz/fY7x+vPM+RpOnDM4Hr/QE5CvgP4jjFX+kdIY/uzq6JwpDDNC2wgKFQlYZYGztEnMPzPDiODcdxEAQMhmGg/FSBrutIkhS27d6osiwLWZoS2Y+fv6BpCxSMrQvHZeCcU4piCfTlKQbDMT56XYzHI0xVDa2X3o2yw8MB7T3PpW8hjpNLBfKcAqIogqyMKUCd6ej3h5jNVIRhgDTLEMUx3fd9H0mSkPrdbncgbL5NYDs+mO9TyiKNxvMzqrU6lWKxMmBstmg2Gmi322i2OhiOphQsSNI0peU4R4XfCyywXC4wnapgAT//m8/nkGX55p7rusiyjFTatn0hvMZuu8VSN2A7Lhl1cDGkgNP3BJERsCdCkRkRfigafD9AFHHIgwF+VypovfYwkBW0WhIF1Wo1fH5OwMMAxWIRk8mEglerFeIkOabsHAgtxwfnMclfLZd473QQBgymaUJVVXJxvdYxnkxRLFUhSf9gmhswFqL09AdzbYksuyI8yRdtw5iPgDEi55zflEK4uzGtq47YXw1ATP1LhKblkYqRMiQzBBRFgaZpwi3cm3Y7egJJEl9q2B1qZH+5VEa73UGeZ6jX62g2JaRpdje3j+ZY1PBMeHp3pq3x1h0d+8uG9DrAS0c5z/Ejwu/qxf4L27kvBGj8ZB8AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/e9d2e676dec33987dc395f5ee3ad8180/a59e9/tree.webp 192w,
+/static/e9d2e676dec33987dc395f5ee3ad8180/0ca9f/tree.webp 384w,
+/static/e9d2e676dec33987dc395f5ee3ad8180/49d8f/tree.webp 495w"
+              sizes="(max-width: 495px) 100vw, 495px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/e9d2e676dec33987dc395f5ee3ad8180/3b721/tree.png 192w,
+/static/e9d2e676dec33987dc395f5ee3ad8180/66595/tree.png 384w,
+/static/e9d2e676dec33987dc395f5ee3ad8180/68bae/tree.png 495w"
+            sizes="(max-width: 495px) 100vw, 495px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/e9d2e676dec33987dc395f5ee3ad8180/68bae/tree.png"
+            alt="트리의 각 명칭"
+            title="트리의 각 명칭"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h1 id="그래프-vs-트리" style="position:relative;">그래프 vs 트리<a href="#%EA%B7%B8%EB%9E%98%ED%94%84-vs-%ED%8A%B8%EB%A6%AC" aria-label="그래프 vs 트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>가장 큰 차이점은 바로 <code class="language-text">트리는 순환 구조를 갖지 않는 그래프입니다</code> 이다. 핵심은 순환 구조가 아니라는 데 있다. 트리는 그래프와 달리 어떠한 경우에도 한번 연결된 노드가 다시 연결되는 법이 없다.<br>
+그뿐만 아니라 트리는 하나의 부모 노드를 갖는다는 차이점이 있으며 루트 또한 하나여야 한다.</p>
+<h1 id="이진-트리" style="position:relative;">이진 트리<a href="#%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC" aria-label="이진 트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>트리 중에서도 가장 널리 사용되는 트리 자료구조는 <code class="language-text">이진 트리</code>와 <code class="language-text">이진 탐색 트리(Binary Search Tree)</code>이다.<br>
+모든 노드의 차수가 2이하일 때 이진트리이다. 크게 3가지 유형으로 나뉜다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 687px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/174ec67138546827de0d42c43122efa2/9490d/binary-tree.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 30.729166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABB0lEQVQY01VQ2W6DMBDM//9X80YpESkICKc5XCCcQggDU+2mUGWllcdje3bGl33fQU0lhMAwDIwPbl1XWJaFbdtO/jizbRtxHL/xlwNM04SqqtC27fl4WRZ0XYeyLNE0DZRSzNNa1zWklCjyHPM8/wvSBRKhaVQkGkURY8dxkGUZ4zAMkaYpYxLSNO10dv24YhxH3rNDiklODgfE0VTi6Iz457NmnlyT47ZtWISS0SBKwIJ93zOR5wVEmuLveyBEAil/4Ho+XNfDww/eEiSJgHG74VPX2bFpmqir6hVZqRVxViJIJLwwh1rXl2hWwjAfsN0Ihaxx1LIoaPo3HDfAl3GH70f879S/+dPJeR+IguUAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/174ec67138546827de0d42c43122efa2/a59e9/binary-tree.webp 192w,
+/static/174ec67138546827de0d42c43122efa2/0ca9f/binary-tree.webp 384w,
+/static/174ec67138546827de0d42c43122efa2/0ed20/binary-tree.webp 687w"
+              sizes="(max-width: 687px) 100vw, 687px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/174ec67138546827de0d42c43122efa2/3b721/binary-tree.png 192w,
+/static/174ec67138546827de0d42c43122efa2/66595/binary-tree.png 384w,
+/static/174ec67138546827de0d42c43122efa2/9490d/binary-tree.png 687w"
+            sizes="(max-width: 687px) 100vw, 687px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/174ec67138546827de0d42c43122efa2/9490d/binary-tree.png"
+            alt="이진 트리의 유형"
+            title="이진 트리의 유형"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="정-이진-트리" style="position:relative;">정 이진 트리<a href="#%EC%A0%95-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC" aria-label="정 이진 트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>모든 노드가 0개 또는 2개의 자식 노드를 갖는다.</p>
+<h2 id="완전-이진-트리" style="position:relative;">완전 이진 트리<a href="#%EC%99%84%EC%A0%84-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC" aria-label="완전 이진 트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>마지막 레벨을 제외하고 모든 레벨이 완전히 채워져 있으며 마지막 레벨의 모든 노드는 가장 왼쪽부터 채워져 있다.</p>
+<h2 id="포화-이진-트리" style="position:relative;">포화 이진 트리<a href="#%ED%8F%AC%ED%99%94-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC" aria-label="포화 이진 트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>모든 노드가 2개의 자식 노드를 갖고 있으며, 모든 리프 노드가 동일한 깊이 또는 레벨을 갖는다. 문자 그대로, <code class="language-text">가장 완벽한</code> 유형의 트리이다.</p>
+<h1 id="이진-트리의-최대-깊이" style="position:relative;">이진 트리의 최대 깊이<a href="#%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC%EC%9D%98-%EC%B5%9C%EB%8C%80-%EA%B9%8A%EC%9D%B4" aria-label="이진 트리의 최대 깊이 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이진 트리의 최대 깊이를 구하라.</p>
+<h2 id="풀이-1-반복-구조로-bfs-풀이" style="position:relative;">풀이 1. 반복 구조로 BFS 풀이<a href="#%ED%92%80%EC%9D%B4-1-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-bfs-%ED%92%80%EC%9D%B4" aria-label="풀이 1 반복 구조로 bfs 풀이 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>트리의 깊이 측정 여러 방법이 있지만, 그 중 하나는 BFS이다. BFS는 재귀가 아닌 <code class="language-text">반복</code> 구조로 풀이할 수 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	queue <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	depth <span class="token operator">=</span> <span class="token number">0</span>
+
+	<span class="token keyword">while</span> queue<span class="token punctuation">:</span> 
+		<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+	<span class="token keyword">return</span> depth</code></pre></div>
+<p>큐를 선언하고 반복 구조도 구성하여 BFS 반복을 이용해 풀이할 구조를 잡았다. 파이썬에서 큐는 일반적인 리스트로도 모든 연산이 가능하지만, <code class="language-text">데크 자료형</code>을 사용하면 이중 연결 리스트로 구성되어 있기 때문에 큐와 스택 연산을 모두 자유롭게 할 뿐만 아니라 양방향 모두 O(1)에 추출할 수 있어 좋은 성능을 보인다. <code class="language-text">여러번 책에서 강조</code>되었다</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">while</span> queue <span class="token punctuation">:</span>
+	depth <span class="token operator">+=</span> <span class="token number">1</span>
+	<span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>queue<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		cur_root <span class="token operator">=</span> queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+		<span class="token keyword">if</span> cur_root<span class="token punctuation">.</span>has_child<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur_root<span class="token punctuation">.</span>left<span class="token punctuation">)</span></code></pre></div>
+<p>큐 변수에는 현재 깊이 depth에 해당하는 모든 노드가 들어 있고, queue.popleft()로 하나씩 끄집어 내면서 cur_root.has_child()로 자식 노드가 있는지 여부를 판별한 후 자식 노드를 다시 큐에 삽입한다.<br>
+깊이 depth가 반복 횟수이므로 각 깊이에 맞게 노드 삽입이 진행된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">maxDepth</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> root <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token number">0</span>
+
+	queue <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	depth <span class="token operator">=</span> <span class="token number">0</span>
+
+	<span class="token keyword">while</span> queue<span class="token punctuation">:</span> 
+		depth <span class="token operator">+=</span> <span class="token number">1</span>
+		<span class="token comment"># 큐 연산 추출 노드의 자식 노드 삽입</span>
+		<span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>queue<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			cur_root <span class="token operator">=</span> queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token keyword">if</span> cur_root<span class="token punctuation">.</span>left <span class="token punctuation">:</span>
+				queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur_root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			<span class="token keyword">if</span> cur_root<span class="token punctuation">.</span>right <span class="token punctuation">:</span>
+				queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>cur_root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> depth</code></pre></div>
+<h1 id="43-이진-트리의-직경" style="position:relative;">43. 이진 트리의 직경<a href="#43-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC%EC%9D%98-%EC%A7%81%EA%B2%BD" aria-label="43 이진 트리의 직경 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이진 트리에서 두 노드 간 가장 긴 경로의 길이를 출력하라.</p>
+<h2 id="풀이-1-상태값-누적-트리-dfs" style="position:relative;">풀이 1. 상태값 누적 트리 DFS<a href="#%ED%92%80%EC%9D%B4-1-%EC%83%81%ED%83%9C%EA%B0%92-%EB%88%84%EC%A0%81-%ED%8A%B8%EB%A6%AC-dfs" aria-label="풀이 1 상태값 누적 트리 dfs permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>가장 긴 경로를 찾는 방법은 먼저 가장 말단, 즉 리프 노드까지 탐색한 다음 부모로 거슬러 올라가면서 각각의 거리를 계산해 상태값을 업데이트하면서 다음과 같이 누적해 나가면 된다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 277px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a3967929641cb8aa4f9565d6a7c33849/d4c85/binary-tree-longest-route.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 100.52083333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABJ0AAASdAHeZh94AAACO0lEQVQ4y41V7XKiQBD0/Z/lNE8QIjlTdT/U3Bk0mqorRFk+FFwQQRBMX80qG1CMN1UUO7Nrb89MM7Zwxz4/P8V7v98jSZJarMla3wFVwUajEfr9PuI4vtq/C1geLN+r1QqTyRijP7+xXns1wEvQ1hWr8/p4PIqHzLEsDF81KOovuI4jYkVR1C4u198yJLOYhY3vI4ozeHwHx7Hh+37j2UbA8oDruJi+T+GcGVVN1+eYzT6wXq9vM6wG+YbjpdeDoiiIokiWoChOJWCModPu4PFREQ2rEmkEpE4SWO9nryaVcp+YPT+rGAwGyIuitt9q6tghy6CNZ9DGU1H8KoPj+d1/nUA32HXKVafsKjNNxHECz/dh25bcK8/l+QGezxEne6Rpes2wyoBqVm2EaZrIskz6eZ5jt9tJn2pIoI0MXddFt9uFruvyB8PhEIryJGpJYHTZcrkUa7IwDGGaDI7rnhhWAceahnb7B7S3N+ETM1VV8dB5EJ0lNovFUjxls+gCwzBgzA0cDoevppBtOEdX7cE764tsbiygPL3INDkPEARBrQSe52N3llcNkAcRRu9zishYEGzx8ZfJ4n/V/PorkSmXRimST9RPEjkiy1JxQdmYS4ld+q1SEtswlB98GAayg3F8SpVSvtTkzeEQcA7XsREGgZCNZTGsVq4YCouFgWi7hW0xqclbs1AC8s0GFmOIoq0Apfl3mioeHNsS4L7ni4v+C5BSLsVJa0q5KHIhjSSORYxGVrpP7/4F/AMakA+etye3dgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a3967929641cb8aa4f9565d6a7c33849/a59e9/binary-tree-longest-route.webp 192w,
+/static/a3967929641cb8aa4f9565d6a7c33849/6356d/binary-tree-longest-route.webp 277w"
+              sizes="(max-width: 277px) 100vw, 277px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a3967929641cb8aa4f9565d6a7c33849/3b721/binary-tree-longest-route.png 192w,
+/static/a3967929641cb8aa4f9565d6a7c33849/d4c85/binary-tree-longest-route.png 277w"
+            sizes="(max-width: 277px) 100vw, 277px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a3967929641cb8aa4f9565d6a7c33849/d4c85/binary-tree-longest-route.png"
+            alt="이진 트리의 직경"
+            title="이진 트리의 직경"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>위의 그림처럼, 존재하지 않는 노드에도 -1 이라는 값을 부여한다. 정 이진 트리가 아닌 대부분의 경우에는 존재하지 않는 자식 노드에 -1을 부여해 페널티를 주는 경우가 대부분이다.<br>
+이진 트리의 직경을 구하는 방법은 먼저 가장 말단, 즉 리프 노드까지 탐색한 다음 부모로 거슬러 올라가면서 각각의 거리를 계산해 상태값을 업데이트하면서 다음과 같이 누적해 나가면 된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	left <span class="token operator">=</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+	right <span class="token operator">=</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span></code></pre></div>
+<p>이처럼 계속 재귀 호출을 통해 왼쪽, 오른쪽의 각 리프 노드까지 DFS로 탐색한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	self<span class="token punctuation">.</span>longest <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>longest<span class="token punctuation">,</span> left <span class="token operator">+</span> right <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span></code></pre></div>
+<p>이후에는 2개의 값을 계산하는데, 하나는 최종 결과가 될 가장 긴 경로 self.longest, 나머지 하나는 앞서 얘기한 상태값 max(left, right) + 1을 말한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">a <span class="token operator">=</span> left <span class="token operator">+</span> right <span class="token operator">+</span> <span class="token number">2</span> <span class="token comment"># 거리</span>
+b <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span> <span class="token comment"># 상태값</span></code></pre></div>
+<p>자식 노드가 둘 다 상태값이 0이면 거리 a는 2, 상태값인 b는 1이 된다.<br>
+거리는 왼쪽, 오른쪽 자식 사이의 경로이므로 2를 더하게 되고, 상태값은 양쪽 자식 중 최대 상태값과 부모까지의 거리인 1을 더하게 된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">:</span>
+	longest<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token keyword">def</span> <span class="token function">diameterOfBinary</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span> 
+		<span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span> <span class="token punctuation">:</span>
+			<span class="token keyword">if</span> <span class="token keyword">not</span> node <span class="token punctuation">:</span>
+				<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+
+			<span class="token comment"># 왼쪽, 오른쪽의 각 리프 노드까지 탐색</span>
+			left <span class="token operator">=</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			right <span class="token operator">=</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+			<span class="token comment"># 가장 긴 경로</span>
+			self<span class="token punctuation">.</span>longest <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>longest<span class="token punctuation">,</span> left <span class="token operator">+</span> right <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+			<span class="token comment"># 상태값</span>
+			<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span>
+
+		dfs<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>longest</code></pre></div>
+<h2 id="중첩-함수에서-클래스-변수를-사용한-이유" style="position:relative;">중첩 함수에서 클래스 변수를 사용한 이유<a href="#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98%EC%97%90%EC%84%9C-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B4%EC%9C%A0" aria-label="중첩 함수에서 클래스 변수를 사용한 이유 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>중첩 함수는 부모 함수의 변수를 자유롭게 읽을 수 있다. 그러나 중첩 함수에서 부모 함수의 변수를 재할당하게 되면 참조 ID 가 변경되며 별도의 로컬 변수로 선언된다.<br>
+longest 변수의 값은 계속해서 갱신되어야하기 때문에, 즉 <code class="language-text">재할당</code>되어야 하기 때문에 부모 함수의 변수를 그대로 사용불가능하다. 그래서 함수 바깥에서 클래수 변수로 선언을 한 것이다.<br>
+만약 longest의 값이 숫자나 문자가 아니라 리스트나 딕셔너리 같은 자료형이라면 append() 등의 메소드를 이용해 재할당 없이 조작이 가능하다. 중첩 함수 내에서도 변수의 값이 조작가능하다. 그러나, <code class="language-text">숫자나 문자</code>인 경우 불변 객체이기 때문에 중첩 함수 내에서는 값을 변경할 수 없다. 이 때문에 클래스 변수를 사용한 것이다.</p>
+<h1 id="44-가장-긴-동일-값의-경로" style="position:relative;">44. 가장 긴 동일 값의 경로<a href="#44-%EA%B0%80%EC%9E%A5-%EA%B8%B4-%EB%8F%99%EC%9D%BC-%EA%B0%92%EC%9D%98-%EA%B2%BD%EB%A1%9C" aria-label="44 가장 긴 동일 값의 경로 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>동일한 값을 지닌 가장 긴 경로를 찾아라.</p>
+<h2 id="풀이-1-상태값-거리-계산-dfs" style="position:relative;">풀이 1. 상태값 거리 계산 DFS<a href="#%ED%92%80%EC%9D%B4-1-%EC%83%81%ED%83%9C%EA%B0%92-%EA%B1%B0%EB%A6%AC-%EA%B3%84%EC%82%B0-dfs" aria-label="풀이 1 상태값 거리 계산 dfs permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이 문제는 바로 이전 43번 문제와 유사하다. 트리의 말단, 리프 노드까지 DFS로 탐색해 내려간 다음, 값이 일치할 경우 다음과 같이 거리를 쌓아 올려가며 <code class="language-text">백트래킹</code> 하는 형태로 풀이가 가능하다.<br>
+먼저, 다음과 같이 DFS 재귀 탐색을 한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token punctuation">:</span> 
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	left <span class="token operator">=</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+	right <span class="token operator">=</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span></code></pre></div>
+<p>위의 코드처럼 재귀 호출로 내려가면 left, right는 각각 리프 노드에 이르러서 값을 리턴받게 된다. 더 이상 존재하지 않는 노드까지 내려가게 되면 다음과 같은 형태로 값을 리턴한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span> 
+	<span class="token keyword">return</span> <span class="token number">0</span></code></pre></div>
+<p>존재하지 않는 노드까지 내려가게 되면 거리 0을 리턴한다. 이제 이 값이 점점 백트래킹 되면서 증가할 것이다. 이 문제는 <code class="language-text">동일 값 여부</code>를 판별해 거리를 계산해야하므로, 다음과 같이 자식 노드가 동일한 값인지 확인하는 과정이 필요하다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">if</span> node<span class="token punctuation">.</span>left <span class="token keyword">and</span> node<span class="token punctuation">.</span>left<span class="token punctuation">.</span>val <span class="token operator">==</span> node<span class="token punctuation">.</span>val <span class="token punctuation">:</span>
+	left <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token keyword">else</span> <span class="token punctuation">:</span>
+	left <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">if</span> node<span class="token punctuation">.</span>right <span class="token keyword">and</span> node<span class="token punctuation">.</span>right<span class="token punctuation">.</span>val <span class="token operator">==</span> node<span class="token punctuation">.</span>val <span class="token punctuation">:</span>
+	right <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token keyword">else</span> <span class="token punctuation">:</span>
+	right <span class="token operator">=</span> <span class="token number">0</span></code></pre></div>
+<p>왼쪽과 오른쪽 자식 노드를 각각 확인해서 현재 노드, 즉 부모 노드와 동일한 경우 각각 거리를 1 증가한다. 이제 다음과 같이 왼쪽 자식과 오른쪽 자식 노드 간 거리의 합을 결과로 한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">result <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> left <span class="token operator">+</span> right<span class="token punctuation">)</span></code></pre></div>
+<p>합이 가장 큰 값을 최종 결과로 한다. 다음번 백트래킹 시 계산을 위해 앞서 문제와 유사헥 상태값을 세팅해서 부모 노드로 올려야 한다. 다음과 같이 부모 노드를 위해 현재까지의 거리를 리턴해준다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span></code></pre></div>
+<p>현재 노드는 양쪽 자식 노드를 모두 연결할 수 있지만 현재 노드의 부모 노드에서는 지금의 양쪽 자식 노드를 동시에 연결할 수 없다. 단방향이므로 양쪽 자식 노드 중 어느 한쪽 자식만 택할 수 있기 때문에 둘 중 큰 값을 상태값으로 리턴해준다. 최종 코드는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+	result <span class="token operator">=</span> <span class="token number">0</span>
+
+	<span class="token keyword">def</span> <span class="token function">longestUnivaluePath</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			<span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token punctuation">:</span>
+				<span class="token keyword">return</span> <span class="token number">0</span>
+			
+			<span class="token comment"># 존재하지 않는 노드까지 DFS 재귀 탐색</span>
+			left <span class="token operator">=</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			right <span class="token operator">=</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+			<span class="token comment"># 현재 노드가 자식 노드와 동일한 경우 거리 1 증가</span>
+			<span class="token keyword">if</span> node<span class="token punctuation">.</span>left <span class="token keyword">and</span> node<span class="token punctuation">.</span>left<span class="token punctuation">.</span>val <span class="token operator">==</span> node<span class="token punctuation">.</span>val <span class="token punctuation">:</span>
+				left <span class="token operator">+=</span> <span class="token number">1</span>
+			<span class="token keyword">else</span> <span class="token punctuation">:</span>
+				left <span class="token operator">=</span> <span class="token number">0</span>
+			
+			<span class="token keyword">if</span> node<span class="token punctuation">.</span>right <span class="token keyword">and</span> node<span class="token punctuation">.</span>right<span class="token punctuation">.</span>val <span class="token operator">==</span> node<span class="token punctuation">.</span>val <span class="token punctuation">:</span>
+				right <span class="token operator">+=</span> <span class="token number">1</span>
+			<span class="token keyword">else</span> <span class="token punctuation">:</span>
+				right <span class="token operator">=</span> <span class="token number">0</span>
+
+			<span class="token comment"># 왼쪽과 오른쪽 자식 노드 간 거리의 합 최댓값이 결과</span>
+			self<span class="token punctuation">.</span>result <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>result<span class="token punctuation">,</span> left <span class="token operator">+</span> right<span class="token punctuation">)</span>
+			<span class="token comment"># 자식 노드 상태값 중 큰 값 리턴</span>
+			<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span>
+
+		dfs<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>result</code></pre></div>
+<h1 id="45-이진-트리-반전" style="position:relative;">45. 이진 트리 반전<a href="#45-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EB%B0%98%EC%A0%84" aria-label="45 이진 트리 반전 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>중앙을 기준으로 이진 트리를 반전 시키는 문제</p>
+<h2 id="풀이-1-파이썬다운-방식" style="position:relative;">풀이 1. 파이썬다운 방식<a href="#%ED%92%80%EC%9D%B4-1-%ED%8C%8C%EC%9D%B4%EC%8D%AC%EB%8B%A4%EC%9A%B4-%EB%B0%A9%EC%8B%9D" aria-label="풀이 1 파이썬다운 방식 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>사실 파이써닉한 방식으로 짧고 간결하게 풀 수 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">inverTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> root <span class="token punctuation">:</span>
+		root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> root<span class="token punctuation">.</span>right <span class="token operator">=</span> \
+			self<span class="token punctuation">.</span>invertTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>inverTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+		<span class="token keyword">return</span> root
+	<span class="token keyword">return</span> <span class="token boolean">None</span></code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 245px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7087c2c043788d9f3de6a0d4c9ed7ae0/c05a7/last-state-before-swap.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 76.56250000000001%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAABzUlEQVQ4y42TfYvaQBDG8/2/hFAQqpj+c2mMol7v2mpFUaHk4sXzBTUKmqgnpqZqfMrM3W4TU6ULgezs7m+efWZWwY1xPp//KxYdyjWQOHg6ndBut2FZlozdgirXYGEY8nw2myGdTuPh4Qs8z0skvAqMZo8CB4MB8vk8DMPAarXiGK1dU6tcwqLDdV0Mh0P+3+/36PV6icSX5xIKj8cjf+v1Gv1+P7ZGCcbj8c0ixRTSVer1OrLZLEqlUuyQsKDT6SCVSqFcqSAIfv9boQjM53PUajVUq9/wIZ1Do92F63mYzRdYLJf4aQ3xMXfHBfqs63i2bSlEAoUXAkrATCaD79UfOIV/18R67+UFOVWFqqrYvL4m/IwpPBwOXNXNZoPx5M2rcxg3PggC9paKRT5fFlWJ0ieTCcNEu1BlLz0kW2gPxez3KycU0hiNRnKDaBPTNGOG73Y7fjECTmdIRBTKQOqvT6qKVqslAY7jQNd1NBoNnvu+j0KhAE3TsN1uGfr4+BXlcjkGZWCz2eTNBCQfRXuQGnrHBHNdD8ViEff3FSwXC4Zq2h0MI49utyurrYjrTadTabKIWdYTHGcqC2bbzxwTSZ9Mk7vC/+VLhX8AR+t3pw3kOaYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7087c2c043788d9f3de6a0d4c9ed7ae0/a59e9/last-state-before-swap.webp 192w,
+/static/7087c2c043788d9f3de6a0d4c9ed7ae0/a12e7/last-state-before-swap.webp 245w"
+              sizes="(max-width: 245px) 100vw, 245px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7087c2c043788d9f3de6a0d4c9ed7ae0/3b721/last-state-before-swap.png 192w,
+/static/7087c2c043788d9f3de6a0d4c9ed7ae0/c05a7/last-state-before-swap.png 245w"
+            sizes="(max-width: 245px) 100vw, 245px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7087c2c043788d9f3de6a0d4c9ed7ae0/c05a7/last-state-before-swap.png"
+            alt="마지막 스왑이 이뤄지기 직전의 상태"
+            title="마지막 스왑이 이뤄지기 직전의 상태"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+위의 사진이 마지막 스왑이 일어나기 직전의 상태이다.<br>
+재귀를 꾸준히 학습함으로써 자연스럽게 직관이 생겨나게 하는 것 이 좋다.</p>
+<h2 id="풀이-2-반복-구조로-bfs" style="position:relative;">풀이 2. 반복 구조로 BFS<a href="#%ED%92%80%EC%9D%B4-2-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-bfs" aria-label="풀이 2 반복 구조로 bfs permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>42번 이진 트리의 최대 깊이 문제와 유사한 형태의 코드이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	queue <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">while</span> queue <span class="token punctuation">:</span> 
+		node <span class="token operator">=</span> queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token comment"># 부모 노드부터 하향식 스왑</span>
+		<span class="token keyword">if</span> node <span class="token punctuation">:</span>
+			node<span class="token punctuation">.</span>left<span class="token punctuation">,</span> node<span class="token punctuation">.</span>right <span class="token operator">=</span> node<span class="token punctuation">.</span>right<span class="token punctuation">,</span> node<span class="token punctuation">.</span>left
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span></code></pre></div>
+<p>먼저 삽입된 노드는 반복 구조로 계속 스왑되면서 자식 노드가 계속해서 큐에 추가되는 구조가 된다.<br>
+앞서 재귀 풀이가 가장 말단, 리프 노드까지 내려가서 백트래킹하면서 스왑하는 상향 방식이라면, 이 풀이는 부모 노드부터 스왑하면서 계속 아래로 내려가는 하향 방식 풀이라 할 수 있다.</p>
+<h2 id="풀이-3-반복-구조로-dfs" style="position:relative;">풀이 3. 반복 구조로 DFS<a href="#%ED%92%80%EC%9D%B4-3-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-dfs" aria-label="풀이 3 반복 구조로 dfs permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이 풀이를 DFS로 풀이하기 위해 BFS 풀이에서 딱 한줄만 수정했다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	stack <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">while</span> stack <span class="token punctuation">:</span> 
+		node <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token comment"># 부모 노드부터 하향식 스왑</span>
+		<span class="token keyword">if</span> node <span class="token punctuation">:</span>
+			node<span class="token punctuation">.</span>left<span class="token punctuation">,</span> node<span class="token punctuation">.</span>right <span class="token operator">=</span> node<span class="token punctuation">.</span>right<span class="token punctuation">,</span> node<span class="token punctuation">.</span>left
+			stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> root</code></pre></div>
+<h2 id="풀이-4-반복-구조로-dfs-후위-순회" style="position:relative;">풀이 4. 반복 구조로 DFS 후위 순회<a href="#%ED%92%80%EC%9D%B4-4-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-dfs-%ED%9B%84%EC%9C%84-%EC%88%9C%ED%9A%8C" aria-label="풀이 4 반복 구조로 dfs 후위 순회 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>앞서 풀이는 전위 순회 형태로 처리했지만, 다음과 같이 <code class="language-text">후위(Post-Order)</code> 순회로 변경해도 아무런 문제가 없다. 그저 <code class="language-text">탐색 순서</code>만 달라질 뿐이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	stack <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">while</span> stack <span class="token punctuation">:</span> 
+		node <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token comment"># 부모 노드부터 하향식 스왑</span>
+		<span class="token keyword">if</span> node <span class="token punctuation">:</span>
+			stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+			node<span class="token punctuation">.</span>left<span class="token punctuation">,</span> node<span class="token punctuation">.</span>right <span class="token operator">=</span> node<span class="token punctuation">.</span>right<span class="token punctuation">,</span> node<span class="token punctuation">.</span>left <span class="token comment"># 후위 순회</span>
+
+	<span class="token keyword">return</span> root</code></pre></div>
+<p>스왑 위치만 다르고 모든 코드는 동일하다. 풀이 1부터 4의 실행속도는 동일하다.</p>
+<h1 id="46-두-이진-트리-병합" style="position:relative;">46. 두 이진 트리 병합<a href="#46-%EB%91%90-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EB%B3%91%ED%95%A9" aria-label="46 두 이진 트리 병합 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>두 이진 트리를 합치는 문제. 중복되는 노드는 값을 합산한다.</p>
+<h2 id="풀이-1-재귀-탐색" style="position:relative;">풀이 1. 재귀 탐색<a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%ED%83%90%EC%83%89" aria-label="풀이 1 재귀 탐색 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>전체코드는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">mergeTrees</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> t1<span class="token punctuation">,</span> t2<span class="token punctuation">)</span> <span class="token punctuation">:</span> 
+	<span class="token keyword">if</span> t1 <span class="token keyword">and</span> t2 <span class="token punctuation">:</span>
+		node <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>t1<span class="token punctuation">.</span>val <span class="token operator">+</span> t2<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+		node<span class="token punctuation">.</span>left <span class="token operator">=</span> self<span class="token punctuation">.</span>mergeTrees<span class="token punctuation">(</span>t1<span class="token punctuation">.</span>left<span class="token punctuation">,</span> t2<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+		node<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>mergeTress<span class="token punctuation">(</span>t1<span class="token punctuation">.</span>right<span class="token punctuation">,</span> t2<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+		<span class="token keyword">return</span> node
+	<span class="token keyword">else</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> t1 <span class="token keyword">or</span> t2</code></pre></div>
+<p>각각 이진 트리의 루트부터 시작해 합쳐 나가면서 좌, 우 자식 노드 또한 병합될 수 있도록 각 트리 자식 노드를 재귀 호출한다. 만약 어느 한쪽에 노드가 존재하지 않는다면(not(t1 and t2)) 존재하는 노드만 리턴하고 더 이상 재귀 호출을 진행하지 않는다. 만약 양쪽 노드가 모두 존재하지 않는다면 None이 리턴될 것 이다.<br>
+동적 타이핑 언어인 파이썬의 강력한 기능 중 하나는 <code class="language-text">return None</code> 을 생략할 수 있는 점이다.<br>
+위 코드의 구조를 표현하면 다음과 같다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 296px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/34eb3187b3d6d2862fac090083398473/ca237/merge-binary.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 104.6875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAABJ0AAASdAHeZh94AAACVElEQVQ4y41UaXPaMBDl//+gNm1nmn5IQ2cyBQIBGwzGl3xifGBswMfrSIlVGzskO+MBSaunt7tvd4AbVlUV+1D/vu11zhv7A3zCaoiqfP1XFAXyPG8B1/YhYO18uVyw8zws5i84xDGOxyOS5NBhOvgMWFmWiMIQRNew3aygKjIcx4aha8gvl9shX+eFglGjbF5mUzw+/oEoLBDsfbiuw8/re4OP2LFw8xyObSNJjnh6VqBqBGGw75DoBWwyjOMYqqrCMk1ehJrRbudB1zT4vt+6P7jFbDIe4/vdHWRZhut5rcpmWYbhcIhf9/dwXZc9nCRJG/BaU4IgYjSaMBZZdmqxp1UXBAG/Hx4QBAEcx2kDNsHoVxQ5JGmL+YrgdD53qk5tq1r48nPEdNkbcjPcneciTVOUZYXzG+C1T3xIEEYpTqdTF7AVymKOpShyJ3rBti2ewyxLWd7og9SoyAkxGPMOIM3Xj29fMR2P+AXaIZqqMO1RUGkpMnGvRIHljYp8LS2ZLgfXhaAMx5MZBHHFu5hWlBATcRSxdRDsoSgqCCEsf3vfhyStEYTBK8NWd5QFVMODJFuNsQA8L3Q4XszXf6dbOLuIr2eCAtsN/jOklqZHhGHI12EYoGgIOs+LRvcUKIqyEVnOzjnDzWYN0ySsxWgeiWGwRNNiRFHIB1kzmuvoeJVp3mazKeTNGmtpBU1VoSgKZHmDzXrFHrk1XFvDod6kQtYNAtOyWaKrqoSimXBcvxegT5d8ONSbQXhAcsy4g0p86Na+ty37uqtX2O+Fc+3znv0Df0JgqZVyaJwAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/34eb3187b3d6d2862fac090083398473/a59e9/merge-binary.webp 192w,
+/static/34eb3187b3d6d2862fac090083398473/30935/merge-binary.webp 296w"
+              sizes="(max-width: 296px) 100vw, 296px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/34eb3187b3d6d2862fac090083398473/3b721/merge-binary.png 192w,
+/static/34eb3187b3d6d2862fac090083398473/ca237/merge-binary.png 296w"
+            sizes="(max-width: 296px) 100vw, 296px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/34eb3187b3d6d2862fac090083398473/ca237/merge-binary.png"
+            alt="두 트리가 합쳐지면서 리턴되는 순서"
+            title="두 트리가 합쳐지면서 리턴되는 순서"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+탐색 순서는 파란글씨로 작성되어있다. 여기서 순서는 리턴으로 백트래킹되는 순서를 기준으로 했다. 리턴 순서만 놓고 본다면 탐색 순서는 <code class="language-text">후위 순회</code> 임을 확인할 수 있다.</p>
+<h1 id="47-이진-트리-직렬화--역직렬화" style="position:relative;">47. 이진 트리 직렬화 &#x26; 역직렬화<a href="#47-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EC%A7%81%EB%A0%AC%ED%99%94--%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94" aria-label="47 이진 트리 직렬화  역직렬화 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이진 트리를 배열로 직렬화하고 반대로 역직렬화하는 기능을 구현하라. 즉, 다음과 같은 트리는 [1, 2, 3, null, null, 4, 5] 형태로 직렬화할 수 있다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 95px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/fea60b2fc5c8af04ee190d3f57a659eb/7dfde/tree-serialize.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABJ0AAASdAHeZh94AAABN0lEQVQ4y51UyY6DMAzl//+lvQ69dCS+AFJuLOWABGIRi9g3V45EVJaQzFhCWI55+NkvVuDClmWBeZ6ZL2PKFRia4ziQJIk0qCKqzDRNsG2b+hgTgSpnYOuDFscxZFl2eiYNyKN3dSakjBYEAXRdRytM01Sqj8oZXbRhGEDXdeq3bQOGYUjR5lJumoZNd+3lOI6HPGGF++SzaqR7uCYWRQGWZR0AzdcLijz/e4VhGIKmaQfAh/qAt/tmmpQGjKIIXNfdxKZporG2bbmtuBzKfzXJHcp+KaAmMYZvlBTvR5fL4XtIhBDq+76/aceeuhQg3pKqqtgwcGjfbISAvP7I6FG4D/GGeJ63kUqe50B0ArAcgYX78Pf5BPVHZdJBq+sa7rc7BZYGXJP6voeyLDcf4p3GqvFsD/gBnfAoW/xcbwwAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/fea60b2fc5c8af04ee190d3f57a659eb/49e15/tree-serialize.webp 95w"
+              sizes="(max-width: 95px) 100vw, 95px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/fea60b2fc5c8af04ee190d3f57a659eb/7dfde/tree-serialize.png 95w"
+            sizes="(max-width: 95px) 100vw, 95px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/fea60b2fc5c8af04ee190d3f57a659eb/7dfde/tree-serialize.png"
+            alt="트리-직렬화"
+            title="트리-직렬화"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="풀이-1-직렬화--역직렬화-구현" style="position:relative;">풀이 1. 직렬화 &#x26; 역직렬화 구현<a href="#%ED%92%80%EC%9D%B4-1-%EC%A7%81%EB%A0%AC%ED%99%94--%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94-%EA%B5%AC%ED%98%84" aria-label="풀이 1 직렬화  역직렬화 구현 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>직렬화를 구현하기 위해서는 <code class="language-text">이진 트리의 특징과 표현</code> 에 대해 정확히 알아야 한다. 이진 트리 데이터 구조는 논리적인 구조다. 이를 파일이나 디스크에 저장하기 위해서는 물리적인 형태로 바꿔줘야 하는데 이를 <code class="language-text">직렬화</code> 라고 한다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 572px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d9c5aeb56e2f580662dae331559a4049/698d8/binary-heap-to-array.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 41.14583333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABMElEQVQoz41Sf2+CMBDl+38js+kyFKeL6EzM3GT2ByD4l1FBoKXwltagaMyySy53vbu+3r2eVdc1tDRWy5oQZFl2E2/n70Xnmrx1HyiKAp7nYb/f3xT/V6022GLxiSiKjK8BZ7OPPzt7JFb7gu9zHA4H40spwBhFWZbmrFQFVdWQpYIsSyTpCVleoBDS2FN29i+AX9+e4Y0xjuPxCMZ8A/6zJqZLQilGozEcZwi7P0C3+4Kn5y5su4/R+B3O8A2EsiuHy+USeZ4jCAIDFMcxkiSBzzmqqsJqtcJ0OoXrurDtV3Q6HUwmE/R6PTjOAPP5HNFmcwYMwgjxdosw3IDxwIx0Hls+/FEhhZlit9uZJhpaDIf6dUopOOcghIBzBqUUhBA3q6NV1zYUpWl62YR2zS9McGS4mKsamwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d9c5aeb56e2f580662dae331559a4049/a59e9/binary-heap-to-array.webp 192w,
+/static/d9c5aeb56e2f580662dae331559a4049/0ca9f/binary-heap-to-array.webp 384w,
+/static/d9c5aeb56e2f580662dae331559a4049/a00f0/binary-heap-to-array.webp 572w"
+              sizes="(max-width: 572px) 100vw, 572px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d9c5aeb56e2f580662dae331559a4049/3b721/binary-heap-to-array.png 192w,
+/static/d9c5aeb56e2f580662dae331559a4049/66595/binary-heap-to-array.png 384w,
+/static/d9c5aeb56e2f580662dae331559a4049/698d8/binary-heap-to-array.png 572w"
+            sizes="(max-width: 572px) 100vw, 572px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d9c5aeb56e2f580662dae331559a4049/698d8/binary-heap-to-array.png"
+            alt="이진 힙의 배열 표현"
+            title="이진 힙의 배열 표현"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+대개 트리의 배열 표현의 경우 계산을 편하게 하기 위해 인덱스는 1부터 사용한다. 깊이는 1, 2, 4, 8, … 순으로 2배씩 증가하며, 인덱스는 1부터 시작했기 때문에 부모/자식 노드의 위치는 각각 부모 [i / 2], 왼쪽 자식 2i, 오른쪽 자식 2i + 1 의 간단한 수식으로 계산할 수 있다. 이처럼 해당되는 배열의 인덱스는 금방 찾아낼 수 있다.</p>
+<h2 id="직렬화" style="position:relative;">직렬화<a href="#%EC%A7%81%EB%A0%AC%ED%99%94" aria-label="직렬화 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>직렬화의 전체적인 과정을 정리해보았다.<br>
+이진트리를 BFS 로 표현하면 순서대로 배치되기 때문에 DFS에 비해 매우 직관적으로 알아보기 가능하다.<br>
+BFS 탐색을 위해 45번 <code class="language-text">이진 트리 반전</code> 문제에서 풀이했던 BFS 반복 풀이를 변경해볼 예정이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">invertTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token comment"># 1</span>
+	queue <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	
+	<span class="token keyword">while</span> queue<span class="token punctuation">:</span> 
+		node <span class="token operator">=</span> queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> node<span class="token punctuation">:</span>
+			node<span class="token punctuation">.</span>left<span class="token punctuation">,</span> node<span class="token punctuation">.</span>right <span class="token operator">=</span> node<span class="token punctuation">.</span>right<span class="token punctuation">,</span> node<span class="token punctuation">.</span>left <span class="token comment"># 2</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+		<span class="token comment"># 결과 변수를 처리하는 부분 : 3</span>
+	<span class="token keyword">return</span> root</code></pre></div>
+<p>가장 먼저 함수명과 리턴타입을 변경해야한다. 리턴 값을 문자열로 받는다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span> <span class="token punctuation">:</span></code></pre></div>
+<p>다음으로 스왑하는 부분 수정이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">serailize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	queue <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'#'</span><span class="token punctuation">]</span>
+
+	<span class="token keyword">while</span> queue<span class="token punctuation">:</span>
+		node <span class="token operator">=</span> queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> node<span class="token punctuation">:</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+		<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	<span class="token keyword">return</span> result</code></pre></div>
+<p>배열의 빈공간은 ’#’ 로 표현하기로 하였다. 이 문제의 리턴값을 <code class="language-text">문자열</code>로 받아야 하는데, 파이썬의 널인 None은 문자열로 만들 수 없기 떄문이다.<br>
+위 코드에서 … 부분, 맨 앞에 가져온 코드에서는 ‘3’ 부분에 result 변수를 처리할 로직까지 추가한다면 다음과 같아진다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	<span class="token keyword">while</span> queue <span class="token punctuation">:</span>
+		node <span class="token operator">=</span> queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> node <span class="token punctuation">:</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+			result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">else</span> <span class="token punctuation">:</span>
+			result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">'#'</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> result</code></pre></div>
+<p>마지막으로 result는 다음과 같이 리스트가 아닌 배열로 바꿔준다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>result<span class="token punctuation">)</span></code></pre></div>
+<p>직렬화한 출력 결과는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token comment"># A B C # # D E # # # # </span></code></pre></div>
+<h2 id="역직렬화" style="position:relative;">역직렬화<a href="#%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94" aria-label="역직렬화 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>동일하게 <code class="language-text">큐</code>를 이용해 역직렬화를 진행한다. 노드 변수 root부터 세팅하고, 큐 변수도 만들어준다. 이제 큐를 순회하며서 처리하면 되는데, 왼쪽 자식과 오른쪽 자식은 <code class="language-text">각각 별도의 인덱스</code>를 부여받아 다음과 같이 nodes를 먼저 탐색해나간다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	nodes <span class="token operator">=</span> data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	root <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>nodes<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	queue <span class="token operator">=</span> collections<span class="token punctuation">.</span>deque<span class="token punctuation">(</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	
+	index <span class="token operator">=</span> <span class="token number">2</span>
+	<span class="token keyword">while</span> queue<span class="token punctuation">:</span>
+		node <span class="token operator">=</span> queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> nodes<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token string">'#'</span><span class="token punctuation">:</span>
+			node<span class="token punctuation">.</span>left <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>nodes<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+		index <span class="token operator">+=</span> <span class="token number">1</span>
+
+		<span class="token keyword">if</span> nodes<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token keyword">is</span> <span class="token keyword">not</span> '<span class="token comment"># :</span>
+			node<span class="token punctuation">.</span>right <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>nodes<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+		index <span class="token operator">+=</span> <span class="token number">1</span>
+</code></pre></div>
+<p>’#’ 인 경우에는 큐에 삽입하지 않고, 아무런 처리도 하지않는다.</p>
+<h1 id="48-균형-이진-트리" style="position:relative;">48. 균형 이진 트리<a href="#48-%EA%B7%A0%ED%98%95-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC" aria-label="48 균형 이진 트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이진 트리가 높이 균형인지 판단하라. 서브 트리 간 높이 차이가 1 이하이여야 한다.</p>
+<ul>
+<li>입력</li>
+</ul>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span>null<span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">]</span></code></pre></div>
+<ul>
+<li>출력</li>
+</ul>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">true</code></pre></div>
+<ul>
+<li>입력</li>
+</ul>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span>null<span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span></code></pre></div>
+<ul>
+<li>출력</li>
+</ul>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">false</code></pre></div>
+<h2 id="풀이-1-재귀-구조로-높이-차이-계산" style="position:relative;">풀이 1. 재귀 구조로 높이 차이 계산<a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0%EB%A1%9C-%EB%86%92%EC%9D%B4-%EC%B0%A8%EC%9D%B4-%EA%B3%84%EC%82%B0" aria-label="풀이 1 재귀 구조로 높이 차이 계산 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><code class="language-text">높이 균형</code>은 매우 중요한 개념이다. 균형이 맞아야 효율적으로 트리를 구성할 수 있으며, 탐색 또한 훨신 더 효율적으로 처리할 수 있기 때문이다. 높이 균형을 매번 맞추는 <code class="language-text">AVL 트리</code>가 대표적인 예이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">isBalanced</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">check</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> <span class="token keyword">not</span> root <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> <span class="token number">0</span>
+		
+		left <span class="token operator">=</span> check<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+		right <span class="token operator">=</span> check<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span></code></pre></div>
+<p>재귀 호출로 리프 노드까지 내려간다. 맨 마지막에 이르면 각각 left = 0, right = 0 을 리턴하도록 구성한다. check 함수의 비즈니스 로직은 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">check</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	<span class="token keyword">if</span> left <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">or</span> \
+			right <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">or</span> \
+			<span class="token builtin">abs</span><span class="token punctuation">(</span>left <span class="token operator">-</span> right<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+	<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span></code></pre></div>
+<p>left와 right가 모두 0이라면, 차이가 1보다 크지 않으므로 max(left, right) + 1 로 1을 리턴하게 된다. 이런 식으로 점점 1씩 증가하는 형태가 리턴된다.<br>
+문제의 두번째 예시를 그림으로 표현하면 다음과 같다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 277px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6d262b1084bffbfeb1cfef7e21db498d/d4c85/calculate-height.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 122.91666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAZCAYAAAAxFw7TAAAACXBIWXMAABJ0AAASdAHeZh94AAACUElEQVQ4y5VUDW+iQBTk//+Wa1ONaYJY7Vn1tPWMJvXkS7Bo77AIrR8VQXEuuxcRl6V6LyGuy2N23pvZJ4AT+/2ePrw1m5fMIY+AM5FMJrHb7WBZFrbb7RH0EsAkmyTgcDhErVaDqqqpAy8CZBl2u1202210Op3LAbPAHMfBeGxhoGgYyDJWq1WqgotKJuF5HgzDoOso2tMe6roW9/LwjXBOZdu2USpJtEz23XK5RKPRQLfbg+9vshkmP+r1epCKIu0dax9SsiiKyOdymEwmfMBDchRF9JdY5CZ/C8M04/0kMOkpOdT1vDQgKwbpD7HJy9iGaZopsGRsNkE2w0Oy57lw3RldT6c25vP5CXtiaPYQIUtZRZEhSRKCIIj7JRWLca941soEJBZ5fGzh+uobXl9/0z1d11EoFFAul1OVxFcvWTJr4nr9B66ubxBs/tlhsVjge/UBiqJ+OUAEHlgU7aBoOnTDgm3/iSsIwi02QcglcNJDVrnZbAbPdel6NBphvV4fLYM9l13q6h02ptMpms0mvbckZFlGq9WC76/BO5y1j8Ca+aFaRaV8h36/TxW+v69AkopUlKRlsgavwFLWNA25fB5vb9OYoSgWYw+em+QC+5L0yzBHsf9IvH/MM28Tl+EhSDmHm/Hx8Y4wDOnIz+rdlwwnEwu/+s9QFRkzx0Hn5xP9r6nKiSBZgCcqExaqMkC9RgQpQVVldNpPqNxJKIq3J5OZZxVuyWEYQB+aMIwXkoJot0O39wzHmWUy4oGe2IZMXd8/ivG53tBx/z+AfwGgVZQ9M7mYtgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6d262b1084bffbfeb1cfef7e21db498d/a59e9/calculate-height.webp 192w,
+/static/6d262b1084bffbfeb1cfef7e21db498d/6356d/calculate-height.webp 277w"
+              sizes="(max-width: 277px) 100vw, 277px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6d262b1084bffbfeb1cfef7e21db498d/3b721/calculate-height.png 192w,
+/static/6d262b1084bffbfeb1cfef7e21db498d/d4c85/calculate-height.png 277w"
+            sizes="(max-width: 277px) 100vw, 277px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6d262b1084bffbfeb1cfef7e21db498d/d4c85/calculate-height.png"
+            alt="높이 차이 계산"
+            title="높이 차이 계산"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+양쪽 자식 노드 중 어느 하나가 -1이 되는 경우에는 계속해서 -1을 리턴하게 되며, 각 서브트리의 높이 차이가 한 번이라도 1을 초과하는 경우 -1이 할당되며 계속해서 부모 노드로 -1을 리턴하다 최종적으로 False를 리턴하게 된다.</p>
+<h1 id="49-최소-높이-트리" style="position:relative;">49. 최소 높이 트리<a href="#49-%EC%B5%9C%EC%86%8C-%EB%86%92%EC%9D%B4-%ED%8A%B8%EB%A6%AC" aria-label="49 최소 높이 트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>노드 개수와 무방향 그래프를 입력받아 트리가 최소 높이가 되는 루트의 목록을 리턴하라.</p>
+<ul>
+<li>입력</li>
+</ul>
+<p>nodes = 6, edges = [[0,3],[1,3],[2,3],[4,3],[5,4]]</p>
+<ul>
+<li>출력</li>
+</ul>
+<p>[3,4]</p>
+<h2 id="풀이-1-단계별-리프-노드-제거" style="position:relative;">풀이 1. 단계별 리프 노드 제거<a href="#%ED%92%80%EC%9D%B4-1-%EB%8B%A8%EA%B3%84%EB%B3%84-%EB%A6%AC%ED%94%84-%EB%85%B8%EB%93%9C-%EC%A0%9C%EA%B1%B0" aria-label="풀이 1 단계별 리프 노드 제거 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>최소 높이를 구성하려면 <code class="language-text">가장 가운데에 있는 값이 루트</code>여야 한다. 리프 노드를 하나씩 제거해 나가면서 남아 있는 값을 찾으면 이 값이 가장 가운데 있는 값이 될 것이고, 이 값을 루트로 했을 때 최소 높이를 구성할 수 있다는 뜻이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">findMinHeightTress</span><span class="token punctuation">(</span>selt<span class="token punctuation">,</span> n<span class="token punctuation">,</span> edges<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	graph <span class="token operator">=</span> collections<span class="token punctuation">.</span>defaultdict<span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i<span class="token punctuation">,</span> j <span class="token keyword">in</span> edges <span class="token punctuation">:</span>
+		graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>j<span class="token punctuation">)</span>
+		graph<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">)</span></code></pre></div>
+<p>이 문제에서 그래프는 무방향이므로, 트리의 부모와 자식은 양쪽 노드 모두 번갈아 가능하다. 따라서, graph 딕셔너리에 양방향으로 삽입하여 구성한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">leaves <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>graph<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">:</span>
+		leaves<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">)</span></code></pre></div>
+<p><code class="language-text">리프 노드</code>를 찾아서 leaves에 추가한다. 리프 노드는 <code class="language-text">그래프에서 해당 키의 값이 1개뿐인 것</code>을 말한다. 실제로 graph의 값을 출력해보면 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token operator">>></span><span class="token operator">></span> graph
+defaultdict<span class="token punctuation">(</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'list'</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	<span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">3</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">2</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">4</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">5</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">6</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">10</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">7</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">8</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token number">9</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
+<p>이 중에서 값이 1개 뿐인 [1, 2, 10, 7, 9] 가 첫 번째 리프 노드로 leaves 리스트 변수에 담기게 된다. 다음은 루트가 남을 때까지 반복해서 계속 제거해나가는 로직이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">while</span> n <span class="token operator">></span> <span class="token number">2</span> <span class="token punctuation">:</span>
+	n <span class="token operator">-=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>leaves<span class="token punctuation">)</span>
+	new_leaves <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+	<span class="token keyword">for</span> leaf <span class="token keyword">in</span> leaves <span class="token punctuation">:</span>
+		neighbor <span class="token operator">=</span> graph<span class="token punctuation">[</span>leaf<span class="token punctuation">]</span><span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		graph<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">.</span>remove<span class="token punctuation">(</span>leaf<span class="token punctuation">)</span>
+
+		<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>graph<span class="token punctuation">[</span>neighbor<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">:</span>
+			new_leaves<span class="token punctuation">.</span>append<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+
+	leaves <span class="token operator">=</span> new_leaves</code></pre></div>
+<p>n은 전체 노드의 개수이므로 여기서 leves, 즉 리프 노드의 개수만큼 계속 빼나가면서 최종 2개 이하가 남을 떄까지 반복한다. 마지막에 남은 값이 홀수 개일 때는 루트가 최종 1개가 되지만, <code class="language-text">짝수 개일 때</code>는 2개가 될 수 있다. 따라서 while 반복문은 2개까지는 게속 반복한다.<br>
+리프 노드는 <code class="language-text">반복하면서 제거</code> 한다. 그래프 딕셔너리에서 pop()으로 제거하고, 연결된 값도 찾아서 제거한다. 무방향 그래프라 <code class="language-text">그래프를 각각 두 번씩 만들었으므로 제거 또한 두 번씩 진행</code>한다.</p>
+<h2 id="이진-탐색-트리bst" style="position:relative;">이진 탐색 트리(BST)<a href="#%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%ACbst" aria-label="이진 탐색 트리bst permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>앞서 이진 트리는 <code class="language-text">정렬 여부와 관계 없이</code> 모든 노드가 둘 이하의 자식을 갖는 단순한 트리 형태라고 언급하였다. 그렇다면 <code class="language-text">이진 탐색 트리</code>란 무엇일까??</p>
+<blockquote>
+<p>BST 란 <code class="language-text">정렬된 트리</code>를 말한다. 노드의 왼쪽 서브트리에는 그 노드의 값보다 작은 값들을 지닌 노드들로 이뤄져 있는 반면, 노드의 오른쪽 서브트리에는 그 노드의 값보다 같거나 큰 값들을 지닌 노드들로 이루어져 있는 트리</p>
+</blockquote>
+<p>이렇게 <code class="language-text">왼쪽과 오른쪽의 값들이 각각 값의 크기에 따라 정렬되어 있는 트리</code>를 <code class="language-text">이진 탐색 트리</code>라고 한다.<br>
+이 트리의 가장 훌륭한 점은 탐색 시 <code class="language-text">시간 복잡도가 O(log n)</code> 이라는 점이다.<br>
+로그는 1억개의 아이템도 단 27번이면 모두 찾아낼 수 있다.<br>
+이진 탐색 트리는 랜덤하게 생성해도 대부분의 경우 균형이 잘 맞는 아름다운 형태로 트리를 표현할 수 있지만, 운이 나쁘면 트리의 모양이 한쪽으로 치우쳐져서 <code class="language-text">O(n)</code>의 시간 복잡도를 가지게 된다. 리스트형태처럼 되면 루트부터 맨 끝까지 차례대로 모두 탐색해야하므로 비효율적이다.</p>
+<h2 id="자가-균형-이진-탐색-트리" style="position:relative;">자가 균형 이진 탐색 트리<a href="#%EC%9E%90%EA%B0%80-%EA%B7%A0%ED%98%95-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%AC" aria-label="자가 균형 이진 탐색 트리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<blockquote>
+<p>삽입, 삭제 시 자동으로 높이를 작게 유지하는 노드 기반의 이진 탐색 트리다.</p>
+</blockquote>
+<p>이진 탐색 트리의 높이가 <code class="language-text">O(log n)</code>이 되도록 만드는 트리를 <code class="language-text">자가 균형 이진 탐색 트리</code>라고 한다.<br>
+즉, 높이를 가능한 한 낮게 유지하는 것이 중요하다는 얘기다.<br>
+탐색시간이 O(n) 에서 O(log n) 까지 줄어들 수 있으므로, 불균형과 균형의 성능 차이는 꽤 크다. 따라서 트리의 균형, 즉 <code class="language-text">높이의 균형</code>을 맞추는 작업이 매우 중요하다. 이와 같이 높이 균형을 맞춰주는 자가 균형 이진 탐색 트리의 대표적인 형태로는 <code class="language-text">AVL 트리</code>와 <code class="language-text">레드-블랙 트리</code>가 있다. 특히 레드-블랙 트리는 높은 효율성으로 인해 실무에서도 매우 빈번하게 쓰이는 트리 형태이기도 하다.</p>
+<h1 id="50-정렬된-배열의-이진-탐색-트리-반환" style="position:relative;">50. 정렬된 배열의 이진 탐색 트리 반환<a href="#50-%EC%A0%95%EB%A0%AC%EB%90%9C-%EB%B0%B0%EC%97%B4%EC%9D%98-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%AC-%EB%B0%98%ED%99%98" aria-label="50 정렬된 배열의 이진 탐색 트리 반환 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>오름차순으로 정렬된 배열을 <code class="language-text">높이 균형 이진탐색트리</code>로 변환하라.<br>
+높이 균형이란, 모든 노드의 두 서브 트리 간 깊이 차이가 ` 이하인 것을 말한다.</p>
+<h2 id="풀이-1-이진-검색-결과로-트리-구성" style="position:relative;">풀이 1. 이진 검색 결과로 트리 구성<a href="#%ED%92%80%EC%9D%B4-1-%EC%9D%B4%EC%A7%84-%EA%B2%80%EC%83%89-%EA%B2%B0%EA%B3%BC%EB%A1%9C-%ED%8A%B8%EB%A6%AC-%EA%B5%AC%EC%84%B1" aria-label="풀이 1 이진 검색 결과로 트리 구성 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>BST를 만들기 위해서는 <code class="language-text">정렬된 배열</code>을 이진 검색으로 계속 쪼개 나가기만 하면된다. 당연한 얘기지만 정렬되어 있지 않으면 사용할 숭수 없다. 이전 검색 자체가 정렬된 배열에서는 어떤 값이든지 간에 log(n)에 찾아낼 수 있는 마법이고, 동일한 이름의 BST 또한 당연히 <code class="language-text">정렬된 배열</code>을 기준으로 한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">sortedArrayToBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	
+	<span class="token keyword">if</span> <span class="token keyword">not</span> nums<span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token boolean">None</span>
+
+	mid <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+
+	<span class="token comment"># 분할 정복으로 이진 검색 결과 트리 구성</span>
+	node <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	node<span class="token punctuation">.</span>left <span class="token operator">=</span> self<span class="token punctuation">.</span>sortedArrayToBST<span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token punctuation">:</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	node<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>sortedArrayToBST<span class="token punctuation">(</span>nums<span class="token punctuation">[</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	
+	<span class="token keyword">return</span> node</code></pre></div>
+<p>정확히 중앙값을 갖도록 내림값을 리턴하는 // 연산자를 사용했다. 즉 lens(nums) 가 3이라면, 2를 나눈 결과인 1.5에서 내림하여 1이 된다.<br>
+파이썬의 <code class="language-text">슬라이스</code> 기능을 이용하면 간단하게 코드 구현이 가능하다. 이것은 절반씩 분할해 처리되는 <code class="language-text">분할 정복 구조</code>로 처리된다.</p>
+<h1 id="code-classlanguage-text51-이진-탐색-트리bst를-더-큰-수-합계-트리로code" style="position:relative;"><code class="language-text">51. 이진 탐색 트리(BST)를 더 큰 수 합계 트리로</code><a href="#code-classlanguage-text51-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%ACbst%EB%A5%BC-%EB%8D%94-%ED%81%B0-%EC%88%98-%ED%95%A9%EA%B3%84-%ED%8A%B8%EB%A6%AC%EB%A1%9Ccode" aria-label="code classlanguage text51 이진 탐색 트리bst를 더 큰 수 합계 트리로code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>BST의 각 노드를 현재 값보다 더 큰 값을 가진 모든 노드의 합으로 만들어라.</p>
+<ul>
+<li>입력</li>
+</ul>
+<p>[4, 1, 6, 0, 2, 5, 7, null, null, null, 3, null, null, null, 8]</p>
+<ul>
+<li>출력</li>
+</ul>
+<p>[30, 36, 21, 36, 35, 26, 15, null, null, null, 33, null, null, null, 8]</p>
+<h2 id="풀이-1-중위-순회로-노드-값-누적" style="position:relative;">풀이 1. 중위 순회로 노드 값 누적<a href="#%ED%92%80%EC%9D%B4-1-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C%EB%A1%9C-%EB%85%B8%EB%93%9C-%EA%B0%92-%EB%88%84%EC%A0%81" aria-label="풀이 1 중위 순회로 노드 값 누적 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>자신보다 같거나 큰 값을 구하려면 <code class="language-text">자기 자신을 포함한 우측 자식 노드의 합</code>을 구하면 된다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 316px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/47ce1fdd8ff8c467d1e9bd20326d5597/a8d06/binary-search-greater-sum.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 89.0625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABJ0AAASdAHeZh94AAACiElEQVQ4y4VUa2/aQBDk//+RKlUbVeqHpoLEhBjMI1HAmNgQwARj8AuMbV6hmKl2I7sgHHUly6e73bnZubnL4ZM4Ho/pf7fbnc2friXjJHJZQKcF7XYbgiDAcz1stttP8y4As3YlZo+PT7i5+Y1+v48wjDCzLKxWq8xOUsCsnSgcx4bc7uDLDwHd3iCdXywWsG0HSfpp/QXDOI6x3W5hWRbCMMRi4WNsmDDNKabTKa9R7p/9OyzbvpAgd9oigamqinq9gbfxhOc8z4M1m0FuycxMFEXIsoy+PoXleJjP59ktR1EE3/chSVW02zIE8QmP8gDB0uciYkvakZ7C3R3klz72hxiObacuSFumQaUiYTKZMDtRLCOMPoS3bRtRtMJ4bEB9USFVJNRqdeAY8/p6vWYp6M8ME6r+wodhGGyP+2IJ+lDneWIXBAEc22FQ0zQZUNO6qX6D/gCj0egcsKN0oKraR8JgCF3XWT/S1XU9HpdKJWw2Gz4wXR8xOIXrunxYqYaUUCgUWGyK/X6PVqsFQSgyw+VyiefnZ9ze3sJzHc6RJIlrSBLahDY8A3x4eECl2kCrM+SFZrOJonCHX4UKqk8vqFWrqNWqyBfreDMcdLsa6rUabgoiWkoPURict0yUHc9HU/kAHA6HfNrTmQVv7mMyMRGGASzHx3qzh2GMuQsy+MJfpvbJZd0QCrJRp9PB6+sr3t93fKep9SToGiqKwsDr1Yo9egaYfHH8z+QkBSU2Gg0eJ/OUcTgc2BV0YOVyGb1e7wQQx8yLTsXEMJ/P86FkPVmapuHr1RVr/unzlYBRkGlL9/fcftY6Wef6+ju+Xf+Eoo3+/x5SkC0uX6TTx2SDZRDBnLn4CxhXVAhC9IkUAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/47ce1fdd8ff8c467d1e9bd20326d5597/a59e9/binary-search-greater-sum.webp 192w,
+/static/47ce1fdd8ff8c467d1e9bd20326d5597/3b033/binary-search-greater-sum.webp 316w"
+              sizes="(max-width: 316px) 100vw, 316px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/47ce1fdd8ff8c467d1e9bd20326d5597/3b721/binary-search-greater-sum.png 192w,
+/static/47ce1fdd8ff8c467d1e9bd20326d5597/a8d06/binary-search-greater-sum.png 316w"
+            sizes="(max-width: 316px) 100vw, 316px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/47ce1fdd8ff8c467d1e9bd20326d5597/a8d06/binary-search-greater-sum.png"
+            alt="더 큰 수 합계 트리를 위한 탐색 순서"
+            title="더 큰 수 합계 트리를 위한 탐색 순서"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+예제 입력값을 입력받으면 위의 그림처럼 실행이 된다.<br>
+root를 입력받았을 때 먼저 맨 오른쪽까지 내려가고, 그 다음 부모 노드, 다시 왼쪽 노드 순으로 이동하면서 자신의 값을 포함해 누적한다. <code class="language-text">오른쪽 - 부모 - 왼쪽</code> 순으로 이어지며, 오른쪽 자식부터 운행하는 <code class="language-text">중위 순회</code>에 해당됨을 알 수 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span> 
+	val<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">0</span>
+
+	<span class="token keyword">def</span> <span class="token function">bstToGst</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token comment"># 중위 순회 노드 값 누적</span>
+		<span class="token keyword">if</span> root<span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>bstToGst<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+			self<span class="token punctuation">.</span>val <span class="token operator">+=</span> root<span class="token punctuation">.</span>val
+			root<span class="token punctuation">.</span>val <span class="token operator">=</span> self<span class="token punctuation">.</span>val
+			self<span class="token punctuation">.</span>bstToGst<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+		
+		<span class="token keyword">return</span> root</code></pre></div>
+<p><code class="language-text">val</code> 변수는 누적된 값을 저장하는 변수이다.</p>
+<h1 id="52-이진-탐색-트리bst-합의-범위" style="position:relative;">52. 이진 탐색 트리(BST) 합의 범위<a href="#52-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%ACbst-%ED%95%A9%EC%9D%98-%EB%B2%94%EC%9C%84" aria-label="52 이진 탐색 트리bst 합의 범위 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이진 탐색 트리(BST)가 주어졌을 때, L 이상 R 이하의 값을 지닌 노드의 합을 구하라.</p>
+<ul>
+<li>입력</li>
+</ul>
+<p>root = [10, 5, 15, 3, 7, null, 18], L = 7, R = 15</p>
+<ul>
+<li>출력</li>
+</ul>
+<p>32</p>
+<ul>
+<li>설명</li>
+</ul>
+<p>7 이상, 15 이하인 또 다른 노드는 10이 있으며 따라서 결과는 7+10+15 = 32 가 된다.</p>
+<h2 id="풀이-1-재귀-구조-dfs-로-브루트-포스-탐색" style="position:relative;">풀이 1. 재귀 구조 DFS 로 브루트 포스 탐색<a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0-dfs-%EB%A1%9C-%EB%B8%8C%EB%A3%A8%ED%8A%B8-%ED%8F%AC%EC%8A%A4-%ED%83%90%EC%83%89" aria-label="풀이 1 재귀 구조 dfs 로 브루트 포스 탐색 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이진 탐색 트리의 특성을 이용해 <code class="language-text">재귀 구조</code>로 브루트 포스로 풀 수 있다.<br>
+<code class="language-text">재귀 구조</code>는 <code class="language-text">스택</code>을 이용해 함수를 호출하고, <code class="language-text">스택</code>은 <code class="language-text">LIFO</code> 구조이므로 <code class="language-text">DFS</code>로 풀 수 있다.<br>
+DFS로 전체를 탐색한 다음, 노드의 값이 L과 R 사이일 때만 값을 부여하고, 아닐 경우에는 0을 취해 계속 더해나가면 된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">rangeSumBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> L<span class="token punctuation">,</span> R<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> <span class="token keyword">not</span> root <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token number">0</span>
+	
+	<span class="token keyword">return</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>val <span class="token keyword">if</span> L <span class="token operator">&lt;=</span> root<span class="token punctuation">.</span>val <span class="token operator">&lt;=</span> R <span class="token keyword">else</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> \
+					self<span class="token punctuation">.</span>rangeSumBST<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> L<span class="token punctuation">,</span> R<span class="token punctuation">)</span> <span class="token operator">+</span> \
+					self<span class="token punctuation">.</span>rangeSumBST<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> L<span class="token punctuation">,</span> R<span class="token punctuation">)</span></code></pre></div>
+<p>그러나, 이 방법은 모든 노드를 탐색하는 <code class="language-text">브루트 포스</code> 풀이이다. 최적화가 가능하다.</p>
+<h2 id="풀이-2-dfs-가지치기로-필요한-노드-탐색" style="position:relative;">풀이 2. DFS 가지치기로 필요한 노드 탐색<a href="#%ED%92%80%EC%9D%B4-2-dfs-%EA%B0%80%EC%A7%80%EC%B9%98%EA%B8%B0%EB%A1%9C-%ED%95%84%EC%9A%94%ED%95%9C-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89" aria-label="풀이 2 dfs 가지치기로 필요한 노드 탐색 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>DFS로 불필요한 노드는 <code class="language-text">가지치기</code>를 통해 최적화를 진행하는 풀이이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	<span class="token keyword">if</span> node<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> L <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+	<span class="token keyword">elif</span> node<span class="token punctuation">.</span>val <span class="token operator">></span> R <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span></code></pre></div>
+<p>이진 탐색 트리는 왼쪽이 항상 작고, 오른쪽이 항상 크다. 즉 현재 노드 root가 L 보다 작을 경우, 더 이상 왼쪽 가지는 볼 필요가 없다. 불필요한 탐색을 줄여 최적화 할 수 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">rangeSumBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> L<span class="token punctuation">,</span> R<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> <span class="token keyword">not</span> node <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> <span class="token number">0</span>
+
+		<span class="token keyword">if</span> node<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> L <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+		<span class="token keyword">elif</span> node<span class="token punctuation">.</span>val <span class="token operator">></span> R <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+		<span class="token keyword">return</span> node<span class="token punctuation">.</span>val <span class="token operator">+</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">+</span> dfs<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> dfs<span class="token punctuation">(</span>root<span class="token punctuation">)</span></code></pre></div>
+<h2 id="풀이-3-반복-구조-dfs로-필요한-노드-탐색" style="position:relative;">풀이 3. 반복 구조 DFS로 필요한 노드 탐색<a href="#%ED%92%80%EC%9D%B4-3-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0-dfs%EB%A1%9C-%ED%95%84%EC%9A%94%ED%95%9C-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89" aria-label="풀이 3 반복 구조 dfs로 필요한 노드 탐색 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>대부분의 재귀 풀이는 반복으로 변경할 수 있다. 일반적으로 반복 풀이가 재귀 풀이에 비해 좀 더 직관적으로 이해가 쉽다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">rangeSumBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> L<span class="token punctuation">,</span> R<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	stack<span class="token punctuation">,</span> <span class="token builtin">sum</span> <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span>
+	<span class="token comment"># 스택 이용 필요한 노드 DFS 반복</span>
+	<span class="token keyword">while</span> stack <span class="token punctuation">:</span>
+		node <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> node <span class="token punctuation">:</span>
+			<span class="token keyword">if</span> L <span class="token operator">&lt;</span> node<span class="token punctuation">.</span>val <span class="token punctuation">:</span>
+				stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			<span class="token keyword">if</span> node<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> R <span class="token punctuation">:</span>
+				stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+			<span class="token keyword">if</span> L <span class="token operator">&lt;=</span> node<span class="token punctuation">.</span>val <span class="token operator">&lt;=</span> R <span class="token punctuation">:</span>
+				<span class="token builtin">sum</span> <span class="token operator">+=</span> node<span class="token punctuation">.</span>val
+	<span class="token keyword">return</span> <span class="token builtin">sum</span></code></pre></div>
+<p>유효한 노드만 스택에 계속 집어 넣으면서, L과 R사이의 값인 경우 값을 더해 나간다.</p>
+<h2 id="풀이-4-반복-구조-bfs로-필요한-노드-탐색" style="position:relative;">풀이 4. 반복 구조 BFS로 필요한 노드 탐색<a href="#%ED%92%80%EC%9D%B4-4-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0-bfs%EB%A1%9C-%ED%95%84%EC%9A%94%ED%95%9C-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89" aria-label="풀이 4 반복 구조 bfs로 필요한 노드 탐색 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>BFS로 탐색해도 동일하다. 여기서는 스택을 단순히 큐 형태로 바꾸기만 하면, BFS를 구현할 수 있다.<br>
+원래는 파이썬의 데크를 사용해야 성능을 높일 수 있지만, 여기서는 편의상 간단히 리스트를 그냥 pop(0)로 처리하는 정도로 구현한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">rangeSumBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">,</span> L<span class="token punctuation">,</span> R<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	queue<span class="token punctuation">,</span> <span class="token builtin">sum</span> <span class="token operator">=</span> <span class="token punctuation">[</span>root<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span>
+	<span class="token comment"># 큐 이용 필요한 노드 BFS 반복</span>
+	<span class="token keyword">while</span> queue <span class="token punctuation">:</span>
+		node <span class="token operator">=</span> queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> node <span class="token punctuation">:</span>
+			<span class="token keyword">if</span> L <span class="token operator">&lt;</span> node<span class="token punctuation">.</span>val <span class="token punctuation">:</span>
+				queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+			<span class="token keyword">if</span> node<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> R <span class="token punctuation">:</span>
+				queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+			<span class="token keyword">if</span> L <span class="token operator">&lt;=</span> node<span class="token punctuation">.</span>val <span class="token operator">&lt;=</span> R <span class="token punctuation">:</span>
+				<span class="token builtin">sum</span> <span class="token operator">+=</span> node<span class="token punctuation">.</span>val
+	<span class="token keyword">return</span> <span class="token builtin">sum</span></code></pre></div>
+<h1 id="code-classlanguage-text53-bst-노드-간-최소-거리code" style="position:relative;"><code class="language-text">53. BST 노드 간 최소 거리</code><a href="#code-classlanguage-text53-bst-%EB%85%B8%EB%93%9C-%EA%B0%84-%EC%B5%9C%EC%86%8C-%EA%B1%B0%EB%A6%ACcode" aria-label="code classlanguage text53 bst 노드 간 최소 거리code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>두 노드 간 값의 차이가 가장 작은 노드의 값의 차이를 출력하라.</p>
+<h2 id="재귀-구조로-중위-순회" style="position:relative;">재귀 구조로 중위 순회<a href="#%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0%EB%A1%9C-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C" aria-label="재귀 구조로 중위 순회 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이진 탐색 트리의 중위 순회 결과는 오름차순으로 정렬된 결과를 얻을 수 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> root<span class="token punctuation">.</span>left <span class="token punctuation">:</span>
+		f<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span> 
+	
+	result <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">if</span> root<span class="token punctuation">.</span>right <span class="token punctuation">:</span>
+		f<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span></code></pre></div>
+<p>위의 형태가 중위 순회의 기본 뼈대가 될 것 이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">:</span>
+	prev <span class="token operator">=</span> <span class="token operator">-</span>sys<span class="token punctuation">.</span>maxsize
+	result <span class="token operator">=</span> sys<span class="token punctuation">.</span>maxsize
+
+	<span class="token comment"># 재귀 구조 중위 순회 비교 결과</span>
+	<span class="token keyword">def</span> <span class="token function">minDiffInBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> root<span class="token punctuation">.</span>left <span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>minDiffInBST<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+
+		self<span class="token punctuation">.</span>result <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>result<span class="token punctuation">,</span> root<span class="token punctuation">.</span>val <span class="token operator">-</span> self<span class="token punctuation">.</span>prev<span class="token punctuation">)</span>
+		self<span class="token punctuation">.</span>prev <span class="token operator">=</span> root<span class="token punctuation">.</span>val
+
+		<span class="token keyword">if</span> root<span class="token punctuation">.</span>right <span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>minDiffInBST<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+		
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>result</code></pre></div>
+<p>그림으로 위의 코드 흐름을 보면 다음과 같다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 274px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/49e20b8d2424ce3b1b4da5e19469e20b/64b85/tree-in-order-traverse.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 117.70833333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC5ElEQVQ4y41U2XLaQBDk/z/Fj05sx3mxUxUu82Ag5kZIgARG94U4BHSqpywVYHxs1ZZmj+ntmelRAV+Mw+GQf/f7/ck6s49HAd8Y544Z2DH4twCPndI0xWAwgOM4nz5W+AqIYXK4rourqyuUiiWEYYCxbiKIknf3C5/l7Bh0NptB0zS0Wi0s4wi15x5sN/wa8DwM2gRbr9diW5YFx3FhGDoOh/3nOTxP9mg0QrlcQeD7eR49z8dut8Pj4x/UajUkSXICWrgkjcy5WCzh7u4X/DdAnnmuJ2cvLy+oVqtYLpengJdKT3s+n6Pb7aHb62GxWGC73crZarWCZbvYbHfY73eXQz6WBmUxmUyw2azF5mSudMOQ/BFEUaeYGNYb68Nlhhz1egPX1z8w1lSMZy7GEwNTfY6J4YgGf97cQNNUeYxML+VdGIZxgoVpodlo4v7+NwzDgOdHCIJQihCES6lsuVTCc72JyXSGOIo+FvbC8jBUNHiei8XCxHSqY5emWMaxyGW9WgkjRVHRHYxRb3YQ+N7FnhZAOj1VnxCGEVo9He12R6oYvbFQVRX/mk10+mM4XohS8a+I/LiT8pC5QfWXy+VcHu12G7e3t1JdjkqlIhJZr1cwTRMPDw/QVPVjhuyEfr+fa4o5JAilk2mu3WqJiFnpTqcjPue/s3edQoaz+VxYcDIFnu8LMNee5yGOYwyHQwHWdf2k2rlsONlOQRCIEy+HYZg/NFIU+cNkzrZtSzS8+671jnVEhhQ1AemUJX2kjOT3lRWJBep2uxL6ZrP5uPXIkKG9vr7mzhyT8VjOMoZkxjXvXQx5f8SQEmGOCMz+ZWjNRkPyyDZkkZgeaYgwzFNzsShpuoXrOpIXArEAnLRlLzndI8tMhxloIUnW6Cs6TNvH3HTh+YEwZVgMm9+sUAQIAl+YMlyueYfsaQvDNN3BdgNEcQI/iBFFsVxiKPyyOHyAReEeAW3bgmWZcsbHCMhzAv4Hfeo1hbhs7aUAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/49e20b8d2424ce3b1b4da5e19469e20b/a59e9/tree-in-order-traverse.webp 192w,
+/static/49e20b8d2424ce3b1b4da5e19469e20b/e70dd/tree-in-order-traverse.webp 274w"
+              sizes="(max-width: 274px) 100vw, 274px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/49e20b8d2424ce3b1b4da5e19469e20b/3b721/tree-in-order-traverse.png 192w,
+/static/49e20b8d2424ce3b1b4da5e19469e20b/64b85/tree-in-order-traverse.png 274w"
+            sizes="(max-width: 274px) 100vw, 274px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/49e20b8d2424ce3b1b4da5e19469e20b/64b85/tree-in-order-traverse.png"
+            alt="두 노드 간 값의 차이가 가장 작은 노드 계산"
+            title="두 노드 간 값의 차이가 가장 작은 노드 계산"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="풀이-2-반복-구조로-중위-순회" style="position:relative;">풀이 2. 반복 구조로 중위 순회<a href="#%ED%92%80%EC%9D%B4-2-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C" aria-label="풀이 2 반복 구조로 중위 순회 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>재귀일 때는 prev와 result를 클래스 멤버 변수로 선언했지만, 반복 구조에서는 한 함수 내에서 처리할 수 있기 때문에 함수 내 변수로 선언이 가능하다는게 차이점이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">minDiffInBST</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	prev <span class="token operator">=</span> <span class="token operator">-</span>sys<span class="token punctuation">.</span>maxsize
+	result <span class="token operator">=</span> sys<span class="token punctuation">.</span>maxsize
+
+	stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+	node <span class="token operator">=</span> root
+
+	<span class="token comment"># 반복 구조 중위 순회 비교 결과</span>
+	<span class="token keyword">while</span> stack <span class="token keyword">or</span> node <span class="token punctuation">:</span>
+		<span class="token keyword">while</span> node <span class="token punctuation">:</span>
+			stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+			node <span class="token operator">=</span> node<span class="token punctuation">.</span>left
+
+		node <span class="token operator">=</span> stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+		result <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> node<span class="token punctuation">.</span>val <span class="token operator">-</span> prev<span class="token punctuation">)</span>
+		prev <span class="token operator">=</span> node<span class="token punctuation">.</span>val
+
+		node <span class="token operator">=</span> node<span class="token punctuation">.</span>right	</code></pre></div>
+<p>DFS 풀이인 만큼 스택을 사용했고, 오른쪽 자식 노드를 택하기 전에 비교하는 형태로 재귀와 동일하게 <code class="language-text">중위 순회</code>로 풀이했다.</p>
+<h1 id="트리-순회" style="position:relative;">트리 순회<a href="#%ED%8A%B8%EB%A6%AC-%EC%88%9C%ED%9A%8C" aria-label="트리 순회 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<blockquote>
+<p>그래프 순회의 한 형태로, 트리 자료구조에서 각 노드를 정확히 한 번 방문하는 과정</p>
+</blockquote>
+<p>그래프 순회와 마찬가지로, 트리 순회 또한 <code class="language-text">DFS</code> 또는 <code class="language-text">BFS</code>로 탐색한다. 특히 이진 트리에서 DFS는 노드의 방문 순서에 따라 다음과 같이 3가지 방식으로 구분된다.</p>
+<ol>
+<li>전위(Pre-Order) 순회(NLR)</li>
+<li>중위(In-Order) 순회(LNR)</li>
+<li>후위(Post-Order) 순회(LRN)</li>
+</ol>
+<p>N은 현재노드, L은 현재 노드의 왼쪽 서브트리, R은 현재 노드의 오른쪽 서브트리를 의미한다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 302px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/41b2a72423cc74025bda1c4d61bbbcf0/83034/tree-traverse.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 81.77083333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACRElEQVQ4y4VUaW/aQBDlxzcVBSkqVGlUDIhAgCgNDgiq5kuBcLgpJAoEQ0TAjghXQJj7vl61K2HM1Y602vXu+M3Mm7erwgFbLpd0EGu1WphMJphOpztn22vVITDlzHFRdDodpHkey8Vyx0cJqvofGJnL5TJeBQHVahXz+fyfWaoOHS4WC/o9Go2g1+lgtVjhuXZjOBzuDbxTsvJgZYS39/cqotEobn7eIBqJQhAEGkQZVPnvTobEqdmUIEkNiIKAl5csZrMput0uLTefz+PpKYVisYhKpYzxeLxRmWqb1OfnDC6cFziz2PCb4/YqgOM4qI8+wn7uQCQSkRORAVcbxHg+BafDCZPJAlF8pXskM2WJb28FmIxGMIwJ8Xh8l8MVKOGMaC6XyyGRSNCyZrPZ3ibUajVkMmnKKaFn5SdnKEkSgn4/boNB9Ho99Pt9uvb/ClDZHOqsz/cD1jMbwqEwBsPBGtDn9UL/WQ/7uR2iKKLdbuGL/gSnX41wXbEbPK0G6bZGo8XpCQOt5hiVSmUNWK/XEQjcUk5I58g1u7v7A5Z14/ExsVf8xGKxGFj2GjzP07JVyg6TiASMlJtMJlEoFKiQU6kUHu4f0Gw25cY0Gg26l8lkZLFvcLhyLJVKYL4Z8P2SpYIm5rpy4eiDGnabA1JTolfwk1qDY60OHrcH0+lk3eVtHdbrNVitNrCsB/fxe7oXCoXAMBa43V6afbvdhtlsgcFgRiQc2f/aKEGJDNLptPwQkOxJ5oPBQC6NyCubze50/i9tKKvINlahXgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/41b2a72423cc74025bda1c4d61bbbcf0/a59e9/tree-traverse.webp 192w,
+/static/41b2a72423cc74025bda1c4d61bbbcf0/794ea/tree-traverse.webp 302w"
+              sizes="(max-width: 302px) 100vw, 302px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/41b2a72423cc74025bda1c4d61bbbcf0/3b721/tree-traverse.png 192w,
+/static/41b2a72423cc74025bda1c4d61bbbcf0/83034/tree-traverse.png 302w"
+            sizes="(max-width: 302px) 100vw, 302px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/41b2a72423cc74025bda1c4d61bbbcf0/83034/tree-traverse.png"
+            alt="트리 순회 방식의 도식화"
+            title="트리 순회 방식의 도식화"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ul>
+<li>왼쪽 점(전위) : F, B, A, D, C, E, G, I, H</li>
+<li>아래쪽 점(중위) : A, B, C, D, E, F, G, H, I</li>
+<li>오른쪽 점(후위) : A, C, E, D, B, H, I, G, F</li>
+</ul>
+<p>각 순회 방식을 코드를 통해 구체적으로 살펴보자. 트리의 순회 방식은 <code class="language-text">재귀</code> 또는 <code class="language-text">반복</code>, 모두 구현이 가능하지만, 트리의 재귀적 속성으로 인해 <code class="language-text">재귀</code> 쪽이 훨씬 더 구현이 간단하다.<br>
+연결 리스트를 담을 Node 클래스를 정의하고 트리의 전체 입력값을 root 변수로 다음과 같이 정의해봤다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">,</span> left<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> right<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>val <span class="token operator">=</span> val
+		self<span class="token punctuation">.</span>left <span class="token operator">=</span> left
+		self<span class="token punctuation">.</span>right <span class="token operator">=</span> right
+	
+	root <span class="token operator">=</span> Node<span class="token punctuation">(</span><span class="token string">'F'</span><span class="token punctuation">,</span>
+					Node<span class="token punctuation">(</span><span class="token string">'B'</span><span class="token punctuation">,</span>
+			Node<span class="token punctuation">(</span><span class="token string">'A'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			Node<span class="token punctuation">(</span><span class="token string">'D'</span><span class="token punctuation">,</span>
+				Node<span class="token punctuation">(</span><span class="token string">'C'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+				Node<span class="token punctuation">(</span><span class="token string">'E'</span><span class="token punctuation">)</span>
+			<span class="token punctuation">)</span>
+		<span class="token punctuation">)</span><span class="token punctuation">,</span>
+		Node<span class="token punctuation">(</span><span class="token string">'G'</span><span class="token punctuation">,</span>
+			<span class="token boolean">None</span><span class="token punctuation">,</span>
+			Node<span class="token punctuation">(</span><span class="token string">'I'</span><span class="token punctuation">,</span>
+				Node<span class="token punctuation">(</span><span class="token string">'H'</span><span class="token punctuation">)</span>
+			<span class="token punctuation">)</span>
+		<span class="token punctuation">)</span>
+	<span class="token punctuation">)</span>
+</code></pre></div>
+<h2 id="전위-순회" style="position:relative;">전위 순회<a href="#%EC%A0%84%EC%9C%84-%EC%88%9C%ED%9A%8C" aria-label="전위 순회 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">preorder</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span> 
+		<span class="token keyword">return</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+	preorder<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+	preorder<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span></code></pre></div>
+<p>재귀로 구현하면 반복보다 코드가 매우 간결하고 보기 쉽다.</p>
+<h2 id="중위-순회" style="position:relative;">중위 순회<a href="#%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C" aria-label="중위 순회 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">inorder</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span> 
+		<span class="token keyword">return</span>
+	inorder<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+	inorder<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span></code></pre></div>
+<h2 id="후위-순회" style="position:relative;">후위 순회<a href="#%ED%9B%84%EC%9C%84-%EC%88%9C%ED%9A%8C" aria-label="후위 순회 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">postorder</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span> 
+		<span class="token keyword">return</span>
+	postorder<span class="token punctuation">(</span>node<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+	postorder<span class="token punctuation">(</span>node<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span></code></pre></div>
+<h1 id="code-classlanguage-text54-전위-중위-순회-결과로-이진-트리-구축code" style="position:relative;"><code class="language-text">54. 전위, 중위 순회 결과로 이진 트리 구축</code><a href="#code-classlanguage-text54-%EC%A0%84%EC%9C%84-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C-%EA%B2%B0%EA%B3%BC%EB%A1%9C-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EA%B5%AC%EC%B6%95code" aria-label="code classlanguage text54 전위 중위 순회 결과로 이진 트리 구축code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>트리의 전위, 중위 순회 결과를 입력값으로 받아 이진 트리를 구축하라.</p>
+<h2 id="풀이-1-전위-순회-결과로-중위-순회-분할-정복" style="position:relative;">풀이 1. 전위 순회 결과로 중위 순회 분할 정복<a href="#%ED%92%80%EC%9D%B4-1-%EC%A0%84%EC%9C%84-%EC%88%9C%ED%9A%8C-%EA%B2%B0%EA%B3%BC%EB%A1%9C-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C-%EB%B6%84%ED%95%A0-%EC%A0%95%EB%B3%B5" aria-label="풀이 1 전위 순회 결과로 중위 순회 분할 정복 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>순회에는 크게 전위, 중위, 후위 순회가 있으며 <code class="language-text">이 셋 중 2가지만 있어도 이진 트리를 복원 가능</code>하다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 262px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0788ad0182ade834b7f4cde7f459a8c0/6ae65/tree-nlr-lrn.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 106.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACk0lEQVQ4y41Ua3OaQBT1//+D9GMf005nOtE8tU2MQmwiKCBI4gMEH0HAJCpRNDp6OmzKFqM4vTPM7C53D4d7zr0JRGK9XpMnXAfhui4Mw/i7X9Oc93lhJKJg70FXqxXKpRJyuRx836dn0bxYwPdfC9Z9y8J0MiFgvV4vllUswzCx0aiDYfKYTqc0MVhnLy9RLpf3M4y+CF8qioyb3wXye9HzXO4KPM9vAUZBt2q4XC4wGg3heWNatzAc295Znp0MgxgOhyhcs5jP51gulygUrvH8/EyY8hxH1H4DW8UqvQFomiYufv3E6+srqdnZ6SmazQZGoxGSySQkUdxyxBbgLnXDCICD8P0per0uLMuiZ3F3dooSXXueh7s7lX5AksQN0FiV45QLVM1k0qSO4/EYHw4OIAgCNfneTtnFcDaboVGv032326X+3PVntIZRz4VP2GaTyQSCUCYMw9jIjzBN7GujMBaLBVKpFKrV6t48yjDwnaZpeHp6xONgQAw9m/mwbRuOO4BhtFGr3RMfGkYLnU6HqB60qKY1oapV0gi0ht54TFqt3TahyDJ63S76fQv3dyoUtYajk3OwTB4lvggmf4XcVRbZ7CUpQ4nncHJ8hMHA/QcYMKoqCtqmSWziOg50XYfjOISFJArIZDJIZy6gKCo4rgihXIKuNcHkcyiwDLlDAYNiB9PFaLXgODYs64EAdjptUgpRFCGKAm6LPKSKQqzEcRzOztNgGAbF2xsy5v5bFKvvoqrW8PLiwbYd8CUReqsFTdNJ9wQEwkGyYZuoFcL9fOaDLXD49j1J+lqSZHz5+gMsew1d1yDLMg4Pk3RwJOJMTYdtvYY8e4PUcRqm+XYpULZSkcjc5HgOHz99hlSpEMA/jOw+l6eSGksAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/0788ad0182ade834b7f4cde7f459a8c0/a59e9/tree-nlr-lrn.webp 192w,
+/static/0788ad0182ade834b7f4cde7f459a8c0/6de2e/tree-nlr-lrn.webp 262w"
+              sizes="(max-width: 262px) 100vw, 262px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/0788ad0182ade834b7f4cde7f459a8c0/3b721/tree-nlr-lrn.png 192w,
+/static/0788ad0182ade834b7f4cde7f459a8c0/6ae65/tree-nlr-lrn.png 262w"
+            sizes="(max-width: 262px) 100vw, 262px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/0788ad0182ade834b7f4cde7f459a8c0/6ae65/tree-nlr-lrn.png"
+            alt="전위 순회와 중위 순회 결과의 관계"
+            title="전위 순회와 중위 순회 결과의 관계"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+위처럼 트리 그림을 1부터 9까지 좀 더 복잡한 형태로 새로 구성해봤다. <code class="language-text">전위의 첫 번째 결과값은 부모 노드</code>다. 즉 <code class="language-text">전위 순회의 첫 번째 결과는 정확히 중위 순휘 결과를 왼쪽과 오른쪽으로 분할시키는 역할</code>을 한다.<br>
+중위 순회의 <code class="language-text">분할 정복</code>문제로 바꿀 수 있는 것 이다.두 번째로 왼쪽 노드의 2는 중위 순회 결과를 정확히 반 가르고, 각각 왼쪽 자식은 4, 오른쪽 자식은 5로 마무리한다.<br>
+오른쪽의 경우 3이 첫번째 값인데, 마침 중위 순회에서는 맨 오른쪽에 위치해 있다. 이 말은 <code class="language-text">3의 오른쪽 자식 노드는 존재하지 않는다는 얘기다</code>. 이런식으로 분할해서 정복을 하면된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">index <span class="token operator">=</span> inorder<span class="token punctuation">.</span>index<span class="token punctuation">(</span>preorder<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre></div>
+<p>먼저, 전위 순회 첫 번째 결과를 가져와 중위 순회를 분할하는 인덱스로 한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">node <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>inorder<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span>
+node<span class="token punctuation">.</span>left <span class="token operator">=</span> self<span class="token punctuation">.</span>buildTree<span class="token punctuation">(</span>preorder<span class="token punctuation">,</span> inorder<span class="token punctuation">[</span><span class="token punctuation">:</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span>
+node<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>buildTree<span class="token punctuation">(</span>preorder<span class="token punctuation">,</span> inorder<span class="token punctuation">[</span>index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre></div>
+<p>이 값을 현재 노드로 구성하고, 이를 기준으로 중위 순회 결과를 쪼개서 왼쪽, 오른쪽으로 각각 마무리 될 때 <code class="language-text">분할 정복</code> 구조로 재귀 호출하면, 트리 구성이 가능하다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">buildTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> preorder<span class="token punctuation">,</span> inorder<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> inoder <span class="token punctuation">:</span>
+		<span class="token comment"># 전휘 순회 결과는 중위 순회 분할 인덱스</span>
+		index <span class="token operator">=</span> inorder<span class="token punctuation">.</span>index<span class="token punctuation">(</span>preorder<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+		<span class="token comment"># 중위 순회 결과 분할 정복</span>
+		node <span class="token operator">=</span> TreeNode<span class="token punctuation">(</span>inorder<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span>
+		node<span class="token punctuation">.</span>left <span class="token operator">=</span> self<span class="token punctuation">.</span>buildTree<span class="token punctuation">(</span>preorder<span class="token punctuation">,</span> inorder<span class="token punctuation">[</span><span class="token punctuation">:</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span>
+		node<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>buildTree<span class="token punctuation">(</span>preorder<span class="token punctuation">,</span> inorder<span class="token punctuation">[</span>index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+		<span class="token keyword">return</span> node</code></pre></div>
+<p>전위 순휘 결과는 pop(0)으로 가져온다. 즉 큐 연산이며 파이썬에서는 <code class="language-text">데크</code>로 구현가능하다.</p></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#%ED%8A%B8%EB%A6%AC">트리</a></p>
+</li>
+<li>
+<p><a href="#%ED%8A%B8%EB%A6%AC%EC%9D%98-%EA%B0%81-%EB%AA%85%EC%B9%AD">트리의 각 명칭</a></p>
+</li>
+<li>
+<p><a href="#%EA%B7%B8%EB%9E%98%ED%94%84-vs-%ED%8A%B8%EB%A6%AC">그래프 vs 트리</a></p>
+</li>
+<li>
+<p><a href="#%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC">이진 트리</a></p>
+<ul>
+<li><a href="#%EC%A0%95-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC">정 이진 트리</a></li>
+<li><a href="#%EC%99%84%EC%A0%84-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC">완전 이진 트리</a></li>
+<li><a href="#%ED%8F%AC%ED%99%94-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC">포화 이진 트리</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC%EC%9D%98-%EC%B5%9C%EB%8C%80-%EA%B9%8A%EC%9D%B4">이진 트리의 최대 깊이</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-bfs-%ED%92%80%EC%9D%B4">풀이 1. 반복 구조로 BFS 풀이</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#43-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC%EC%9D%98-%EC%A7%81%EA%B2%BD">43. 이진 트리의 직경</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%83%81%ED%83%9C%EA%B0%92-%EB%88%84%EC%A0%81-%ED%8A%B8%EB%A6%AC-dfs">풀이 1. 상태값 누적 트리 DFS</a></li>
+<li><a href="#%EC%A4%91%EC%B2%A9-%ED%95%A8%EC%88%98%EC%97%90%EC%84%9C-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B3%80%EC%88%98%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%9D%B4%EC%9C%A0">중첩 함수에서 클래스 변수를 사용한 이유</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#44-%EA%B0%80%EC%9E%A5-%EA%B8%B4-%EB%8F%99%EC%9D%BC-%EA%B0%92%EC%9D%98-%EA%B2%BD%EB%A1%9C">44. 가장 긴 동일 값의 경로</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%83%81%ED%83%9C%EA%B0%92-%EA%B1%B0%EB%A6%AC-%EA%B3%84%EC%82%B0-dfs">풀이 1. 상태값 거리 계산 DFS</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#45-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EB%B0%98%EC%A0%84">45. 이진 트리 반전</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%ED%8C%8C%EC%9D%B4%EC%8D%AC%EB%8B%A4%EC%9A%B4-%EB%B0%A9%EC%8B%9D">풀이 1. 파이썬다운 방식</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-bfs">풀이 2. 반복 구조로 BFS</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-3-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-dfs">풀이 3. 반복 구조로 DFS</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-4-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-dfs-%ED%9B%84%EC%9C%84-%EC%88%9C%ED%9A%8C">풀이 4. 반복 구조로 DFS 후위 순회</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#46-%EB%91%90-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EB%B3%91%ED%95%A9">46. 두 이진 트리 병합</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%ED%83%90%EC%83%89">풀이 1. 재귀 탐색</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#47-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EC%A7%81%EB%A0%AC%ED%99%94--%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94">47. 이진 트리 직렬화 &#x26; 역직렬화</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%A7%81%EB%A0%AC%ED%99%94--%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94-%EA%B5%AC%ED%98%84">풀이 1. 직렬화 &#x26; 역직렬화 구현</a></li>
+<li><a href="#%EC%A7%81%EB%A0%AC%ED%99%94">직렬화</a></li>
+<li><a href="#%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94">역직렬화</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#48-%EA%B7%A0%ED%98%95-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC">48. 균형 이진 트리</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0%EB%A1%9C-%EB%86%92%EC%9D%B4-%EC%B0%A8%EC%9D%B4-%EA%B3%84%EC%82%B0">풀이 1. 재귀 구조로 높이 차이 계산</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#49-%EC%B5%9C%EC%86%8C-%EB%86%92%EC%9D%B4-%ED%8A%B8%EB%A6%AC">49. 최소 높이 트리</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EB%8B%A8%EA%B3%84%EB%B3%84-%EB%A6%AC%ED%94%84-%EB%85%B8%EB%93%9C-%EC%A0%9C%EA%B1%B0">풀이 1. 단계별 리프 노드 제거</a></li>
+<li><a href="#%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%ACbst">이진 탐색 트리(BST)</a></li>
+<li><a href="#%EC%9E%90%EA%B0%80-%EA%B7%A0%ED%98%95-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%AC">자가 균형 이진 탐색 트리</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#50-%EC%A0%95%EB%A0%AC%EB%90%9C-%EB%B0%B0%EC%97%B4%EC%9D%98-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%AC-%EB%B0%98%ED%99%98">50. 정렬된 배열의 이진 탐색 트리 반환</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%9D%B4%EC%A7%84-%EA%B2%80%EC%83%89-%EA%B2%B0%EA%B3%BC%EB%A1%9C-%ED%8A%B8%EB%A6%AC-%EA%B5%AC%EC%84%B1">풀이 1. 이진 검색 결과로 트리 구성</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#code-classlanguage-text51-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%ACbst%EB%A5%BC-%EB%8D%94-%ED%81%B0-%EC%88%98-%ED%95%A9%EA%B3%84-%ED%8A%B8%EB%A6%AC%EB%A1%9Ccode"><code class="language-text">51. 이진 탐색 트리(BST)를 더 큰 수 합계 트리로</code></a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C%EB%A1%9C-%EB%85%B8%EB%93%9C-%EA%B0%92-%EB%88%84%EC%A0%81">풀이 1. 중위 순회로 노드 값 누적</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#52-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%ACbst-%ED%95%A9%EC%9D%98-%EB%B2%94%EC%9C%84">52. 이진 탐색 트리(BST) 합의 범위</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0-dfs-%EB%A1%9C-%EB%B8%8C%EB%A3%A8%ED%8A%B8-%ED%8F%AC%EC%8A%A4-%ED%83%90%EC%83%89">풀이 1. 재귀 구조 DFS 로 브루트 포스 탐색</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-dfs-%EA%B0%80%EC%A7%80%EC%B9%98%EA%B8%B0%EB%A1%9C-%ED%95%84%EC%9A%94%ED%95%9C-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89">풀이 2. DFS 가지치기로 필요한 노드 탐색</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-3-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0-dfs%EB%A1%9C-%ED%95%84%EC%9A%94%ED%95%9C-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89">풀이 3. 반복 구조 DFS로 필요한 노드 탐색</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-4-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0-bfs%EB%A1%9C-%ED%95%84%EC%9A%94%ED%95%9C-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89">풀이 4. 반복 구조 BFS로 필요한 노드 탐색</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#code-classlanguage-text53-bst-%EB%85%B8%EB%93%9C-%EA%B0%84-%EC%B5%9C%EC%86%8C-%EA%B1%B0%EB%A6%ACcode"><code class="language-text">53. BST 노드 간 최소 거리</code></a></p>
+<ul>
+<li><a href="#%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0%EB%A1%9C-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C">재귀 구조로 중위 순회</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-%EB%B0%98%EB%B3%B5-%EA%B5%AC%EC%A1%B0%EB%A1%9C-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C">풀이 2. 반복 구조로 중위 순회</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%ED%8A%B8%EB%A6%AC-%EC%88%9C%ED%9A%8C">트리 순회</a></p>
+<ul>
+<li><a href="#%EC%A0%84%EC%9C%84-%EC%88%9C%ED%9A%8C">전위 순회</a></li>
+<li><a href="#%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C">중위 순회</a></li>
+<li><a href="#%ED%9B%84%EC%9C%84-%EC%88%9C%ED%9A%8C">후위 순회</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#code-classlanguage-text54-%EC%A0%84%EC%9C%84-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C-%EA%B2%B0%EA%B3%BC%EB%A1%9C-%EC%9D%B4%EC%A7%84-%ED%8A%B8%EB%A6%AC-%EA%B5%AC%EC%B6%95code"><code class="language-text">54. 전위, 중위 순회 결과로 이진 트리 구축</code></a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%A0%84%EC%9C%84-%EC%88%9C%ED%9A%8C-%EA%B2%B0%EA%B3%BC%EB%A1%9C-%EC%A4%91%EC%9C%84-%EC%88%9C%ED%9A%8C-%EB%B6%84%ED%95%A0-%EC%A0%95%EB%B3%B5">풀이 1. 전위 순회 결과로 중위 순회 분할 정복</a></li>
+</ul>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/CI_Part4_Ch14/";window.___webpackCompilationHash="a2d1ab46784146b1090f";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-6ded11ad141233377119.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-06b9013ff1c6fbcf955a.js" async=""></script></body></html>
