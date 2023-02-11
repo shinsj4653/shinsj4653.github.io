@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="파이썬 알고리즘 인터뷰 책에서 4부 15장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="Python Coding Interview - 4부 15장 | 힙"/><meta data-react-helmet="true" property="og:description" content="파이썬 알고리즘 인터뷰 책에서 4부 15장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" property="og:image" content="/static/0c8985426a86d22cc5bd019e68c03210/thumbnail-coding-test.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="Python Coding Interview - 4부 15장 | 힙"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Python Coding Interview - 4부 15장 | 힙"/><meta data-react-helmet="true" name="twitter:description" content="파이썬 알고리즘 인터뷰 책에서 4부 15장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" name="twitter:image" content="/static/0c8985426a86d22cc5bd019e68c03210/thumbnail-coding-test.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/CI_Part4_Ch15/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">Python Coding Interview - 4부 15장 | 힙</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1342px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;806&#x27; width=&#x27;1342&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB9ElEQVQoz42SW28SURSF+bfGGOOTL14S64MvNsTEB1AUsG2waLFaoGiaRopt5WKLAxQ6DMO1XK3VamobZg6fYYCBojY+rOyTfXLWWWvvZdHrCiNoQ+gHebRGwTyPYNwP63TfONcVLCbZsGE+KGXQqvtoTRWtXULrlNHTMUR41ahaq3juU23IYzmnsE/aVKGSRSzYEBtBeooEiTA96SOikkOoaXQ5id6vhRR6OXuxwtOqTC22Te/dEmI3wq/cLqfb65ztbHJSynEmRSESQoSD9CJvEcktw8WYcGI2oqFwUswib20Zll7a5/A+dONzevG5XrD8dJ5ns3aiyyvQVulW5b/McKIxUsmXEt/3JeasDr6lojRlmVpeRW/nkOI7+OzzcFimW8v/OcNxo2CSikaBY1liyeHh59caR50Wx/UGHNZp5DMEXB7j027tIoXFDCL2Hj37CdFS+ZFP4bY+pryXoJ5N00xKdBJx4qE1Xj9ZMAlHrnRzyyPCSg49E0cr7Q2XpOB+4OLG5VvcuXqX21dmuHntHtcvzbD5JjRWOEE2ZVkZZK6u0GsoHClZFp2vsN138sjqNuCwurHNuoitf4CWOsjsPxWOUn+Qh2aBqvSZgHeVwGIA/3O/gaA3yIrHT3RtY0DwP4STuewvp9dUTYhhnczttOXfd3lZS5/rBRYAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/0c8985426a86d22cc5bd019e68c03210/7a2cc/thumbnail-coding-test.webp 336w,/static/0c8985426a86d22cc5bd019e68c03210/e8438/thumbnail-coding-test.webp 671w,/static/0c8985426a86d22cc5bd019e68c03210/f0ee1/thumbnail-coding-test.webp 1342w" sizes="(min-width: 1342px) 1342px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1342px) 1342px, 100vw" decoding="async" loading="lazy" data-src="/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png" data-srcset="/static/0c8985426a86d22cc5bd019e68c03210/b82c5/thumbnail-coding-test.png 336w,/static/0c8985426a86d22cc5bd019e68c03210/9de5e/thumbnail-coding-test.png 671w,/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png 1342w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/0c8985426a86d22cc5bd019e68c03210/7a2cc/thumbnail-coding-test.webp 336w,/static/0c8985426a86d22cc5bd019e68c03210/e8438/thumbnail-coding-test.webp 671w,/static/0c8985426a86d22cc5bd019e68c03210/f0ee1/thumbnail-coding-test.webp 1342w" sizes="(min-width: 1342px) 1342px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1342px) 1342px, 100vw" decoding="async" loading="lazy" src="/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png" srcSet="/static/0c8985426a86d22cc5bd019e68c03210/b82c5/thumbnail-coding-test.png 336w,/static/0c8985426a86d22cc5bd019e68c03210/9de5e/thumbnail-coding-test.png 671w,/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png 1342w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">Python Coding Interview - 4부 15장 | 힙</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>Coding Test</div><div>2023.02.12.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><blockquote>
+<p>힙은 힙의 특성(최소 힙에서는 부모가 항상 자식보다 작거나 같다) 을 만족하는 거의 완전한 트리(Almost Complete Tree) 인 특수한 트리 기반의 자료구조</p>
+</blockquote>
+<p>힙은 그래프와 트리와는 전혀 관계 없어 보이는 독특한 이름과 달리, <code class="language-text">트리 기반의 자료구조</code>다. 최소 힙은 부모가 자식보다 작기 때문에 루트가 결국 가장 작은 값을 갖게 되며, 우선순위 큐에서 가장 작은 값을 추출하는 것은 <code class="language-text">매번 힙의 루트를 가져오는 형태</code>로 구현된다.<br>
+우선순위 큐 ADT(추상 자료형)은 주로 힙으로 구현되고, 힙은 주로 배열로 구현한다.<br>
+따라서, 우선순위 큐는 결국 배열로 구현하는 셈이 된다.<br>
+오해하기 쉬운 특징 중 하나는 <code class="language-text">힙은 정렬된 구조가 아니라는 점</code> 이다. 최소 힙의 경우 <code class="language-text">부모 노드가 항상 작다는 조건만 만족</code> 할 뿐, 서로 정렬되어 있지는 않다.<br>
+부모, 자식간의 관계만 정의할 뿐, 좌우에 대한 관계는 정의하지 않기 때문이다. 즉, 부모는 항상 자식보다 작을 뿐, 좌우의 정렬 관계는 제각각이다.<br>
+힙은 <code class="language-text">완전 이진 트리</code> 이기 때문에, 배열로 구현할 수 있다.<br>
+힙으로 <code class="language-text">우선순위 큐</code> 뿐만 아니라 <code class="language-text">다익스트라 알고리즘</code> 에도 활용이 된다. 힙 덕분에 다익스트라 알고리즘의 시간 복잡도는 O(V^2) 에서 <code class="language-text">O(ElogV)</code> 가 된다.<br>
+이외에도 원래의 용도인 힙 정렬과 최소 신장 트리를 구현하는 <code class="language-text">프림 알고리즘</code>등에도 활용되며, 중앙값의 근사값을 빠르게 구하는 데도 활용할 수 있다.</p>
+<h1 id="힙-연산" style="position:relative;">힙 연산<a href="#%ED%9E%99-%EC%97%B0%EC%82%B0" aria-label="힙 연산 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>실제로 이진 힙(자식이 둘인 힙)을 구현해보겠다. 파이썬의 <code class="language-text">heapq</code> 모듈에서 지원하는 최소 힙 연산을 파이썬의 리스트만으로 동일하게 구현해보겠다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">BinaryHeap</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">None</span><span class="token punctuation">]</span>
+	
+	<span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>items<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span></code></pre></div>
+<p>len()을 호출하면 마지막 요소의 인덱스를 가져오기 위해 실제 길이보다 하나 더 작은 가져오도록 구현했다.<br>
+그리고, 0번 인덱스는 사용하지 않기 때문에, <code class="language-text">None</code>을 넣어두었다. 대게 트리의 배열 표현의 경우 인덱스 계산을 편하게 하기 위해 인덱스는 1부터 사용한다. 특히 이진 힙에서는 항상 1번 인덱스부터 사용한다.</p>
+<h2 id="삽입" style="position:relative;">삽입<a href="#%EC%82%BD%EC%9E%85" aria-label="삽입 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>힙에 요소를 삽입하기 위해서는 업힙(Up-Heap) 연산을 수행해야 한다. 업힙 연산은 <code class="language-text">percolate_up()</code> 이라는 함수로 정의한다. 힙에 요소를 삽입하는 과정은 다음과 같다.</p>
+<ol>
+<li>요소를 가장 하위 레벨의 최대한 왼쪽으로 삽입한다.(배열로 표현할 경우 가장 마지막에 삽입된다.)</li>
+<li>부모 값과 비교해 값이 더 작은 경우 위치를 변경한다.</li>
+<li>계속해서 부모 값과 비교해 위치를 변경한다.(가장 작은 값일 경우 루트까지 올라감)</li>
+</ol>
+<p>이 과정을 그림으로 표현하면 다음과 같다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 499px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/bb58a005de7678bad60987aa2349e524/f80a3/binary-heap-insert.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 47.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABQ0lEQVQoz3VSa5OCMAzk//8uvyvciBxQ9UShMCJv8AHsTTLSq+hlJtMUks1mGwOajePIPsWT3e93BEGAx+PxkjuvITPmgPrZti2qqmKXUqq4aZq3pm+AnzoKIZAkiUoehgHH4xGe5+F6vf7P8BOY4zh8uq6L8/nMsZQRM73dbrBt++NUhg40fYzjGNvtFofDgQsXiwVWlo0sL17Y6rECnFMmNrvdjkfquo69KAq0XfcH0PdYr9fMdj6d0pC00kHoZYmp3sz3PKxWJmScoKwq9H2Puq5ZFqUhFRCDMAxxSVP1I7tcWLMoihg0TVOOLesL9uYbwzByU5ImPIX8WLRWBq2B8AWDLJdLuOIHaUYNTs+HkMjzHKZpoixLLnScjVorupOR3nQ39vs9ZBTB933uFjwTdOGpiJy0pRwaMcuyt/2lkX8B9RcDTKuPvpMAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/bb58a005de7678bad60987aa2349e524/a59e9/binary-heap-insert.webp 192w,
+/static/bb58a005de7678bad60987aa2349e524/0ca9f/binary-heap-insert.webp 384w,
+/static/bb58a005de7678bad60987aa2349e524/aa66f/binary-heap-insert.webp 499w"
+              sizes="(max-width: 499px) 100vw, 499px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/bb58a005de7678bad60987aa2349e524/3b721/binary-heap-insert.png 192w,
+/static/bb58a005de7678bad60987aa2349e524/66595/binary-heap-insert.png 384w,
+/static/bb58a005de7678bad60987aa2349e524/f80a3/binary-heap-insert.png 499w"
+            sizes="(max-width: 499px) 100vw, 499px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/bb58a005de7678bad60987aa2349e524/f80a3/binary-heap-insert.png"
+            alt="이진 힙에서 요소 삽입"
+            title="이진 힙에서 요소 삽입"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+위의 과정을 코드로 구현하면 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">_percolate_up</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	i <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+	parent <span class="token operator">=</span> i <span class="token operator">//</span> <span class="token number">2</span>
+	<span class="token keyword">while</span> parent <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+		<span class="token keyword">if</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>parent<span class="token punctuation">]</span> <span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>parent<span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>parent<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+		i <span class="token operator">=</span> parent
+		parent <span class="token operator">=</span> i <span class="token operator">//</span> <span class="token number">2</span>
+
+<span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	self<span class="token punctuation">.</span>items<span class="token punctuation">.</span>append<span class="token punctuation">(</span>k<span class="token punctuation">)</span>
+	self<span class="token punctuation">.</span>_percolate_up<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
+<p>삽입 자체는 insert() 함수를 호출해 실행된다. 코드에서 insert() 함수의 self.items.append()는 1번 과정이고, percolate_up() 함수는 2, 3번 과정을 수행한다.<br>
+시간 복잡도는 <code class="language-text">O(logN)</code> 이다. parent를 i // 2 로 약 절반씩 줄여나가는 형태이므로, 로그만큼 연산을 수행하는 것을 알 수 있다. percolate_up() 함수명 앞에는 <code class="language-text">내부 함수</code> 라는 의미로 <code class="language-text">_</code>를 붙였다.</p>
+<h2 id="추출" style="position:relative;">추출<a href="#%EC%B6%94%EC%B6%9C" aria-label="추출 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>추출 자체는 매우 간단하다. <code class="language-text">루트를 추출</code>하면 된다. 추출 이후에 다시 힙의 특성을 유지하는 작업이 필요하기 때문에 시간 복잡도는 O(1)이 아닌 O(logN)이다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 538px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6157146bcec8e680ea5bf0ac7a3b20b4/32ca7/binary-heap-pop.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 52.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABX0lEQVQoz3WSiY6CQBBE+f/fM2Zdh1PkUkBuBhVqUy3jqpvtBIb0UfO6G2tZACwLoiSHsj30fYc0SVBVFYwtkvR70pqmRhiGeDXGrXl+JLVtKwm32w2XywXjOGIYBpzP5zex0+mELE2x+94jimNorcU3z7PELb66rkOe5/K0TYP7/S4JFIuiSC6g9X0P13URHg4YR72SNlBKoSiKhyCJHMcRR1mWcB1HAiTMsky+SX69XrHZbKSDgwiOEuMFpPc8TzqyKMLCOI7FSTKDTzPfJPV9/3nJ5+yMWZ9BkrAltm/EeLKIozDGcZDO5DC+LuXhqOv6iW8o2QLbe7Xj8Sgzpfg0TdI6yd8Iy6LAfq/wtVOyQRpnxdlxJBQxVJ4fQNn2k4yjYh4f+ixujkthkdYTqnWjFDT/Ion4W223W9iuJ6KT1tJNkiSSw5M1FhNJwS0vy/xnyIaEBUEQIF07+G8pP/ihAmckpG6rAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6157146bcec8e680ea5bf0ac7a3b20b4/a59e9/binary-heap-pop.webp 192w,
+/static/6157146bcec8e680ea5bf0ac7a3b20b4/0ca9f/binary-heap-pop.webp 384w,
+/static/6157146bcec8e680ea5bf0ac7a3b20b4/d17f0/binary-heap-pop.webp 538w"
+              sizes="(max-width: 538px) 100vw, 538px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6157146bcec8e680ea5bf0ac7a3b20b4/3b721/binary-heap-pop.png 192w,
+/static/6157146bcec8e680ea5bf0ac7a3b20b4/66595/binary-heap-pop.png 384w,
+/static/6157146bcec8e680ea5bf0ac7a3b20b4/32ca7/binary-heap-pop.png 538w"
+            sizes="(max-width: 538px) 100vw, 538px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6157146bcec8e680ea5bf0ac7a3b20b4/32ca7/binary-heap-pop.png"
+            alt="이진 힙엥서 오소 추출 과정"
+            title="이진 힙엥서 오소 추출 과정"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+위의 그림은 추출 과정을 보여준다. 루트를 추출하고, 가장 마지막 노드를 루트로 옮긴다. 그리고, 자식 노드와 비교해 자식 노드가 더 작은 경우 위치를 변경한다.<br>
+삽입과는 반대의 연산이므로, <code class="language-text">다운힙</code> 연산이 수행된다. 일반적으로 힙 추출에 많이 쓰이는 <code class="language-text">percolate_down()</code> 이라는 함수로 구현해보자.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">_percolate_down</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> idx<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	left <span class="token operator">=</span> idx <span class="token operator">*</span> <span class="token number">2</span>
+	right <span class="token operator">=</span> idx <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span>
+	smallest <span class="token operator">=</span> idx
+
+	<span class="token keyword">if</span> left <span class="token operator">&lt;=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token keyword">and</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">&lt;</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span> <span class="token punctuation">:</span>
+		smallest <span class="token operator">=</span> left
+	<span class="token keyword">if</span> right <span class="token operator">&lt;=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token keyword">and</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">&lt;</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span> <span class="token punctuation">:</span>
+		smallest <span class="token operator">=</span> right
+	<span class="token keyword">if</span> smallest <span class="token operator">!=</span> idx <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>smallest<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span>idx<span class="token punctuation">]</span>
+		self<span class="token punctuation">.</span>_percolate_down<span class="token punctuation">(</span>smallest<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">extract</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	extracted <span class="token operator">=</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+	self<span class="token punctuation">.</span>items<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">]</span>
+	self<span class="token punctuation">.</span>items<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	self<span class="token punctuation">.</span>_percolate_down<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> extracted</code></pre></div>
+<p>추출 자체는 extract() 함수를 호출해 실행된다.</p>
+<h1 id="이진-힙-vs-이진-탐색-트리-bst" style="position:relative;">이진 힙 vs 이진 탐색 트리 (BST)<a href="#%EC%9D%B4%EC%A7%84-%ED%9E%99-vs-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%AC-bst" aria-label="이진 힙 vs 이진 탐색 트리 bst permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>가장 직관적인 차이점은, 힙은 <code class="language-text">상/하 관계를 보장</code>하며, 특히 최소 힙에서는 부모가 항상 자식보다 작다. 반면 BST는 <code class="language-text">좌/우 관계를 보장</code>한다. BST에서는 부모는 왼쪽 자식보다는 크며, 오른쪽 자식보다는 작거나 같다. 이 같은 특징으로 인해 BST는 탐색과 삽입 모두 O(logN)에 가능하며, 모든 값이 정렬되어야 할 때 사용한다.<br>
+반면 가장 큰 값을 추출하거나(최대 힙) 가장 작은 값을 추출하려면(최소 힙) 이진 힙을 사용해야 한다. 이진 힙은 이 작업이 O(1) 에 가능하다. 우선순위와 연관되어 있으며, 따라서 이진 힙은 <code class="language-text">우선순위 큐</code>에 활용된다.</p>
+<h1 id="55-배열의-k번쨰-큰-요소" style="position:relative;">55. 배열의 K번쨰 큰 요소<a href="#55-%EB%B0%B0%EC%97%B4%EC%9D%98-k%EB%B2%88%EC%A8%B0-%ED%81%B0-%EC%9A%94%EC%86%8C" aria-label="55 배열의 k번쨰 큰 요소 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>정렬되지 않은 배열에서 k번쨰 큰 요소를 추출하라.</p>
+<ul>
+<li>입력</li>
+</ul>
+<p>[3, 2, 3, 1, 2, 4, 5, 5, 6], k = 4</p>
+<ul>
+<li>출력</li>
+</ul>
+<p>4</p>
+<h2 id="풀이-1-heapq-모듈-이용" style="position:relative;">풀이 1. heapq 모듈 이용<a href="#%ED%92%80%EC%9D%B4-1-heapq-%EB%AA%A8%EB%93%88-%EC%9D%B4%EC%9A%A9" aria-label="풀이 1 heapq 모듈 이용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>11장의 31번 문제 “상위 K 빈도 요소” 와 비슷한 문제다. 다른 점이라면 가장 큰 값이냐, 가장 빈번한 값이냐의 차이다. 비슷한 방식으로 풀이가 가능하므로, 그 때 풀이했던 코드를 가져와봤다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">topKFrequent</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	freqs <span class="token operator">=</span> collections<span class="token punctuation">.</span>Counter<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+	freqs_heap <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+	<span class="token keyword">for</span> f <span class="token keyword">in</span> freqs <span class="token punctuation">:</span>
+		heapq<span class="token punctuation">.</span>heappush<span class="token punctuation">(</span>freqs_heap<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">-</span>freqs<span class="token punctuation">[</span>f<span class="token punctuation">]</span><span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	topk <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		topk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>heapq<span class="token punctuation">.</span>heappop<span class="token punctuation">(</span>freqs_heap<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> topk</code></pre></div>
+<p>Counter()로 빈도 수를 계산해 삽입했던 예전 풀이 대신 값 자체를 힙에 푸시하고 순서만큼 팝하는 형태로 수정해본다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">findKthLargest</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	heap <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> n <span class="token keyword">in</span> nums <span class="token punctuation">:</span>
+		heapq<span class="token punctuation">.</span>heappush<span class="token punctuation">(</span>heap<span class="token punctuation">,</span> <span class="token operator">-</span>n<span class="token punctuation">)</span>
+	
+	<span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		heapq<span class="token punctuation">.</span>heappop<span class="token punctuation">(</span>heap<span class="token punctuation">)</span>
+	
+	<span class="token keyword">return</span> <span class="token operator">-</span>heapq<span class="token punctuation">.</span>heappop<span class="token punctuation">(</span>heap<span class="token punctuation">)</span></code></pre></div>
+<p>파이썬 heapq모듈은 <code class="language-text">최소 힙</code>만 지원하므로, 음수로 저장한 다음 가장 낮은 수 부터 추출해 부호를 변환하면 최대 힙 처럼 동작하도록 구현 가능하다.</p>
+<h2 id="풀이-2-heapq-모듈의-heapify-이용" style="position:relative;">풀이 2. heapq 모듈의 heapify 이용<a href="#%ED%92%80%EC%9D%B4-2-heapq-%EB%AA%A8%EB%93%88%EC%9D%98-heapify-%EC%9D%B4%EC%9A%A9" aria-label="풀이 2 heapq 모듈의 heapify 이용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>모든 값을 꺼내서 푸시하지 않고도 한 번에 <code class="language-text">heapify()</code> 하여 처리할 수 있다. heapify()란 주어진 자료구조가 힙 특성을 만족하도록 바꿔주는 연산이며, 이 경우 파이썬의 일반적인 리스트는 힙 특성을 만족하는 리스트로, 값의 위치가 변경된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">findKthLargest</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	heapq<span class="token punctuation">.</span>heapify<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+	
+	<span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		heapq<span class="token punctuation">.</span>heappop<span class="token punctuation">(</span>heap<span class="token punctuation">)</span>
+	
+	<span class="token keyword">return</span> <span class="token operator">-</span>heapq<span class="token punctuation">.</span>heappop<span class="token punctuation">(</span>heap<span class="token punctuation">)</span></code></pre></div>
+<h2 id="풀이-3-heapq-모듈의-nlargest-이용" style="position:relative;">풀이 3. heapq 모듈의 nlargest 이용<a href="#%ED%92%80%EC%9D%B4-3-heapq-%EB%AA%A8%EB%93%88%EC%9D%98-nlargest-%EC%9D%B4%EC%9A%A9" aria-label="풀이 3 heapq 모듈의 nlargest 이용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>heapq 모듈은 강력한 기능을 많이 지원한다. 그중에는 n번째 큰 값을 추출하는 <code class="language-text">nlargest()</code> 함수가 있다. 이 함수는 <code class="language-text">n</code>개의 가장 큰 요소를 추출한다. 이 함수를 이용하면 풀이가 매우 간단해진다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">findKthLargest</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">return</span> heapq<span class="token punctuation">.</span>nlargest<span class="token punctuation">(</span>k<span class="token punctuation">,</span> nums<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre></div>
+<p>k번째 만큼 큰 값이 가장 큰 값부터 순서대로 리스트로 리턴된다. 마지막 인덱스 -1이 k번째 값이 된다. 힙이 아니라도 내부적으로 heapify() 함수도 호출해 처리해주기 때문에 별도로 힙 처리를 할 필요가 없어 편리하다. 참고로 <code class="language-text">nsmallest()</code> 를 사용하면 동일한 방식으로 n번째 작은 값도 추출이 가능하다.</p>
+<h2 id="풀이-4-정렬을-이용한-풀이" style="position:relative;">풀이 4. 정렬을 이용한 풀이<a href="#%ED%92%80%EC%9D%B4-4-%EC%A0%95%EB%A0%AC%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%92%80%EC%9D%B4" aria-label="풀이 4 정렬을 이용한 풀이 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이번에는 정렬부터 한 다음, k번째 값을 추출하는 방식으로 풀이해보자. 추가, 삭제가 빈번할 때는 heapq를 이용한 힙 정렬이 유용하지만, 이처럼 <code class="language-text">입력값이 고정되어 있을 때는 그저 한 번 정렬하는 것 만으로 충분</code>하다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">findKthLargest</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">return</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">[</span>k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span></code></pre></div>
+<p>4개의 풀이 중, 정렬 방식이 가장 빠르다. 파이썬의 정렬 함수는 <code class="language-text">팀소트(Timsort)</code>를 사용하며 C로 매우 정교하게 구현되어 있기 때문에 대부분의 경우에는 파이썬의 내부 정렬 함수를 사용하는 편이 가장 성능이 좋다.</p></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#%ED%9E%99-%EC%97%B0%EC%82%B0">힙 연산</a></p>
+<ul>
+<li><a href="#%EC%82%BD%EC%9E%85">삽입</a></li>
+<li><a href="#%EC%B6%94%EC%B6%9C">추출</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%9D%B4%EC%A7%84-%ED%9E%99-vs-%EC%9D%B4%EC%A7%84-%ED%83%90%EC%83%89-%ED%8A%B8%EB%A6%AC-bst">이진 힙 vs 이진 탐색 트리 (BST)</a></p>
+</li>
+<li>
+<p><a href="#55-%EB%B0%B0%EC%97%B4%EC%9D%98-k%EB%B2%88%EC%A8%B0-%ED%81%B0-%EC%9A%94%EC%86%8C">55. 배열의 K번쨰 큰 요소</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-heapq-%EB%AA%A8%EB%93%88-%EC%9D%B4%EC%9A%A9">풀이 1. heapq 모듈 이용</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-heapq-%EB%AA%A8%EB%93%88%EC%9D%98-heapify-%EC%9D%B4%EC%9A%A9">풀이 2. heapq 모듈의 heapify 이용</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-3-heapq-%EB%AA%A8%EB%93%88%EC%9D%98-nlargest-%EC%9D%B4%EC%9A%A9">풀이 3. heapq 모듈의 nlargest 이용</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-4-%EC%A0%95%EB%A0%AC%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%92%80%EC%9D%B4">풀이 4. 정렬을 이용한 풀이</a></li>
+</ul>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/CI_Part4_Ch15/";window.___webpackCompilationHash="a2d1ab46784146b1090f";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-6ded11ad141233377119.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-06b9013ff1c6fbcf955a.js" async=""></script></body></html>
