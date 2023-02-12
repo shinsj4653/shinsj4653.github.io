@@ -87,6 +87,333 @@ void function() {
 <blockquote>
 <p>검색 트리의 일종으로 일반적으로 키가 문자열인, 동적 배열 또는 연관 배열을 저장하는 데 사용되는 정렬된 트리 자료구조다.</p>
 </blockquote>
-<p>자연어 처리(NLP) 분야에서 문자열 탐색을 위한 자료구조로 널리 쓰인다.</p></div></div><div class="table-of-content"><ul>
-<li><a href="#%ED%8A%B8%EB%9D%BC%EC%9D%B4">트라이</a></li>
+<p>자연어 처리(NLP) 분야에서 문자열 탐색을 위한 자료구조로 널리 쓰인다.<br>
+검색을  뜻하는 retrieval 의 중간 음절에서 용어를 따왔다. 리트리벌이라고 발음이 되는데, 그러면 트리로 발음이 되어서 기존의 트리와 구분하기 위해 오늘날에는 <code class="language-text">트라이</code>로 불린다.<br>
+트라이는 트리와 유사하지만, <code class="language-text">다진 트리</code>의 형태를 띤다.<br>
+트라이 탐색을 하면 apple를 찾기 위해 a -> p -> p-> l -> e 순서로 탐색을 하게 된다. 즉, <code class="language-text">문자열의 길이</code>만큼만 탐색을 하면 되기 때문이다.</p>
+<h1 id="56-트라이-구현" style="position:relative;">56. 트라이 구현<a href="#56-%ED%8A%B8%EB%9D%BC%EC%9D%B4-%EA%B5%AC%ED%98%84" aria-label="56 트라이 구현 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>트라이의 insert, search, startsWith 메소드를 구현하라.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">Trie trie <span class="token operator">=</span> new Trie<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+trie<span class="token punctuation">.</span>insert<span class="token punctuation">(</span><span class="token string">"apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+trie<span class="token punctuation">.</span>search<span class="token punctuation">(</span><span class="token string">"apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token operator">//</span> returns true
+trie<span class="token punctuation">.</span>search<span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token operator">//</span> returns false
+trie<span class="token punctuation">.</span>startsWith<span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">//</span> returns true
+trie<span class="token punctuation">.</span>insert<span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+trie<span class="token punctuation">.</span>search<span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token operator">//</span> returns true</code></pre></div>
+<h2 id="code-classlanguage-text풀이-1-딕셔너리를-이용해-간결한-트라이-구현code" style="position:relative;"><code class="language-text">풀이 1. 딕셔너리를 이용해 간결한 트라이 구현</code><a href="#code-classlanguage-text%ED%92%80%EC%9D%B4-1-%EB%94%95%EC%85%94%EB%84%88%EB%A6%AC%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EA%B0%84%EA%B2%B0%ED%95%9C-%ED%8A%B8%EB%9D%BC%EC%9D%B4-%EA%B5%AC%ED%98%84code" aria-label="code classlanguage text풀이 1 딕셔너리를 이용해 간결한 트라이 구현code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 256px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/92a01c4f24a51692aead9a6b86e18b4b/e3135/trie-insert.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 105.72916666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAABJ0AAASdAHeZh94AAAByUlEQVQ4y51VaauCUBD1//+ivhVUVtZzyYhMWswKtai00orsPGYehphLvIGL29wz58xyFVBir9frfU1W+n2eCaiw7OY0eHZVAiZOt9sN2+0WURTlgqd9hSqpZFPTRKPRwG634+fn84k4jnNVCGXsEsfD4YBut4t+f4DFYgFd19Fut6Eoyhv4a4aO48KyLNzvdziOA98PWHoQBLxKJWc/0oZarYahrn9dOKFM6vl8xmQyYYmqqmK1WuVW+iuGfhBgZdtvpoZhYLPZfATN7cNstOPxiFarBVHscO7K+rIQMH2lpMuyAlXVIEl9rijJzwteOCmJQxhGsG0bUXTDfr+H53kcgHovL3elDC+XC9qiCFXT+JlyRg19Op3+J5lGTJIk9Ho9ZkZMqaE7nQ4UVcVsNquULaTzRyDEkirabDaxXq/5m2maPCE0z3mn0AfDMAxRr9chyzKzzNpoNOIAvu9XSheSqpIskmQYU64qsU1suVxyQErHYPA3z4UM8yLRwCfvH48H5/J6vWJpWRyIFJVKLmqHZxzz2ImiyJWme1rZE6YSMHGkjZqm8TFFgOPxGMPh8KPJK38BaUfPc/HzI8N1XZ5pKtB8Pi8E/AVxTl1orgHtOwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/92a01c4f24a51692aead9a6b86e18b4b/a59e9/trie-insert.webp 192w,
+/static/92a01c4f24a51692aead9a6b86e18b4b/4fae8/trie-insert.webp 256w"
+              sizes="(max-width: 256px) 100vw, 256px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/92a01c4f24a51692aead9a6b86e18b4b/3b721/trie-insert.png 192w,
+/static/92a01c4f24a51692aead9a6b86e18b4b/e3135/trie-insert.png 256w"
+            sizes="(max-width: 256px) 100vw, 256px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/92a01c4f24a51692aead9a6b86e18b4b/e3135/trie-insert.png"
+            alt="apple 트라이에 appear, appeal 단어가 추가된 트라이"
+            title="apple 트라이에 appear, appeal 단어가 추가된 트라이"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>그림처럼 같은 문자가 같은 자식을 타고 내려가다가, 달라지는 문자부터 서로 다른 노드로 분기된다.</p>
+<p>삽입을 위한 insert()는 self.children를 <code class="language-text">defaultdict()</code>로 선언한다면 insert() 삽입 메소드에서 매번 if로 자식 노드가 존재하는지 확인할 필요가 없다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	self<span class="token punctuation">.</span>word <span class="token operator">=</span> <span class="token boolean">False</span>
+	self<span class="token punctuation">.</span>children <span class="token operator">=</span> collections<span class="token punctuation">.</span>defaultdict<span class="token punctuation">(</span>TrieNode<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	node <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+	<span class="token keyword">for</span> char <span class="token keyword">in</span> word <span class="token punctuation">:</span>
+		node <span class="token operator">=</span> node<span class="token punctuation">.</span>children<span class="token punctuation">[</span>char<span class="token punctuation">]</span>
+	node<span class="token punctuation">.</span>word <span class="token operator">=</span> <span class="token boolean">True</span>
+</code></pre></div>
+<p>search() 와 startsWith() 는 둘 다 검색을 위한 메소드이다.<br>
+둘 다 동일하게 문자 단위로 계속 깊이 탐색을 하고 search()의 경우에만 마지막에 word가 True인지 확인하면 된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		node <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+		<span class="token keyword">for</span> char <span class="token keyword">in</span> word <span class="token punctuation">:</span>
+				<span class="token keyword">if</span> char <span class="token keyword">not</span> <span class="token keyword">in</span> node <span class="token punctuation">:</span>
+						<span class="token keyword">return</span> <span class="token boolean">False</span>
+				node <span class="token operator">=</span> node<span class="token punctuation">[</span>char<span class="token punctuation">]</span>
+		<span class="token keyword">return</span> node<span class="token punctuation">.</span>word
+</code></pre></div>
+<p>문자열에서 문자를 하나씩 for 반복문으로 순회하면서 자식 노드를 계속 타고 내려간다. 그리고 마지막에 node.word 여부를 리턴한다. 만약 단어가 완성된 트라이라면 True로 되어 있을 것이고, 이때 True가 결과로 리턴된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">startsWith</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> prefix<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		node <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+		<span class="token keyword">for</span> char <span class="token keyword">in</span> prefix <span class="token punctuation">:</span>
+				<span class="token keyword">if</span> char <span class="token keyword">not</span> <span class="token keyword">in</span> node <span class="token punctuation">:</span>
+						<span class="token keyword">return</span> <span class="token boolean">False</span>
+				node <span class="token operator">=</span> node<span class="token punctuation">[</span>char<span class="token punctuation">]</span>
+		<span class="token keyword">return</span> <span class="token boolean">True</span></code></pre></div>
+<p>search() 와는 다르게, node.word를 확인하지 않고, 자식 노드가 존재하는지 여부만 판별하면 된다.</p>
+<h1 id="57-팰린트롬-페어" style="position:relative;">57. 팰린트롬 페어<a href="#57-%ED%8C%B0%EB%A6%B0%ED%8A%B8%EB%A1%AC-%ED%8E%98%EC%96%B4" aria-label="57 팰린트롬 페어 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>단어 리스트에서 words[i] + words[j] 가 팰린드롬이 되는 모든 인덱스 조합 (i, j) 를 구하라.</p>
+<ul>
+<li>입력</li>
+</ul>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token punctuation">[</span><span class="token string">"abcd"</span><span class="token punctuation">,</span><span class="token string">"dcba"</span><span class="token punctuation">,</span><span class="token string">"lls"</span><span class="token punctuation">,</span><span class="token string">"s"</span><span class="token punctuation">,</span><span class="token string">"sssll"</span><span class="token punctuation">]</span></code></pre></div>
+<ul>
+<li>출력</li>
+</ul>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span></code></pre></div>
+<h2 id="풀이-1-팰린드롬을-부르트-포스로-계산" style="position:relative;">풀이 1. 팰린드롬을 부르트 포스로 계산<a href="#%ED%92%80%EC%9D%B4-1-%ED%8C%B0%EB%A6%B0%EB%93%9C%EB%A1%AC%EC%9D%84-%EB%B6%80%EB%A5%B4%ED%8A%B8-%ED%8F%AC%EC%8A%A4%EB%A1%9C-%EA%B3%84%EC%82%B0" aria-label="풀이 1 팰린드롬을 부르트 포스로 계산 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>6장의 1번 <code class="language-text">유효한 팰린드롬</code> 문제의 풀이 중 가장 간단하면서 성능이 좋은 풀이는 <code class="language-text">슬라이싱</code>을 이용하는 것이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">is_palindrome</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">return</span> word <span class="token operator">==</span> word<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre></div>
+<p>n^2 번 반복하면서 모든 조합을 구성하고, 매번 팰린드롬 여부를 체크한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">palindromePairs</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> words<span class="token punctuation">)</span> <span class="token punctuation">:</span>'
+	<span class="token keyword">def</span> <span class="token function">is_palindrome</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> word <span class="token operator">==</span> word<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+		
+	result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+		<span class="token keyword">for</span> i<span class="token punctuation">,</span> word1 <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>words<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			<span class="token keyword">for</span> j<span class="token punctuation">,</span> word2 <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>words<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+					<span class="token keyword">if</span> i <span class="token operator">==</span> j <span class="token punctuation">:</span>
+							<span class="token keyword">continue</span>
+					<span class="token keyword">if</span> self<span class="token punctuation">.</span>is_palindrome<span class="token punctuation">(</span>word1 <span class="token operator">+</span> word2<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+							result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>i<span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span> result</code></pre></div>
+<p>하지만 타임아웃이 발생한다.</p>
+<h2 id="code-classlanguage-text풀이-2-트라이-구현code" style="position:relative;"><code class="language-text">풀이 2. 트라이 구현</code><a href="#code-classlanguage-text%ED%92%80%EC%9D%B4-2-%ED%8A%B8%EB%9D%BC%EC%9D%B4-%EA%B5%AC%ED%98%84code" aria-label="code classlanguage text풀이 2 트라이 구현code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>O(n^2) 에서 O(n) 으로 풀이가 가능하다.<br>
+O(n) 으로 하기 위해서는, 모든 입력값을 트라이로 만들어주고 딱 한번씩만 탐색하는 문제로 변형을 하면 된다. 팰린드롬 판별을 위해, <code class="language-text">뒤집어서 트라이로 구성</code>하면 된다.<br>
+입력값이 [‘d’, ‘cbbccd’, ‘dcbb’, ‘dcbc’, ‘cbbc’, ‘bbcd’] 라고하자. 입력값을 뒤집은 후, 트라이를 구성하면 아래와 같다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 328px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ba74c8b2e9461f4f8daaa990dbe607c7/c4cd0/trie-reverse.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 84.375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABJ0AAASdAHeZh94AAABq0lEQVQ4y4VUaY+CMBTk//8mE/aTZgVUDhUS3XgAHiDXgnjP5jULKWK1CaG0703nzRsqAcDj8Wg91eDn79aqIYk2eeD7/Y7T6cSeak2UJ4kY8oCu66Lf76Pb7WK/37cObAGKRpUQxzEcx4Fj2zgej58ZviqVB/N9H/vdDp7nwXXXSNNUyPIjoKaqcBwbtm1DVVX2tu1pre0zW+ldqZQwnUzwM58jCAJkWcYas91uhR2XRMzKskT/+xthGLJvAjYMg82XyyU0TcP1em2VLonYFUWByXiM8r8Jq9UKs9mMzYlhr9cTl/zMjkojAHCBYRDgcAhrQNonO10ulwbLl4C6PoKqKA3hLdNkjMk2w+EQpmmi0+lgvV63AZ9pE4Pz+dxYT5O0tstms2EHJUmCNE0acRL/EcUxEzvP85bYy8WCaUieNHS91nkwGLB3FS/xSVEU4UuW4Xtei7U+GsGyTOZJiiGGFC/LMmNcA1YJVA4J/5tlzCq3260GI3vQPjEv8pw1hwCpIdScylo1ICUoigLLstivxt8o766qV3arNSQjk8gEyBv2023EH0oM/wBBlSeJV2eDnAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ba74c8b2e9461f4f8daaa990dbe607c7/a59e9/trie-reverse.webp 192w,
+/static/ba74c8b2e9461f4f8daaa990dbe607c7/bcc52/trie-reverse.webp 328w"
+              sizes="(max-width: 328px) 100vw, 328px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ba74c8b2e9461f4f8daaa990dbe607c7/3b721/trie-reverse.png 192w,
+/static/ba74c8b2e9461f4f8daaa990dbe607c7/c4cd0/trie-reverse.png 328w"
+            sizes="(max-width: 328px) 100vw, 328px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ba74c8b2e9461f4f8daaa990dbe607c7/c4cd0/trie-reverse.png"
+            alt="트라이 구현-팰린드롬"
+            title="트라이 구현-팰린드롬"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>트라이로 삽입하는 코드는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">,</span> word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	node <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+	<span class="token keyword">for</span> i<span class="token punctuation">,</span> char <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span><span class="token builtin">reversed</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+		node <span class="token operator">=</span> node<span class="token punctuation">.</span>children<span class="token punctuation">[</span>char<span class="token punctuation">]</span>
+	node<span class="token punctuation">.</span>word_id <span class="token operator">=</span> index</code></pre></div>
+<p>각각의 단어가 끝난 지점에는 단어 인덱스를 word_id로 부여했다. 이전 문제에서는 True, False 여부만 표기했지만, 여기서는 해당 단어의 인덱스를 찾아야 하기 때문에 word_id로 부여했다. 단어 존재 여부를 찾는 핵심 코드는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">while</span> word <span class="token punctuation">:</span> 
+	<span class="token keyword">if</span> node<span class="token punctuation">.</span>word_id <span class="token operator">>=</span> <span class="token number">0</span> <span class="token punctuation">:</span>
+		<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+		result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>index<span class="token punctuation">,</span> node<span class="token punctuation">.</span>word_id<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre></div>
+<p>단어를 뒤집어서 구축한 트라이이기 때문에 입력값을 순서대로 탐색하다가, 끝나는 지점의 word_id 값이 -1 이 아니라면, 현재 인덱스 index와 해당 word_id는 팰린드롬으로 판단 가능하다.<br>
+예를 들어 위의 그림에서 입력값 bbcd의 트라이 탐색이 끝나는 지점에는 word_id가 2가 셋팅되어 있고, bbcd의 인덱스는 5이기 때문에, [5, 2] 인 bbcd + dcbb는 팰린드롬이며, 이 방법이 <code class="language-text">첫 번째 판별 로직</code>이다.<br>
+<code class="language-text">두 번째 판별 로직</code>은 트라이 삽입 중에 남아 있던 단어가 팰린드롬이라면 미리 팰린드롬 여부를 세팅해 두는 방법이다. 즉 입력값들 중, ‘cbbc’는 단어 자체가 팰린드롬이므로, 루트에 바로 입력값의 인덱스인 p = 4를 세팅하고, word[0:len(word) - i] 형태로 단어에서 문자 수를 계속 줄여 나가며 팰린드롬 여부를 체크한다. 문자가 하나만 남게 될 때는 항상 팰린드롬이므로, 마찬가지로 p = 4를 마지막에 세팅한다. 당연히 이 마지막 값은 항상 w의 바로 앞 노드가 된다. 팰린드롬 여부인 p를 추가한 트라이는 다음과 같다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 292px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/b3dd818fd6a3e1545200e615174cacd2/73e11/trie-palindrome.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 88.54166666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABJ0AAASdAHeZh94AAAB+ElEQVQ4y41UiXKqQBDk///omWfQoGIkxPuIB7LeZxQNeJTar2Ze7Raecau20Jmlt7tnBg2/rNPp9FRePrVHB+Wh0WgE13XRbrcRBAGOxyMOh8MV2F1ACUabXs7lctB1HclkEvV6HY1Gg/dwOLy6XHtG6ng8RrPZRKvVwn6/5xgxpP0rYDi52+1QKZfR6QiWK4RAqVTCYrG467H2yODv7znisRh6vR7LzefzyGTememlNU8xXK/X+Pvygo4QmIzHLNH3feXdQ4aXN1FVc9kshHAZzLIsOI7DuVqtBtu2zxRdMzydJ8rlMkzTZB9pxeNxNBsN/k3AkcifmyxverharTAcDNDtdjGZTFQv7rb/wSlGvlL1qa3CLLVLqfP5HKlUigHkolahWL/fxyYI8J5Ow2kRywhbc3NSZGCz2SBhGNx36nacUCwWucqe5yFtmmwJNfmnbbMVsie1MDs6TL22Xq8wGg1VE0vfSOJ0OmWAledxvlatYrvdKlJamJ1lZZDNZm9OTiymo17/QqFQgP1hc2y5XMIwDGWP8lAukvVhWZjNZvxfSvaWSyQTCQhXoFqpwHgzVPGi0aiqvmJIzSplNHnoB1e+0hnyiYri//yoeSZQGoCzorQdB/rrK4Tr8pyGWd/7Ht6La1Ja4PsMRgW5nOnLmb0Vl5L/Afo5aCRBoC1OAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/b3dd818fd6a3e1545200e615174cacd2/a59e9/trie-palindrome.webp 192w,
+/static/b3dd818fd6a3e1545200e615174cacd2/2745f/trie-palindrome.webp 292w"
+              sizes="(max-width: 292px) 100vw, 292px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/b3dd818fd6a3e1545200e615174cacd2/3b721/trie-palindrome.png 192w,
+/static/b3dd818fd6a3e1545200e615174cacd2/73e11/trie-palindrome.png 292w"
+            sizes="(max-width: 292px) 100vw, 292px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/b3dd818fd6a3e1545200e615174cacd2/73e11/trie-palindrome.png"
+            alt="트라이에 팰린드롬 여부 표현"
+            title="트라이에 팰린드롬 여부 표현"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+이 알고리즘을 추가하여 삽입 함수를 다음과 같이 개선 가능하다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">,</span> word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	node <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+	<span class="token keyword">for</span> i<span class="token punctuation">,</span> char <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span><span class="token builtin">reversed</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> self<span class="token punctuation">.</span>is_palindrome<span class="token punctuation">(</span>word<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token builtin">len</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span> <span class="token operator">-</span> i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			node<span class="token punctuation">.</span>palindrome_word_ids<span class="token punctuation">.</span>append<span class="token punctuation">(</span>index<span class="token punctuation">)</span>
+		node <span class="token operator">=</span> node<span class="token punctuation">.</span>children<span class="token punctuation">[</span>char<span class="token punctuation">]</span>
+	node<span class="token punctuation">.</span>word_id <span class="token operator">=</span> index</code></pre></div>
+<p>p로 표현한 것을 코드에서는 palindrome_word_ids 로 풀어서 표현했다. 코드에서는 속성의 이름을 복수형으로 정했는데, 그 이유는 이 그림의 루트 경우처럼 p값이 여러 개가 될 수 있기 때문이다. 이제 위의 로직들을 반영한 각 트라이 노드가 저장될 TrieNode 클래스를 다음과 같이 수정해보자.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">TrieNode</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>children <span class="token operator">=</span> collections<span class="token punctuation">.</span>defaultdict<span class="token punctuation">(</span>TrieNode<span class="token punctuation">)</span>
+		self<span class="token punctuation">.</span>word_id <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+		self<span class="token punctuation">.</span>palindrome_word_ids <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span></code></pre></div>
+<p>이제 남아 있는 단어가 팰린드롬인 경우를 좀 더 살펴보자. w는 단어의 끝이고 p는 w 이전 노드에 반드시 셋팅이 된다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token comment"># 트라이를 저장할 노드</span>
+<span class="token keyword">class</span> <span class="token class-name">TrieNode</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>children <span class="token operator">=</span> collections<span class="token punctuation">.</span>defaultdict<span class="token punctuation">(</span>TrieNode<span class="token punctuation">)</span>
+		self<span class="token punctuation">.</span>word_id <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+		self<span class="token punctuation">.</span>palindrome_word_ids <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Trie</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>root <span class="token operator">=</span> TrieNode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	
+	<span class="token decorator annotation punctuation">@staticmethod</span>
+	<span class="token keyword">def</span> <span class="token function">is_palindrome</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> word <span class="token operator">==</span> word<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+	
+	<span class="token comment"># 단어 삽입</span>
+	<span class="token keyword">def</span> <span class="token function">insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">,</span> word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		node <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+		<span class="token keyword">for</span> i<span class="token punctuation">,</span> char <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span><span class="token builtin">reversed</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			<span class="token keyword">if</span> self<span class="token punctuation">.</span>is_palindrome<span class="token punctuation">(</span>word<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token builtin">len</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span> <span class="token operator">-</span> i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+				node<span class="token punctuation">.</span>palindrome_word_ids<span class="token punctuation">.</span>append<span class="token punctuation">(</span>index<span class="token punctuation">)</span>
+			node <span class="token operator">=</span> node<span class="token punctuation">.</span>children<span class="token punctuation">[</span>char<span class="token punctuation">]</span>
+		node<span class="token punctuation">.</span>word_id <span class="token operator">=</span> index
+	
+	<span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">,</span> word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+		node <span class="token operator">=</span> self<span class="token punctuation">.</span>root
+
+		<span class="token keyword">while</span> word <span class="token punctuation">:</span>
+			<span class="token comment"># 판별 로직 3</span>
+			<span class="token keyword">if</span> node<span class="token punctuation">.</span>word_id <span class="token operator">>=</span> <span class="token number">0</span> <span class="token punctuation">:</span>
+				<span class="token keyword">if</span> self<span class="token punctuation">.</span>is_palindrome<span class="token punctuation">(</span>word<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+					result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>index<span class="token punctuation">,</span> node<span class="token punctuation">.</span>word_id<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+			<span class="token keyword">if</span> <span class="token keyword">not</span> word<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">in</span> node<span class="token punctuation">.</span>children <span class="token punctuation">:</span>
+				<span class="token keyword">return</span> result
+		
+			node <span class="token operator">=</span> node<span class="token punctuation">.</span>children<span class="token punctuation">[</span>word<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+			word <span class="token operator">=</span> word<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+		<span class="token comment"># 판별 로직 1</span>
+		<span class="token keyword">if</span> node<span class="token punctuation">.</span>word_id <span class="token operator">>=</span> <span class="token number">0</span> <span class="token keyword">and</span> node<span class="token punctuation">.</span>word_id <span class="token operator">!=</span> index <span class="token punctuation">:</span>
+			result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>index<span class="token punctuation">,</span> node<span class="token punctuation">.</span>word_id<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+		<span class="token comment"># 판별 로직 2</span>
+		<span class="token keyword">for</span> palindrome_word_id <span class="token keyword">in</span> node<span class="token punctuation">.</span>palindrome_word_ids <span class="token punctuation">:</span>
+			result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>index<span class="token punctuation">,</span> palindrome_word_id<span class="token punctuation">]</span><span class="token punctuation">)</span>
+		
+		<span class="token keyword">return</span> result
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">palindromePairs</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> words<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		trie <span class="token operator">=</span> Trie<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">for</span> i<span class="token punctuation">,</span> word <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>words<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			trie<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>i<span class="token punctuation">,</span> word<span class="token punctuation">)</span>
+		
+		result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+		<span class="token keyword">for</span> i<span class="token punctuation">,</span> word <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>words<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			result<span class="token punctuation">.</span>extend<span class="token punctuation">(</span>trie<span class="token punctuation">.</span>search<span class="token punctuation">(</span>i<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		
+		<span class="token keyword">return</span> result</code></pre></div>
+<p>위의 3가지 경우를 팰린드롬으로 판별할 수 있으며, 입력값을 각각 한 번씩만 대입하면 되기 때문에 O(n) 으로 풀이가 가능하다. 좀 더 정확히는 단어의 최대 길이를 k로 했을 때 O(k^2n) 이며, 앞서 브루트 포스 풀이의 경우는 O(kn^2) 이다.</p>
+<h1 id="staticmethod-데코레이터" style="position:relative;">@staticmethod 데코레이터<a href="#staticmethod-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0" aria-label="staticmethod 데코레이터 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>자바에서는 애노테이션(Annotation) 이라 부르는 동일한 위치에 있다. 파이썬에서는 이 부분을 데코레이터(Decorator)라 부른다. 그 중에서 @staticmethod는 자바의 메소드 static 선언과도 비슷한데, 이렇게 정의한 메소드는 <code class="language-text">클래스와 독립적인 함수</code>로서의 의미를 강하게 갖는다. 실제로 파라미터에도 클래스 메소드에는 항상 따라붙는 self가 빠져있고, 함수 자체가 별도의 자료형으로 선언되어 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">CLASS</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">a</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">pass</span>
+	
+	<span class="token decorator annotation punctuation">@staticmethod</span>
+	<span class="token keyword">def</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">pass</span></code></pre></div>
+<p>이 같은 클래스가 선언되어 있을 때, 함수 a()와 b()의 타입을 출력해보자.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token operator">>></span><span class="token operator">></span> <span class="token builtin">type</span><span class="token punctuation">(</span>CLASS<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token punctuation">(</span>CLASS<span class="token punctuation">.</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'function'</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'function'</span><span class="token operator">></span><span class="token punctuation">)</span></code></pre></div>
+<p>클래스를 생성하지 않고 바깥에서 직접 호출했을 때 타입은 이처럼 둘 다 function이다. 그러나 다음과 같이 클래스를 생성한 후에 호출해보자.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token operator">>></span><span class="token operator">></span> cls <span class="token operator">=</span> CLASS<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token builtin">type</span><span class="token punctuation">(</span>cls<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token punctuation">(</span>cls<span class="token punctuation">.</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">(</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'method'</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'function'</span><span class="token operator">></span><span class="token punctuation">)</span></code></pre></div>
+<p>클래스 생성 후엔, 클래스 내 함수는 이제 메소드가 된다. 그러나 @staticmethod로 선언핞 함수는 여전히 함수임을 확인할 수 있다. 클래스의 메소드가 아니라 여전히 <code class="language-text">독립된 함수</code>의 의미를 갖는 것이다. 사실상 클래스 바깥에 함수를 별도로 선언한 것과 같은 의미를 지닌다.<br>
+이렇게 하면 클래스 메소드처럼 자유롭게 클래스 인스턴스에 접근하는 것이 제한된다. 따라서 클래스 인스턴스에 접근을 제한하고 분명하게 독립적인 함수로 선언하고자 할 경우 종종 사용한다.</p></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#%ED%8A%B8%EB%9D%BC%EC%9D%B4">트라이</a></p>
+</li>
+<li>
+<p><a href="#56-%ED%8A%B8%EB%9D%BC%EC%9D%B4-%EA%B5%AC%ED%98%84">56. 트라이 구현</a></p>
+<ul>
+<li><a href="#code-classlanguage-text%ED%92%80%EC%9D%B4-1-%EB%94%95%EC%85%94%EB%84%88%EB%A6%AC%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EA%B0%84%EA%B2%B0%ED%95%9C-%ED%8A%B8%EB%9D%BC%EC%9D%B4-%EA%B5%AC%ED%98%84code"><code class="language-text">풀이 1. 딕셔너리를 이용해 간결한 트라이 구현</code></a></li>
+</ul>
+</li>
+<li>
+<p><a href="#57-%ED%8C%B0%EB%A6%B0%ED%8A%B8%EB%A1%AC-%ED%8E%98%EC%96%B4">57. 팰린트롬 페어</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%ED%8C%B0%EB%A6%B0%EB%93%9C%EB%A1%AC%EC%9D%84-%EB%B6%80%EB%A5%B4%ED%8A%B8-%ED%8F%AC%EC%8A%A4%EB%A1%9C-%EA%B3%84%EC%82%B0">풀이 1. 팰린드롬을 부르트 포스로 계산</a></li>
+<li><a href="#code-classlanguage-text%ED%92%80%EC%9D%B4-2-%ED%8A%B8%EB%9D%BC%EC%9D%B4-%EA%B5%AC%ED%98%84code"><code class="language-text">풀이 2. 트라이 구현</code></a></li>
+</ul>
+</li>
+<li>
+<p><a href="#staticmethod-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0">@staticmethod 데코레이터</a></p>
+</li>
 </ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/CI_Part4_Ch16/";window.___webpackCompilationHash="a2d1ab46784146b1090f";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-6ded11ad141233377119.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-06b9013ff1c6fbcf955a.js" async=""></script></body></html>
