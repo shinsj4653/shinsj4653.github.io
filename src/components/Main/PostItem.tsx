@@ -305,6 +305,16 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'Enwise':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#fff', color: '#000' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>

@@ -1,8 +1,8 @@
 ---
 date: '2023-01-08'
 title: 'React - useEffect 복습'
-categories: ['React']
-summary: '근로활동에서 React의 useEffect 개념을 다시 한 번 공부하면서 배운 내용을 정리해보았다.'
+categories: ['React', 'Enwise']
+summary: 'Enwise 국가 근로활동에서 React의 useEffect 개념을 다시 한 번 공부하면서 배운 내용을 정리해보았다.'
 thumbnail: './images/thumbnail-react.jpeg'
 ---
 
