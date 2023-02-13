@@ -295,6 +295,16 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'UMC':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#00FF6F', color: '#000' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>

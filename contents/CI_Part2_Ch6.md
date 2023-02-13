@@ -10,7 +10,8 @@ thumbnail: './images/thumbnail-coding-test.png'
 # 01. 유효한 팰린드름
 
 ## 풀이 1. 리스트로 변환
-isalnum() : 영문자, 숫자 여부를 판별하는 함수
+isalnum() : 영문자, 숫자 여부를 판별하는 함수  
+
 문자열의 길이가 1보다 클때까지, pop과 pop(0) 함수를 활용하여 팰린드롬 여부를 판별한다.
 
 ## 풀이 2. 데크 자료형을 이용한 최적화
@@ -103,13 +104,14 @@ return counts.most_common(1)[0][0]
 
 # 05. 그룹 애너그램
 ## 풀이 1. 정렬하여 딕셔너리에 추가
-애너그램 -> 문자를 재배열하여 다른 뜻을 가진 단어로 바꾸는 것을 말한다.
+애너그램 -> 문자를 재배열하여 다른 뜻을 가진 단어로 바꾸는 것을 말한다.  
+
 각 문자열들을 정렬하여 키 값으로 지정한다음, 원래 문자열 값을 value 로 넣어주는 방식을 택하였다.
 문자열도 리스트 처럼 `sorted()` 함수를 활용할 수 있다. 반환값은 list 여서 `''.join()` 함수를 통해 문자열 형태로 합칠 수 있다.
 
 그리고, 존재하지 않는 키를 삽입하려 할 경우, keyError가 발생하므로, 에러가 나지 않도록 매번 키 존재 여부를 체크 안하는 defaultDict() 로 선언한다.
 
-# 06. 가장 긴 팰린드롬 부분 문자열
+# `06. 가장 긴 팰린드롬 부분 문자열`
 ## 풀이 1. 중앙을 중심으로 확장하는 풀이
 아직은 이 풀이가 완전히 이해가 되지 않아 다시 한번 이 문제를 꼼꼼히 풀어봐야겠다.  
 
@@ -120,3 +122,27 @@ if len(s) < 2 or s == s[::-1] :
 	return s
 ```
 홀수, 짝수 2개의 투 포인터가 팰린드롬 여부를 판별하면서 `슬라이딩 윈도우` 처럼 계속 우측으로 이동한다.
+
+```py
+def longestPalindrome(self, s) :
+	# 팰린드롬 판별 및 투 포인터 확장
+	def expand(left, right) :
+		while left >= 0 and right < len(s) and s[left] == s[right] :
+			left -= 1
+			right += 1
+		return s[left + 1 : right]
+
+	# 해당 사항이 없을 때 빠르게 리턴
+	if len(s) < 2 or s == s[::-1] :
+		return s
+
+	result = ''
+	# 슬라이딩 윈도우 우측으로 이동
+	for i in range(len(s) - 1) :
+		result = max(result, 
+			expand(i, i + 1), 
+			expand(i, i + 2), 
+			key=len)
+	
+	return result
+```

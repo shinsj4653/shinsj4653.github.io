@@ -1,7 +1,7 @@
 ---
 date: '2023-01-20'
 title: 'UMC NodeJS - 1주차'
-categories: ['NodeJS']
+categories: ['NodeJS', 'UMC']
 summary: 'UMC 동아리에서 진행한 1주차 세미나 및 스터디에서 배운 내용정리'
 thumbnail: './images/thumbnail-nodejs.png'
 ---
