@@ -16,7 +16,7 @@ thumbnail: './images/thumbnail-nodejs.png'
 # 역할
 백엔드 개발자로써 프로젝트를 진행하였다. 메인 기술 스택은 `NodeJS`이다.
 
-# Trouble Shooting & New Things
+# Trouble Shooting & New Knowledge
 ## 1. gitignore 작동 안됨
 aws s3 기능이나 카카오 맵 API를 사용하기 위해 필요한 키 값들을 `secret.js`에 저장을 해주었다. git에 보이면 안되는 정보들이기 때문에 .gitignore 에 추가를 해주었지만, 커밋을 하려고 보면 untracked files에 secret.js가 자꾸만 떴다.
 [.gitignore가 작동하지 않을때 대처법](https://jojoldu.tistory.com/307)  

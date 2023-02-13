@@ -2,10 +2,11 @@
 date: '2023-01-08'
 title: 'React - useEffect 복습'
 categories: ['React', 'Enwise']
-summary: 'Enwise 국가 근로활동에서 React의 useEffect 개념을 다시 한 번 공부하면서 배운 내용을 정리해보았다.'
+summary: 'Enwise 국가 근로활동 프로젝트 중, CandyKorean 프로젝트를 진행하는 중 React의 useEffect 개념을 다시 한 번 공부하면서 배운 내용을 정리해보았다.'
 thumbnail: './images/thumbnail-react.jpeg'
 ---
 
+Enwise의 CandyKorean 프로젝트를 진행하면서 배운 내용들을 정리해보았다.
 React의 useEffect...  
 말로는 정말 많이 들었고, 근로에서 진행하는 프로젝트에서도 많이 써봤지만, 정작 정확하게 마스터를 하지 않고 쓰다보니 에러가 계속 발생하였다.  
 특히, `비동기함수` 와 함께 사용하니까 내 뜻대로 화면에서 안 보여져서 더 답답하게 느껴졌다. 이번 기회에 useEffect 개념에 대해서 다시 한 번 복습해보았고, 깨달은 내용들을 정리해보았다.

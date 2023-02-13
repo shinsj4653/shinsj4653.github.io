@@ -19,7 +19,7 @@ Cafe24 쇼핑몰 사이트는 본인의 상품을 홍보할 수 있는 자신만
 프론트엔드 개발자로써 참여를 하였고, 메인 기술 스택은 `React` 입니다.  
 주로 통계와 콘텐츠의 UI 설정을 담당하였고, 통계메뉴의 기능들로는 정보의 상품 순위, 시간대 별 상품 순위, 콘텐츠 조회, 콘텐츠 인기상품, 그리고 구매 유도율을 보여주는 페이지를 구현하였다.
 
-# Trouble Shooting & New Things
+# Trouble Shooting & New Knowledge
 ## 1. React 이미지 엑박 뜸
 [[React] 리액트 이미지 엑박 뜰 때 해결법](https://velog.io/@hyunsung9999/React-%EB%A6%AC%EC%95%A1%ED%8A%B8-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%91%EB%B0%95-%EB%9C%B0-%EB%95%8C-%ED%95%B4%EA%B2%B0%EB%B2%95)
 
