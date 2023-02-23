@@ -1,5 +1,5 @@
 ---
-date: '2023-02-12'
+date: '2023-02-13'
 title: 'Python Coding Interview - 4부 16장 | 트라이'
 categories: ['Coding Test']
 summary: '파이썬 알고리즘 인터뷰 책에서 4부 16장의 내용을 읽고 요약정리'

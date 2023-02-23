@@ -5,7 +5,7 @@ categories: ['Enwise', 'React Native']
 summary: 'Enwise 국가근로 활동에서 진행한 CandyKorean 프로젝트 정리'
 thumbnail: './images/thumbnail-react-native.jpeg'
 ---
-Enwise 국가근로 활동을 하면서 진행한 프로젝트, CandyKorean 앱을 제작하면서 배운 내용을 정리해보았다.
+Enwise 국가근로 활동을 하면서 진행한 프로젝트, CandyKorean 앱을 제작하면서 배운 내용을 정리해보았다.  
 
 # 프로젝트 소개
 외국인들을 대상으로 하는 한국어 교육 어플리케이션 입니다. 
