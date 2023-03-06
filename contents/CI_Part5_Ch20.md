@@ -1,7 +1,7 @@
 ---
 date: '2023-02-25'
 title: 'Python Coding Interview - 5부 20장 | 슬라이딩 윈도우'
-categories: ['Coding Test']
+categories: ['Coding Test', 'Python']
 summary: '파이썬 알고리즘 인터뷰 책에서 5부 20장의 내용을 읽고 요약정리'
 thumbnail: './images/thumbnail-coding-test.png'
 ---

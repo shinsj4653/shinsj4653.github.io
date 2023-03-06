@@ -1,7 +1,7 @@
 ---
 date: '2022-12-31'
 title: 'Python Coding Interview - 1부 | 코딩 인터뷰'
-categories: ['Coding Test']
+categories: ['Coding Test', 'Python']
 summary: '파이썬 알고리즘 인터뷰 책에서 1부의 내용을 읽고 요약정리'
 thumbnail: './images/thumbnail-coding-test.png'
 ---

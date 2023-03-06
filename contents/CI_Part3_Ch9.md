@@ -1,7 +1,7 @@
 ---
 date: '2023-01-31'
 title: 'Python Coding Interview - 3부 9장 | 스택, 큐'
-categories: ['Coding Test']
+categories: ['Coding Test', 'Python']
 summary: '파이썬 알고리즘 인터뷰 책에서 3부 9장의 내용을 읽고 요약정리'
 thumbnail: './images/thumbnail-coding-test.png'
 ---

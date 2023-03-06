@@ -1,7 +1,7 @@
 ---
 date: '2023-02-01'
 title: 'Python Coding Interview - 3부 10장 | 데크, 우선순위 큐'
-categories: ['Coding Test']
+categories: ['Coding Test', 'Python']
 summary: '파이썬 알고리즘 인터뷰 책에서 3부 10장의 내용을 읽고 요약정리'
 thumbnail: './images/thumbnail-coding-test.png'
 ---

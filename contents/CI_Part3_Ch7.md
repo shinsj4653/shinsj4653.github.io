@@ -1,7 +1,7 @@
 ---
 date: '2023-01-20'
 title: 'Python Coding Interview - 3부 7장 | 배열'
-categories: ['Coding Test']
+categories: ['Coding Test', 'Python']
 summary: '파이썬 알고리즘 인터뷰 책에서 3부 7장의 내용을 읽고 요약정리'
 thumbnail: './images/thumbnail-coding-test.png'
 ---
