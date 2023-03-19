@@ -1,0 +1,736 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="파이썬 알고리즘 인터뷰 책에서 5부 23장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="Python Coding Interview - 5부 23장 | 다이나믹 프로그래밍"/><meta data-react-helmet="true" property="og:description" content="파이썬 알고리즘 인터뷰 책에서 5부 23장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" property="og:image" content="/static/0c8985426a86d22cc5bd019e68c03210/thumbnail-coding-test.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="Python Coding Interview - 5부 23장 | 다이나믹 프로그래밍"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Python Coding Interview - 5부 23장 | 다이나믹 프로그래밍"/><meta data-react-helmet="true" name="twitter:description" content="파이썬 알고리즘 인터뷰 책에서 5부 23장의 내용을 읽고 요약정리"/><meta data-react-helmet="true" name="twitter:image" content="/static/0c8985426a86d22cc5bd019e68c03210/thumbnail-coding-test.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/CI_Part5_Ch23/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">Python Coding Interview - 5부 23장 | 다이나믹 프로그래밍</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1342px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;806&#x27; width=&#x27;1342&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB9ElEQVQoz42SW28SURSF+bfGGOOTL14S64MvNsTEB1AUsG2waLFaoGiaRopt5WKLAxQ6DMO1XK3VamobZg6fYYCBojY+rOyTfXLWWWvvZdHrCiNoQ+gHebRGwTyPYNwP63TfONcVLCbZsGE+KGXQqvtoTRWtXULrlNHTMUR41ahaq3juU23IYzmnsE/aVKGSRSzYEBtBeooEiTA96SOikkOoaXQ5id6vhRR6OXuxwtOqTC22Te/dEmI3wq/cLqfb65ztbHJSynEmRSESQoSD9CJvEcktw8WYcGI2oqFwUswib20Zll7a5/A+dONzevG5XrD8dJ5ns3aiyyvQVulW5b/McKIxUsmXEt/3JeasDr6lojRlmVpeRW/nkOI7+OzzcFimW8v/OcNxo2CSikaBY1liyeHh59caR50Wx/UGHNZp5DMEXB7j027tIoXFDCL2Hj37CdFS+ZFP4bY+pryXoJ5N00xKdBJx4qE1Xj9ZMAlHrnRzyyPCSg49E0cr7Q2XpOB+4OLG5VvcuXqX21dmuHntHtcvzbD5JjRWOEE2ZVkZZK6u0GsoHClZFp2vsN138sjqNuCwurHNuoitf4CWOsjsPxWOUn+Qh2aBqvSZgHeVwGIA/3O/gaA3yIrHT3RtY0DwP4STuewvp9dUTYhhnczttOXfd3lZS5/rBRYAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/0c8985426a86d22cc5bd019e68c03210/7a2cc/thumbnail-coding-test.webp 336w,/static/0c8985426a86d22cc5bd019e68c03210/e8438/thumbnail-coding-test.webp 671w,/static/0c8985426a86d22cc5bd019e68c03210/f0ee1/thumbnail-coding-test.webp 1342w" sizes="(min-width: 1342px) 1342px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1342px) 1342px, 100vw" decoding="async" loading="lazy" data-src="/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png" data-srcset="/static/0c8985426a86d22cc5bd019e68c03210/b82c5/thumbnail-coding-test.png 336w,/static/0c8985426a86d22cc5bd019e68c03210/9de5e/thumbnail-coding-test.png 671w,/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png 1342w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/0c8985426a86d22cc5bd019e68c03210/7a2cc/thumbnail-coding-test.webp 336w,/static/0c8985426a86d22cc5bd019e68c03210/e8438/thumbnail-coding-test.webp 671w,/static/0c8985426a86d22cc5bd019e68c03210/f0ee1/thumbnail-coding-test.webp 1342w" sizes="(min-width: 1342px) 1342px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1342px) 1342px, 100vw" decoding="async" loading="lazy" src="/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png" srcSet="/static/0c8985426a86d22cc5bd019e68c03210/b82c5/thumbnail-coding-test.png 336w,/static/0c8985426a86d22cc5bd019e68c03210/9de5e/thumbnail-coding-test.png 671w,/static/0c8985426a86d22cc5bd019e68c03210/07788/thumbnail-coding-test.png 1342w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">Python Coding Interview - 5부 23장 | 다이나믹 프로그래밍</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>Coding Test / Python</div><div>2023.03.19.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p>드디어 마지막 장 까지 도달하였다. 책 이론들을 정리만 하는데 그치지 않고, 문제들을 풀면서 계속해서 복습해 나갈 예정이다.</p>
+<h1 id="다이나믹-프로그래밍" style="position:relative;">다이나믹 프로그래밍<a href="#%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D" aria-label="다이나믹 프로그래밍 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>최적 부분 구조를 갖고 있는 문제를 DP로 풀이가 가능하다. 최적 부분 구조를 푸는 또 다른 알고리즘으로는 <code class="language-text">그리디 알고리즘</code>이 있다. 그리디는 <code class="language-text">항상 그 순간에 최적이라고 생각되는 것을 선택</code>하면서 문제를 푸는 방식이고, DP는 <code class="language-text">중복된 하위 문제들의 결과를 저장해뒀다가 풀이해 나간다</code>는 차이가 있다. 여기서 중요한 점은 <code class="language-text">중복된</code> 문제들이란 점이며, 중복되지 않는 문제들은 DP로 풀지 않는다. 대표적으로 병합 정렬과 퀵 정렬 등이 있으며, 이들은 모두 <code class="language-text">분할 정복 알고리즘</code>으로 분류한다.대부분의 재귀 알고리즘은 최적 부분 구조 문제를 풀 수 있다. 이 중에서도 병합 정렬, 퀵 정렬과 같은 분할 정복 알고리즘은 <code class="language-text">중복된 하위 문제들</code> 을 푸는 것이 아니기 떄문에 DP로 분류하지 않는다. 배낭 문제 중 분할 가능 배낭 문제는 <code class="language-text">탐욕 선택 속성</code>이 있기 떄문에 <code class="language-text">그리디 알고리즘</code>으로 풀이할 수 있다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 585px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/33f2326b98be558c4faf563721ea5139/51d84/DP_vs_Greedy_vs_DivideAndConquer.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 33.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAABkklEQVQoz12Q/2vTUBTF8y+LMCko2Mn6w9jWlmShLW2nnYKIKPqDX5C6DQR/mLTgStu0m8XQ2GbNgrFpmvTbR+6D/aAXDve+87jnnPe02tPXZPUa6YzJdsYgp1fI6WXyRhnDrLJ3YLKV2mYrleZe6iF37qZ4tLNLLn/IoVkir5voRoFiqcrl1Q+0s7OvvP94ystX7/hU/8Kbtx94XHvO8bMXFEtHFIpV9rMG+1mdcqVGufIEwyyxk9nl/oM0ewd5KkfHmIUy/csrNP6rMJzi+zcEwW+uXZfpdKrmKJqpebVaksQxg8FA4cbz/tnXgiDAda8Jgj/EcYzneTjOL1zXVX00GuE4DsPhkNlsRhwn2LbN+fk3Go0mJyenWFaPxWLBcrlEE9cwDEmSRMH+adPtdun1enQ6Hfr9PpZl0W63lbgsSr/4fkGr1aLZaCqD1WqloE0mE5VMSrrv+yqd8OPxWEEEhBNDSSHnev2zMluv1yq1GMms/lAGURdS+mazUdwtfwsRnM/nRFGkjOV1EkIgdyL4F4AJ64iHJ1QVAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/33f2326b98be558c4faf563721ea5139/a59e9/DP_vs_Greedy_vs_DivideAndConquer.webp 192w,
+/static/33f2326b98be558c4faf563721ea5139/0ca9f/DP_vs_Greedy_vs_DivideAndConquer.webp 384w,
+/static/33f2326b98be558c4faf563721ea5139/b1df6/DP_vs_Greedy_vs_DivideAndConquer.webp 585w"
+              sizes="(max-width: 585px) 100vw, 585px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/33f2326b98be558c4faf563721ea5139/3b721/DP_vs_Greedy_vs_DivideAndConquer.png 192w,
+/static/33f2326b98be558c4faf563721ea5139/66595/DP_vs_Greedy_vs_DivideAndConquer.png 384w,
+/static/33f2326b98be558c4faf563721ea5139/51d84/DP_vs_Greedy_vs_DivideAndConquer.png 585w"
+            sizes="(max-width: 585px) 100vw, 585px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/33f2326b98be558c4faf563721ea5139/51d84/DP_vs_Greedy_vs_DivideAndConquer.png"
+            alt="알고리즘과 풀이 가능한 문제들의 특징"
+            title="알고리즘과 풀이 가능한 문제들의 특징"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+13장의 다익스트라 알고리즘은 DP와 그리디에 둘 다 해당하는 경우인데, BFS 시 항상 최단 경로를 찾고 탐욕 선택 속성을 갖는 그리디 알고리즘이면서, 이미 계산한 경로를 저장해두었다가 활용하며 중복된 하위 문제들을 푸는 DP 이기도 하다.<br>
+즉, 다익스트라 알고리즘은 <code class="language-text">최적 부분 구조</code>, <code class="language-text">중복된 하위 문제들</code>, <code class="language-text">탐욕 선택 속성</code>을 모두 갖는 문제이다.</p>
+<h1 id="최적-부분-구조" style="position:relative;">최적 부분 구조<a href="#%EC%B5%9C%EC%A0%81-%EB%B6%80%EB%B6%84-%EA%B5%AC%EC%A1%B0" aria-label="최적 부분 구조 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>최적 부분 구조에 대해 좀 더 살펴보자.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 207px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/27cc716848c32d4aaa355e0de1d144f1/3c09e/optimal_substructure_shortest_path.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 135.41666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAbCAYAAAB836/YAAAACXBIWXMAABJ0AAASdAHeZh94AAADt0lEQVRIx3VWXXPaVhDlP7b9E31oX5KZviSOO8F2muk0wZNJ2mn76qZ9qZNxPTXI09rBNlO+MZKQQJIBfYCRwAgQmI/TudeWQBLemTsSV6vVObtn9xLBii0WC991nV1d1TGfzz2/oG/koWCz2QyWZcHqdtHtdtHv99Go15HL5mBa1oMAIqtfca+O46BSqUBtNmFoTTQaDSiygs71NfXhOP5BlJFgMOLIczwcZ4TJdAFF72EeoK2qKjRN8/xX348EIVerVZimSe8TZyy+fvERRbFFf09nM8+XYzkMBoMQdQ/hZDxGoZCnX3ftx1/2sP/Xv26SMZvPKSLyzmg0QrFYClH3Ao7HYxQLBe+rk8kEL19+D0WWYVnm2oqTQsmy4qPuo0yCsixL729ubnB4eAhBFKGqGt0nVe/bNsrlMt1XFAX5XJ4qIkTZ3RQEAb1e704mjaaHgCBuqioSzDGePdvE3t5viMVi+LD/AZq6LFCoKEQut7e3ME0Lum7QAinKlfd85Dgoli49isR4nqfsfLIxzQ4kqYbzs3PIkkIRVas1+qxcZmluTauLXt9GTZLpcmGQdNi2vcxhq9UCwyRgGDqGwyEVNpUGx9NUkL1MOoP373/H1tY2os+jOD+/8BDW63WaX19RGo06MpmsX8Cahlb7mt43VBW8INwVbzLG5X3xiImCSHPuo+yKmujLteFohD/3P6IiiOiYFs2d1u6hWGnikuU9P47j/JTdBJOCuHSJ1Wo1bEW3EY1u493bd7hSFMR+PcDPfySRvEgvEYpVmvPQcJBl2etR0hWulDrWHTpSFMMwsLv7Bm/e/oTxZILBYIhcLg9JksIBSSVLpdLapieyIFMnlUrh88++QDzOYGfnO7x+HcPGkw18Ov0U7hQy90RR9PXm3O3hex+izaN4HCcnpzg4OEA2m0Wn06HjzUPookmn096kcYfA/H7dTqd039BbsO0BXv3wCo8fPca3m5vg+cpSNi462+6jWl2iwyJ8NBwdHWHj6Qa2olGkUhc4OT3Dk6c74MuFexArvUySTVZwvrlIXQGTXmcYBsfHx3ixs40vv/oG/6QEdLq2H6HRMqDruo/uqrXbLbo3nU6hKDJy2SyYxN84SbHY3UtCkFV/wHa7jXw+Hwqmazp9mfQ5x7FIp//zZmbQfOOLWDKZpJPmrmtqVEJMIu7NyODZs1xL6XkByQAgnUG+TsYRx7IolYpwxk7odFu9rq6QsCVZQiaTpoMiSCUYZN0RSikHD3eX8mqFH/pHsS7w/3qN84xaJuhGAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/27cc716848c32d4aaa355e0de1d144f1/a59e9/optimal_substructure_shortest_path.webp 192w,
+/static/27cc716848c32d4aaa355e0de1d144f1/ee7f6/optimal_substructure_shortest_path.webp 207w"
+              sizes="(max-width: 207px) 100vw, 207px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/27cc716848c32d4aaa355e0de1d144f1/3b721/optimal_substructure_shortest_path.png 192w,
+/static/27cc716848c32d4aaa355e0de1d144f1/3c09e/optimal_substructure_shortest_path.png 207w"
+            sizes="(max-width: 207px) 100vw, 207px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/27cc716848c32d4aaa355e0de1d144f1/3c09e/optimal_substructure_shortest_path.png"
+            alt="최단 경로를 찾는 최적 부분 구조 문제"
+            title="최단 경로를 찾는 최적 부분 구조 문제"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+서울에서 부산까지 가는 최단 경로를 찾는 간단한 예를 들어보자.<br>
+그림에서 보듯이, 서울에서 대구까지 가는 경로는 3가지가 있으며, 부산까지도 마찬가지로 3가지 경로가 있다. 서울에서 부산까지 가는 최단 경로는 <code class="language-text">서울에서 대구까지 가는 최단 경로(200km)</code>와 <code class="language-text">대구에서 부산까지 가는 최단 경로(80km)</code>로 구성된다. 즉, 서울에서 부산까지 가는 최단 경로는 각각의 <code class="language-text">부분 문제</code>인 1.서울에서 대구까지 가는 최단 경로 문제와 2.대구에서 부산까지 가는 최단 경로 문제의 해결 방법의 합이다. 따라서, 문제의 최적 해결 방법은 부분 문제에 대한 최적 해결 방법으로 구성된다.<br>
+이러한 구조를 <code class="language-text">최적 부분 구조</code>라 하며, 이런 유형의 문제는 분할 정복으로 풀 수 있다. 또한 DP 또는 그리디로 접근해볼 수 있는 문제의 후보가 된다. 그러나, 만약 서울에서 부산까지 바로 연결되는 고속도로가 새롭게 개통되어 더 이상 대구를 거칠 필요가 없다면, 이 문제는 더 이상 최적 부분 구조가 아니다. 더는 분할 정복으로 풀 수 없으며, DP나 그리디로도 풀이할 수 없다.</p>
+<h1 id="중복된-하위-문제들" style="position:relative;">중복된 하위 문제들<a href="#%EC%A4%91%EB%B3%B5%EB%90%9C-%ED%95%98%EC%9C%84-%EB%AC%B8%EC%A0%9C%EB%93%A4" aria-label="중복된 하위 문제들 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>DP로 풀 수 있는 문제들과 다른 문제들의 결정적인 차이는 <code class="language-text">중복된 하위 문제들을 갖는다는 점</code>이다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 257px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/64913c7a9690bbd2f8afa4c2bd70f776/7101e/duplicate_subproblems.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 117.70833333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAACXBIWXMAAA7DAAAOwwHHb6hkAAACL0lEQVQ4y51Vaa/aMBDM//93/fJUlQoexAmEnLZzQY6pZsHIDeQ9WkuWvT7Gs7O7SbALU7CHxxLqVMl8H+WIkgqHKMNeZVCnEp8qx/aQYRdm2EcFdmGO3/sMvz5T/Nwm+Ngc8eMjRDBPI1S4R1nkGK4XpMkJySnGOFxhTIU4Uui7FtZUGIcLvmvBNM2YpgnTPGMYRjRNi3mG2F3X4d0mGNOEYObtextHAjYPuyxL5FmGvu/Rti3yPEdd1/IQ94wxcp57bMQSQAe6BOTlOI7RtK3MlVKoqkoAkyRBmqbQWkt/ALqJA+RFf801shzH4eEebb+580+AjqFj7vbIyoHwnFIhjsejuP4lQx/QHwk2DMOD0fV6xeVykZH3VgF9gf2RDI3WAkBgB/LfLvd9h91uiyzLJLq60n+dW2W4FPurtgzcE0NGL4oinM9n0UdXrJRIZCBz7jFtOPcD4QMHy0WmTVWWAmitQVkUol9T15LY7T2RXRW9BFxzwS89PuBH+VuXfWHdnK65aHZdi81mI9XBoDD/XgUveBJ6kSpLRuzUei1IwatFB1gUhTBySUyb+pE1WVprZY+6rzNcBCgMQxkJECklrlIK93Fw7q8CrglOJs5VjrTfcnlZdg5k+XEgc7J0Oflg6EdprS/ThmsEchrysX8GJDsCkB1ZLyVxZ4N365ZMDoeDBIDAdW1f/6QYQXvvdd3c5vZuN438tG7jreR4xtga2hgYY2GshTZW7Epr/AE/IlkLkZqHDAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/64913c7a9690bbd2f8afa4c2bd70f776/a59e9/duplicate_subproblems.webp 192w,
+/static/64913c7a9690bbd2f8afa4c2bd70f776/5dc06/duplicate_subproblems.webp 257w"
+              sizes="(max-width: 257px) 100vw, 257px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/64913c7a9690bbd2f8afa4c2bd70f776/3b721/duplicate_subproblems.png 192w,
+/static/64913c7a9690bbd2f8afa4c2bd70f776/7101e/duplicate_subproblems.png 257w"
+            sizes="(max-width: 257px) 100vw, 257px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/64913c7a9690bbd2f8afa4c2bd70f776/7101e/duplicate_subproblems.png"
+            alt="중복된 하위 문제들을 갖는 문제"
+            title="중복된 하위 문제들을 갖는 문제"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+f(3) = f(2) + f(1) 이며, f(4) = f(3) + f(2) 이다. f(5) 또한 f(5) = f(4) + f(3) 이다. 이처럼, 피보나치 수열을 재귀로 풀면 반복적으로 동일한 하위 문제들이 발생한다. 이러한 <code class="language-text">중복된 하위 문제들을 풀이할 때, DP는 이미 계산한 결과를 저장해두었다가 재활용</code>한다.<br>
+즉, <code class="language-text">중복 문제가 발생하지 않는 병합 정렬</code>은 <code class="language-text">분할 정복</code>으로 분류되지만, 피보나치 수열을 풀이하는 알고리즘은 DP로 분류된다.</p>
+<h1 id="다이나믹-프로그래밍-방법론" style="position:relative;">다이나믹 프로그래밍 방법론<a href="#%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EB%B0%A9%EB%B2%95%EB%A1%A0" aria-label="다이나믹 프로그래밍 방법론 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>지금까지 <code class="language-text">최적 부분 구조</code>와 중복된 하위 문제들로 구성된 <code class="language-text">DP</code>의 패러다임을 살펴봤고, 이제부터는 DP의 방법론을 알아볼 차례이다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 496px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/84fa274e941b69889d710bc94ea69433/60009/DP_Table.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 45.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB4UlEQVQoz1WSzW8SYRDGOTdeG4+VJh4l4rH+CabHBtSY6IEYr/WqxNT/wBC91xOoJH62CRe12CoGDNBYMDYUDBGWj90Flm/4mRko6iRP3n13Zp53nplxAfT7A5rNJpZlYVnm/LRotVoL2La9+C8wTfP/b9NkMpngGo/HGlwoFEin06SSSQ7294nH43S73QX6/b4mCAaDgaLT6dBut9V/+uiCsFKpUC6XcRyH0WikweKDKePx7C4k4iuVSmQyGf61RqNBqzUnNAyDXq9HJBzmcSik8sVOTop8+ZygUPhFtWooodjeXpxA4A5bWw+5fy/I9vZTqtWq5rmGwyFO1+FZJMLqOTdnl5fx+/wq7VP8gNCjJ7x4/ppy+Te1Wg3btvjw/iO3bgbY2PCxfmWdYPABFSVs4BIJ0ofbgQCX19bw+67iveglmUyqvFTqG/l8nq7jUCwWFVJNIvGVaDRKLBZTf71en1Wo/XI67O7s4F5Z4czSEnc3N1VaNpPl1cs3vHu7y9H3o3lPIRyO4PFc4oLHi3v1PNeu39AZKKFIM4yqBh4f/9QJSxvEbMtWmbIaEiyPS7wk53I58vkfZA8PdUNkDko4nU51ylKySJfhiEPus10z9ZQpnu6d+Gdr8ncPpQ2S+weVbHaUQdRubwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/84fa274e941b69889d710bc94ea69433/a59e9/DP_Table.webp 192w,
+/static/84fa274e941b69889d710bc94ea69433/0ca9f/DP_Table.webp 384w,
+/static/84fa274e941b69889d710bc94ea69433/8d866/DP_Table.webp 496w"
+              sizes="(max-width: 496px) 100vw, 496px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/84fa274e941b69889d710bc94ea69433/3b721/DP_Table.png 192w,
+/static/84fa274e941b69889d710bc94ea69433/66595/DP_Table.png 384w,
+/static/84fa274e941b69889d710bc94ea69433/60009/DP_Table.png 496w"
+            sizes="(max-width: 496px) 100vw, 496px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/84fa274e941b69889d710bc94ea69433/60009/DP_Table.png"
+            alt="다이나믹 프로그래밍의 패러다임과 방법론"
+            title="다이나믹 프로그래밍의 패러다임과 방법론"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+이 그림에서 방법론은 방식에 따라 크게 상향식과 하향식으로 나뉜다. 일반적으로 상향식을 <code class="language-text">타뷸레이션</code>, 하향식을 <code class="language-text">메모이제이션</code>이라고 부른다.</p>
+<h2 id="상향식bottom-up" style="position:relative;">상향식(Bottom-Up)<a href="#%EC%83%81%ED%96%A5%EC%8B%9Dbottom-up" aria-label="상향식bottom up permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>더 작은 하위 문제부터 살펴본 다음, 작은 문제의 정답을 이용해 큰 문제의 정답을 풀어나간다.<code class="language-text">타뷸레이션(Tabulation) </code>이라 부르며, 일반적으로 이 방식만을 DP로 지칭하기도 한다.</p>
+<h2 id="하향식top-down" style="position:relative;">하향식(Top-Down)<a href="#%ED%95%98%ED%96%A5%EC%8B%9Dtop-down" aria-label="하향식top down permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>하위 문제에 대한 정답을 계산했는지 확인해가며 문제를 자연스러운 방식으로 풀어나간다. 이 방식을 특별히 <code class="language-text">메모이제이션(Memoization)</code>이라 지칭한다.</p>
+<p>피보나치 수열의 예제 코드를 보면서 상향식과 하향식의 차이를 살펴보자.</p>
+<h3 id="피보나치-수열---상향식" style="position:relative;">피보나치 수열 - 상향식<a href="#%ED%94%BC%EB%B3%B4%EB%82%98%EC%B9%98-%EC%88%98%EC%97%B4---%EC%83%81%ED%96%A5%EC%8B%9D" aria-label="피보나치 수열   상향식 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">fib</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+	dp<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+
+	<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span>
+	<span class="token keyword">return</span> dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span></code></pre></div>
+<p>작은 하위 문제부터 차례대로 정답을 풀어나가며 큰 문제의 정답을 만든다. 이 방식을 <code class="language-text">타뷸레이션</code>이라 하며, 이 방식만을 DP라 지칭하는 경우도 있다. 데이터를 테이블 형태로 만들면서(Tabulate) 문제를 풀이한다고 하여 타뷸레이션 방식이라고 부른다.</p>
+<h3 id="피보나치-수열---하향식" style="position:relative;">피보나치 수열 - 하향식<a href="#%ED%94%BC%EB%B3%B4%EB%82%98%EC%B9%98-%EC%88%98%EC%97%B4---%ED%95%98%ED%96%A5%EC%8B%9D" aria-label="피보나치 수열   하향식 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">fib</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> n <span class="token operator">&lt;=</span> <span class="token number">1</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> n
+
+	<span class="token keyword">if</span> dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span>
+	dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> fib<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> fib<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span></code></pre></div>
+<p>하향식 방법론은 하위 문제에 대한 정답을 계산했는지 확인해가며 문제를 자연스럽게 <code class="language-text">재귀</code>로 풀어나간다. 기존 재귀 풀이와 거의 동일하면서도 <code class="language-text">이미 풀어봤는지 확인하여 재활용</code>하는 효율적인 방식으로, 메모이제이션 방식이라고 부른다.</p>
+<h1 id="85-피보나치-수" style="position:relative;">85. 피보나치 수<a href="#85-%ED%94%BC%EB%B3%B4%EB%82%98%EC%B9%98-%EC%88%98" aria-label="85 피보나치 수 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="풀이-1-재귀-구조-브루트-포스" style="position:relative;">풀이 1. 재귀 구조 브루트 포스<a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0-%EB%B8%8C%EB%A3%A8%ED%8A%B8-%ED%8F%AC%EC%8A%A4" aria-label="풀이 1 재귀 구조 브루트 포스 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">fib</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> N <span class="token operator">&lt;=</span> <span class="token number">1</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> N
+	<span class="token keyword">return</span> fib<span class="token punctuation">(</span>N <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> fib<span class="token punctuation">(</span>N <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span></code></pre></div>
+<p>888ms가 걸리는 느린 풀이이다. 최적화가 필요하다.</p>
+<h2 id="풀이-2-메모이제이션" style="position:relative;">풀이 2. 메모이제이션<a href="#%ED%92%80%EC%9D%B4-2-%EB%A9%94%EB%AA%A8%EC%9D%B4%EC%A0%9C%EC%9D%B4%EC%85%98" aria-label="풀이 2 메모이제이션 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>DP의 하향식 풀이로 정리한 것이 바로 이 문제의 메모이제이션 풀이이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">:</span>
+	dp <span class="token operator">=</span> collections<span class="token punctuation">.</span>defaultdict<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">fib</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> N <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">:</span>
+			<span class="token keyword">return</span> N
+
+		<span class="token keyword">if</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>N<span class="token punctuation">]</span> <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>N<span class="token punctuation">]</span>
+		self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>N<span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>fib<span class="token punctuation">(</span>N <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>fib<span class="token punctuation">(</span>N <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>N<span class="token punctuation">]</span></code></pre></div>
+<p>원래의 브루트 포스 풀이와 유사하게 재귀로 계산해 나가지만, <code class="language-text">이미 계산한 값은 저장해뒀다가 바로 리턴</code>한다. 앞서 fib(5) 일때 15번의 연산을 진행하던 구조는 이 메모이제이션 풀이에서는 밑의 그림과 같이 9번의 연산만으로 풀이할 수 있게 된다. 한번 계산한 수는 더 이상 계산하지 않으므로, fib(2) 와 fib(3) 은 한 번만 계산하게 되어 매우 효율적이다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 488px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/062e2654d59c492b4764b63283c43923/4cd97/memoization_tree.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 43.22916666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABJElEQVQoz4WS20+DMBTG+f//GR/mw2L0QTIgspGZ+TDcWBEqFxkYFuQil32mzUa4qSdpek7p+fr7aAVc4nw+9+ZuFEUBwzBACEFd16N93V6hW1zzpml4zpqzLIPneRBFEZIkIQgCvsa+V1WJsvzuiQrD06qqwstmA221QhzHvO4GOyTPc048u51jfveAd0pbEOFKxjaWZYnTKYZJCPa7HcLwiK8k4ZaHLtI0haw8QRQXiKJwbPkzirAQH0EORkujLjXczO6xXj/3BKf+c2uZJXmeIfjw8WYSUGpzKhZJksD3fT4PCbvivUthiWUSqIoM13GgLVW86vqI4jeq4W0LxyAAtS24roODsQerpyiGz2NqcMtMRN9uQSmFIsuwLevP5v8EfwCW+rcKTzFzCgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/062e2654d59c492b4764b63283c43923/a59e9/memoization_tree.webp 192w,
+/static/062e2654d59c492b4764b63283c43923/0ca9f/memoization_tree.webp 384w,
+/static/062e2654d59c492b4764b63283c43923/a6b86/memoization_tree.webp 488w"
+              sizes="(max-width: 488px) 100vw, 488px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/062e2654d59c492b4764b63283c43923/3b721/memoization_tree.png 192w,
+/static/062e2654d59c492b4764b63283c43923/66595/memoization_tree.png 384w,
+/static/062e2654d59c492b4764b63283c43923/4cd97/memoization_tree.png 488w"
+            sizes="(max-width: 488px) 100vw, 488px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/062e2654d59c492b4764b63283c43923/4cd97/memoization_tree.png"
+            alt="피보나치 수 메모이제이션 계산 트리"
+            title="피보나치 수 메모이제이션 계산 트리"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+만약 시작이 fib(5)가 아니라 5보다 훨씬 더 큰 수라면 성능 차이는 훨씬 더 클 것이다.</p>
+<h2 id="풀이-3-타뷸레이션" style="position:relative;">풀이 3. 타뷸레이션<a href="#%ED%92%80%EC%9D%B4-3-%ED%83%80%EB%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98" aria-label="풀이 3 타뷸레이션 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>상향식 풀이의 코드는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+	dp <span class="token operator">=</span> collections<span class="token punctuation">.</span>defaultdict<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">fib</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+		self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+
+		<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> N <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>N<span class="token punctuation">]</span></code></pre></div>
+<p>재귀를 사용하지 않고 <code class="language-text">반복으로 풀이</code>하며, 작은 값부터 직접 계산하면서 타뷸레이션한다. 미리 계산을 해두는 것인데, 다른 복잡한 DP와는 달리 타뷸레이션이 <code class="language-text">일차원 선형 구조</code>라 복잡하지 않고, 구조 자체도 단순해 이해가 쉬운 편이다. 메모이제이션과 마찬가지로 실행 속도도 당연히 빠르다.</p>
+<h2 id="풀이-4-두-변수만-이용해-공간-절약" style="position:relative;">풀이 4. 두 변수만 이용해 공간 절약<a href="#%ED%92%80%EC%9D%B4-4-%EB%91%90-%EB%B3%80%EC%88%98%EB%A7%8C-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EA%B3%B5%EA%B0%84-%EC%A0%88%EC%95%BD" aria-label="풀이 4 두 변수만 이용해 공간 절약 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>그런데 사실 앞서 풀이는 dp라는 딕셔너리(사실 단순 배열만 사용해도 충분하다)에 결과를 차곡차곡 담아 나갔지만 변수는 2개만 있어도 충분하다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">fib</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	x<span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span>
+	<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		x<span class="token punctuation">,</span> y <span class="token operator">=</span> y<span class="token punctuation">,</span> x <span class="token operator">+</span> y
+	<span class="token keyword">return</span> x</code></pre></div>
+<p>이 경우 앞서 풀이처럼 메소드 바깥에 클래스의 멤버 변수도 선언할 필요가 없기 때문에 코드는 훨씬 더 간결해진다. 공간 복잡도도 O(n) 에서 O(1)로 줄어든다. 시간 복잡도는 동일한 O(n) 이므로 매우 효율적이다.</p>
+<h2 id="풀이-5-행렬" style="position:relative;">풀이 5. 행렬<a href="#%ED%92%80%EC%9D%B4-5-%ED%96%89%EB%A0%AC" aria-label="풀이 5 행렬 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>DP와는 관련없지만, n번째 피보차니 수를 O(log n) 번의 연산만으로 구할 수 있는 방법이 있다. 바로 <code class="language-text">넘파이</code> 모듈을 사용하는 방식이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">fib</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	M <span class="token operator">=</span> np<span class="token punctuation">.</span>martix<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	vec <span class="token operator">=</span> np<span class="token punctuation">.</span>array <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> np<span class="token punctuation">.</span>matmul<span class="token punctuation">(</span>M <span class="token operator">**</span> n<span class="token punctuation">,</span> vec<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span></code></pre></div>
+<p>풀이 2부터 4는 각각 28ms, 24ms, 24ms가 된다.</p>
+<h2 id="code-classlanguage-text0-1-배낭-문제code" style="position:relative;"><code class="language-text">0-1 배낭 문제</code><a href="#code-classlanguage-text0-1-%EB%B0%B0%EB%82%AD-%EB%AC%B8%EC%A0%9Ccode" aria-label="code classlanguage text0 1 배낭 문제code permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>DP의 또 다른 대표 문제 중 하나인 배낭 문제를 살펴보자. 짐을 쪼갤 수 없는 0-1 배낭 문제이다. 이 문제는 <code class="language-text">탐욕 선택 속성</code>이 있는 문제가 아니며, <code class="language-text">중복된 하위 문제들</code> 속성을 갖고 있으므로, DP 풀이할 수 있다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 343px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/307e25f350b4b78f05cc4be17f97ee26/56e50/0-1_backpack.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 77.60416666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACj0lEQVQ4y3VT207bQBD11/AZwFP5APpIn4FvKBKVKvEDUKmqEKhRSoCmEIJzQUWlNHYuVXyBUiclJk5zcewkJIg0Qblxql1kE5ww0mo8u2fHZ8/MMPf397AWMeK73S5dTrMw1jdZg8EA/X6femLMMKh5e4tKxcT19TUMw0DkRwSJRIKedTsdO5F12WlknyEf7XYbgiDi7OwMpllBLpcD6z+E66MLoUAYjXodXCQywrqk6zBNA7FYDJlM5oEhx0UgyzJSyh8kk0lE+RiyqoYP797Du7MLNaNSYLFYoL7X6yEej4Pc29/bg3vLg/mFRfslTLPZhGmayOcLkH+loaTS0LIaxGSSAqrVKny+fWSzWRoTvTKXl1AUBVueL9j3HUAUJVsOxqJPgKpWRq/3KHCj0UAoFMTa6ipOTr6hVCo90U/7q48UjCGAcSJ3Oh3wPE/ZEn0OfD6wLItKtWITGNcFzHDQarVw176j8c3NDfVerxfT01OYmpzExMQE1tZW7QSkSKSg9XqdesrQapGf8QRl9Hlnlx6Q/Vg0CkmS8GpuDi9nZzHzYgbBYBCFQgGpVApH4TC2Pdt4vbSEdDr9kFAQBCowx8Xhcm1BEkV6YBoG2EM/Li4u4D/wIadp2NzYoB1Rq9VglMsIBI6wvr4JjuMeG9uin81XkCvW7Ofouo58Pg9VVfFmeRnhcAiL8wso62UbUyxV0Wp3nmr4OEIPE2D9iegjCgJtWlmS6fOv1Kux00IKZFfZOaPOmIhN+pS00Pn5OY6/Ho/M85O2Gd4YBpDxI8Kffj9FlI+C52NYebuCTy43nHeGjXEyswCyJNHZVn4rYA8DcLs98PtZyvS5ZCMJxz15MOjjKqej+a819tyZ8D+dz5pfYyfRVQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/307e25f350b4b78f05cc4be17f97ee26/a59e9/0-1_backpack.webp 192w,
+/static/307e25f350b4b78f05cc4be17f97ee26/a9e3b/0-1_backpack.webp 343w"
+              sizes="(max-width: 343px) 100vw, 343px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/307e25f350b4b78f05cc4be17f97ee26/3b721/0-1_backpack.png 192w,
+/static/307e25f350b4b78f05cc4be17f97ee26/56e50/0-1_backpack.png 343w"
+            sizes="(max-width: 343px) 100vw, 343px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/307e25f350b4b78f05cc4be17f97ee26/56e50/0-1_backpack.png"
+            alt="0-1 배낭 문제"
+            title="0-1 배낭 문제"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+단가 순으로 그리디하게 배치해서 풀이했던 분할 기능 배낭 문제와 달리, 0-1 배낭 문제는 짐을 쪼갤 수 없다. 이 경우 모든 경우의 수를 계산해야 하며, 이렇게 모든 경우의 수를 계산하는 문제에서 DP는 위력을 발휘한다. 다음과 같이 풀이할 수 있따. 먼저, 입력값으로 짐을 정의하고 zero_one_knapsack() 풀이 함수를 호출한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">cargo <span class="token operator">=</span> <span class="token punctuation">[</span>
+	<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment"># (value, weight)</span>
+	<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span>
+
+r <span class="token operator">=</span> zero_one_knapsack<span class="token punctuation">(</span>cargo<span class="token punctuation">)</span></code></pre></div>
+<p>zero_one_knapsack() 함수는 다음과 같이 정의한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">zero_one_knapsack</span><span class="token punctuation">(</span>cargo<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	capacity <span class="token operator">=</span> <span class="token number">15</span>
+	pack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span></code></pre></div>
+<p>pack 이라는 리스트 변수에 6 X 16 행렬 형태의 중간 결과 테이블이 생성될 것이다. 즉, 이 테이블을 그자 그대로 <code class="language-text">타뷸레이션</code> 하는 DP 풀이가 될 것이다. 테이블의 크기의 기준은 짐의 최대 개수 + 1, 배낭의 최대 용량 + 1 이렇게 6 X 16이며, 이 테이블 각각의 셀에는 그 위치까지의 짐의 개수와 배낭의 용량에 따른 최댓값이 담기게 된다.<br>
+실제로 어떤 값인지는 먼저 전체 코드부터 먼저 살펴본 이후에 다시 정리해보자.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">zero_one_knapsack</span><span class="token punctuation">(</span>cargo<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	capacity <span class="token operator">=</span> <span class="token number">15</span>
+	pack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+	<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>cargo<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		pack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+		<span class="token keyword">for</span> c <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>capacity <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+			<span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">or</span> c <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+				pack<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+			<span class="token keyword">elif</span> cargo<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;=</span> c <span class="token punctuation">:</span>
+				pack<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>
+					<span class="token builtin">max</span><span class="token punctuation">(</span>
+						cargo<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> pack<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>c <span class="token operator">-</span> cargo<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+						pack<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span>
+					<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+			<span class="token keyword">else</span> <span class="token punctuation">:</span>
+				pack<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>pack<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> pack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre></div>
+<p>이 코드의 실행 결과로 pack에는 다음과 같은 표가 생성된다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 460px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a6f58470f73862a23491af8042c682f0/610aa/0-1_knapsack_tabulation.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 35.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABpElEQVQoz1WQ3UsUURiH55/ppigyQYOyCyOyCLpJLdzAXAs3qZQ+iAJdEEW82AoiLzToqivvvO9vsfn+2J2dmZ05M7NjPnHOLEQHDuf3vnCe9+HVDg6P2No55OXbDs/X91he3WKp1Wah+ZEHj18zc7/J9J0GUzdnuXJ1hrHJW1y4PMW58xNcGr/BxbHrTF67zfjENBvtHbTj41/sHxzR+fqT3c4Ptve+s7m9z/vNL6y922V1rU3r1QYrLz6wvPKGpWfrNBZbPGw8ZX6hydyjJ8zOL3L33hyfPn9DOzv7Q1WVFIWgGhacng5VLnJBLrK6zgUiS6mqOmfpgGpYkiQxZVmQZQPSQYI8mshzkiSh1+vR7/eJ45hut6uu7/uEYahex3FUz/M8LMsiCAJ0XcexbSzL5PfJCUIItKIoSNMBURQpcJqmKtfQQAHlMAkKw54C2bateqZp4rkuruNgmQZ5no+Ag/+B/ywDBZDm8pPMge8rQ89zcV0Xw9AJAh/dMMgksCxLpSotsywb5dpSguMoVoOkqezV9sFoRXIdHlHUx/V9RFHwF2U61T4IcS1lAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a6f58470f73862a23491af8042c682f0/a59e9/0-1_knapsack_tabulation.webp 192w,
+/static/a6f58470f73862a23491af8042c682f0/0ca9f/0-1_knapsack_tabulation.webp 384w,
+/static/a6f58470f73862a23491af8042c682f0/41b05/0-1_knapsack_tabulation.webp 460w"
+              sizes="(max-width: 460px) 100vw, 460px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a6f58470f73862a23491af8042c682f0/3b721/0-1_knapsack_tabulation.png 192w,
+/static/a6f58470f73862a23491af8042c682f0/66595/0-1_knapsack_tabulation.png 384w,
+/static/a6f58470f73862a23491af8042c682f0/610aa/0-1_knapsack_tabulation.png 460w"
+            sizes="(max-width: 460px) 100vw, 460px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a6f58470f73862a23491af8042c682f0/610aa/0-1_knapsack_tabulation.png"
+            alt="0-1 배낭 문제 타뷸레이션 풀이"
+            title="0-1 배낭 문제 타뷸레이션 풀이"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>이 표에서 세로 축은 짐의 개수, 가로축은 배낭의 용량이다. 각각의 셀은 그 위치까지의 짐의 개수와 배낭의 용량에 따른 최댓값이다. 즉 짐이 4개가 있을 때는 차례대로 ($4, 12kg), ($2, 1kg), ($10, 4kg), ($1, 1kg) 일 것이고, 배냥의 용량이 4라면 4kg인 $10 짜리 짐 하나를 담는게 가장 이익이다. 따라서, 4 X 4 위치의 최댓값은 10이며 위의 표에서도 10인 것을 확인할 수 있다. 배낭의 용량이 5라면 1kg 인 $2 를 추가해 12가 될 수 있다. 마찬가지로 표에서도 12다. 이렇게 가장 마지막 위치인 5 X 15 까지 이동한 총 5개의 짐, 용량이 15인 배낭의 최댓값은 15이며, 이 문제의 정답은 15임을 확인할 수 있다.<br>
+이렇게 최아의 경우 O(2^n) 의 계산이 필요한 0-1 배낭 문제를 여기서는 <code class="language-text">타뷸레이션</code> 방식으로 O(nW)(여기서 n은 짐의 개수, W는 배낭의 용량)에 잘 풀이해봤다.</p>
+<h1 id="86-최대-서브-배열" style="position:relative;">86. 최대 서브 배열<a href="#86-%EC%B5%9C%EB%8C%80-%EC%84%9C%EB%B8%8C-%EB%B0%B0%EC%97%B4" aria-label="86 최대 서브 배열 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>합이 최대가 되는 연속 서브 배열을 찾아 합을 리턴하라.</p>
+<ul>
+<li>
+<p>입력
+[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
+</li>
+<li>
+<p>출력
+6</p>
+</li>
+</ul>
+<h2 id="풀이-1-메모이제이션" style="position:relative;">풀이 1. 메모이제이션<a href="#%ED%92%80%EC%9D%B4-1-%EB%A9%94%EB%AA%A8%EC%9D%B4%EC%A0%9C%EC%9D%B4%EC%85%98" aria-label="풀이 1 메모이제이션 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>언뜻 투 포인터 문제인가 하는 생각이 들 수 있다. 그런데 생각해보면, 투 포인터로 풀이하기는 어렵다.<br>
+왼쪽 포인터가 -2이고, 오른쪽 포인터가 4라고 했을 때, 그 사잇값이 최대가 되기 위해서는 음수를 지나치는 방식으로 알고리즘을 구현해야 하는데, 연속된 서브 배열을 찾아야 하는 문제인 만큼 정렬을 할 수 없고, 그렇다면 다음 숫자가 뭐가 될지 모르는 상황에서 단순히 음수를 건너 뛰는 방식으로는 구현이 어렵다. 무엇보다 효율적으로 투 포인터로 풀이하기 위해서는 <code class="language-text">정렬이 필요하다</code>.<br>
+그렇다면, 메모이제이션을 이용해 다음과 같은 결과를 만드는게 효과적이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token comment">#nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]</span>
+sums <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span></code></pre></div>
+<p>앞에서부터 계속 값을 계산하면서 누적 합을 계산한다. 이전 값을 계속 더해나가되, 0 이하가 되면 버린다. 어차피 최댓값을 찾는데 0 이하인 값은 굳이 서브 배열에 포함할 이유가 없기 때문이다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">maxSubArray</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	sums <span class="token operator">=</span> <span class="token punctuation">[</span>nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+	<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		sums<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">(</span>sums<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">if</span> sums<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">else</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>sums<span class="token punctuation">)</span></code></pre></div>
+<p>이렇게 메모이제이션으로 값을 더해 나간 sums에서 최댓값을 추출하면 서브 배열의 최댓값을 찾을 수 있다. 여기서 sums라는 별도 변수를 사용했는데 가만히 살펴보면 추가 변수 없이도 충분히 처리가 가능할 것 같다. 전체 코드는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">maxSubArray</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> nums<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">else</span> <span class="token number">0</span>
+	<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span></code></pre></div>
+<p>기존 nums에 합을 함께 넣었다. 공간을 재활용하여 공간 복잡도를 없앴고, 풀이도 좀 더 깔끔해졌다.</p>
+<h2 id="풀이-2-카데인-알고리즘" style="position:relative;">풀이 2. 카데인 알고리즘<a href="#%ED%92%80%EC%9D%B4-2-%EC%B9%B4%EB%8D%B0%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" aria-label="풀이 2 카데인 알고리즘 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>제이 카데인이 O(n)에 풀이가 가능하도록 고안한 <code class="language-text">카데인 알고리즘</code> 이라는 해법도 존재한다. 당시 그는 최대 서브 배열을 찾기 위해 어디서 시작되는지를 찾는 문제 O(n^2) 풀이에서 각 단계마다 최댓값을 담아 어디서 끝나는지를 찾는 문제 O(n) 풀이로 치환해서 풀이했다. 전체 풀이 코드는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">maxSubArray</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	best_sum <span class="token operator">=</span> <span class="token operator">-</span>sys<span class="token punctuation">.</span>maxsize
+	current_sum <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token keyword">for</span> num <span class="token keyword">in</span> nums <span class="token punctuation">:</span>
+		current_sum <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span> current_sum <span class="token operator">+</span> num<span class="token punctuation">)</span>
+		best_sum <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>best_sum<span class="token punctuation">,</span> current_sum<span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> best_sum</code></pre></div>
+<p>이전 풀이에서는 매번 계산해서 넣기만 하고 마지막에 max()를 전체 계산해서 가져오게 했지만, 당시 제이 카데인은 이런 형태로 매번 best_sum 을 계산하게 했다. 하지만 사실상 동일한 코드로 볼 수 있으며, 속도 또한 양쪽 모두 동일하다.</p>
+<h1 id="87-계단-오르기" style="position:relative;">87. 계단 오르기<a href="#87-%EA%B3%84%EB%8B%A8-%EC%98%A4%EB%A5%B4%EA%B8%B0" aria-label="87 계단 오르기 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>정상에 도달하기 위해 n 계단을 올라야 한다. 매번 각각 1계단 또는 2계단씩 오를 수 있다면 정상에 도달하기 위한 방법은 몇 가지 경로가 되는지 계산하라.</p>
+<ul>
+<li>입력<br>
+3</li>
+<li>출력<br>
+3</li>
+<li>설명<br>
+정상에 오르기 위한 방법은 3가지 경로가 있다.<br>
+a. 1계단 + 1계단 + 1계단<br>
+b. 1계단 + 2계단<br>
+c. 2계단 + 1계단</li>
+</ul>
+<h2 id="풀이-1-재귀-구조-브루트-포스-1" style="position:relative;">풀이 1. 재귀 구조 브루트 포스<a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0-%EB%B8%8C%EB%A3%A8%ED%8A%B8-%ED%8F%AC%EC%8A%A4-1" aria-label="풀이 1 재귀 구조 브루트 포스 1 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>언뜻 생각해보면 모든 경우의 수를 다 찾아야해서 상당히 풀기 어려워 보인다. 그러나 다음과 같이 경우의 수를 하나씩 그려보면 기본적으로 피보나치 수와 동일한 유형의 문제라는 것을 알 수 있다. 다만, 방법과 형식이 달라 연상하기 어려울 뿐이며, 동일한 방식으로 풀이할 수 있다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 334px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/961839c5540dcd9296c328bf35fcd76a/ce235/climb_stairs_bruteforce.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 64.58333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAByElEQVQ4y32T246iQBCGef9XMd54NZuwiYlmNOqKMaJIUAE5i6AGm4PIv6neyI6MTicd+lD9V9VXhYAXo6oq/DQe9/Rt2grvjO/3OxzHhW3bGAwG0DQNnuchiqInseZ8K5jnOSzLwvl8RqfTQavVguu6cF2ndvhSsBn+Y3+73bDf7yHLMlarFfr9PobDIXw/+FnwHbMkSWHZDk6nU33G2BXT2RJXlr3k+hRhXhScURiGnNt8PucRfn1Ad7PZDNvtFqqqwjRNHMLwtWAcx5iMRzAMHYPPT/R6PfiehyRJ6geKomA8HmO5XKLdbmOxWHCnj/R5lb8yi+IT9qaJOI5g6Do8P0RV/Te+MgZV1XilqWC6buBwONZMv7WN5fhI05Svg+AA3fSeOLE0w043671pWtA2xhMWgdrCsW3oux1POQgCzooiVJQVZ+n7PgzD4L1IPUlnxFuSJD6p+t1uF4wxCJ7rQJr+gSwv8FsUsV6vOfTJZAJpOsWvjw9sNhvOjgpC7TMajbgNiRNH4i2KIuctUO5FkeNyuSDPM5RlyXmQNyrUv/uCnx+PR2RZxnlTenRHbUVCtKZZMyzL27d+JKHmvmlDIuTs8S//BUkT3cfgjM7hAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/961839c5540dcd9296c328bf35fcd76a/a59e9/climb_stairs_bruteforce.webp 192w,
+/static/961839c5540dcd9296c328bf35fcd76a/cfe07/climb_stairs_bruteforce.webp 334w"
+              sizes="(max-width: 334px) 100vw, 334px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/961839c5540dcd9296c328bf35fcd76a/3b721/climb_stairs_bruteforce.png 192w,
+/static/961839c5540dcd9296c328bf35fcd76a/ce235/climb_stairs_bruteforce.png 334w"
+            sizes="(max-width: 334px) 100vw, 334px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/961839c5540dcd9296c328bf35fcd76a/ce235/climb_stairs_bruteforce.png"
+            alt="피보나치 수열과 동일한 형태의 풀이"
+            title="피보나치 수열과 동일한 형태의 풀이"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+이처럼 새로운 유형의 문제를 피보나치 수열 같은 기존의 유명한 문제와 연결해 풀이하는 방법은 문제 해결에 매우 좋은 방법이다. 피보나치 수열과 완전히 동일한 풀이로 다음과 같이 간단한 재귀로 풀 수 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">climbStairs</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token number">1</span>
+	<span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">2</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token number">2</span>
+	<span class="token keyword">return</span> climbStairs<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> climbStairs<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span></code></pre></div>
+<p>그러나 타임아웃이 발생하므로, 메모이제이션을 적용해야 한다.</p>
+<h2 id="풀이-2-메모이제이션-1" style="position:relative;">풀이 2. 메모이제이션<a href="#%ED%92%80%EC%9D%B4-2-%EB%A9%94%EB%AA%A8%EC%9D%B4%EC%A0%9C%EC%9D%B4%EC%85%98-1" aria-label="풀이 2 메모이제이션 1 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">:</span>
+	dp <span class="token operator">=</span> collections<span class="token punctuation">.</span>defaultdict<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">def</span> <span class="token function">climbStairs</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> n <span class="token operator">&lt;=</span> <span class="token number">2</span> <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> n
+
+		<span class="token keyword">if</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span>
+
+		self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>climbStairs<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> self<span class="token punctuation">.</span>climbStairs<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span>
+		<span class="token keyword">return</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span></code></pre></div>
+<p>40ms가 걸린다. 기존의 풀이와 연결해 풀이하는 연습을 꾸준히 해보자.</p>
+<h1 id="88-집-도둑" style="position:relative;">88. 집 도둑<a href="#88-%EC%A7%91-%EB%8F%84%EB%91%91" aria-label="88 집 도둑 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>어느 집에서는 돈을 훔쳐올 수 있지만 경보 시스템 때문에 바로 옆집은 훔칠 수 없고 한 칸 이상 떨어진 집만 가능하다. 각 집에는 훔칠 수 있는 돈의 액수가 입력값으로 표기되어 있다. 훔칠 수 있는 가장 큰 금액을 출력하라.</p>
+<ul>
+<li>입력<br>
+[1, 2, 3, 1]</li>
+<li>출력<br>
+4</li>
+<li>설명
+첫 번째 집과 세 번째 집을 훔치면 4가 최대 금액이다.</li>
+</ul>
+<h2 id="풀이-1-재귀-구조-브루트-포스-2" style="position:relative;">풀이 1. 재귀 구조 브루트 포스<a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0-%EB%B8%8C%EB%A3%A8%ED%8A%B8-%ED%8F%AC%EC%8A%A4-2" aria-label="풀이 1 재귀 구조 브루트 포스 2 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이제 이런 유형의 문제를 보면 바로 DP를 떠올릴 수 있을 것 같다. 바로 옆집은 훔칠 수 없으니, 현재 집과 옆집 숫자 중의 최댓값을 구하고, 한 집 건넛집까지의 최댓값과 현재 집의 숫자값과의 합을 구해서 두 수 중 더 높은 값이 정답이 된다. 이렇게 하면 역시 피보나치 수열과 거의 유사한 형태로, 다음과 같이 간단한 재귀로 풀 수 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span>
+<span class="token keyword">def</span> <span class="token function">rob</span><span class="token punctuation">(</span>i<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>rob<span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> rob<span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre></div>
+<p>브루트 포스로 구현해보면 다음과 같다. 앞서 rob() 함수를 중첩 함수로 처리하고, 문제 풀이 함수와 이름이 겹치므로 밑줄을 추가해 내부 함수라는 의미를 부여해봤다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">rob</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">def</span> <span class="token function">_rob</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		<span class="token keyword">if</span> i <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token punctuation">:</span>
+			<span class="token keyword">return</span> <span class="token number">0</span>
+		<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>_rob<span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> _rob<span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> _rob<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span></code></pre></div>
+<p>하지만 역시 타임아웃으로 풀리지 않는다. 집이 10채, 즉 len(nums)가 10이라면 탐색 횟수가 287회나 된다.</p>
+<h2 id="풀이-2-타뷸레이션" style="position:relative;">풀이 2. 타뷸레이션<a href="#%ED%92%80%EC%9D%B4-2-%ED%83%80%EB%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98" aria-label="풀이 2 타뷸레이션 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이미 계산한 값은 dp에 저장하고 두 번 이상 계산하지 않는다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre></div>
+<p>변수명은 dp이며 여기서는 메모이제이션이 아닌 타뷸레이션으로 풀이했다. 아무래도 재귀로 구현하는 메모이제이션보다 순회 방식인 <code class="language-text">타뷸레이션</code>이 좀 더 직관적이여서 이해하기 쉬운 편이다. 결과는 파이썬의 해시 테이블인 딕셔너리에 넣을 것인데, 원래 딕셔너리는 입력 순서가 유지되지 않았으나, 파이썬 3.7+ 부터는 입력 순서가 유지된다. 하지만 여기서는 파이썬의 낮은 버전에서도 순서가 유지될 수 있도록 명시적으로 <code class="language-text">collections.OrderedDict()</code> 로 선언해 풀이해본다.<br>
+이제 가장 마지막 값을 추출하기 위해 <code class="language-text">popitem()</code>을 사용한다. 리스트의 pop()과 동일한 역할을 하는데, 딕셔너리에도 pop()이 있지만 반드시 키를 지정해야 하고 해당 키의 아이템을 추출하는 역할을 한다. 딕셔너리에서 가장 마지막 아이템을 추출하기 위해서는 이처럼 <code class="language-text">popitem()</code>을 사용한다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py">dp <span class="token operator">=</span> collections<span class="token punctuation">.</span>OrderedDict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">return</span> dp<span class="token punctuation">.</span>popitem<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre></div>
+<p>이제 전체 코드는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">rob</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token punctuation">:</span>
+	<span class="token keyword">if</span> <span class="token keyword">not</span> nums <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token number">0</span>
+	<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">2</span> <span class="token punctuation">:</span>
+		<span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+
+	dp <span class="token operator">=</span> collections<span class="token punctuation">.</span>OrderedDict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+		dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> dp<span class="token punctuation">.</span>popitem<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre></div>
+<p>28ms가 걸린다.</p>
+<h2 id="딕셔너리-입력-순서-유지" style="position:relative;">딕셔너리 입력 순서 유지<a href="#%EB%94%95%EC%85%94%EB%84%88%EB%A6%AC-%EC%9E%85%EB%A0%A5-%EC%88%9C%EC%84%9C-%EC%9C%A0%EC%A7%80" aria-label="딕셔너리 입력 순서 유지 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>파이썬 3.7부터는 collections.OrderedDict가 아니더라도, 다음과 같은 형태로 맨 마지막 값을 추출할 수 있다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token builtin">list</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span></code></pre></div>
+<p>그러나 원래 해시 테이블은 입력 순서가 유지되지 않는다. 많이 실수하는 부분이고 오죽하면 C++ 에서는 해시 테이블 자료형의 이름이 <code class="language-text">정렬되지 않은 맵(std::unordered_map)</code> 일 정도이니 말이다.<br>
+3.6 이하의 버전에서는 위의 코드가 오작동할 수 있으므로, 구 버전에도 동작하는 collections.OrderedDict라는 좋은 자료형을 활용하자.</p></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D">다이나믹 프로그래밍</a></p>
+</li>
+<li>
+<p><a href="#%EC%B5%9C%EC%A0%81-%EB%B6%80%EB%B6%84-%EA%B5%AC%EC%A1%B0">최적 부분 구조</a></p>
+</li>
+<li>
+<p><a href="#%EC%A4%91%EB%B3%B5%EB%90%9C-%ED%95%98%EC%9C%84-%EB%AC%B8%EC%A0%9C%EB%93%A4">중복된 하위 문제들</a></p>
+</li>
+<li>
+<p><a href="#%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EB%B0%A9%EB%B2%95%EB%A1%A0">다이나믹 프로그래밍 방법론</a></p>
+<ul>
+<li>
+<p><a href="#%EC%83%81%ED%96%A5%EC%8B%9Dbottom-up">상향식(Bottom-Up)</a></p>
+</li>
+<li>
+<p><a href="#%ED%95%98%ED%96%A5%EC%8B%9Dtop-down">하향식(Top-Down)</a></p>
+<ul>
+<li><a href="#%ED%94%BC%EB%B3%B4%EB%82%98%EC%B9%98-%EC%88%98%EC%97%B4---%EC%83%81%ED%96%A5%EC%8B%9D">피보나치 수열 - 상향식</a></li>
+<li><a href="#%ED%94%BC%EB%B3%B4%EB%82%98%EC%B9%98-%EC%88%98%EC%97%B4---%ED%95%98%ED%96%A5%EC%8B%9D">피보나치 수열 - 하향식</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#85-%ED%94%BC%EB%B3%B4%EB%82%98%EC%B9%98-%EC%88%98">85. 피보나치 수</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0-%EB%B8%8C%EB%A3%A8%ED%8A%B8-%ED%8F%AC%EC%8A%A4">풀이 1. 재귀 구조 브루트 포스</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-%EB%A9%94%EB%AA%A8%EC%9D%B4%EC%A0%9C%EC%9D%B4%EC%85%98">풀이 2. 메모이제이션</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-3-%ED%83%80%EB%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98">풀이 3. 타뷸레이션</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-4-%EB%91%90-%EB%B3%80%EC%88%98%EB%A7%8C-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EA%B3%B5%EA%B0%84-%EC%A0%88%EC%95%BD">풀이 4. 두 변수만 이용해 공간 절약</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-5-%ED%96%89%EB%A0%AC">풀이 5. 행렬</a></li>
+<li><a href="#code-classlanguage-text0-1-%EB%B0%B0%EB%82%AD-%EB%AC%B8%EC%A0%9Ccode"><code class="language-text">0-1 배낭 문제</code></a></li>
+</ul>
+</li>
+<li>
+<p><a href="#86-%EC%B5%9C%EB%8C%80-%EC%84%9C%EB%B8%8C-%EB%B0%B0%EC%97%B4">86. 최대 서브 배열</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EB%A9%94%EB%AA%A8%EC%9D%B4%EC%A0%9C%EC%9D%B4%EC%85%98">풀이 1. 메모이제이션</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-%EC%B9%B4%EB%8D%B0%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">풀이 2. 카데인 알고리즘</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#87-%EA%B3%84%EB%8B%A8-%EC%98%A4%EB%A5%B4%EA%B8%B0">87. 계단 오르기</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0-%EB%B8%8C%EB%A3%A8%ED%8A%B8-%ED%8F%AC%EC%8A%A4-1">풀이 1. 재귀 구조 브루트 포스</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-%EB%A9%94%EB%AA%A8%EC%9D%B4%EC%A0%9C%EC%9D%B4%EC%85%98-1">풀이 2. 메모이제이션</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#88-%EC%A7%91-%EB%8F%84%EB%91%91">88. 집 도둑</a></p>
+<ul>
+<li><a href="#%ED%92%80%EC%9D%B4-1-%EC%9E%AC%EA%B7%80-%EA%B5%AC%EC%A1%B0-%EB%B8%8C%EB%A3%A8%ED%8A%B8-%ED%8F%AC%EC%8A%A4-2">풀이 1. 재귀 구조 브루트 포스</a></li>
+<li><a href="#%ED%92%80%EC%9D%B4-2-%ED%83%80%EB%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98">풀이 2. 타뷸레이션</a></li>
+<li><a href="#%EB%94%95%EC%85%94%EB%84%88%EB%A6%AC-%EC%9E%85%EB%A0%A5-%EC%88%9C%EC%84%9C-%EC%9C%A0%EC%A7%80">딕셔너리 입력 순서 유지</a></li>
+</ul>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/CI_Part5_Ch23/";window.___webpackCompilationHash="f7f80e6d20905d04aad6";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-713a7f64c2b4f34b750a.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-db5fd82ab2e94ed4a2bb.js" async=""></script></body></html>
