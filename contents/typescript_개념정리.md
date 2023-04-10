@@ -1,7 +1,7 @@
 ---
 date: '2022-08-11'
 title: 'TypeScript 개념정리'
-categories: ['TypeScript', 'Velopert']
+categories: ['TypeScript', 'Velopert', 'CodingApple']
 summary: '드림코딩 TypeScript 강의복습겸, 개념을 다시 정리해보기 위해 코딩애플/Velopert 강의를 정리해보았다.'
 thumbnail: './images/thumbnail-typescript.png'
 ---

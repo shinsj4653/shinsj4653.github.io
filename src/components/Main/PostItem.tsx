@@ -335,6 +335,25 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'CS':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#7726EE', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+              case 'Network':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#17d320', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>
