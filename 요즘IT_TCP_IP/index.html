@@ -1,0 +1,646 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="요즘 IT의 네트워크 이야기 글 정리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="주니어 개발자를 위한 엄청 쉬운 TCP/IP 4계층 이야기"/><meta data-react-helmet="true" property="og:description" content="요즘 IT의 네트워크 이야기 글 정리"/><meta data-react-helmet="true" property="og:image" content="/static/4f4f88b3d9cf94674f341b5ef65919ad/thumbnail-cs.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="주니어 개발자를 위한 엄청 쉬운 TCP/IP 4계층 이야기"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="주니어 개발자를 위한 엄청 쉬운 TCP/IP 4계층 이야기"/><meta data-react-helmet="true" name="twitter:description" content="요즘 IT의 네트워크 이야기 글 정리"/><meta data-react-helmet="true" name="twitter:image" content="/static/4f4f88b3d9cf94674f341b5ef65919ad/thumbnail-cs.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/요즘IT_TCP_IP/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">주니어 개발자를 위한 엄청 쉬운 TCP/IP 4계층 이야기</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:619px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;471&#x27; width=&#x27;619&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADcUlEQVQ4y02UWW/bVhCF9d/6mAJFf0KB9qV5StACbV6KokCAtnCCOGmBLoideOni2HDaxIuQ2q4c24mtJdplWaRMazElSqK4SRS3LyDlBiVwycG5vMOZc84wFgAT10NtnhM4XhS7nsdQ0zBMk4njYE8mTFwXLwjfBtf3IPCBgCDwMbQJWn8c4bEQTqw8YHbmU/JG8+qAj9LrIXe76IZBW5YjfKgNqZ5Vo2QXxpi8ZtEdGKx8XefxzQt6bYtYO1dj7caHfBS/z7erVdLxKpPAiRIIYp3teBzbcXhTanHe6CA1uzgu3E5V+fiwwrlm0RMMxMwA2/aImb0hjdwr/klssTT7gtcvs0ybgWw2y34igWW7fPL5CpsJCVVcRGkc0LI8TEOLPnwsyJzUL6M4Ft7W6h12m0oElLcWSD36jonroJnWlLuwWklmOIJ29g494XcGqo9pjJh4Ll8+1/l1vwt4xEI+vsnUmClIUcLi3/Ok5m7jOtO2A9/Dc6fx/y+hdMHyj7u8OZW4Ppen1venFYYCyLpJUzcZmBa2bdMxxyylqyxnBW5sp/lqr8DPO694sJdk9iDHk1SJ7VoTe+ShqCPyuSRS5Yjx2CJWH2h8cGpwrQmfzS/y9M8FBk7AeqrIUkHip/00K8kSzwsCiydFdsoCP/ybYrXYRjiZI7Fxl36rjLh1C6V9RsxyXO7nRX4pN5h7+ow/flt+19ZuqcbDvWNWTgrc2T7gbvyQJ0dpZHUY7V+cvaRR2SQkpN/v4fn+VBTH0DD7CkNVRVaUyMChypIyIH/RptDqkBYkSq0O9Y7CaOJEPlCHRiSYKArEdzZptJrEwqwD3UDu9RnqBiPbxvH8yNz+1WRonR6B57+r3JnYzBdErmVkVoU2vfYlC+sPKVVKxMIjjufhuC41UYiWoet0Ly8ZjW0ylSLvP/uejcwhY3McVY4z4VauwXvJSx4dZfBtFbnTZTBQiY1HOpX1m0ipNeotmY7SoS6KlHM5ekqPRldm5vVflOUGg75KJpvFsix2Egnu35tFOjulnL6OVN+Y2kZXRArrX1B5cS8CdE2jcHxMrVTENPRpj+70kc3lWHq8QE0QONjfJ5VO4wagdNLkc4e4XkDMC2DsOKhdidHYYjQaYWh65MeQhpBL2/Oicaye1UgmkxiWFYnx348kuBrVMH4LzNA949Ob/gMAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/4f4f88b3d9cf94674f341b5ef65919ad/6a134/thumbnail-cs.webp 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/8fd4d/thumbnail-cs.webp 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/0a82c/thumbnail-cs.webp 619w" sizes="(min-width: 619px) 619px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 619px) 619px, 100vw" decoding="async" loading="lazy" data-src="/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png" data-srcset="/static/4f4f88b3d9cf94674f341b5ef65919ad/93ee6/thumbnail-cs.png 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/1a6a5/thumbnail-cs.png 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png 619w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/4f4f88b3d9cf94674f341b5ef65919ad/6a134/thumbnail-cs.webp 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/8fd4d/thumbnail-cs.webp 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/0a82c/thumbnail-cs.webp 619w" sizes="(min-width: 619px) 619px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 619px) 619px, 100vw" decoding="async" loading="lazy" src="/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png" srcSet="/static/4f4f88b3d9cf94674f341b5ef65919ad/93ee6/thumbnail-cs.png 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/1a6a5/thumbnail-cs.png 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png 619w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">주니어 개발자를 위한 엄청 쉬운 TCP/IP 4계층 이야기</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>CS / Network</div><div>2023.04.10.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p><code class="language-text">택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크</code> 글의 다음편이다. 에전 글에서 본 내용이 <code class="language-text">인터넷에서 어떤식으로 이루어지는지</code>를 보았고, 내용을 정리해보았다.</p>
+<h1 id="응용게층에서-벌어지는-일" style="position:relative;">응용게층에서 벌어지는 일<a href="#%EC%9D%91%EC%9A%A9%EA%B2%8C%EC%B8%B5%EC%97%90%EC%84%9C-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC" aria-label="응용게층에서 벌어지는 일 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이전 글에서 서울 A 아파트에서 사는 김씨가 편지를 택배로 부쳐 부산 C 아파트의 박씨에게 보내는 과정을 살펴보았다.<br>
+컴퓨터에서는 크롬과 같은 <code class="language-text">응용프로그램(애플리케이션)</code>이 데이터를 생성하는 주체이다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 383px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7f28a2148a3300e3750e85f5eee93a4f/c778f/network_20.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 131.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAABJ0AAASdAHeZh94AAAC50lEQVRIx6VVTWsTQRjek/9Az3rzqgcvVU9S8CJ4VUTwJB79BQUFiyclN08hmqKmaINJNaA1KS3SprZp0oSWpmtTiqn5aLO7ye422d1H3tlMsh/ZFnRgmH3fnfeZ5/2aEdAflmXBO0bpThuC09AwetgVRZR3yjD7Oi8oyZbjn1cWmEBKW4WD6gFkRfYZn8aeyy6GmqYhX8ijWCwGAjp1ktRCvV7H8fGxm6FhGEyRTqcxNzeHSCSCSqUSCGqaJlvrtRrEXyIG/hGgc0OhUMDS0hIWFhbYySe5tr+/j5WVFYiiiOXl5QFLgW/o9XrM1YmJCYRCIWbgDbrz8MXFRUxPTzPQaDSKarVqA/INW1tbyOVyCIfDiMfjyGazaDQaPpZ8P7GamprC7OwsW/neAeDm5iaSyeTA7UwmA0mSfID8m1xsNpuQZRlHR0fDGHLAcrmMmZkZJBIJxGIx9j0K8LQmcJUNX+kQflAQmJf1ANBb6eSCqqqBxk6Z9pG7vk7him63i/n5eRZHZwKC6pASmUql3IBOAwKkwqZsOw29g+tLpRJLZCDDXreL9dVViNvbtuGIOnQS2NvbY+XjvxxIME14c2c5XPYCBybFZSi1oCfj0D7GYP6pukBPyrDzW+AGSvM3pLu3YF0+D+vKBbTHr8PIbQzZW35Qk+mHa79T7Jvm+c8X+PzgEpLP3uPV6y8wXp6D8ekmC4PXZbqdqEva7TYrfpq8WwTTshk+Sj/Gw8Q9jL81cDEKtNfHgOxZXxz5RaLIMiq7FeTz66jVawycuWz0GYY3Irj2bgz3UyG8+f4U+CrA3LhjJ8oyfIDEiJpAURSoagetVst9femGjic/JnH7ww1Uvp0B1q7C1Kt9l00XIMWMgDqdDps2qOrvZRoNZQdQ1vAvw12HlsXeFAqp3gM7WdNUaJoOXdfZP1rp2qJJXcX1NHn3uDpFVhRouoZOW8bh4eEgizxWJNNKAARKMp/8XRL+51Ef5fJffyzB6WMFGHEAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7f28a2148a3300e3750e85f5eee93a4f/a59e9/network_20.webp 192w,
+/static/7f28a2148a3300e3750e85f5eee93a4f/2f835/network_20.webp 383w"
+              sizes="(max-width: 383px) 100vw, 383px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7f28a2148a3300e3750e85f5eee93a4f/3b721/network_20.png 192w,
+/static/7f28a2148a3300e3750e85f5eee93a4f/c778f/network_20.png 383w"
+            sizes="(max-width: 383px) 100vw, 383px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7f28a2148a3300e3750e85f5eee93a4f/c778f/network_20.png"
+            alt="사람-애플리케이션_편지-HTTP"
+            title="사람-애플리케이션_편지-HTTP"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+사람이 안부를 묻기 위해 <code class="language-text">편지</code>를 작성하듯, 웹 브라우저(애플리케이션)는 화면에서 필요한 데이터를 요청하기 위해 <code class="language-text">HTTP 데이터</code>를 생성한다. 4단계 중 데이터를 생성하는 이 단계는 <code class="language-text">응용(애플리케이션) 계층</code> 이라 부른다. 응용프로그램에서 데이터가 생성된다는 의미를 담고 있다.</p>
+<h1 id="전송계층에서-벌어지는-일" style="position:relative;">전송계층에서 벌어지는 일<a href="#%EC%A0%84%EC%86%A1%EA%B3%84%EC%B8%B5%EC%97%90%EC%84%9C-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC" aria-label="전송계층에서 벌어지는 일 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>생성된 데이터는 이제 이걸 필요로 하는 자에게 전송되어야 한다. 그 전에, 어디로 데이터를 보내는지 <code class="language-text">주소</code>를 입력하는 과정이 필요하다. 김씨의 편지를 전달받은 <code class="language-text">관리인</code>은, 편지를 택배로 감싼 후(캡슐화), <code class="language-text">101동 김씨가 201동 박씨로 보내는 편지</code>라는 정보를 택배 위에 작성한다. 이는 크롬이라는 <code class="language-text">응용프로그램</code>이 페이지 요청을 위해 <code class="language-text">HTTP(편지) 를 운영체제</code>에 보내는 것과 같다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 726px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/e2171129803cc266440cb07e673c46c8/c04c8/network_21.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 112.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAYAAAALHW+jAAAACXBIWXMAABJ0AAASdAHeZh94AAADF0lEQVQ4y41VzWsTURDPv+M/4NWjd/8CDx6kIBSEei8IXhQRhN6qHkpbaoVUbGnExBapIApBmmDTtM13NtndbJLd7Od7P5lJXrqbxI+Bx7w3O2/ezPxmZlMAIKVEnMZnmTgndGb0SVV9TyllWkEQoN/vo9lsolqtYjAYsExRGIYsa7ZbKF9dwbJ68H1/aox4Sh2EEHBdly91Oh0YhsF7kpEOfR+NRhASsPsWzHodPgDXHfG3OYNRFPFrxI+Pj5HP51lORhT5QQhnoGP06AH8e3cgv32CJwERhYsNep7HfHt7G9lsluXkoaZpaDQbgADeF1/h/pNVvHi9C3y+iZEfTjyU8wZpUe729vaQyWRgmiaHfXZ2hkKxAOlLnBp53N5fxv7HW0DtERyf0vUHD+ky5S6by+Lo6IjDpTQoUuH/avxAu7QxjsALIES0GBTHcZj3ej3Yto0wjBI5pPDpAX8UoD+kqgjhOPY8ynEvqUxU+LQnA5RbtSgKWlEUTHXjtZqaLepZIo+vjUQLdRIeqkvx0NV5tkPissXdNekUCoVy1dG0cY5iQPyN6C51Dnk/9VB5Q92Ry+XYGCWfHqA2pEUgNRoN1qGzZVkYDofMNzc3cXFxMY2OPaQXSqUSdnZ2uIjb7RbX4+XlJSqVCgqFAg4ODriD6Exy0qdH0uk0zs/PkygTWuVyGYeHh9B1fdqb/yK6s76+jpOTk3mDvufBMgwOmc5qIKiUUBoIZSVX3DQNeJ6bRDkkg8QBBHJcJnGDRMVikQGIV4JYAFJK0tgilFpt4MNbBF0L/oKQFZKz5No9VIZNRJP2S8lIwINEevcptpaW4eVWoJkWtFaLk16v15nrhsGA1Wo1NGo1XBk6tDcbyDxbwsOvK3B9Z2yQQ4oEnp9u4XHmLlBZhWF5MA2dAaLV7XZ5aBi6waXT6Rrw+hrWsj28fLcG8f0GosCeGKScBSED0a5+oWmJMJL/hTLlva41IayfNAn4V8OgcHd41CGAbTtc1GowEKdFOVR7JRdhABEJRAlQEj0px4jHJoxqxfg5Lpf8d7yeBb8BZJzja4ToYWAAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/e2171129803cc266440cb07e673c46c8/a59e9/network_21.webp 192w,
+/static/e2171129803cc266440cb07e673c46c8/0ca9f/network_21.webp 384w,
+/static/e2171129803cc266440cb07e673c46c8/b0d8b/network_21.webp 726w"
+              sizes="(max-width: 726px) 100vw, 726px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/e2171129803cc266440cb07e673c46c8/3b721/network_21.png 192w,
+/static/e2171129803cc266440cb07e673c46c8/66595/network_21.png 384w,
+/static/e2171129803cc266440cb07e673c46c8/c04c8/network_21.png 726w"
+            sizes="(max-width: 726px) 100vw, 726px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/e2171129803cc266440cb07e673c46c8/c04c8/network_21.png"
+            alt="김씨가 관리인에게 편지 전달하는 것_크롬이 윈도우에게 HTTP를 전달하는 것"
+            title="김씨가 관리인에게 편지 전달하는 것_크롬이 윈도우에게 HTTP를 전달하는 것"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 687px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/1c1ce4e3a3594779a3514ed50f64c63a/9490d/network_22.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 20.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAzUlEQVQY0z2P7UoDMRBF9/3fqVRBa/8LgrD0T90PKt1sm2SSzdeRxOqFQ+YymZtMVwoErxFzxVnFJiubW1tdqb0/pbjh7ILVV3y9JyveKsQseFGkFOhyKdwv70z9jqHfo4YD9+nIfHpmPj3h1QfGaKb5gtMz6uuF8+eO23hkHd5Yzq+M/Z7beED0N10phbB5co4NsQZrdHsthq0RQsA5R3j4XHv1t86SU6Tk1HwMga6uUteuwZWqGCPGGESk8RsW8N43b4xFxD1m+D+rfgBpVjO9uxw1xgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/1c1ce4e3a3594779a3514ed50f64c63a/a59e9/network_22.webp 192w,
+/static/1c1ce4e3a3594779a3514ed50f64c63a/0ca9f/network_22.webp 384w,
+/static/1c1ce4e3a3594779a3514ed50f64c63a/0ed20/network_22.webp 687w"
+              sizes="(max-width: 687px) 100vw, 687px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/1c1ce4e3a3594779a3514ed50f64c63a/3b721/network_22.png 192w,
+/static/1c1ce4e3a3594779a3514ed50f64c63a/66595/network_22.png 384w,
+/static/1c1ce4e3a3594779a3514ed50f64c63a/9490d/network_22.png 687w"
+            sizes="(max-width: 687px) 100vw, 687px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/1c1ce4e3a3594779a3514ed50f64c63a/9490d/network_22.png"
+            alt="편지를 전달받은 관리인은 보내는 호수, 받는 호수를 택배에 작성한다."
+            title="편지를 전달받은 관리인은 보내는 호수, 받는 호수를 택배에 작성한다."
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+운영체제는 네트워크 통신을 원하는 <code class="language-text">응용 프로그램</code>에게 <code class="language-text">포트번호</code>를 할당함과 동시에 관리를 하고 있다. “netstat” 라는 명령어를 통해 운영체제가 관리하는 포트번호와 프로세스(애플리케이션)의 관계를 알 수 있다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 663px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7d27fda68299c641f0fb130653d1231e/5c8e6/network_23.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 24.479166666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAA50lEQVQY061Py2qEQBAcQbMgeIkzG2eFDewDwrLmkh8SNl8UB98P0DWiJ88e/bEK04eF3LehKKqqu6HYsizI8xx1XaOqKhRVhSRJEMfxA2VZUpam6T+/KAra1fhRCr/DABaGISzLwlYIvEmJ086H87IBY4xg2zY8zwPnHIZhPHzHcXA4Hom1frU2+LpewW63bzJc14Xv+/g4n7HlHMww6IEQAu/7PeVam6ZJLKVEEHxiJyXde1wguFzA1nWlyl3XYRgGjOOItm0RRRHVapqGMs1KKYLOtJ6mCX3fI8sydPc75nkGw5PnD5yc8sDENFXnAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7d27fda68299c641f0fb130653d1231e/a59e9/network_23.webp 192w,
+/static/7d27fda68299c641f0fb130653d1231e/0ca9f/network_23.webp 384w,
+/static/7d27fda68299c641f0fb130653d1231e/f21c8/network_23.webp 663w"
+              sizes="(max-width: 663px) 100vw, 663px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7d27fda68299c641f0fb130653d1231e/3b721/network_23.png 192w,
+/static/7d27fda68299c641f0fb130653d1231e/66595/network_23.png 384w,
+/static/7d27fda68299c641f0fb130653d1231e/5c8e6/network_23.png 663w"
+            sizes="(max-width: 663px) 100vw, 663px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7d27fda68299c641f0fb130653d1231e/5c8e6/network_23.png"
+            alt="135번 포트번호로 들어오는 데이터는 PID 1508번 응용프로그램으로 보낸다"
+            title="135번 포트번호로 들어오는 데이터는 PID 1508번 응용프로그램으로 보낸다"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+마치 아파트 관리인이 편지의 주소를 확인해보니 135호(135번 포트)로 보내는 편지임을 확인하고 김씨(PID 1508) 에게 전달하는 것과 동일하다. 운영체제인 윈도우가, 데이터가 135번 포트로 보내져야 한다는 것을 확인하고, 전달하는 것과 마찬가지이다.<br>
+그렇다면 부산의 B 아파트로 편지가 전달된 경우, 어떻게 이씨에게로 전달이 될까? 김씨의 택배(편지)가 부산의 B아파트로 전달되면, 관리인이 먼저 받게 된다. 그 후, 관리인은 택배에 적힌 <code class="language-text">받는 호수</code>를 확인한 뒤, 이씨에게 전달된다. 이는 데이터가 컴퓨터에게 전달되면, <code class="language-text">운영체제</code>가 데이터의 <code class="language-text">받는 포트</code>를 확안하고 애플리케이션에 전달하는 것과 동일하다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 672px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5d9b0350149d36eda74a34126f2020eb/00e42/network_24.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 64.0625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAAB/0lEQVQ4y41T0Y7SQBTlt/wDE/UHNL746IPRr/AHfNtkH4ib1fiyJivGSFIWlEVrqxGoAULTFnShCywC7XQ60x5zp1a7oMme5GSmd3rPzLl3ppSmKYpIkgQUy0nf2zEi5xxRFCkW5yUS6Xa7qNVqCIIAV0Ucx2ocDAaKhDAMM0HDMFCtVrFYLDCbzTCdTtXoeR6azaZa931fxYjj8RiTyRmWP5fQNA2NRkMJMsZQEkKoYLlchm3bGI1GcBwHruui3++jXq+j1WphOByqdWKv14PvZ5tWKhVFsk1UgrTD8atjJXJVUB7ZNk0Dhmmo+Z8anvs+HNeBlPJSIwhU17y2xQaRAI85wihEwIK/J6QfSShPIOSiBLJNNos3IM+RXACUmgCCCwgpMkEqJtXtf9akFLtxHmMeXeDd/ANO559wwZZgIcsEqZsPH9xHxGO1M9khIbKw2WwU4981ozjjDGmY4M1Ew/Uvt3HNvImj89eAAEpJmkJvanjx7ADPDw/guh7a7TY6nY7qJp18OLRhfbPUfbUsC7qu44f3He/7LRyeHeFe7xH2xk8zQSEkTl7uYf/JY3w+fbtjrdigyzcbMNdt3NLv4sbHOzDWXwGOzHIQRrBtB6v1Zuf55dh+eixiSEUKseKQq1jNg/ylxDFHxJiqWZ78L5HtNeqqTCQEUQoV+wWZr9YbKfJABQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/5d9b0350149d36eda74a34126f2020eb/a59e9/network_24.webp 192w,
+/static/5d9b0350149d36eda74a34126f2020eb/0ca9f/network_24.webp 384w,
+/static/5d9b0350149d36eda74a34126f2020eb/42a33/network_24.webp 672w"
+              sizes="(max-width: 672px) 100vw, 672px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/5d9b0350149d36eda74a34126f2020eb/3b721/network_24.png 192w,
+/static/5d9b0350149d36eda74a34126f2020eb/66595/network_24.png 384w,
+/static/5d9b0350149d36eda74a34126f2020eb/00e42/network_24.png 672w"
+            sizes="(max-width: 672px) 100vw, 672px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/5d9b0350149d36eda74a34126f2020eb/00e42/network_24.png"
+            alt="관리인_운영체제"
+            title="관리인_운영체제"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+컴퓨터 세계에서 응용프로그램은 데이터를 스스로 가져가지 못한다. 편지를 택배로 보내겠다는 김씨의 요청을 알게 된 배달부는 김씨의 아파트 주소를 직접 확인하고 방문할 수 있지만, 컴퓨터는 <code class="language-text">운영체제</code>를 통해 주소를 확인해야 한다. 김씨의 주소를 확인하려면 아파트 관리인에게 확인해야 하는 상황이라고 생각하면 된다. 배달부는 아파트 관리인을 통해 김씨가 몇 호에 사는지 알 수 있다. 이를 컴퓨터에서는, <code class="language-text">운영체제를 통해 포트번호를 알게되는 과정</code>이라고 볼 수 있다.<br>
+이 과정은 응용프로그램으로 데이터의 송, 수신, 즉 <code class="language-text">전송</code>을 담당하는 단계로, <code class="language-text">전송 계층</code>이라 부른다.</p>
+<h1 id="인터넷-계층에서-벌어지는-일" style="position:relative;">인터넷 계층에서 벌어지는 일<a href="#%EC%9D%B8%ED%84%B0%EB%84%B7-%EA%B3%84%EC%B8%B5%EC%97%90%EC%84%9C-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC" aria-label="인터넷 계층에서 벌어지는 일 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>그런데 같은 아파트의 201호가 아니라 다른 아파트의 201호라면 어떻게 되는 것인가?<br>
+이씨에게 택배를 전달하기 위해 1차적으로 <code class="language-text">호수번호</code>가 필요했다면, 2차적으로 그 호수번호가 어떤 아파트에 속해 있는 것인지, 그 <code class="language-text">아파트 이름</code>이 필요하다. 그래서 관리인은 보내는 아파트는 서울 A 아파트, 받느 아파트는 부산 B 아파트라고 택배상자 위에 표시한다. 다시 한 번 <code class="language-text">캡슐화</code> 하는 것 이다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 670px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/3f7736578f03489a688d6c692cdb9dcf/6bbca/network_25.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 27.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAABAUlEQVQY012Q2UrDQBSG8/6P4oVg9cabgtuNSC0KblRMl6TJpFmaZGaSmSSfZKyC/eGHs3znHDje0Ftsu0fVGVpmdKZ0+Rg3KqM3Nb/qTEWrcxqV05vS2TTFIa/oe4unZUr0OeXx7oT3+QXCvyJcTHm+P+VjPiHfzpBSImVNFj6weDrndXZG4l+zW93gv1zyNpuQrW/RMsdTSpGmO3z/iziOECJGCMFquSSKtuz3BWmaOhdFThgGbDZrkiQhEcIxQRC4vtYaz1pLawzGWoyxlGWF0hpXb42DRg3DwHh85LquQylNVUvHmQM7xt7fgxg4ljE/C8dFo+u6pmmaI2r4N/sNKAl9Aqe/+aIAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/3f7736578f03489a688d6c692cdb9dcf/a59e9/network_25.webp 192w,
+/static/3f7736578f03489a688d6c692cdb9dcf/0ca9f/network_25.webp 384w,
+/static/3f7736578f03489a688d6c692cdb9dcf/32193/network_25.webp 670w"
+              sizes="(max-width: 670px) 100vw, 670px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/3f7736578f03489a688d6c692cdb9dcf/3b721/network_25.png 192w,
+/static/3f7736578f03489a688d6c692cdb9dcf/66595/network_25.png 384w,
+/static/3f7736578f03489a688d6c692cdb9dcf/6bbca/network_25.png 670w"
+            sizes="(max-width: 670px) 100vw, 670px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/3f7736578f03489a688d6c692cdb9dcf/6bbca/network_25.png"
+            alt="보내고 받는 아파트의 정보를 캡슐화"
+            title="보내고 받는 아파트의 정보를 캡슐화"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+컴퓨터 세계에서는 서울과 부산과 같은 지역을 <code class="language-text">네트워크</code>라 부르고 네트워크와 네트워크의 연결을 <code class="language-text">인터넷</code>이라 부른다. 수많은 네트워크가 연결된, 인터넷에서 특정 주소를 의미하는 단어를 <code class="language-text">IP(Internet Protocol) 주소</code>라고 부른다. 보내는 호수가 적힌 택배를 다시 택배 상자로 감싸 <code class="language-text">아파트 주소</code>를 적는 것은, 인터넷에서 특정 네트워크의 컴퓨터를 식별하기 위해 붙이는 <code class="language-text">IP주소</code>로 빗댈 수 있다.<br>
+이 과정은 인터넷에서 목적지 주소를 찾기 위한 단계로, <code class="language-text">인터넷 게층</code>이라 부른다.<br>
+포트번호를 캡슐화하는 <code class="language-text">전송계층</code>, IP주소를 캡슐화하는 인터넷 계층에 해당하는 <code class="language-text">관리인</code>의 역할을 네트워크에선 <code class="language-text">운영체제</code>가 담당하게 된다.</p>
+<h1 id="네트워크-계층에서-벌어지는-일" style="position:relative;">네트워크 계층에서 벌어지는 일<a href="#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5%EC%97%90%EC%84%9C-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC" aria-label="네트워크 계층에서 벌어지는 일 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>그런데 부산의 B아파트로 보내고자 배달부가 택배상자를 배달하려고 하기 전, 부산에 B아파트라는 동일한 이름이 2곳에 존재한다는 것을 알게 되면 어떻게 될 것 인가?<br>
+아파트 이름만으로는 이씨가 사는 아파트가 어떤 아파트인지 구분할 수 없는 상황이다. 현실에서는 이와 같은 상황에서 <code class="language-text">지번</code>을 이용하여 해결할 수 있다. <code class="language-text">부산 서부 10-1번지, 부산 동부 20-1번지</code>와 같은 땅의 주소를 이용하여 201호 이씨가 살고 있는 B 아파트로 전달하게 전달이 가능하다.<br>
+또한 이씨가 살고 있는 아파트명이 B아파트에서 BB아파트로 변경된다 한들, 땅의 주소는 변하지 않는 <code class="language-text">고유한 주소</code>이다. 컴퓨터 세계에서도 <code class="language-text">땅</code>과 같이 컴퓨터의 고유한 주소를 표시하기 위한 <code class="language-text">장치</code>가 존재하는데, 바로 <code class="language-text">NIC(Network Interface Controller)</code>이다.<br>
+<br/><br/>
+NIC는 컴퓨터가 네트워크로 접속하기 위해 반드시 필요한 장치로, 네트워크와 컴퓨터를 이어주는, 즉 <code class="language-text">인터페이스</code> 의 역할을 해주는 장치라는 의미에서 <code class="language-text">네트워크 인터페이스 기기</code>라는 이름을 갖고있다.
+<br/><br/>
+땅 주소를 표기하는 약속으로 지번, 도로명이 있듯 NIC의 주소를 표기하는 방법으로 가장 많이 이용되고 있는 것은 <code class="language-text">이더넷 프로토콜</code> 이다.<br>
+이더넷 프로토콜은 주소를 표시하기 위해 <code class="language-text">MAC(Media Access Control) 주소</code>를 사용한다. 여기서 미디어(매체)란, 이더넷 케이블, 광섬유 케이블과 같은 <code class="language-text">유선</code>을 의미하거나, 와이파이 같은 <code class="language-text">무선</code>을 의미한다. 즉, 유선이 연결되는 NIC나 무선 와이파이를 송, 수신할 수 있는 와이파이 모듈과 같은 장치를 구분하는 <code class="language-text">주소</code>라는 의미이다.
+<br /><br />
+이런 고유한 주소, 즉 MAC 주소 덕분에 데이터가 도달되어야 할 명확한 위치를 찾을 수 있었던 것이다. 이름이 같은 B 아파트 중에서 정확한 B아파트의 위치를 찾아낸 것 처럼 말이다. 이 과정은 네트워크로 나가기 위한 마지막 단계로, 네트워크에 접속한다는 의미에서 <code class="language-text">네트워크 액세스 계층</code>이라 부른다. <code class="language-text">관리인</code>에게 택배를 전달받은 <code class="language-text">배달부</code>가 우체국으로 배달하는 것 처럼, NIC의 역할을 하는 것이다.<br>
+<br/><br/>
+데이터가 최종 목적지로 전송되기 위해 필요한, 1차 주소 포트번호, 2차 주소 IP 주소, 그리고 마지막 3차 주소는 MAC 주소인 것이다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 672px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/c7ae6bf956898300bbda25480413c947/00e42/network_26.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 30.208333333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABKklEQVQY032PW0vDQBSE8/9/i0JBEYSCKKKg1pdSrfZiadqmaZtN9pZsksZPdkXfdGA4e3bmzJ6NPruO2u4wxQpTrKl0QqU3lGqDlWucSWibCo/GSWwRI7Nl0L3mvUrElGpF6yRRd2zZLu4ZPvYYDc5Yjvts5ze8Pp8zfOiRzK4pdRYC5WHKbHjB4PaUxUufQ3xH/H7F0+0J89ElWsyJuq7DmJLpdBYoRIHWlni1Zvw2wdiSPM9J05Sqcoi8YDKZIpUOmtKG2fwjVOdqouPxiNaa/X4XhoQQZFmGEBlpusUYg1IK5xzGGoo8J0mScCeLAqlkmPN9WZbfG3pz27b4cGsNSutwbpqGqqqo6zp82fs8fzRrLU1d//aeEf/AB/lXfajf1Fcf4gP+whfuucf0Abv8vAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/c7ae6bf956898300bbda25480413c947/a59e9/network_26.webp 192w,
+/static/c7ae6bf956898300bbda25480413c947/0ca9f/network_26.webp 384w,
+/static/c7ae6bf956898300bbda25480413c947/42a33/network_26.webp 672w"
+              sizes="(max-width: 672px) 100vw, 672px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/c7ae6bf956898300bbda25480413c947/3b721/network_26.png 192w,
+/static/c7ae6bf956898300bbda25480413c947/66595/network_26.png 384w,
+/static/c7ae6bf956898300bbda25480413c947/00e42/network_26.png 672w"
+            sizes="(max-width: 672px) 100vw, 672px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/c7ae6bf956898300bbda25480413c947/00e42/network_26.png"
+            alt="네트워크 액세스 계층 데이터까지 캡슐화"
+            title="네트워크 액세스 계층 데이터까지 캡슐화"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+지금까지 알아본 4단계(응용, 전송, 인터넷, 네트워크 액세스)를 우리는 <code class="language-text">TCP/IP 모델</code>이라고 부른다.</p>
+<h1 id="데이터-생성-주체" style="position:relative;">데이터 생성 주체<a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%83%9D%EC%84%B1-%EC%A3%BC%EC%B2%B4" aria-label="데이터 생성 주체 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>TCP/IP 4단계를 통해서 네트워크로 내보낼 수 있는 데이터를 생성하였다. 각 단계는 수 많은 네트워크가 연결된 인터넷에서 가고자 하는 목적지를 올바르게 찾아갈 수 있도록 캡슐화 되어 있음을 알게 되었다.
+<br/><br/>
+그렇다면 이 캡슐화된 데이터는 누가, 어디에서 만드는 것 일까요? 바로 윈도우즈, 리눅스와 같은 운영체제이다. <code class="language-text">운영체제</code>는 사용자의 응용프로그램에서 생성한 데이터를 <code class="language-text">응용 -> 전송 -> 인터넷계층</code> 순서로 단계적으로 캡슐화한 후, NIC로 전달하여 <code class="language-text">NIC</code>에서는 마지막으로 네트워크로 내보내기 전 <code class="language-text">네트워크 액세스 계층</code>으로 캡슐화한다. 이렇게 캡슐화가 완료된 데이터의 이름을 <code class="language-text">프레임</code>이라고 한다. 마지막으로 물리적인 유, 무선 매체를 통해 <code class="language-text">비트(bit)</code> 단위로 전송하게 된다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 687px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/f5873aa21b593fa747b16935a4e13dff/9490d/network_27.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 86.97916666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABJ0AAASdAHeZh94AAAB7klEQVQ4y52Ta2/aMBSG+f9/Zl/2pdO+DEG1bmUtUJrQJECahNxtx06cC5d3sgVVoZtUOFKU+MR5/Bwfp7ff75FQgTAXiFmFpJBImERESoREoO02UKHmfSZ6aqITFrDTFr8MDzfDR/QfbMzDClZcoZL15cBVzGHHAuZrCtNLMfcy2CGDE5eQdXMZEPs9FhFHEj5hS+9gjb8if+2jo/ewgwRV3V1uqICLlYnIH2M26cNdjhAGU8y9BLK5AriMCkxdipdIYvDo4MFJMQ8lDJ9CNu01TeEw1kuY4Qy3T0P8se9hpxYMP7vOcBFkMJ0J7OUdprMfeJ4P4bgjmCsfsr7CMM9zyMBCPB5g9O0LrJ/f0bhTkCRC014FJKCrZ3DrN15ubxBNB6jdCdJo/QGo7ufP73MaSCgFzRKwNELsu/rOshiUEDRN80/gufEx91Yy5wKs4HAWS+SEggsByhjquv5g9n682+1O8hpYFIW+OOeglILzAqUQerzZbE5M2rbVeXF4zxgDIQRlWR7+lLPQUELAWKHBaiyl1IDjx5QSmKYJwzAQrAMNS9NUV9M73xNlJAQHIfTNWgGrqtLAOI7BGIXnefADX4PUIlmWYbvdnhp+5mgoi+NCx7KVodrLk5L/18Wu67Sd6nZ7OELHUNWcN+ova20jGqdBsDMAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/f5873aa21b593fa747b16935a4e13dff/a59e9/network_27.webp 192w,
+/static/f5873aa21b593fa747b16935a4e13dff/0ca9f/network_27.webp 384w,
+/static/f5873aa21b593fa747b16935a4e13dff/0ed20/network_27.webp 687w"
+              sizes="(max-width: 687px) 100vw, 687px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/f5873aa21b593fa747b16935a4e13dff/3b721/network_27.png 192w,
+/static/f5873aa21b593fa747b16935a4e13dff/66595/network_27.png 384w,
+/static/f5873aa21b593fa747b16935a4e13dff/9490d/network_27.png 687w"
+            sizes="(max-width: 687px) 100vw, 687px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/f5873aa21b593fa747b16935a4e13dff/9490d/network_27.png"
+            alt="계층별 생성되는 데이터"
+            title="계층별 생성되는 데이터"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+같은 지역 네트워크에서 올바른 경로를 찾아 택배를 유통해주는 우체국을 컴퓨터 세계에서는 <code class="language-text">스위치</code>라고 한다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 652px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/31ad346a318b34ffa024f2e3a20e9250/43b96/network_28.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 52.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABZUlEQVQoz11SyarCUAy9/7/wN7rU/RPBYe1CRcERS6VzHVpbtdbzOJGU+14gJLk5GW/M5/MBqa5rvF4vJHEs8mvXaJoGStSJf7/fqKoSSZKITiyZPnO/37HZbOSBdL1e20BKJle63W5wXffrbxqxSYplDnM6ndDpdLDb7fB8PqWiTbQZQCZ2OBzC8zwppN3bU5o0SdD/6SMvCuR5juVyiTRNBRCGIbIs+wYB8r7f76Uwx12tViiKQvwsQDZ0OI4jozDhdruVoMVigW63i+l0Cq6Fq/B9H4PBQDqkvV6vBTufzzGZTMRv4jhGr9cTAMejMwgClGWJ4/EowTpWlqU4HA6is/hsNpMJiL1cLiLbDrUqAfpB9s+SA9/HaDyWXTLB+Xxu96f7NtwTO4yiCP+JYDs5i/MiuAIbo6ckO7Q70Vtk68r8AF04dWIejweqqmrv9c8d6g1p65QMZBCZutpMou/2fdr0C+Kk/RXCKezeAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/31ad346a318b34ffa024f2e3a20e9250/a59e9/network_28.webp 192w,
+/static/31ad346a318b34ffa024f2e3a20e9250/0ca9f/network_28.webp 384w,
+/static/31ad346a318b34ffa024f2e3a20e9250/9a7b5/network_28.webp 652w"
+              sizes="(max-width: 652px) 100vw, 652px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/31ad346a318b34ffa024f2e3a20e9250/3b721/network_28.png 192w,
+/static/31ad346a318b34ffa024f2e3a20e9250/66595/network_28.png 384w,
+/static/31ad346a318b34ffa024f2e3a20e9250/43b96/network_28.png 652w"
+            sizes="(max-width: 652px) 100vw, 652px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/31ad346a318b34ffa024f2e3a20e9250/43b96/network_28.png"
+            alt="같은 지역(서울) 안에서는 우체국(스위치)를 통해서 이동이 가능하다"
+            title="같은 지역(서울) 안에서는 우체국(스위치)를 통해서 이동이 가능하다"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+그런데 서울에서 부산으로 보낼 때는 다른 지역의 경로를 찾아 이동할 수 있게 해주는 <code class="language-text">라우터</code> 라는 것이 필요하다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 686px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6e71a660954d4171a137616d39572fa8/3a6ec/network_29.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 26.5625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAA1UlEQVQY02VQW2rEMAzM/a8Vul85QA3ZQlYQapuQzct2nMcsoyWltAZheyTNSFMAQM4ZwzDgOud56h1jxBLCD77vO/rn819dzivGcdR3QTCEAO8dmqZBTEkTDxFY+41pmrBtG47jQEpJG+UhKsbjvYe1Vjly3lAQFBF83e8oy1IbKFJVFeq6hvk0mOf5TSQC5xxuHzc465SQdcYYtG2LruveE1JZ11sWXYsTkeQiYp4Yp4ghoO97xTh1DFFx9jGKy4ffPrF4XVclob/8X0Fh4swz/vr5AshRgcyozj64AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6e71a660954d4171a137616d39572fa8/a59e9/network_29.webp 192w,
+/static/6e71a660954d4171a137616d39572fa8/0ca9f/network_29.webp 384w,
+/static/6e71a660954d4171a137616d39572fa8/b315f/network_29.webp 686w"
+              sizes="(max-width: 686px) 100vw, 686px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6e71a660954d4171a137616d39572fa8/3b721/network_29.png 192w,
+/static/6e71a660954d4171a137616d39572fa8/66595/network_29.png 384w,
+/static/6e71a660954d4171a137616d39572fa8/3a6ec/network_29.png 686w"
+            sizes="(max-width: 686px) 100vw, 686px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6e71a660954d4171a137616d39572fa8/3a6ec/network_29.png"
+            alt="다른 지역(서울, 부산)간의 이동은 톨게이트(라우터)를 통해서 이동이 가능하다"
+            title="다른 지역(서울, 부산)간의 이동은 톨게이트(라우터)를 통해서 이동이 가능하다"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+네트워크에서 데이터를 올바른 경로로 이동시키기 위해 스위치, 라우터, 이 2개 장치가 존재한다고 볼 수 있다.
+<br /><br />
+흔히 <code class="language-text">스위치를 2계층</code> 장비, <code class="language-text">라우터를 3계층</code> 장비라고 표현한다. 이는 TCP/IP 모델의 부모 격인, <code class="language-text">OSI 7계층</code>의 2계층, 3계층을 의미한다. OSI 7계층에서 2계층은 <code class="language-text">데이터링크</code>, 3계층은 <code class="language-text">네트워크</code>인데, TCP/IP 4계층에서는 각각 <code class="language-text">네트워크 액세스</code>, <code class="language-text">인터넷</code> 계층이라 한다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 660px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5ae7c13bc5a27737df58f46716e4f195/7c811/OSI_7_TCP_IP.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75.52083333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAAC/0lEQVQ4y22TW3OjRhCF+f9/Y9/ykqRScbwV2/LKcbCupYu1siLZSAYki/tFwMAAX0qjZLMPOVWnZmjONKe7B62WJSLzKE4eIvMp8wvPscvqI0ROWVaUZalWkSffdBcGSi+rHK0pfSLzjsjsIIMnOI0wl78y6n6ijnrUYY9KxLQtNE1N3UAeGbSRThsPlJ5kiPT/oEhMtCr3SA9dkn2X3HlEBj1Cs4O1+g3h/qkoRcIFLS1QJDtI+kobmffIsE8T6ojUQquFj7+75fh6Q+k/0cZDDutrnns/ULg6lf+EFPElXdsop3m8hXRAZH1hcP+JeP9AGz9dHJ4TJvadKlv6OsR9EruDtfwFGeiKdfmfwzNK5VCHdAjZSJXdho+U6bnkIiCwdXxLJ/NGlNFU7Y3lDbk/JvPGFFmErBtkVVHJhiTYUvhDimCi9CKccnJ6ZLGNluQlk80H45XNyo55dQp6zwY3+pT14cTKTojTnFpKNWFZlVhOxPojZ7r54Oq+z/zN5cVOOQYpWpJlTF83TDZrVrbFi20x+muFPpsy327Vc5ymSJWwpKoqLOfI6rBnbhjo8xnPW4OvlskxDNBOZcyzOWC+67OLl7zsx3SGV3Qnn9EXHbbRkkykqndN26g2HiObbbxgsHrgfnzNYNXlNZjjJR9oxSnk422k6O0mvC0eWc++8P7yxHr2wH4zJD9FVNXZoaCsJP5xh/8+wX+f4ZtnznG3YxL/gCZPEd7XHs6iR2bMeOvfYfTvOMweWT5cq3gt8n+GfLmHwj+QbUaMf/+Rye3PLLpX5K9jRHhEE0XB3jI52Ca+6yDyEy+LOZPRkCQKiQJPOfsemWvR2s+s9c9Mb3/CmnQpdxNyf492brTjuLiuRxCGJEmKYWwxtjvCKFKxLMvUMNS/XFWk3oF8v0YcDfL9hpO9JrNW5JGH1rYtTdN8Y1WVBH7A3rZxPe8yjO/e13VNXZ/3LY7r4jgOu/cdjnvRavwPLoekuipCCOWwKArFs4F/oT5S10hZqTPnhH8DAZJgU826s20AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/5ae7c13bc5a27737df58f46716e4f195/a59e9/OSI_7_TCP_IP.webp 192w,
+/static/5ae7c13bc5a27737df58f46716e4f195/0ca9f/OSI_7_TCP_IP.webp 384w,
+/static/5ae7c13bc5a27737df58f46716e4f195/3d671/OSI_7_TCP_IP.webp 660w"
+              sizes="(max-width: 660px) 100vw, 660px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/5ae7c13bc5a27737df58f46716e4f195/3b721/OSI_7_TCP_IP.png 192w,
+/static/5ae7c13bc5a27737df58f46716e4f195/66595/OSI_7_TCP_IP.png 384w,
+/static/5ae7c13bc5a27737df58f46716e4f195/7c811/OSI_7_TCP_IP.png 660w"
+            sizes="(max-width: 660px) 100vw, 660px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/5ae7c13bc5a27737df58f46716e4f195/7c811/OSI_7_TCP_IP.png"
+            alt="OSI 7계층과 TCP/IP의 비교"
+            title="OSI 7계층과 TCP/IP의 비교"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+2계층의 대표적인 프로토콜로는 <code class="language-text">MAC 주소</code>를 이용하여 같은 지역 네트워크(LAN) 의 장치를 식별하는 <code class="language-text">이더넷 프로토콜</code>이 있다. 3계층의 대표적인 프로토콜로는 <code class="language-text">IP 주소</code>를 이용하여 다른 지역 네트워크(WAN) 의 장치를 식별하는 <code class="language-text">인터넷 프로토콜(IP)</code>이 있다.<br>
+<br /><br />
+2계층과 3계층 프로토콜을 이용하여 경로를 찾는다는 의미는, 2계층 프로토콜을 해석하여 이동시켜주는 장치인 <code class="language-text">스위치</code>와 3계층 프로토콜을 해석하여 이동시켜주는 장치인 <code class="language-text">라우터</code>가 존재한다는 의미이다.
+<br /><br />
+즉, “몇 계층 장비”라는 것은 <code class="language-text">캡슐화</code>된 데이터를, 장치가 해석할 수 있는 계층까지 <code class="language-text">역캡슐화</code>하여 프로토콜의 내용을 확인하고 경로를 설정해주는 장비라고 볼 수 있다. TCP/IP 에서는 인터넷 계층까지 역캡슐화하느냐, 네트워크 액세스까지 역캡슐화하느냐를 가르는 장비인 것이다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 652px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/181f9b8e1a60f9ad6a4b2dfdf8dc7ba6/43b96/network_30.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 71.35416666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB3UlEQVQ4y61TyaoiQRDs/7+puKNf4EEF9+XswR1RcAFxnvS4Ybd2t2sbj8ihpN68B3OZgujsyqzKjKyKMvCP8Xq9vkD3P5/PN1TM4M/pdMKvjw84jov7/Y7L5YL1eg3Ltn9MxDVM4vu+2MfjgdvtJnNjNBohl8shk8mgXC6jUqkIOM9ms+j1epKIizmu16vANE2Y5m9stzspwDiTGo1GA6FQCIFAAMlkEpFIBIlEAsFgEOFwGPl8Hv1+H7PZTBKdz2dh5bkuHOcM73J5dyUMm82mJInH40in04jFYkilUjLnf7FYlA1MpgZb1Fv+coar1QrdbheDwUCYdDodsZzTP51OZTGTKLAAwRZp6VNHYvCjV1GVFbjYdV1piQloCTJWluC+9y3/z2F4nofj8YjNZgPbtuXQKaPtZgvLssD433rU26QlQ7JnzHAcRzQ3Ho+x3+8l2eFwwGQyET/jehfcyPZYmOsZV8cmsqGe5vO56I0XtFgssFwuMRwO5Z/MeTG73R+9sSCHZR1Fi5z7/lNYkq1RKBQQjUbfcqEGlWzop2y4kceiJKNY6szolzNst9vyMur1OqrVqiSo1WqCUqmEVqv17V3rT04lVnFDvyFdBkoWvBSC0tFBH+OKmSr2CQRQF4XXXq15AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/181f9b8e1a60f9ad6a4b2dfdf8dc7ba6/a59e9/network_30.webp 192w,
+/static/181f9b8e1a60f9ad6a4b2dfdf8dc7ba6/0ca9f/network_30.webp 384w,
+/static/181f9b8e1a60f9ad6a4b2dfdf8dc7ba6/9a7b5/network_30.webp 652w"
+              sizes="(max-width: 652px) 100vw, 652px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/181f9b8e1a60f9ad6a4b2dfdf8dc7ba6/3b721/network_30.png 192w,
+/static/181f9b8e1a60f9ad6a4b2dfdf8dc7ba6/66595/network_30.png 384w,
+/static/181f9b8e1a60f9ad6a4b2dfdf8dc7ba6/43b96/network_30.png 652w"
+            sizes="(max-width: 652px) 100vw, 652px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/181f9b8e1a60f9ad6a4b2dfdf8dc7ba6/43b96/network_30.png"
+            alt="스위치_vs_라우터"
+            title="스위치_vs_라우터"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+<code class="language-text">스위치</code>는 TCP/IP 모델의 네트워크 액세스 계층까지 역캡슐화하여 MAC 주소값을 이용하여 경로를 정한다. 반면, <code class="language-text">라우터</code>는 인터넷 계층까지 역캡슐화하여 IP 주소값을 이용하여 경로를 정한다.</p>
+<h1 id="결론" style="position:relative;">결론<a href="#%EA%B2%B0%EB%A1%A0" aria-label="결론 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>위의 내용으로 데이터가 네트워크를 통해 목적지로 전달되려면 필요한 요소들을 알아보았다. 다음 글은 TCP/IP 모델의 계층별 대표적인 프로토콜을 알아보고, 마지막으로 웹 브라우저를 통해 요즘IT 화면을 요청하면 실제로 어떻게 데이터가 전달되는지 상세히 알아보는 글을 준비해주신다고 한다. 기대가 된다.</p>
+<h1 id="참고링크" style="position:relative;">참고링크<a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC" aria-label="참고링크 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p><a href="https://yozm.wishket.com/magazine/detail/1956/?utm_source=stibee&#x26;utm_medium=email&#x26;utm_campaign=newsletter_yozm&#x26;utm_content=contents" target="_blank" rel="nofollow">주니어 개발자를 위한 엄청 쉬운 TCP/IP 4계층 이야기</a></p></div></div><div class="table-of-content"><ul>
+<li><a href="#%EC%9D%91%EC%9A%A9%EA%B2%8C%EC%B8%B5%EC%97%90%EC%84%9C-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC">응용게층에서 벌어지는 일</a></li>
+<li><a href="#%EC%A0%84%EC%86%A1%EA%B3%84%EC%B8%B5%EC%97%90%EC%84%9C-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC">전송계층에서 벌어지는 일</a></li>
+<li><a href="#%EC%9D%B8%ED%84%B0%EB%84%B7-%EA%B3%84%EC%B8%B5%EC%97%90%EC%84%9C-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC">인터넷 계층에서 벌어지는 일</a></li>
+<li><a href="#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B3%84%EC%B8%B5%EC%97%90%EC%84%9C-%EB%B2%8C%EC%96%B4%EC%A7%80%EB%8A%94-%EC%9D%BC">네트워크 계층에서 벌어지는 일</a></li>
+<li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%83%9D%EC%84%B1-%EC%A3%BC%EC%B2%B4">데이터 생성 주체</a></li>
+<li><a href="#%EA%B2%B0%EB%A1%A0">결론</a></li>
+<li><a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC">참고링크</a></li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/요즘IT_TCP_IP/";window.___webpackCompilationHash="75abe1b19b00b4738800";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-d0d615bb3e50cb05f89f.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-7577fa854f395fef0a2a.js" async=""></script></body></html>

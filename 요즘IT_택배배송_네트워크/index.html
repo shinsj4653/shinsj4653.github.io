@@ -1,0 +1,731 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="요즘 IT의 네트워크 이야기 글 정리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크"/><meta data-react-helmet="true" property="og:description" content="요즘 IT의 네트워크 이야기 글 정리"/><meta data-react-helmet="true" property="og:image" content="/static/4f4f88b3d9cf94674f341b5ef65919ad/thumbnail-cs.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크"/><meta data-react-helmet="true" name="twitter:description" content="요즘 IT의 네트워크 이야기 글 정리"/><meta data-react-helmet="true" name="twitter:image" content="/static/4f4f88b3d9cf94674f341b5ef65919ad/thumbnail-cs.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/요즘IT_택배배송_네트워크/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:619px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;471&#x27; width=&#x27;619&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADcUlEQVQ4y02UWW/bVhCF9d/6mAJFf0KB9qV5StACbV6KokCAtnCCOGmBLoideOni2HDaxIuQ2q4c24mtJdplWaRMazElSqK4SRS3LyDlBiVwycG5vMOZc84wFgAT10NtnhM4XhS7nsdQ0zBMk4njYE8mTFwXLwjfBtf3IPCBgCDwMbQJWn8c4bEQTqw8YHbmU/JG8+qAj9LrIXe76IZBW5YjfKgNqZ5Vo2QXxpi8ZtEdGKx8XefxzQt6bYtYO1dj7caHfBS/z7erVdLxKpPAiRIIYp3teBzbcXhTanHe6CA1uzgu3E5V+fiwwrlm0RMMxMwA2/aImb0hjdwr/klssTT7gtcvs0ybgWw2y34igWW7fPL5CpsJCVVcRGkc0LI8TEOLPnwsyJzUL6M4Ft7W6h12m0oElLcWSD36jonroJnWlLuwWklmOIJ29g494XcGqo9pjJh4Ll8+1/l1vwt4xEI+vsnUmClIUcLi3/Ok5m7jOtO2A9/Dc6fx/y+hdMHyj7u8OZW4Ppen1venFYYCyLpJUzcZmBa2bdMxxyylqyxnBW5sp/lqr8DPO694sJdk9iDHk1SJ7VoTe+ShqCPyuSRS5Yjx2CJWH2h8cGpwrQmfzS/y9M8FBk7AeqrIUkHip/00K8kSzwsCiydFdsoCP/ybYrXYRjiZI7Fxl36rjLh1C6V9RsxyXO7nRX4pN5h7+ow/flt+19ZuqcbDvWNWTgrc2T7gbvyQJ0dpZHUY7V+cvaRR2SQkpN/v4fn+VBTH0DD7CkNVRVaUyMChypIyIH/RptDqkBYkSq0O9Y7CaOJEPlCHRiSYKArEdzZptJrEwqwD3UDu9RnqBiPbxvH8yNz+1WRonR6B57+r3JnYzBdErmVkVoU2vfYlC+sPKVVKxMIjjufhuC41UYiWoet0Ly8ZjW0ylSLvP/uejcwhY3McVY4z4VauwXvJSx4dZfBtFbnTZTBQiY1HOpX1m0ipNeotmY7SoS6KlHM5ekqPRldm5vVflOUGg75KJpvFsix2Egnu35tFOjulnL6OVN+Y2kZXRArrX1B5cS8CdE2jcHxMrVTENPRpj+70kc3lWHq8QE0QONjfJ5VO4wagdNLkc4e4XkDMC2DsOKhdidHYYjQaYWh65MeQhpBL2/Oicaye1UgmkxiWFYnx348kuBrVMH4LzNA949Ob/gMAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/4f4f88b3d9cf94674f341b5ef65919ad/6a134/thumbnail-cs.webp 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/8fd4d/thumbnail-cs.webp 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/0a82c/thumbnail-cs.webp 619w" sizes="(min-width: 619px) 619px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 619px) 619px, 100vw" decoding="async" loading="lazy" data-src="/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png" data-srcset="/static/4f4f88b3d9cf94674f341b5ef65919ad/93ee6/thumbnail-cs.png 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/1a6a5/thumbnail-cs.png 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png 619w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/4f4f88b3d9cf94674f341b5ef65919ad/6a134/thumbnail-cs.webp 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/8fd4d/thumbnail-cs.webp 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/0a82c/thumbnail-cs.webp 619w" sizes="(min-width: 619px) 619px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 619px) 619px, 100vw" decoding="async" loading="lazy" src="/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png" srcSet="/static/4f4f88b3d9cf94674f341b5ef65919ad/93ee6/thumbnail-cs.png 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/1a6a5/thumbnail-cs.png 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png 619w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>CS / Network</div><div>2023.04.10.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p>요즘 IT의 <code class="language-text">주니어 개발자를 위한 엄청 쉬운 네트워크 이야기</code>의 다음 편을 읽어보고 내용을 정리해보았다.</p>
+<h1 id="tcpip" style="position:relative;">TCP/IP<a href="#tcpip" aria-label="tcpip permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<blockquote>
+<p>인터넷에서 사용하는 표준 프로토콜</p>
+</blockquote>
+<p><a href="http://www.naver.com" target="_blank" rel="nofollow">www.naver.com</a> 을 치고 그 화면을 받을 때까지, 데이터가 4계층에 걸쳐서 만들어지고, 다시 그 4계층을 역으로 거치는 과정이 일어난다. 이 모델을 그림으로 표현하면 아래와 같다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 717px; "
+    >
+      <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 27.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABOElEQVQY0zWMbU+CYABF+f9/oH5BfcuWZnOtF1mGWSIYgkqKvIWOB/EBKe3LabH14Wx3Z/deJfXnjHu3fEYhmumyDEI8p8vH5JFMbNjtJO/jMYZh1PnPLWyVxeSh7j4bs3praXekvosiVxY7S2W1cDF9ydwL+Fp3KZIe6yTicDgihCATguPxp3YyfuJro+L6ISMvZ+XO2E975N4EpQhstLcB1y8mzeEc14s4ZCP22wXbXGLbNrqu1ziOgxBbisyjSnW8MOF6OKM9GDMwdKRvoxQri5vHLqeXHc4eBrjLkG+hU2ZLZFGhaRrNZpNWq4WmPZNtJXn6f7jm/L7PyWWHdlel8CcoMpiyNlWuGg30Wcx86VMmfeTGJI5jpJRUVVVTliVxHJEnJkXS58OPeHVCrhoXpFaPXTDlF4zWZBenjRzsAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/9dc1788d088dacf30113d1576917b1c5/a59e9/network_6.webp 192w,
+/static/9dc1788d088dacf30113d1576917b1c5/0ca9f/network_6.webp 384w,
+/static/9dc1788d088dacf30113d1576917b1c5/4d96b/network_6.webp 717w"
+              sizes="(max-width: 717px) 100vw, 717px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/9dc1788d088dacf30113d1576917b1c5/3b721/network_6.png 192w,
+/static/9dc1788d088dacf30113d1576917b1c5/66595/network_6.png 384w,
+/static/9dc1788d088dacf30113d1576917b1c5/034aa/network_6.png 717w"
+            sizes="(max-width: 717px) 100vw, 717px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/9dc1788d088dacf30113d1576917b1c5/034aa/network_6.png"
+            alt="TCP/IP"
+            title="TCP/IP"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+    </span><br>
+응용, 전송, 인터넷, 이더넷에 도달한 뒤 다시 거꾸로 인터넷, 전송, 응용을 거치는 과정을 머릿속에 그려보면 된다. 그리고 이 과정에서 각 단계마다 <code class="language-text">캡슐화</code>라는 과정이 일어난다. 이는 데이터가 다음 계층에 의해 감싸지는 것이라고 이해하면 된다. 데이터가 4단계에 걸쳐, 단계에 따라 포장지에 쌓여 생성된 뒤, 다시 거꾸로 그 과정을 거쳐 수신자에게 전달되는 과정에 대한 전반적인 흐름을 이해하는 것이 목표다. 현실 세계에서 <code class="language-text">편지를 주고받는 상황</code>을 생각하면서 흐름을 직관적으로 이해해보자.</p>
+<h1 id="서울-우체국" style="position:relative;">서울 우체국<a href="#%EC%84%9C%EC%9A%B8-%EC%9A%B0%EC%B2%B4%EA%B5%AD" aria-label="서울 우체국 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p><code class="language-text">서울</code> 이라는 <code class="language-text">네트워크</code>에 사는 <code class="language-text">김씨</code>가 같은 네트워크, 즉 같은 서울에 사는 <code class="language-text">이씨</code>에게 <code class="language-text">편지를 택배로</code> 보내고자 한다.<br>
+우선, <code class="language-text">같은 지역</code>에서 김씨의 택배가 어떠한 단계를 거쳐서 이씨를 찾아가는지 알아보자.</p>
+<h2 id="1단계-편지-작성" style="position:relative;">1단계, 편지 작성<a href="#1%EB%8B%A8%EA%B3%84-%ED%8E%B8%EC%A7%80-%EC%9E%91%EC%84%B1" aria-label="1단계 편지 작성 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>김씨는 이씨에게 전달하고자 하는 글을 <code class="language-text">편지지 양식</code>에 맞춰서 썼다.</p>
+<div class="gatsby-highlight" data-language="py"><pre class="language-py"><code class="language-py"><span class="token punctuation">[</span>인사말<span class="token punctuation">]</span>
+
+<span class="token punctuation">[</span>본문<span class="token punctuation">]</span>
+
+<span class="token punctuation">[</span>맺음말<span class="token punctuation">]</span>
+
+					김씨가</code></pre></div>
+<h2 id="2단계-보내는-이-작성" style="position:relative;">2단계, ‘보내는 이’ 작성<a href="#2%EB%8B%A8%EA%B3%84-%EB%B3%B4%EB%82%B4%EB%8A%94-%EC%9D%B4-%EC%9E%91%EC%84%B1" aria-label="2단계 보내는 이 작성 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>편지를 편지봉투에 넣고, 이 편지를 <code class="language-text">보내는 이, 받는 이</code>를 적어 넣는다.<br>
+편지지를 편지봉투로 감쌌다고 볼 수 있다. 실제 네트워크에서는 다음 계층이 이전 계층을 감싸는 과정이 일어나는데 이를 <code class="language-text">캡슐화</code>라고 부른다. 캡슐화는 내용물을 목적지로 보내기 위해 단계별로 감싸는 행동이다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 750px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/1ad7de4e15b7d0bbe8304c24d23d63ab/e9985/network_7.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 43.22916666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABX0lEQVQoz51SbWvCQAzu//8pG0z8NqG1bBNEZyvoFF+ob6ta17XeS6+trOcz7pzdJmOwHeSSPMk9CckZABAEAcbjsTJxPB6/6b8eQ12NRgPVahVxHJdk/5GSUHVYqVTg+74GpZRlxa/Jl+cSV76xXC7hui4sy0K/30cURTpYFBJSfj5QtsIKKbU+XuDy3KFt22i32wjDELXaLSaTKd4ODGTbAQ0cDLu3mA/rYDtX+6/PLWRRD/70Ad7Awn7TQfLigEYLqPrGaDRCs9mEaZpwHAd7wiDYDtS3sV/ZeGpdYdK9Qbyqg23uEc5NiKCBWa+K4eM1ttMa0uAOcTA8ERJCMBgMNJnneXoOnHMwSpAKDs4pOKNI0wTb7RqLxQxJwjTOGNExITgI2evZ66UIIbBer8shHw4H8CTRuBBpKZQxUMqQphmyLP+QTPt5np+W8tMGi6LQiSopz09a+Wf57Y++A50+rk7hlvZPAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/1ad7de4e15b7d0bbe8304c24d23d63ab/a59e9/network_7.webp 192w,
+/static/1ad7de4e15b7d0bbe8304c24d23d63ab/0ca9f/network_7.webp 384w,
+/static/1ad7de4e15b7d0bbe8304c24d23d63ab/3ea8a/network_7.webp 750w"
+              sizes="(max-width: 750px) 100vw, 750px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/1ad7de4e15b7d0bbe8304c24d23d63ab/3b721/network_7.png 192w,
+/static/1ad7de4e15b7d0bbe8304c24d23d63ab/66595/network_7.png 384w,
+/static/1ad7de4e15b7d0bbe8304c24d23d63ab/e9985/network_7.png 750w"
+            sizes="(max-width: 750px) 100vw, 750px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/1ad7de4e15b7d0bbe8304c24d23d63ab/e9985/network_7.png"
+            alt="편지지를 편지봉투가 감싸는 캡슐화"
+            title="편지지를 편지봉투가 감싸는 캡슐화"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="3단계-보낼-곳-작성" style="position:relative;">3단계, ‘보낼 곳’ 작성<a href="#3%EB%8B%A8%EA%B3%84-%EB%B3%B4%EB%82%BC-%EA%B3%B3-%EC%9E%91%EC%84%B1" aria-label="3단계 보낼 곳 작성 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>이 편지를 택배 상자에 넣어 <code class="language-text">캡슐화</code>하고, 송장에 이 택배를 받을 아파트를 적어 붙인다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 732px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d37ff2c8de4747a92c9d959314b5b8ac/61a54/network_8.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 44.79166666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABlUlEQVQoz5WS247aMBCG8/6P0VZVb3pRqRdoEVe0WtENkC6wbJbDsiFgQjAhsR0OAr7KpkjbVaWqln6PZ8b+Z8YzHoCUklarRRzHVuV8PtuN8/n0B662t76LfoFnCer1OpVKhV6vdyH7z/X6hSNM05QgCFgshDMaJdHrASLqMB23eRm2SOcP6PWILAmdFNG988XPASYbUcgJx+MRL0kSut0u1WqVZtNnkaRsVmNUfMP4/jO9xkeCb++I+19Qsxri6auTj/4nfn5/T+f2A0V8g4zq7Pc7vHa7Ta1WY7VaudLv7nyMzjG5QC5f6AS3PA87bGSMzgVLMWarl4h4wEPnB8l8RFksyOSM/X6PJ4Sg0Wj8zrBJFEUYU1Iog5QZj+ETg8EIuc5QumSZSozZEs/m9Psh0+kMU+5YrzcXwt1ux3A4xPd9wjCkLEuUUmitMMagtUYVhbMvk4TJZOJ8WimKonAoS8Mmyy6Etgn2M22mh8PBNcU6LMGV0MKe8zx3wbbb7V9xOp3w3o7Ja90GsBXYy9cg/xqrXw4dprmfqbASAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d37ff2c8de4747a92c9d959314b5b8ac/a59e9/network_8.webp 192w,
+/static/d37ff2c8de4747a92c9d959314b5b8ac/0ca9f/network_8.webp 384w,
+/static/d37ff2c8de4747a92c9d959314b5b8ac/02596/network_8.webp 732w"
+              sizes="(max-width: 732px) 100vw, 732px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d37ff2c8de4747a92c9d959314b5b8ac/3b721/network_8.png 192w,
+/static/d37ff2c8de4747a92c9d959314b5b8ac/66595/network_8.png 384w,
+/static/d37ff2c8de4747a92c9d959314b5b8ac/61a54/network_8.png 732w"
+            sizes="(max-width: 732px) 100vw, 732px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d37ff2c8de4747a92c9d959314b5b8ac/61a54/network_8.png"
+            alt="전 단계의 편지봉투를 택배 상자로 캡슐화"
+            title="전 단계의 편지봉투를 택배 상자로 캡슐화"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="4단계-주소지-할당" style="position:relative;">4단계, ‘주소지’ 할당<a href="#4%EB%8B%A8%EA%B3%84-%EC%A3%BC%EC%86%8C%EC%A7%80-%ED%95%A0%EB%8B%B9" aria-label="4단계 주소지 할당 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>김씨의 편지가 서울 우체국에 도착하였다. 우체국에서는 송장을 확인해 실제 배달부가 찾아가야 할 주소를 붙여주는 일을 하게 된다. <code class="language-text">서울 B아파트는 서울 동부 20-1번지</code> 라는 식으로 주소를 붙인다. 이 또한 다른 주소가 감싸는 캡슐화라고 할 수 있다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 586px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/226291d8caaf01a47e5f2d397b26abf0/52581/network_9.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 92.1875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABJ0AAASdAHeZh94AAACyklEQVQ4y4VUa2/aUAzN//8T7ddpEtNUaVq7VmPtKAgotKw0gdAAJYGQN+QFeZ3JprQp7TRLTnId33PtY18LRVHgXwoUSJIEWZbBdV3Ytg3DMGBZFjabDdI0ZSXZ+QMC/iNJmjLoarViUAJzHAdxHL8DJBXokecZ0pQiSVHkGa+zNEWepRxlWfI8f6OHImxCB/bsNx5uTqD0T+Go13DVa/RvTjAb/IBvifhZ/YWzs1OOrJzeXsoUCVEYwLPnkKU76JoC25hh5S4wGvTgWCrm6gRHR0c4Pj5Gp9NBFEXMo6IomE6fMJlOYdsOHMdFvNlAoEcQRHC9FdZ+AMOwsFr78Lw1wiiGadm4uLhApVKBKIoIggCSJMIwTFi6gtFDDVO5BW3cwSbydxxSFXecZEwyrYsi52JEUchRheHuva86+2fkmyBLt8jShPcIH3HyzAxeDqMDnovw6lt8uE8oG/dVI1Pxrr6v60Oc8pojpB6rVqu4urpCGEacxtoaInKGmMpNzB5bcPR7xJ4MZ3GPyJXhGQ94GjVhqj22e4bErceAi8UCzWaTSfd9H8k2hvNUxUz8CrH1CcPOZ4z/fIGpfIczOYMuf4PSq/A/ss8HJzDG57yPAakQ7XYb9Xqdv+kWmEsNyqOETruBu24Td7ctmIYGTVWgL2bo39+y7aZVx1ybYKFNsd1uIVDlLi8v0e/30ev1UKvV+Ir5fsDtMxgMIUoDqKqGON5iaZiIog1UdQ5JGkCWRwiCELbjYpskECia8/Nzbtput8s8Eqek1DKSJPFhxnLJkVuWyS1Eb7JrmsprGhzUUpyyLMucbqPR4BtAGz3PY0dd16FpGkzT5Kaez+fMMw0JshP/ZCdATpkAKW0CpaKQcT9dyJH+kdIhRMV4POb33k6HkpKN+H/pw3I/lmcigRMYbS6PqsOp82YelkEPu5+c6bYQ2Nub8rH8BTZ4V9r6b1hUAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/226291d8caaf01a47e5f2d397b26abf0/a59e9/network_9.webp 192w,
+/static/226291d8caaf01a47e5f2d397b26abf0/0ca9f/network_9.webp 384w,
+/static/226291d8caaf01a47e5f2d397b26abf0/70839/network_9.webp 586w"
+              sizes="(max-width: 586px) 100vw, 586px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/226291d8caaf01a47e5f2d397b26abf0/3b721/network_9.png 192w,
+/static/226291d8caaf01a47e5f2d397b26abf0/66595/network_9.png 384w,
+/static/226291d8caaf01a47e5f2d397b26abf0/52581/network_9.png 586w"
+            sizes="(max-width: 586px) 100vw, 586px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/226291d8caaf01a47e5f2d397b26abf0/52581/network_9.png"
+            alt="우체국에서 실제 주소로 캡슐화"
+            title="우체국에서 실제 주소로 캡슐화"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+이렇듯 <code class="language-text">각 단계가 존재하는 이유</code>는, <code class="language-text">캡슐화</code>라는 과정을 통해 <code class="language-text">이전 단계의 내용물을 다른 곳으로 이동</code> 시키기 위한 것이라 할 수 있다.</p>
+<h1 id="역-캡슐화" style="position:relative;">역 캡슐화<a href="#%EC%97%AD-%EC%BA%A1%EC%8A%90%ED%99%94" aria-label="역 캡슐화 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>최종 목적지인 B아파트, “서울 동부 20-1번지” 로 캡슐화한 덕분에, 택배 기사는 정확하게 택배상자를 전달할 수 있었습니다. B아파트에서는 다음 과정을 통해 이씨에게 편지가 최종적으로 전달이 된다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 601px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/1817ac67e21ae0f5946f0f7141148856/f6e13/network_10.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 69.27083333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAACVUlEQVQ4y31US0/bQBDOj+bEb0A5AAfCJULiQNRKlapcohK1ElSFopS0JXaejQEbJSF+rL3rF3a+aibdNEJVRxp7PfPtNzuPdWW1WkFLURR4eXlhzbIMSZLwW9vIr0Xv295PUqEHgeM45s2keZ5vgGVZbuxpmjJOE78mY0JNRkInms1mrE9PTzAMA7Ztw3VdzOdzDkxCeAr0zxOSg4gITE5SWgshEPg+wlCwrSyLzWkJv1qVG/y2VnQUSkdKyelQykVRoiiJiAIUyLIcaZrx+n9S0XXSKVM6RCilgJIBAn+JSHhIVIg8VUjiCGkiEScSUglIFSLNFJIkYp6KrgERhWH4pxEr+M4Ngsc2+p23MG/eYPrzPYT9Cc/WOcL7NpZGE+PrBh6776CsD3Ctj0hTtT5hu93G8fExms0mp86E8wGm/Qs4v77CmVzjYfQF9vgK3uwHvOFnRN/OIY0LKOMCYbcN976DPM/WhIeHh2i1Wtjd3cXp6SnXUoQRhIhgmgNMJlOMRhMoleD52YWQMR5mc4ymFu4GQwQyhucLbhgT1ut1XF5eolqtotFo8JhQl6kEvV4Pvd4dhsMBlFJYLObcece28b3bRd804XsePNfl7Jjw4OAAJycnODo6wtnZGRN6nseEpmmg0+nAsiz+pnkkH83q7e0txuMxfN/HYrFYE1Jn9vb2sLOzg1qthv39fd4URREDaDOBKQg1znEcJtbky+WS7UEQrAlp7shJo0IkVD+tNEYE0lePbHQywm/baa05Kq8vuxZ9g3QQelNd10P/9yfy+sfxG/5qH5Gv5cuHAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/1817ac67e21ae0f5946f0f7141148856/a59e9/network_10.webp 192w,
+/static/1817ac67e21ae0f5946f0f7141148856/0ca9f/network_10.webp 384w,
+/static/1817ac67e21ae0f5946f0f7141148856/cb4e7/network_10.webp 601w"
+              sizes="(max-width: 601px) 100vw, 601px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/1817ac67e21ae0f5946f0f7141148856/3b721/network_10.png 192w,
+/static/1817ac67e21ae0f5946f0f7141148856/66595/network_10.png 384w,
+/static/1817ac67e21ae0f5946f0f7141148856/f6e13/network_10.png 601w"
+            sizes="(max-width: 601px) 100vw, 601px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/1817ac67e21ae0f5946f0f7141148856/f6e13/network_10.png"
+            alt="역 캡슐화 - 1"
+            title="역 캡슐화 - 1"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 607px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/af8b792356b98fca07058e92a9676165/f521d/network_11.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 72.39583333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAACJklEQVQ4y51TW4vaUBDOj/Vn+Bf0TUEfWoI38GGhLNiCtdqlLLvdh1pX6UUUTbSrJpvrydXoV2ZCllRKHzrwkTPnzPky38wc6Xw+I7MkSRBFEeI4ZuTXhNPp9BKbv5c3KSPyfR/H45EvkX8JIgzDkOPIz0gviSUioCAyVVUxn8+xXC6xWq0YiqKwv9vt4Hkex9E3y/avhEEQcAaO48A0Tdi2zZdM0+C1ZVl8TpfjOILvp4RZhnmwZDokOUSc+ac/antCFJHkCPExwb9MItYsfSIUQnAzhGvBdZ5hOwaEZzOi0EUUCkSBizBw4QcuPN/hNe0lyTElJCMikpxKAXT1AfbmAyZDGV8HrzEdybA3IzzN38HefsT6yxVmQxmT969w+PkWhjqEcLRU8ng8RrvdxmAwSCWfz9irExzWt9Bu3+D5/hr6Qw+acoft4hP26mdokz70myvod9fQvo+wU+7hCzNtSrPZRLVaRbFYRK1W4ya4roDwAmx3B8y+/cCvvQbPD6HrBmxHwHY9LFZrbJ72cIQPy3K4ZBLNXq/XQ7/fR6vVQqfT4VFxXReeJ7BerzB9fISqKNz5w+HApdF1DbPZFMvlApZlchJUNomGtNvtolwuQ5ZlNBoNnkc6JFL6ElFWY5pTIqXZpb0MREhx3JRKpYJCoYB6vY5SqcSEZJdPj9RkyO/nnyYT0jDTXwzDYND6f+1lbC6/lAXJokJnIJ9A2eTfcv6l/AYfHSL6+kThegAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/af8b792356b98fca07058e92a9676165/a59e9/network_11.webp 192w,
+/static/af8b792356b98fca07058e92a9676165/0ca9f/network_11.webp 384w,
+/static/af8b792356b98fca07058e92a9676165/f1b45/network_11.webp 607w"
+              sizes="(max-width: 607px) 100vw, 607px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/af8b792356b98fca07058e92a9676165/3b721/network_11.png 192w,
+/static/af8b792356b98fca07058e92a9676165/66595/network_11.png 384w,
+/static/af8b792356b98fca07058e92a9676165/f521d/network_11.png 607w"
+            sizes="(max-width: 607px) 100vw, 607px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/af8b792356b98fca07058e92a9676165/f521d/network_11.png"
+            alt="역 캡슐화 - 2"
+            title="역 캡슐화 - 2"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 607px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/742dcaf68a527577332d8b9c3e2edcf0/f521d/network_12.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 59.895833333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABv0lEQVQoz6VTTW/aQBDl3/Ibmr/AGQluKL0gUVBUqwc4cGpUR5Vo0qahaZMU3Lottb1kzX55wbxo1tiiSZEqdaTntcdvnt/sjmvYRZ7nsNbCGIMsy56A8vSeeBTb7RZ/ixpdiKi1xnq9xmazcc8lSKwUKnm0lqKPhWtElFJWCSJHUQTGGJIkQRzH4Jz/UaiUOui0ckgkaqskkVMCFRLontyWnRx0uJ+gglK4gtZOxJhCaN/ZU+wJLhYLBEHgnPxPuJZ930e73Ua323XC9JFMr2ANh0gT8OVvaMFgNYeSDMZwKM3BeQwpl+7Z6NTVOUHP89BsNp3o0dEzsOU94u9vEd29wvWkh3evjzG7PEEyH+HXJw98+hLJRR83p8+xOH8B8cVDHPjI853geDxGr9fDaDRCq9UCY0uwaI676zOEs3P8DN7j2+0E4fwC/McV+Mc3SD+cQtxOkE7PwKc+eDQr9pAE+/0+6vU6BoMBGo0GwjCEySyUziBVAW0sOBf4fPMVLBUQdoOVyrAyFsKswVPhDqzaw06ng+Fw6Nqn+csy405ca1WtUgowlkAKAaOLnNlBKVns4aFfaH/QyxH6lwl4AIzqkNgiE86FAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/742dcaf68a527577332d8b9c3e2edcf0/a59e9/network_12.webp 192w,
+/static/742dcaf68a527577332d8b9c3e2edcf0/0ca9f/network_12.webp 384w,
+/static/742dcaf68a527577332d8b9c3e2edcf0/f1b45/network_12.webp 607w"
+              sizes="(max-width: 607px) 100vw, 607px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/742dcaf68a527577332d8b9c3e2edcf0/3b721/network_12.png 192w,
+/static/742dcaf68a527577332d8b9c3e2edcf0/66595/network_12.png 384w,
+/static/742dcaf68a527577332d8b9c3e2edcf0/f521d/network_12.png 607w"
+            sizes="(max-width: 607px) 100vw, 607px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/742dcaf68a527577332d8b9c3e2edcf0/f521d/network_12.png"
+            alt="역 캡슐화 - 3"
+            title="역 캡슐화 - 3"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 592px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8ddb8695c1899a8ea925953db8c48187/d9142/network_13.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 70.3125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABJ0AAASdAHeZh94AAABl0lEQVQ4y41TXU/CQBDs//83vBkfeDGYKBJMSFQiiRUjLbQUrtfvrzGz5eCIYNxkuu11b25nunW6rgOjaRoURYE8zyXXdX0G+x1rGWavHQ4vVVVJYdu2UsScJIkQEFmWyTpBMq7xkEukQmgXmG6DIMB+v0ccx9jtdmebeHhZlkdCG45ZNJJMIYOdNk0rmSoI1jBfC8dumRvjWAtpmqZIs0zk9ujls3vCHFBV9QGV7HdsH4x3bQdkOoD271FGE2TBo6DcPuHr7Rbuyw3ycIx084CMCMaIV3fQkdt3aAijKELT9F4mWuHj/Rnfn69IlYdErSTvwqWA90fEPtR2Ca22J8mUOJ1OsdlseuPLEkppVHWD/wRpirKCQ5mmu8FggMViIc/0bb1eW+PR/vqiJ3WdKCuKvPeQJs/nc0wmE8xms+MYhWEonl4aj3PC048hhEopDIdD+L6P0WgE13WlyPM8mcP/BJUKoX2CPeAcHfPuWmfGLtayGa31+djYwQP4oShZZvIAestObHCNSkjsXOvAlmH+dXP/V/wABEFDqzgfFCgAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/8ddb8695c1899a8ea925953db8c48187/a59e9/network_13.webp 192w,
+/static/8ddb8695c1899a8ea925953db8c48187/0ca9f/network_13.webp 384w,
+/static/8ddb8695c1899a8ea925953db8c48187/ae9e7/network_13.webp 592w"
+              sizes="(max-width: 592px) 100vw, 592px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/8ddb8695c1899a8ea925953db8c48187/3b721/network_13.png 192w,
+/static/8ddb8695c1899a8ea925953db8c48187/66595/network_13.png 384w,
+/static/8ddb8695c1899a8ea925953db8c48187/d9142/network_13.png 592w"
+            sizes="(max-width: 592px) 100vw, 592px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/8ddb8695c1899a8ea925953db8c48187/d9142/network_13.png"
+            alt="역 캡슐화 - 4"
+            title="역 캡슐화 - 4"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+이처럼 캡슐화된 내용들을 꺼내면서 목적지를 찾아가는 과정을 캡슐화의 반대라고 하여 <code class="language-text">역캡슐화</code>라고 부른다.<br>
+“편지지 -> 받는 이 -> 받는 곳” 이 과정을 그대로 반대로 하여 “받는 곳 -> 받는 이 -> 편지지” 의 과정을 거쳐서 이씨가 편지를 받을 수 있게 된 것 이다.<br>
+그렇다면, 서울이 아닌 <code class="language-text">다른 도시로의 전달</code>은 어떻게 이루어질까?</p>
+<h1 id="도시-간의-편지-전달" style="position:relative;">도시 간의 편지 전달<a href="#%EB%8F%84%EC%8B%9C-%EA%B0%84%EC%9D%98-%ED%8E%B8%EC%A7%80-%EC%A0%84%EB%8B%AC" aria-label="도시 간의 편지 전달 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이번엔 부산의 C아파트 박씨에게 택배를 보내려고 한다. 서울 우체국 까지의 과정은 동일하다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 685px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4d5f508ff7d8e9fafd76c334a57c9a0d/a31f0/network_14.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 41.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABVklEQVQoz42SS2vjMBSF/f+XnVmVrrJP/0M3Q6GLgY5JaDp2pBg/WlmyU8eJLdn5Bql0mEALc+Gge6X7ODpSxCd2Pp8DvE3ThHOO0+lE3/cBXddhxxFnLed5vqiJPpzPMTMMA/M80zQNUkrKsqQoCtw0YZ0LuGjIf9q/gwLzvmceBn9wkRdZa9Fak6YpZVnR7V8wxU/E5gcqe+DQZkiZIYTAGIPRmkIpdvf36OtrRJpSa01jTJAm8tr466xWK/KipNu/osuY9eMdpoqRyS+uvn1nsViwXq+pqoqnNMXEMc3NDWmSspU78rwIekfH45G2bUOiZ6pUTdO+UVWKQ39iKyS3t0uWyyVJkoRHUUohNhsK8ZtcPNOYF7p9/c7QC+6d93UKBV4G5yzWjvSHA3mek2VZGOjhY1XX1K9bcvlIuYvpGsnkG371CL6pZz+O49+v4/c+4q/sDzHoYkN1D0PvAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/4d5f508ff7d8e9fafd76c334a57c9a0d/a59e9/network_14.webp 192w,
+/static/4d5f508ff7d8e9fafd76c334a57c9a0d/0ca9f/network_14.webp 384w,
+/static/4d5f508ff7d8e9fafd76c334a57c9a0d/ef8ff/network_14.webp 685w"
+              sizes="(max-width: 685px) 100vw, 685px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/4d5f508ff7d8e9fafd76c334a57c9a0d/3b721/network_14.png 192w,
+/static/4d5f508ff7d8e9fafd76c334a57c9a0d/66595/network_14.png 384w,
+/static/4d5f508ff7d8e9fafd76c334a57c9a0d/a31f0/network_14.png 685w"
+            sizes="(max-width: 685px) 100vw, 685px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/4d5f508ff7d8e9fafd76c334a57c9a0d/a31f0/network_14.png"
+            alt="받는 아파트를 찾지 못해서 톨게이트로 넘기는 우체국"
+            title="받는 아파트를 찾지 못해서 톨게이트로 넘기는 우체국"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+같은 지역, 서울에 있는 살마에게 보내는 택배가 아니다 보니, 서울 우체국에서 해결할 수가 없다. 그래서 서울에서 밖으로 나가려면 <code class="language-text">반드시 통해야</code> 하는 <code class="language-text">서울 톨게이트</code>를 <code class="language-text">받는 곳</code>으로 하여 전달하게 된다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 670px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/32e1bebbb1d1951b1ab02c886a0591fd/6bbca/network_15.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 36.97916666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAAA8klEQVQoz21RuYqAQBTz/3s7f0CsxM7SShTExkLBTgQP8L6PLBkYGXY3MDi+l+TFp/a+L3iIfd9xXZe4s/Y8z3dXa/L9OA7c9/31eDTVcJ5nbNv2EThA9ggOo4nsk3+e519DmUTFOI7fdDXJuq7fUBXSQ6uqCmEYChFNPM/DNE3IsgyO46BtW5GUgjRNYds2uq5DnueIokiYlGUJ3/cFR6PQMAzQuGkamKaJuq4Rx7EQ04SpaBoEASzLQlEUIoTruiJ5kiTQdR3LskAjcRiGLzo/h2vgk3W5M4KCvu/FLmlELcE9si4SSrK6/N9Qf9x/PRU/FGAZIgG/afAAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/32e1bebbb1d1951b1ab02c886a0591fd/a59e9/network_15.webp 192w,
+/static/32e1bebbb1d1951b1ab02c886a0591fd/0ca9f/network_15.webp 384w,
+/static/32e1bebbb1d1951b1ab02c886a0591fd/32193/network_15.webp 670w"
+              sizes="(max-width: 670px) 100vw, 670px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/32e1bebbb1d1951b1ab02c886a0591fd/3b721/network_15.png 192w,
+/static/32e1bebbb1d1951b1ab02c886a0591fd/66595/network_15.png 384w,
+/static/32e1bebbb1d1951b1ab02c886a0591fd/6bbca/network_15.png 670w"
+            sizes="(max-width: 670px) 100vw, 670px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/32e1bebbb1d1951b1ab02c886a0591fd/6bbca/network_15.png"
+            alt="톨게이트로 택배 전송"
+            title="톨게이트로 택배 전송"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+서울 톨게이트는 <code class="language-text">받는 곳</code>을 확인하여 본인에게 전달된 것이 맞는지 확인한다. 그 뒤 톨게이트에 연결된 여러 고속도로 중, 부산으로 이어지는 곳이 있는지 찾은 후 해당 고속도로로 택배상자를 전달하게 된다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 676px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8e26dd411f82e9584c3f7912c471381b/ff08e/network_16.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 66.14583333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAACHklEQVQ4y3VT2Y7aQBDk//8BQfJCQOEpStAqUl4iFClANovZxbAHNjZ4jI3t8QG+K+qBQShiW2rNVV3dbVc3cLaiKJBlGY7H401P0xR5nqOqKoGv61r4/9YggAwgUgLRnXQZSHuZkIjfI20QiFya4zjQdR2MWbBtBm+/h2VZSJLkQpLEMeq6Ont95UCDNpT1cDhcMt+yqgbyvESaFSjK+h1UfSKURsRZliOOOIK9Ae6ZsLevcO0VQn+DhFtIOEN+3CMMGXjIkMQOsmSH9BCcKpRE1NZ6rSPLChwiB2z5Ba8Pn3H/8wPU8Sespn2w56+wX74hMr5DH36E9qMJ63cHoXEH1xyhrM6EqqpiNBphMplA03SUxRHWWoH2/AdbXYG5esD67S+Y8QjXUuGzBbzFCHvlF7zlBL69EB2JCuM4RrvdRrPZRKvVQq/XQ8A5eBhjs2VQZk94mM6wtWxxt3M8hNEByzcN97MnvGhrxEkKzw9QVSUaJJXBYIB+v49ut4vhcIg0PcL3PXjeHo+zGVR1Dtd1wHkgVvrLpmGIe9NYCwUQvizPhFSdpmkYj8fodDpCRp7nIYoiTKdTzOdzBEGAMAzFPWnWNE0oigLbtoVCfN8/EdIjtbzZbEQgtUyfgQBEuNvthDaJjFYionfXdS9vVCElEoS31EQVcs4FkLLLlUgYY4KQztLpTE7T1JBjdT1i0qh6GSCDLxK+mpDr0fsHeX/W/8F22JcAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/8e26dd411f82e9584c3f7912c471381b/a59e9/network_16.webp 192w,
+/static/8e26dd411f82e9584c3f7912c471381b/0ca9f/network_16.webp 384w,
+/static/8e26dd411f82e9584c3f7912c471381b/c7990/network_16.webp 676w"
+              sizes="(max-width: 676px) 100vw, 676px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/8e26dd411f82e9584c3f7912c471381b/3b721/network_16.png 192w,
+/static/8e26dd411f82e9584c3f7912c471381b/66595/network_16.png 384w,
+/static/8e26dd411f82e9584c3f7912c471381b/ff08e/network_16.png 676w"
+            sizes="(max-width: 676px) 100vw, 676px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/8e26dd411f82e9584c3f7912c471381b/ff08e/network_16.png"
+            alt="서울 톨게이트 확인"
+            title="서울 톨게이트 확인"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+톨게이트는 고속도로로 반드시 이어져 있어서, 받는 곳을 따로 지정하여 캡슐화를 하지 않고, 해당 고속도로 방면으로 보내기만 하면 된다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 676px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/025e3996c3d8c9c179e2880810f834c3/ff08e/network_17.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABRUlEQVQoz4VS226CQBTk/7/Cf/BBkn5Ao+lLa9OKPhShXigUdJew7CJOM6ddoqZNTzJhWc5lzgwB/ojz+Tw8T6cTnHPouk7OfPKd58s8RsDD7+iZBmetNGiaBlmWIc9z7Pd7tG07DLpqiH+CeZ6RMUYaE9Zauev7fmhICEMmaq2glIIxDUz9AVVtoKsNnKmkiDl+Rc/mWp4fhkwqigKLxQLRcoWyyJAn91g+hYhf71DtHjEejzEajRBFkRRxABla6+C6ftiEkIaHwwFxHCNNU5RlKUiSBNvtVr6FYYjJZILpdCqNqGH6vsH67QXr1QN2yTPKLIJpNAJO85oQXLuua9GH0FpjNpvJBvP5XO6YwxqtKtTqE8cqhzrmcLb9NuXS3cuVWEw3KQnZchANIrwZtxHcCsygDDSBzfz/R3AI771Bt2To8hdoG7fRjjJPDwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/025e3996c3d8c9c179e2880810f834c3/a59e9/network_17.webp 192w,
+/static/025e3996c3d8c9c179e2880810f834c3/0ca9f/network_17.webp 384w,
+/static/025e3996c3d8c9c179e2880810f834c3/c7990/network_17.webp 676w"
+              sizes="(max-width: 676px) 100vw, 676px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/025e3996c3d8c9c179e2880810f834c3/3b721/network_17.png 192w,
+/static/025e3996c3d8c9c179e2880810f834c3/66595/network_17.png 384w,
+/static/025e3996c3d8c9c179e2880810f834c3/ff08e/network_17.png 676w"
+            sizes="(max-width: 676px) 100vw, 676px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/025e3996c3d8c9c179e2880810f834c3/ff08e/network_17.png"
+            alt="톨게이트에서 부산 고속도로 방면으로 편지봉투 전송"
+            title="톨게이트에서 부산 고속도로 방면으로 편지봉투 전송"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+부산 고속도로와 이어져 있는 부산 톨게이트에서는 부산으로 전달해야 하는 택배인 것을 알고 부산 우체국으로 전달한다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 685px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0ee27780015442b9c080b76ba4825d18/a31f0/network_19.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 42.1875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABNElEQVQoz41Ry26DMBDk//8gPXNNL80H9FKlUntoFUABUoISSgMJDwM2DwNTrSMUtUofK43WFszOekbDlRrHUYGq73t0XafQtq0CnaWUCtN/U9cm8k+gAURsmgZVVUEIofowDOobCX4ZiH8WEYhMg6eN6f59AY3Uy7KE53nY7fYo2AlF9IqNeY+Dv4TIfbjuBrZto66bP4U1UiyKApZlYev7YHmCLHaxXj0g2q/wETiYzW6g6zpcZ422qVCwBMfoHcc4RJbGEJyhKvPzhuQDYwxJkiBNU0RRhFOSKTBWIQwPWCzuMJ/f4s1dIQ4M2OYSwfYFvvsMx3qEZz8h8M1LKPRs8oMwpTj0PYbh7BnZYRiGEu5kD84FJKUvpbKBixpt2/0eColQonVdg3OuOoEEpkSvBfcJOt9n1w6ApR4AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/0ee27780015442b9c080b76ba4825d18/a59e9/network_19.webp 192w,
+/static/0ee27780015442b9c080b76ba4825d18/0ca9f/network_19.webp 384w,
+/static/0ee27780015442b9c080b76ba4825d18/ef8ff/network_19.webp 685w"
+              sizes="(max-width: 685px) 100vw, 685px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/0ee27780015442b9c080b76ba4825d18/3b721/network_19.png 192w,
+/static/0ee27780015442b9c080b76ba4825d18/66595/network_19.png 384w,
+/static/0ee27780015442b9c080b76ba4825d18/a31f0/network_19.png 685w"
+            sizes="(max-width: 685px) 100vw, 685px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/0ee27780015442b9c080b76ba4825d18/a31f0/network_19.png"
+            alt="부산 톨게이트에서 부산 우체국으로 편지봉투 전송"
+            title="부산 톨게이트에서 부산 우체국으로 편지봉투 전송"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+부선 우체국에서는 서울 우체국과 동일한 과정으로 동작을 한다. 부산 C 아파트가 부산에 있다는 것을 알고 정확한 <code class="language-text">주소지</code>를 할당해주고, 역캡슐화 과정을 통해 박씨에게 편지가 전달될 수 있다.<br>
+네트워크에서 <code class="language-text">LAN(Local Area Network)</code>를 <code class="language-text">같은 지역</code>이라 할 수 있고, 다른 지역으로 넘어가는 것을 <code class="language-text">WAN(Wide Area Network)</code> 라고 하여, 같은 지역에서의 연결이 아닌, 지역과 지역의 <code class="language-text">넓은 연결</code>을 의미한다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 672px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/81ba57c4378eee70d9653b779286a39d/00e42/network_lan_vs_wan.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 59.895833333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABMElEQVQoz31TSYqFQAz1/hfwBKJLQXDhwq249AgOIA6IOM9pXprY1bb9H4RUJamXoaq067po2zZa1/VVQ8ZxZJH9W+y+7wQuDYvjOOgTqqqiuq4/xoADXBoygFmgrp/7N5/YpFOuUBXJBOd5nn8OwgafGquKhv6XZeFg6CzLfmV8kiJebHme82zlLHxMKJDANzzbVWcnYEJUkaYpNU1zXwDWyBiG4V0xUJYlBUFAwzBwDPYA1nEc/1yKYRjkui4bHMchz/OoKAqyLItJ0VbXdRRFEZmmSUmSkO/7ZNs2EyJe1/XvS0GZqApZgXmeuTo4UUHbtneFfd9zomma7vcJ4Cw47pZlDp+ezH82mTs0EyIAVSErtCpSKbTcIkT8ckY0/5TnI30K5orW0JZ8gjcRfAHnQ6PV1Ar1TgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/81ba57c4378eee70d9653b779286a39d/a59e9/network_lan_vs_wan.webp 192w,
+/static/81ba57c4378eee70d9653b779286a39d/0ca9f/network_lan_vs_wan.webp 384w,
+/static/81ba57c4378eee70d9653b779286a39d/42a33/network_lan_vs_wan.webp 672w"
+              sizes="(max-width: 672px) 100vw, 672px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/81ba57c4378eee70d9653b779286a39d/3b721/network_lan_vs_wan.png 192w,
+/static/81ba57c4378eee70d9653b779286a39d/66595/network_lan_vs_wan.png 384w,
+/static/81ba57c4378eee70d9653b779286a39d/00e42/network_lan_vs_wan.png 672w"
+            sizes="(max-width: 672px) 100vw, 672px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/81ba57c4378eee70d9653b779286a39d/00e42/network_lan_vs_wan.png"
+            alt="LAN과 WAN 영역"
+            title="LAN과 WAN 영역"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+네트워크가 컴퓨터 간의 통신을 의미하는 것 처럼, 현실에서도 사람과 사람, 사람과 회사, 회사와 회사 등 많은 것들이 연결되어 통신하고 있다.<br>
+다음 편에서는 <code class="language-text">데이터의 캡슐화 4단계가 컴퓨터 세계에서는 어떻게 이루어지는지</code> 알아보자.</p>
+<h1 id="참고링크" style="position:relative;">참고링크<a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC" aria-label="참고링크 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p><a href="https://yozm.wishket.com/magazine/detail/1906/" target="_blank" rel="nofollow">택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크</a></p></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#tcpip">TCP/IP</a></p>
+</li>
+<li>
+<p><a href="#%EC%84%9C%EC%9A%B8-%EC%9A%B0%EC%B2%B4%EA%B5%AD">서울 우체국</a></p>
+<ul>
+<li><a href="#1%EB%8B%A8%EA%B3%84-%ED%8E%B8%EC%A7%80-%EC%9E%91%EC%84%B1">1단계, 편지 작성</a></li>
+<li><a href="#2%EB%8B%A8%EA%B3%84-%EB%B3%B4%EB%82%B4%EB%8A%94-%EC%9D%B4-%EC%9E%91%EC%84%B1">2단계, ‘보내는 이’ 작성</a></li>
+<li><a href="#3%EB%8B%A8%EA%B3%84-%EB%B3%B4%EB%82%BC-%EA%B3%B3-%EC%9E%91%EC%84%B1">3단계, ‘보낼 곳’ 작성</a></li>
+<li><a href="#4%EB%8B%A8%EA%B3%84-%EC%A3%BC%EC%86%8C%EC%A7%80-%ED%95%A0%EB%8B%B9">4단계, ‘주소지’ 할당</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%97%AD-%EC%BA%A1%EC%8A%90%ED%99%94">역 캡슐화</a></p>
+</li>
+<li>
+<p><a href="#%EB%8F%84%EC%8B%9C-%EA%B0%84%EC%9D%98-%ED%8E%B8%EC%A7%80-%EC%A0%84%EB%8B%AC">도시 간의 편지 전달</a></p>
+</li>
+<li>
+<p><a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC">참고링크</a></p>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/요즘IT_택배배송_네트워크/";window.___webpackCompilationHash="75abe1b19b00b4738800";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-d0d615bb3e50cb05f89f.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-7577fa854f395fef0a2a.js" async=""></script></body></html>
