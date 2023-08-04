@@ -1,7 +1,7 @@
 ---
 date: '2023-07-27'
 title: '비상교육 현장실습 - @Lombok의 좋은 사용법'
-categories: ['VISANG']
+categories: ['VISANG', 'Spring']
 summary: '현장실습 프로젝트 때 사용하는 Lombok 라이브러리 내용 정리'
 thumbnail: './images/thumbnail-visang.png'
 ---

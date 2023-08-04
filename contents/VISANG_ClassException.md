@@ -1,7 +1,7 @@
 ---
 date: '2023-07-28'
 title: '비상교육 현장실습 - java.lang.ClassException'
-categories: ['VISANG']
+categories: ['VISANG', 'Java']
 summary: '현장실습 프로젝트 때 발생한 java.lang.ClassException 에 대한 정리'
 thumbnail: './images/thumbnail-visang.png'
 ---

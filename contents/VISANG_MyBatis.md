@@ -1,7 +1,7 @@
 ---
 date: '2023-07-26'
 title: '비상교육 현장실습 - MyBatis'
-categories: ['VISANG']
+categories: ['VISANG', 'Spring']
 summary: '현장실습 프로젝트 때 사용하는 MyBatis 내용 정리'
 thumbnail: './images/thumbnail-visang.png'
 ---
