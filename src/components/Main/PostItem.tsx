@@ -394,6 +394,16 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'ElasticSearch':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#45B7AA', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>
