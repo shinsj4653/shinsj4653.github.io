@@ -404,6 +404,46 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'Airflow':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#017CEE', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'Logstash':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#F5C11C', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'Kibana':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#EA4E90', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+
+              case 'CDC':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#5186EC', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
             }
           })}
         </Category>
