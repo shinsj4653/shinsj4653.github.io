@@ -598,10 +598,10 @@ output <span class="token punctuation">{</span>
 <h2 id="추가적인-설정" style="position:relative;">추가적인 설정<a href="#%EC%B6%94%EA%B0%80%EC%A0%81%EC%9D%B8-%EC%84%A4%EC%A0%95" aria-label="추가적인 설정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">input <span class="token punctuation">{</span>
   jdbc <span class="token punctuation">{</span>
-    statement <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"select * from tb_table_meta_info where table_meta_info_id > :sql_last_value limit :size offset :offset"</span>,
-    jdbc_paging_enabled <span class="token operator">=</span><span class="token operator">></span> true,
-    jdbc_paging_mode <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"explicit"</span>,
-    jdbc_page_size <span class="token operator">=</span><span class="token operator">></span> <span class="token number">100000</span>
+    <span class="token comment"># 추가적인 설정</span>
+    jdbc_paging_enabled <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"true"</span>
+    jdbc_paging_mode <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"explicit"</span>
+    jdbc_page_size <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"100000"</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
 <ul>
@@ -615,14 +615,62 @@ output <span class="token punctuation">{</span>
 <p>그래서 볼륨으로 잡아줄 <code class="language-text">./logstash/inspector-index.dat</code>파일을 아래와 같이 구성하고, <code class="language-text">logstash.conf</code>에 설정값을 추가해주기로 하였다.</p>
 </li>
 </ul>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token comment"># bat 설치</span>
+$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> bat <span class="token comment"># 우분투</span>
+$ <span class="token function">ln</span> -s /usr/bin/batcat ~/.local/bin/bat <span class="token comment"># batcat을 bat으로 바꿔주는 명령어. 이걸 안해주면 batcat으로 사용해야한다.</span>
+
+<span class="token comment"># logstash 폴더로 간 후, </span>
+$ bat inspector-index.dat</code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 656px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d0d16b7c1ff80a0b89c27636e31eeed5/5ad6b/image-27.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 18.229166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAApUlEQVQY05XOS26DMBSFYTZB7WvHxqjYGIQJIU2EInX/y/qrhD6UWTr4BufqHOlWzW1GPif0NqLWiJxG5P2MdCs2nrHpgk1XbFyx6QPbLXvuN1zeGKcjOfcMw0AphSr1Cec9zjlCCHjvCaGlaQLGGEQEEfNNdsbunm7y6Ff30MVIzgPLciLnzDwfKVPBHQ6I6L/RC6qfL9q2Rak36rr+pZRCa/0vXwIHbFcFvCigAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d0d16b7c1ff80a0b89c27636e31eeed5/a59e9/image-27.webp 192w,
+/static/d0d16b7c1ff80a0b89c27636e31eeed5/0ca9f/image-27.webp 384w,
+/static/d0d16b7c1ff80a0b89c27636e31eeed5/0ccf2/image-27.webp 656w"
+              sizes="(max-width: 656px) 100vw, 656px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d0d16b7c1ff80a0b89c27636e31eeed5/3b721/image-27.png 192w,
+/static/d0d16b7c1ff80a0b89c27636e31eeed5/66595/image-27.png 384w,
+/static/d0d16b7c1ff80a0b89c27636e31eeed5/5ad6b/image-27.png 656w"
+            sizes="(max-width: 656px) 100vw, 656px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d0d16b7c1ff80a0b89c27636e31eeed5/5ad6b/image-27.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+bat 을 사용하여 inspectore-index.dat 파일 구성 완료 후, logstash를 실행하면 — 뒤의 0 값이 다음과 같이 3018, 즉 가장 마지막으로 읽은 id 값으로 변경될 것 이다.</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">input <span class="token punctuation">{</span>
     jdbc <span class="token punctuation">{</span>
-		<span class="token comment"># ...생략</span>
-        <span class="token comment"># 추가 및 수정된 설정값</span>
-        use_column_value <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">true</span>
-        tracking_column <span class="token operator">=</span><span class="token operator">></span> table_meta_info_id
-        last_run_metadata_path <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"/usr/share/logstash/inspector-index.dat"</span>
-        statement <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"select * from tb_table_meta_info where table_meta_info_id > :sql_last_value order by id ASC"</span>
+		<span class="token comment"># 마지막에 실행된 row의 값을 저장할 수 있는 설정</span>
+    use_column_value <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"true"</span>
+    tracking_column <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"table_meta_info_id"</span>
+    last_run_metadata_path <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"/usr/share/logstash/inspector-index.dat"</span>
+    statement <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"select * from tb_table_meta_info where table_meta_info_id > :sql_last_value order by table_meta_info_id asc"</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
 <ul>
@@ -630,7 +678,7 @@ output <span class="token punctuation">{</span>
 <p><code class="language-text">use_column_value</code>: 해당 값이 true여야 statement에 sql_last_value 변수를 사용할 수 있으며, file로 저장되는 id 값 metadata를 저장하고 가져올 수 있다.</p>
 </li>
 <li>
-<p><code class="language-text">tracking_column</code>: 마지막에 읽은 값 기준을 잡아줄 컬럼 명을 설정하는 값이다. 기본적으로 auto increment 세팅이 되어있는 값을 pk로 잡으니, 해당 값을 기준으로 잡으면 좋다. 그리고 값은 numeric 또는 timestamp 를 가지며 기본값은 numeric 이다!</p>
+<p><code class="language-text">tracking_column</code>: 마지막에 읽은 값 기준을 잡아줄 컬럼 명을 설정하는 값이다. 기본적으로 auto increment 세팅이 되어있는 값을 pk로 잡으니, 해당 값을 기준으로 잡으면 좋다. 그리고 값은 numeric 또는 timestamp 를 가지며 기본값은 numeric 이다.</p>
 </li>
 <li>
 <p><code class="language-text">last_run_metadata_path</code>: 마지막에 읽은 값을 저장할 file path를 세팅한다. 위 compose yaml에서 세팅한 볼륨 경로로 맞춰주면 된다.</p>
@@ -639,7 +687,53 @@ output <span class="token punctuation">{</span>
 <p><code class="language-text">statement</code> 값 역시 위 설정에 맞춰서 바뀌었다. 그리고 “마지막에 읽은 값” 이기 때문에 select order by를 꼭 “ASC” 로 세팅해야한다.</p>
 </li>
 </ul>
-<p>이제 다시 실행해보면 inspector-index.dat 이 업데이트 되면서 매 분 query가 실행될 때 마다 같은 결과 값이 아닌 추가된 값만 출력되는 것을 볼 수 있다.</p>
+<p>이제 다시 실행해보면 inspector-index.dat 이 업데이트 되면서 매 분 query가 실행될 때 마다 같은 결과 값이 아닌 추가된 값만 출력되는 것을 볼 수 있다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/f56764586647ba08adec5c03c30765a3/b00dd/image-26.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 27.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABCUlEQVQY0z2Q207DMBBE8wJ14sTOpUns3EOKqoJUlaK2oioCif//poPsCh5W411pzu44eL9+czjfmDY7itJg2pFhfsZ2E6XpaMeF0rSoNEcm2tffO9EZSufEib6X0gQvbxdejxe6caG2PaYbqWzvgeu6Ic1Lb5SJQoQRIpSEMmYlQiKZICKJEBFhFBNGksBdePr8YVq21M1AMzxh2oGmn7HdSFqU5OuaojIUlfVLvFb2f+aWZkWFjBXB/nTj+PHFuGyx/ewjOqDtJw93gLrpyYrSw51RZ4XvdZqjs7VPEKuUlRAEu8OZ/elKP28w3R3ioju4u9IBS9OQqNSbnPr/86r8zEV39fC44hcVIX9CI67CpwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/f56764586647ba08adec5c03c30765a3/a59e9/image-26.webp 192w,
+/static/f56764586647ba08adec5c03c30765a3/0ca9f/image-26.webp 384w,
+/static/f56764586647ba08adec5c03c30765a3/dc9b9/image-26.webp 768w,
+/static/f56764586647ba08adec5c03c30765a3/e2c2f/image-26.webp 1152w,
+/static/f56764586647ba08adec5c03c30765a3/4c2fa/image-26.webp 1227w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/f56764586647ba08adec5c03c30765a3/3b721/image-26.png 192w,
+/static/f56764586647ba08adec5c03c30765a3/66595/image-26.png 384w,
+/static/f56764586647ba08adec5c03c30765a3/fe486/image-26.png 768w,
+/static/f56764586647ba08adec5c03c30765a3/d2d74/image-26.png 1152w,
+/static/f56764586647ba08adec5c03c30765a3/b00dd/image-26.png 1227w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/f56764586647ba08adec5c03c30765a3/fe486/image-26.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
 <h1 id="참고링크" style="position:relative;">참고링크<a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC" aria-label="참고링크 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
 <ul>
 <li><a href="https://velog.io/@qlgks1/Elasticsearch-ELK-stack-Postgresql-Logstash-query-based-CDC-%EB%A7%8C%EB%93%A4%EA%B8%B0-by-docker-compose" target="_blank" rel="nofollow">Elasticsearch - ELK stack &#x26; PostgreSQL &#x26; Logtash, query based CDC 만들기 by docker compose</a></li>
@@ -670,4 +764,4 @@ output <span class="token punctuation">{</span>
 <li>
 <p><a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC">참고링크</a></p>
 </li>
-</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/CDC_with_ES/";window.___webpackCompilationHash="9d95a56ab776dd102373";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-833a5cd7c95939b57998.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-bc232f04269323ddddf7.js" async=""></script></body></html>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/CDC_with_ES/";window.___webpackCompilationHash="c0b328eb71594b9ccbbf";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-9974d21d948eb2debf62.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-833a5cd7c95939b57998.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-9974d21d948eb2debf62.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-588c0f7d9fc5d4dca031.js" async=""></script></body></html>
