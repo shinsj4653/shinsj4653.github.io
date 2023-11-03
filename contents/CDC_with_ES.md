@@ -393,10 +393,10 @@ output {
 ```bash
 input {
   jdbc {
-    statement => "select * from tb_table_meta_info where table_meta_info_id > :sql_last_value limit :size offset :offset",
-    jdbc_paging_enabled => true,
-    jdbc_paging_mode => "explicit",
-    jdbc_page_size => 100000
+    # 추가적인 설정
+    jdbc_paging_enabled => "true"
+    jdbc_paging_mode => "explicit"
+    jdbc_page_size => "100000"
   }
 }
 ```
@@ -405,28 +405,39 @@ input {
 - 가장 먼저 봤던 docker-compose.yml file에서 logstash의 volumes에 잡혀있던 /usr/share/logstash/inspector-index.dat 가 `마지막으로 읽은 row, line을 기록하는 file` 이다. fluented, promtail 등이 사용하는 컨셉이 같다!
 
 - 그래서 볼륨으로 잡아줄 `./logstash/inspector-index.dat`파일을 아래와 같이 구성하고, `logstash.conf`에 설정값을 추가해주기로 하였다.
+```bash
+# bat 설치
+$ sudo apt install bat # 우분투
+$ ln -s /usr/bin/batcat ~/.local/bin/bat # batcat을 bat으로 바꿔주는 명령어. 이걸 안해주면 batcat으로 사용해야한다.
 
+# logstash 폴더로 간 후, 
+$ bat inspector-index.dat
+```
+![Alt text](image-27.png)  
+bat 을 사용하여 inspectore-index.dat 파일 구성 완료 후, logstash를 실행하면 --- 뒤의 0 값이 다음과 같이 3018, 즉 가장 마지막으로 읽은 id 값으로 변경될 것 이다.
 ```bash
 input {
     jdbc {
-		# ...생략
-        # 추가 및 수정된 설정값
-        use_column_value => true
-        tracking_column => table_meta_info_id
-        last_run_metadata_path => "/usr/share/logstash/inspector-index.dat"
-        statement => "select * from tb_table_meta_info where table_meta_info_id > :sql_last_value order by id ASC"
+		# 마지막에 실행된 row의 값을 저장할 수 있는 설정
+    use_column_value => "true"
+    tracking_column => "table_meta_info_id"
+    last_run_metadata_path => "/usr/share/logstash/inspector-index.dat"
+    statement => "select * from tb_table_meta_info where table_meta_info_id > :sql_last_value order by table_meta_info_id asc"
     }
 }
 ```
 - `use_column_value`: 해당 값이 true여야 statement에 sql_last_value 변수를 사용할 수 있으며, file로 저장되는 id 값 metadata를 저장하고 가져올 수 있다.
 
-- `tracking_column`: 마지막에 읽은 값 기준을 잡아줄 컬럼 명을 설정하는 값이다. 기본적으로 auto increment 세팅이 되어있는 값을 pk로 잡으니, 해당 값을 기준으로 잡으면 좋다. 그리고 값은 numeric 또는 timestamp 를 가지며 기본값은 numeric 이다!
+- `tracking_column`: 마지막에 읽은 값 기준을 잡아줄 컬럼 명을 설정하는 값이다. 기본적으로 auto increment 세팅이 되어있는 값을 pk로 잡으니, 해당 값을 기준으로 잡으면 좋다. 그리고 값은 numeric 또는 timestamp 를 가지며 기본값은 numeric 이다.
 
 - `last_run_metadata_path`: 마지막에 읽은 값을 저장할 file path를 세팅한다. 위 compose yaml에서 세팅한 볼륨 경로로 맞춰주면 된다.
 
 - `statement` 값 역시 위 설정에 맞춰서 바뀌었다. 그리고 "마지막에 읽은 값" 이기 때문에 select order by를 꼭 "ASC" 로 세팅해야한다.
 
-이제 다시 실행해보면 inspector-index.dat 이 업데이트 되면서 매 분 query가 실행될 때 마다 같은 결과 값이 아닌 추가된 값만 출력되는 것을 볼 수 있다.
+이제 다시 실행해보면 inspector-index.dat 이 업데이트 되면서 매 분 query가 실행될 때 마다 같은 결과 값이 아닌 추가된 값만 출력되는 것을 볼 수 있다.  
+![Alt text](image-26.png)  
+
+
 
 # 참고링크
 
