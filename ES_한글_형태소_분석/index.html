@@ -1,0 +1,616 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="ES의 한글 형태소 기반 검색"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="ElasticSearch - Nori Tokenizer &amp; Pattern 기반 검색 정확도 향상"/><meta data-react-helmet="true" property="og:description" content="ES의 한글 형태소 기반 검색"/><meta data-react-helmet="true" property="og:image" content="/static/550453d38d1c75694a0ab3984eb8d9a1/thumbnail-elk.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="ElasticSearch - Nori Tokenizer &amp; Pattern 기반 검색 정확도 향상"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="ElasticSearch - Nori Tokenizer &amp; Pattern 기반 검색 정확도 향상"/><meta data-react-helmet="true" name="twitter:description" content="ES의 한글 형태소 기반 검색"/><meta data-react-helmet="true" name="twitter:image" content="/static/550453d38d1c75694a0ab3984eb8d9a1/thumbnail-elk.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/ES_한글_형태소_분석/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">ElasticSearch - Nori Tokenizer &amp; Pattern 기반 검색 정확도 향상</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1932px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;1108&#x27; width=&#x27;1932&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABtElEQVQoz4WS0UsUURTG5y/pPaRC36IgDH0oJOjBHqJgwRfDJ/XRP6LopUBIQUJLi4JEdBHcXUEHZaG2hyBWmNlt3W13yZmNmW1m7v3F3juru7rqgZlzz3cO937fOccAkFKivUCfVHSMt2s6wi7rrDNUoUaVj0KPwCsg4prILyGEzrX+UkiCqkPw2yE6POogo73R9YJo4H2fhv0BpP1SXfLPvE34Y/KETcPHS8xxdP85jaVdjYkTNYqhEJEKlhdmGX94iyeLH9gsFICQX2vXqGz04fouIeA1/vLi5lP2Jl/HjekhORJCBUtfVrnzbIK7n/aZtxyFJUaHudF/hcHVRd4U8wR/HK6ODHH93Ss264damJS9JTtSMJUzSeyt87n4U2GprW0ePHrMvbX3LBTzyGaTsY9vGd1JMvN198xgjNNNbVvkN6nX68dxe/5+06fVoJaqQIiLh9KiHsbyv+Vy5OKvUqlgWRalUolsNkvBss9fmy6woxfVapVkMolpmmQyGZZXVsgfHJBOp9lKpTSB8xh2L69OuK5LuVxWF9u2Ta1WU2fHcVROxEpOt8q4bPMvsl51/wHdoTS9bq3CzgAAAABJRU5ErkJggg==" alt=""/><picture><source type="image/webp" data-srcset="/static/550453d38d1c75694a0ab3984eb8d9a1/da43d/thumbnail-elk.webp 483w,/static/550453d38d1c75694a0ab3984eb8d9a1/026bc/thumbnail-elk.webp 966w,/static/550453d38d1c75694a0ab3984eb8d9a1/99b19/thumbnail-elk.webp 1932w" sizes="(min-width: 1932px) 1932px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1932px) 1932px, 100vw" decoding="async" loading="lazy" data-src="/static/550453d38d1c75694a0ab3984eb8d9a1/ccf95/thumbnail-elk.png" data-srcset="/static/550453d38d1c75694a0ab3984eb8d9a1/ba754/thumbnail-elk.png 483w,/static/550453d38d1c75694a0ab3984eb8d9a1/b4d90/thumbnail-elk.png 966w,/static/550453d38d1c75694a0ab3984eb8d9a1/ccf95/thumbnail-elk.png 1932w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/550453d38d1c75694a0ab3984eb8d9a1/da43d/thumbnail-elk.webp 483w,/static/550453d38d1c75694a0ab3984eb8d9a1/026bc/thumbnail-elk.webp 966w,/static/550453d38d1c75694a0ab3984eb8d9a1/99b19/thumbnail-elk.webp 1932w" sizes="(min-width: 1932px) 1932px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1932px) 1932px, 100vw" decoding="async" loading="lazy" src="/static/550453d38d1c75694a0ab3984eb8d9a1/ccf95/thumbnail-elk.png" srcSet="/static/550453d38d1c75694a0ab3984eb8d9a1/ba754/thumbnail-elk.png 483w,/static/550453d38d1c75694a0ab3984eb8d9a1/b4d90/thumbnail-elk.png 966w,/static/550453d38d1c75694a0ab3984eb8d9a1/ccf95/thumbnail-elk.png 1932w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">ElasticSearch - Nori Tokenizer &amp; Pattern 기반 검색 정확도 향상</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>VISANG / ElasticSearch / Logstash / Kibana</div><div>2023.09.04.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p>메타 데이터는 <code class="language-text">테이블ID, 테이블 코멘트, 하위 주제</code> 로 구성되어 있다. 여기서 이 요소들을 기준으로 더 정확한 검색을 위해 다음의 과정을 거쳤다. 테이블 코멘트와 하위 주제는 <code class="language-text">의미 있는 한글 형태소 기반</code>으로, 테이블 ID는 <code class="language-text">'_' -> 언더바</code>를 기준으로 나누어서 검색되도록 하였다.</p>
+<h1 id="elasticsearch-logstash-kibana-설치" style="position:relative;">ElasticSearch, Logstash, Kibana 설치<a href="#elasticsearch-logstash-kibana-%EC%84%A4%EC%B9%98" aria-label="elasticsearch logstash kibana 설치 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>ELK Stack 설치. 셋 모두 7.15.2 버전을 설치해줬다.</p>
+<ul>
+<li>ES - <a href="https://www.elastic.co/kr/downloads/elasticsearch" target="_blank" rel="nofollow">https://www.elastic.co/kr/downloads/elasticsearch</a></li>
+<li>Logstash - <a href="https://www.elastic.co/kr/downloads/past-releases#logstash" target="_blank" rel="nofollow">https://www.elastic.co/kr/downloads/past-releases#logstash</a></li>
+<li>Kibana - <a href="https://www.elastic.co/kr/downloads/kibana" target="_blank" rel="nofollow">https://www.elastic.co/kr/downloads/kibana</a></li>
+</ul>
+<h1 id="postgresql-연동" style="position:relative;">PostgreSQL 연동<a href="#postgresql-%EC%97%B0%EB%8F%99" aria-label="postgresql 연동 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>데이터 포털 사이트 내 메타 데이터 DB는 PostgreSQL이다. PostgreSQL 과 연동하기 위해서는 <code class="language-text">JDBC Driver</code> 가 필요하다.</p>
+<ul>
+<li>PostgreSQL Driver (42.6.0) - <a href="https://jdbc.postgresql.org/" target="_blank" rel="nofollow">https://jdbc.postgresql.org/</a></li>
+</ul>
+<h1 id="elk-실행" style="position:relative;">ELK 실행<a href="#elk-%EC%8B%A4%ED%96%89" aria-label="elk 실행 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p><code class="language-text">Logstash -> ES -> Kibana</code> 순으로 실행</p>
+<h2 id="logstash" style="position:relative;">Logstash<a href="#logstash" aria-label="logstash permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>다운받은 포더 압축 해제 후, bin 폴더에서 다음 명령어로 실행</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token comment"># bin 폴더 내에서</span>
+./logstash.bat -f logstash-simple.conf</code></pre></div>
+<p>위 명령어 실행 시, logstash-simple.conf 파일 내용을 기반으로 실행된다.<br>
+logstash-simple.conf 파일은 PostgreSQL의 DB 데이터를 pull 방식으로 가져와 ES로 보내는 역할을 해준다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">
+<span class="token comment"># Sample Logstash configuration for creating a simple</span>
+<span class="token comment"># Beats -> Logstash -> Elasticsearch pipeline.</span>
+input <span class="token punctuation">{</span>
+  jdbc <span class="token punctuation">{</span>
+    jdbc_driver_library <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"C:/Users/user/projects/logstash-7.15.2/bin/postgresql-42.6.0.jar"</span>
+    jdbc_driver_class <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"org.postgresql.Driver"</span>
+    jdbc_connection_string <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"postgres url"</span>
+    jdbc_user <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"postgres user"</span>
+    jdbc_password <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"postgres password"</span>
+    schedule <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"* * * * *"</span>
+    statement <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"select * from tb_table_meta_info"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+output <span class="token punctuation">{</span>
+  elasticsearch <span class="token punctuation">{</span>
+    hosts <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token string">"http://localhost:9200"</span><span class="token punctuation">]</span>
+    index <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"nori_test"</span>
+    document_id <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"%{table_meta_info_id}"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ul>
+<li>input: <code class="language-text">PostgreSQL JDBC</code> Connection 정보 입력</li>
+<li>output: <code class="language-text">ElasticSearch</code> Connection 정보 입력</li>
+</ul>
+<p>document_id 설정 이유 : <a href="https://blog.naver.com/xomyjoung/221650123319" target="_blank" rel="nofollow">https://blog.naver.com/xomyjoung/221650123319</a><br>
+바로 <code class="language-text">중복 데이터 처리</code>를 위해서이다. Logstash에서 1분마다 한번씩 input의 statement SQL 구문을 실행해준다. 그렇게 되면 중복되는 데이터가 계속해서 쌓이게 되는데, 이를 document_id 옵션을 통해 해결가능하다.</p>
+<h2 id="elasticsearch" style="position:relative;">ElasticSearch<a href="#elasticsearch" aria-label="elasticsearch permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>압축해제 후, bin 폴더 내의 .bat 파일을 실행</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">localhost:9200</code></pre></div>
+<p>ES의 기본 URL 주소</p>
+<h2 id="kibana" style="position:relative;">Kibana<a href="#kibana" aria-label="kibana permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>압축해제 후, bin 폴더 내의 .bat 파일을 실행</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">localhost:5601</code></pre></div>
+<p>Kibana의 기본 URL 주소</p>
+<h1 id="nori-tokenizer" style="position:relative;">Nori Tokenizer<a href="#nori-tokenizer" aria-label="nori tokenizer permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="nori-설치-및-실행" style="position:relative;">Nori 설치 및 실행<a href="#nori-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%8B%A4%ED%96%89" aria-label="nori 설치 및 실행 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<blockquote>
+<p>Nori - 한글 형태소 분석기</p>
+</blockquote>
+<ul>
+<li>Nori 플러그인 설치 및 실행 : <a href="https://dogf.tistory.com/110" target="_blank" rel="nofollow">https://dogf.tistory.com/110</a><br>
+Nori 설치를 위해 ES 폴더 내에 다음 명령어 실행</li>
+</ul>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">./bin/elasticsearch-plugin <span class="token function">install</span> analysis-nori</code></pre></div>
+<p>설치 후, ES 실행 시 다음과 같이 나오면 정상적으로 Nori가 구동되고 있다는 것<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a52eec83b1762bb63696e9941aff4f46/b72ad/image-20.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 21.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAIAAAABPYjBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAArElEQVQI1zXNa4rEIBAE4NwkhizRxke0Hxp1dBj2/ndaHNiPgv5V1dtr6Xm85alzDESs5fnU9tvaFIn34rwDAGMMfBkw13UppbbWeimZnxaRmDnnzCy55IR435GIECnFBRGJyP8DgG3M0Wql/CTiWquIUEoshYWRkJnWSAjee+ec+9ZCCD6EVZ7z/eqdao/EKUVr7fom4qyzYAFA6x+t9XmeSil1HCvrHvu+/wF2Ni0PKngr/QAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a52eec83b1762bb63696e9941aff4f46/a59e9/image-20.webp 192w,
+/static/a52eec83b1762bb63696e9941aff4f46/0ca9f/image-20.webp 384w,
+/static/a52eec83b1762bb63696e9941aff4f46/dc9b9/image-20.webp 768w,
+/static/a52eec83b1762bb63696e9941aff4f46/e2c2f/image-20.webp 1152w,
+/static/a52eec83b1762bb63696e9941aff4f46/cd45f/image-20.webp 1242w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a52eec83b1762bb63696e9941aff4f46/3b721/image-20.png 192w,
+/static/a52eec83b1762bb63696e9941aff4f46/66595/image-20.png 384w,
+/static/a52eec83b1762bb63696e9941aff4f46/fe486/image-20.png 768w,
+/static/a52eec83b1762bb63696e9941aff4f46/d2d74/image-20.png 1152w,
+/static/a52eec83b1762bb63696e9941aff4f46/b72ad/image-20.png 1242w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a52eec83b1762bb63696e9941aff4f46/fe486/image-20.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+빨간 부분을 확대해서 보면</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token punctuation">[</span>node -1<span class="token punctuation">]</span> loaded plugin <span class="token punctuation">[</span>analysis-nori<span class="token punctuation">]</span></code></pre></div>
+<h2 id="nori-사용" style="position:relative;">Nori 사용<a href="#nori-%EC%82%AC%EC%9A%A9" aria-label="nori 사용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Logstash로 pull 해온 DB 테이블에 해당하는 index의 <code class="language-text">settings</code>를 수정해준다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">PUT _template/tb_table_meta_info
+<span class="token punctuation">{</span>
+  <span class="token string">"index_patterns"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"tb_table_meta_info-*"</span>
+  <span class="token punctuation">]</span>,
+  <span class="token string">"order"</span><span class="token builtin class-name">:</span> <span class="token number">0</span>,
+  <span class="token string">"settings"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"index"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"analysis"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"tokenizer"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"nori_mixed"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"nori_tokenizer"</span>,
+            <span class="token string">"decompound_mode"</span><span class="token builtin class-name">:</span> <span class="token string">"mixed"</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>,
+        <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"english_underscore"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"type"</span> <span class="token builtin class-name">:</span> <span class="token string">"pattern"</span>,
+            <span class="token string">"pattern"</span> <span class="token builtin class-name">:</span> <span class="token string">"<span class="token entity" title="\\">\\</span>W|_"</span>,
+            <span class="token string">"lowercase"</span><span class="token builtin class-name">:</span> <span class="token boolean">true</span>
+          <span class="token punctuation">}</span>,
+          <span class="token string">"korean"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"custom"</span>,
+            <span class="token string">"tokenizer"</span><span class="token builtin class-name">:</span> <span class="token string">"nori_mixed"</span>,
+            <span class="token string">"char_filter"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+              <span class="token string">"html_strip"</span>
+            <span class="token punctuation">]</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">"mappings"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"properties"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"text"</span>,
+        <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token string">"english_underscore"</span>
+      <span class="token punctuation">}</span>,
+      <span class="token string">"table_comment"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"text"</span>,
+        <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token string">"korean"</span>
+      <span class="token punctuation">}</span>,
+      <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"text"</span>,
+        <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token string">"korean"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ul>
+<li><code class="language-text">settings</code> : nori 사용을 위해 <code class="language-text">tokenizer</code> 정의 및 <code class="language-text">analyzer</code> 추가</li>
+<li><code class="language-text">mappings</code> : nori 적용을 해줄 필드에 <code class="language-text">analyzer: korean</code> 추가</li>
+</ul>
+<p>필요한 값 설정 후, PUT 요청으로 수정 완료<br>
+수정이 제대로 되었는지 확인해주기 위해 Kibana Console에 접속 후, <code class="language-text">Management -> Stack Management -> Data -> Index Management</code> 에 간 다음, 원하는 index 선택 후 Settings 항목을 확인해주면 된다.</p>
+<h2 id="특정-index에-template-설정" style="position:relative;">특정 Index에 template 설정<a href="#%ED%8A%B9%EC%A0%95-index%EC%97%90-template-%EC%84%A4%EC%A0%95" aria-label="특정 index에 template 설정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<blockquote>
+<p>Create or Update index template API - <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates-v1.html" target="_blank" rel="nofollow">https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates-v1.html</a></p>
+</blockquote>
+<p>초기 한번만 template을 설정해두면, 다음 index 생성 시에는 조건에 맞는 index에 settings와 mappings 정보에 자동적용된다.</p>
+<h2 id="dev-tools로-nori-적용-여부-확인" style="position:relative;">Dev Tools로 Nori 적용 여부 확인<a href="#dev-tools%EB%A1%9C-nori-%EC%A0%81%EC%9A%A9-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8" aria-label="dev tools로 nori 적용 여부 확인 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Dev Tools로 접속 후, 다음과 같이 검색해서 Nori 적용 여부를 확인할 수 있다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">POST tb_table_meta_info-2023.09.11/_search
+<span class="token punctuation">{</span>
+  <span class="token string">"query"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"bool"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"must"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token string">"multi_match"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"query"</span> <span class="token builtin class-name">:</span> <span class="token string">"진단"</span>,
+                <span class="token string">"fields"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token string">"table_id"</span>, <span class="token string">"table_comment"</span>, <span class="token string">"small_clsf_name"</span><span class="token punctuation">]</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>table_comment, 그리고 small_clsf_name 속성에 nori 를 적용해준 상태이다.<br>
+결과는 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token comment">#! Elasticsearch built-in security features are not enabled. Without authentication, your cluster could be accessible to anyone. See https://www.elastic.co/guide/en/elasticsearch/reference/7.15/security-minimal-setup.html to enable security.</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"took"</span> <span class="token builtin class-name">:</span> <span class="token number">890</span>,
+  <span class="token string">"timed_out"</span> <span class="token builtin class-name">:</span> false,
+  <span class="token string">"_shards"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"total"</span> <span class="token builtin class-name">:</span> <span class="token number">1</span>,
+    <span class="token string">"successful"</span> <span class="token builtin class-name">:</span> <span class="token number">1</span>,
+    <span class="token string">"skipped"</span> <span class="token builtin class-name">:</span> <span class="token number">0</span>,
+    <span class="token string">"failed"</span> <span class="token builtin class-name">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">"hits"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"total"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"value"</span> <span class="token builtin class-name">:</span> <span class="token number">32</span>,
+      <span class="token string">"relation"</span> <span class="token builtin class-name">:</span> <span class="token string">"eq"</span>
+    <span class="token punctuation">}</span>,
+    <span class="token string">"max_score"</span> <span class="token builtin class-name">:</span> <span class="token number">6.4197645</span>,
+    <span class="token string">"hits"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"274"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">6.4197645</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"심리 진단"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">82</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"심리진단"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.457Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">274</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_psych_diagnosis"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">7</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"308"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">6.4197645</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"진단 정보"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">136</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"학습진단"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.458Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">308</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_study_diagnosis"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">7</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"2209"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">6.196665</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"학력진단"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">3</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">82</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"학력진단 진단지정보 테이블"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.703Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2209</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"TYPE_CST_BODY"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">13</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"309"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">5.9034023</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"진단 상세 정보"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">136</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"학습진단상세"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.458Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">309</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_study_diagnosis_detail"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">7</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"2216"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">5.9034023</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"진단 정보"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">3</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">82</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"진단정보테이블"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.703Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2216</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"TYPE_CST_INFO"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">13</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"937"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">5.463922</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"기록"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">3</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">6</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"성격 진단 상담 테이블"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.531Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">937</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"TYPE_CST_CTR_MEMO"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"2213"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">5.463922</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"유형진단"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">3</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">82</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"유형진단 문제 정보"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.703Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2213</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"TYPE_CST_CTR_PROBLEM"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">13</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"2214"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">5.463922</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"유형진단"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">3</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">82</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"유형진단 결과 마스터"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.703Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2214</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"TYPE_CST_CTR_RESULT_MASTER"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">13</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"2215"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">5.463922</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"유형진단"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">3</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">82</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"유형진단 테스트 결과"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.703Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2215</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"TYPE_CST_CTR_RESULT_V2"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">13</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>,
+      <span class="token punctuation">{</span>
+        <span class="token string">"_index"</span> <span class="token builtin class-name">:</span> <span class="token string">"tb_table_meta_info-2023.09.11"</span>,
+        <span class="token string">"_type"</span> <span class="token builtin class-name">:</span> <span class="token string">"_doc"</span>,
+        <span class="token string">"_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"2218"</span>,
+        <span class="token string">"_score"</span> <span class="token builtin class-name">:</span> <span class="token number">5.463922</span>,
+        <span class="token string">"_source"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token string">"유형진단"</span>,
+          <span class="token string">"service_id"</span> <span class="token builtin class-name">:</span> <span class="token number">3</span>,
+          <span class="token string">"sub_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">82</span>,
+          <span class="token string">"@version"</span> <span class="token builtin class-name">:</span> <span class="token string">"1"</span>,
+          <span class="token string">"table_comment"</span> <span class="token builtin class-name">:</span> <span class="token string">"유형진단 월별 전략"</span>,
+          <span class="token string">"@timestamp"</span> <span class="token builtin class-name">:</span> <span class="token string">"2023-09-11T07:01:00.703Z"</span>,
+          <span class="token string">"table_meta_info_id"</span> <span class="token builtin class-name">:</span> <span class="token number">2218</span>,
+          <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token string">"TYPE_CST_STRATEGY_INFO"</span>,
+          <span class="token string">"main_category_id"</span> <span class="token builtin class-name">:</span> <span class="token number">13</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><code class="language-text">진단</code>으로 검색 시, 단순 <code class="language-text">진단</code> 단어 뿐 아니라, <code class="language-text">유형진단</code> 처럼 단어가 서로 붙어있어도 <code class="language-text">형태소 단위로 분석</code>하여 진단과 매칭되는 결과에 포함시켜준다.</p>
+<h2 id="settings---analyzer의-pattern-사용" style="position:relative;">Settings - Analyzer의 Pattern 사용<a href="#settings---analyzer%EC%9D%98-pattern-%EC%82%AC%EC%9A%A9" aria-label="settings   analyzer의 pattern 사용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>tb_table_meta_info 의 table_comment와 small_clsf_name 과는 다르게, <code class="language-text">table_id</code> 는 영어 단어가 언더바( _ ) 기준으로 분류된 형태이다.</p>
+<p>한글 형태소 기준으로 나눈 것 처럼, table_id 컬럼도 언더바 기준으로 나눠서 검색이 가능하게 할 수 있다.</p>
+<ul>
+<li>Pattern analyzer - <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pattern-analyzer.html" target="_blank" rel="nofollow">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pattern-analyzer.html</a></li>
+</ul>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">PUT _template/tb_table_meta_info
+<span class="token punctuation">{</span>
+  <span class="token string">"index_patterns"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"tb_table_meta_info-*"</span>
+  <span class="token punctuation">]</span>,
+  <span class="token string">"order"</span><span class="token builtin class-name">:</span> <span class="token number">0</span>,
+  <span class="token string">"settings"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"index"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"analysis"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"tokenizer"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"nori_mixed"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"nori_tokenizer"</span>,
+            <span class="token string">"decompound_mode"</span><span class="token builtin class-name">:</span> <span class="token string">"mixed"</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>,
+        <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"english_underscore"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"type"</span> <span class="token builtin class-name">:</span> <span class="token string">"pattern"</span>,
+            <span class="token string">"pattern"</span> <span class="token builtin class-name">:</span> <span class="token string">"<span class="token entity" title="\\">\\</span>W|_"</span>,
+            <span class="token string">"lowercase"</span><span class="token builtin class-name">:</span> <span class="token boolean">true</span>
+          <span class="token punctuation">}</span>,
+          <span class="token string">"korean"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"custom"</span>,
+            <span class="token string">"tokenizer"</span><span class="token builtin class-name">:</span> <span class="token string">"nori_mixed"</span>,
+            <span class="token string">"char_filter"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+              <span class="token string">"html_strip"</span>
+            <span class="token punctuation">]</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">"mappings"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"properties"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"table_id"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"text"</span>,
+        <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token string">"english_underscore"</span>
+      <span class="token punctuation">}</span>,
+      <span class="token string">"table_comment"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"text"</span>,
+        <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token string">"korean"</span>
+      <span class="token punctuation">}</span>,
+      <span class="token string">"small_clsf_name"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"type"</span><span class="token builtin class-name">:</span> <span class="token string">"text"</span>,
+        <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token string">"korean"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>analyzer에 <code class="language-text">english_underscore</code> 이름으로 <code class="language-text">pattern</code>을 정의해줬다.<br>
+pattern의 문자열들을 기준으로 table_id 의 컬럼 값을 split 해준다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">POST tb_table_meta_info-2023.09.11/_search
+<span class="token punctuation">{</span>
+  <span class="token string">"query"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"bool"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"must"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token string">"multi_match"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+                <span class="token string">"query"</span> <span class="token builtin class-name">:</span> <span class="token string">"code"</span>,
+                <span class="token string">"fields"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token string">"table_id"</span>, <span class="token string">"table_comment"</span>, <span class="token string">"small_clsf_name"</span><span class="token punctuation">]</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>다음 요청으로 검색 시, 아래와 같은 결과가 나온다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/2f32e9069eabffa686fc69343becd682/07e4e/image-21.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 166.14583333333331%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAhCAIAAABWXBxEAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD6ElEQVQ4y4VViW7jNhDN/3/XFk13U2fXiY/YukWJN4c3JdlJCilpkSZ2CwwICsLjvBm+ebypicywKihw7YUJR6KQtCFOIf1/3FBwFdPGJ+tTSKeQTj6OIU5x+R3TKab3/QWwcVHZsEW8okYZveuLnKKSoZL1raAVxyXvK0641svRX8AE3LblWNojqTOMlQ0+jT6NIU1vm7f95cxM+30nKgZC24YZJKyZSxh9XJBxvFqztlHZuK7JXYGPWB6xLKnWLmz6bIvzVbvdkdKF4eIpMxhMqJk+YPmzZgWFiknjhpjO59PraXo5T6/D+DKMz8P4nIbTZ7BxcduwHzl+bNih450EJNgTqTPW5gztaYUU70F2Sijrv2S2YV2R71l/m3VbJBrG7+vDqnm6LR7X3fG+3W374oAbAqB9+AqOh17+rOi+Uw2HTdvuu7bmvKCMGU0AOsWtT+P4HL/SBu0bqjOijlhVTDdcISGYMco7aZ2wVjn/1rPPDVPGS7Cn0/M0ndNwnqaXOU6v0zQ3aRxflvic8x0MNkjtK2Z66YwPFccVxw0njWC94q2krWRIcWHMZYUx7VcFrmfmzQYVBOBvtk5aK61TztmQLiuMgM+p7qXtpeyEQ8KBG84L89M0r2k4/5fCflXkvqQNNwVRFTfaxSdaHVn90B8y1rowXgWDCRmWjw37UZJDL3MilY3cGPBeuHn1y3jH4TTHh8pnsLYx6+UG8adeVkx2EpTxVAMEBz5IZ21M2kflvHLe+Pix2zP4vsS/Hdrfj2hdMyTkqt7flutv2eqPav2tWG37fNsVSPJGUDYP9r9p7zuxruiuEw2HLUJb1FaMHXpMjcagOsUxSLOI7GPzbrSL2oQcq8eWb5EoiMowK0jfgaIGKAAGOYtUg3ZxsYePIjFBgl3sarJxdHFKw7uwpvHlTXDjMpJfRXYDxkvtpE3SxhAHbi3RQLViRnNjmAE6f2rl3DUbCt+zriRQ827dHpBkvRKdEkQrDIpoRTSAC1cUptwRq16ampOSQid9SOdZWzPt18VAzpcHw7gkTdi1fN9JBr6m0ApjfMRaYi0JqDcbvKowbcIOsT8LcleSPRIZnjuIQVIzc3bxqvu+33NB1L6XswdxaIXULmk/DON55jyeh+GcrsxzNDY+VOT22K8KvGkpVnDAzS/0tMXZfbt7whUzhs+lXMxsw2ND73K8KklOYIfQY1tnpN+0DVsURjRwYy+AlZmd5NCJnzXdtLwk6qGpc0xySijouc/pfZJcGD/FTUsgK7sKy4pA3qu8ly01HTOYWyY9FhZzg7khwn6NWWEC7HKNY0jD8kS9Py42pH+U7C7Z0F9NHDyFyL0NNAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/2f32e9069eabffa686fc69343becd682/a59e9/image-21.webp 192w,
+/static/2f32e9069eabffa686fc69343becd682/0ca9f/image-21.webp 384w,
+/static/2f32e9069eabffa686fc69343becd682/dc9b9/image-21.webp 768w,
+/static/2f32e9069eabffa686fc69343becd682/8110d/image-21.webp 816w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/2f32e9069eabffa686fc69343becd682/3b721/image-21.png 192w,
+/static/2f32e9069eabffa686fc69343becd682/66595/image-21.png 384w,
+/static/2f32e9069eabffa686fc69343becd682/fe486/image-21.png 768w,
+/static/2f32e9069eabffa686fc69343becd682/07e4e/image-21.png 816w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/2f32e9069eabffa686fc69343becd682/fe486/image-21.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>언더바 기준으로 table_id 값이 나뉘어져서, 나뉘어진 값 중 code 가 포함되어 있으면 이를 검색 결과로 반환해준다.</p></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#elasticsearch-logstash-kibana-%EC%84%A4%EC%B9%98">ElasticSearch, Logstash, Kibana 설치</a></p>
+</li>
+<li>
+<p><a href="#postgresql-%EC%97%B0%EB%8F%99">PostgreSQL 연동</a></p>
+</li>
+<li>
+<p><a href="#elk-%EC%8B%A4%ED%96%89">ELK 실행</a></p>
+<ul>
+<li><a href="#logstash">Logstash</a></li>
+<li><a href="#elasticsearch">ElasticSearch</a></li>
+<li><a href="#kibana">Kibana</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#nori-tokenizer">Nori Tokenizer</a></p>
+<ul>
+<li><a href="#nori-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%8B%A4%ED%96%89">Nori 설치 및 실행</a></li>
+<li><a href="#nori-%EC%82%AC%EC%9A%A9">Nori 사용</a></li>
+<li><a href="#%ED%8A%B9%EC%A0%95-index%EC%97%90-template-%EC%84%A4%EC%A0%95">특정 Index에 template 설정</a></li>
+<li><a href="#dev-tools%EB%A1%9C-nori-%EC%A0%81%EC%9A%A9-%EC%97%AC%EB%B6%80-%ED%99%95%EC%9D%B8">Dev Tools로 Nori 적용 여부 확인</a></li>
+<li><a href="#settings---analyzer%EC%9D%98-pattern-%EC%82%AC%EC%9A%A9">Settings - Analyzer의 Pattern 사용</a></li>
+</ul>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/ES_한글_형태소_분석/";window.___webpackCompilationHash="9d95a56ab776dd102373";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-833a5cd7c95939b57998.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-bc232f04269323ddddf7.js" async=""></script></body></html>

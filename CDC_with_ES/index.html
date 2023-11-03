@@ -1,0 +1,673 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="CDC 환경 학습을 위한 ELK Stack 활용법"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="CDC with ELK Stack"/><meta data-react-helmet="true" property="og:description" content="CDC 환경 학습을 위한 ELK Stack 활용법"/><meta data-react-helmet="true" property="og:image" content="/static/550453d38d1c75694a0ab3984eb8d9a1/thumbnail-elk.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="CDC with ELK Stack"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="CDC with ELK Stack"/><meta data-react-helmet="true" name="twitter:description" content="CDC 환경 학습을 위한 ELK Stack 활용법"/><meta data-react-helmet="true" name="twitter:image" content="/static/550453d38d1c75694a0ab3984eb8d9a1/thumbnail-elk.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/CDC_with_ES/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">CDC with ELK Stack</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1932px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;1108&#x27; width=&#x27;1932&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABtElEQVQoz4WS0UsUURTG5y/pPaRC36IgDH0oJOjBHqJgwRfDJ/XRP6LopUBIQUJLi4JEdBHcXUEHZaG2hyBWmNlt3W13yZmNmW1m7v3F3juru7rqgZlzz3cO937fOccAkFKivUCfVHSMt2s6wi7rrDNUoUaVj0KPwCsg4prILyGEzrX+UkiCqkPw2yE6POogo73R9YJo4H2fhv0BpP1SXfLPvE34Y/KETcPHS8xxdP85jaVdjYkTNYqhEJEKlhdmGX94iyeLH9gsFICQX2vXqGz04fouIeA1/vLi5lP2Jl/HjekhORJCBUtfVrnzbIK7n/aZtxyFJUaHudF/hcHVRd4U8wR/HK6ODHH93Ss264damJS9JTtSMJUzSeyt87n4U2GprW0ePHrMvbX3LBTzyGaTsY9vGd1JMvN198xgjNNNbVvkN6nX68dxe/5+06fVoJaqQIiLh9KiHsbyv+Vy5OKvUqlgWRalUolsNkvBss9fmy6woxfVapVkMolpmmQyGZZXVsgfHJBOp9lKpTSB8xh2L69OuK5LuVxWF9u2Ta1WU2fHcVROxEpOt8q4bPMvsl51/wHdoTS9bq3CzgAAAABJRU5ErkJggg==" alt=""/><picture><source type="image/webp" data-srcset="/static/550453d38d1c75694a0ab3984eb8d9a1/da43d/thumbnail-elk.webp 483w,/static/550453d38d1c75694a0ab3984eb8d9a1/026bc/thumbnail-elk.webp 966w,/static/550453d38d1c75694a0ab3984eb8d9a1/99b19/thumbnail-elk.webp 1932w" sizes="(min-width: 1932px) 1932px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1932px) 1932px, 100vw" decoding="async" loading="lazy" data-src="/static/550453d38d1c75694a0ab3984eb8d9a1/ccf95/thumbnail-elk.png" data-srcset="/static/550453d38d1c75694a0ab3984eb8d9a1/ba754/thumbnail-elk.png 483w,/static/550453d38d1c75694a0ab3984eb8d9a1/b4d90/thumbnail-elk.png 966w,/static/550453d38d1c75694a0ab3984eb8d9a1/ccf95/thumbnail-elk.png 1932w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/550453d38d1c75694a0ab3984eb8d9a1/da43d/thumbnail-elk.webp 483w,/static/550453d38d1c75694a0ab3984eb8d9a1/026bc/thumbnail-elk.webp 966w,/static/550453d38d1c75694a0ab3984eb8d9a1/99b19/thumbnail-elk.webp 1932w" sizes="(min-width: 1932px) 1932px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1932px) 1932px, 100vw" decoding="async" loading="lazy" src="/static/550453d38d1c75694a0ab3984eb8d9a1/ccf95/thumbnail-elk.png" srcSet="/static/550453d38d1c75694a0ab3984eb8d9a1/ba754/thumbnail-elk.png 483w,/static/550453d38d1c75694a0ab3984eb8d9a1/b4d90/thumbnail-elk.png 966w,/static/550453d38d1c75694a0ab3984eb8d9a1/ccf95/thumbnail-elk.png 1932w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">CDC with ELK Stack</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>VISANG / CDC / ElasticSearch / Logstash / Kibana</div><div>2023.11.01.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p>원래는 Airflow 실습 이후, Kafka와 Debezium의 <code class="language-text">log-based CDC</code> 환경 구축을 하려고 했지만, 상대적으로 접근 난이도가 낮은 ELK를 활용한 <code class="language-text">query-based CDC</code>를 다뤄보면서 CDC에 대한 이해와 실습을 진행해보고자 하였다. 우선 큰 방향성 위주로 글을 작성해봤다. 실습을 진행하면서 글을 업데이트 할 예정이다.</p>
+<h1 id="cdc---change-data-capture" style="position:relative;">CDC - Change Data Capture<a href="#cdc---change-data-capture" aria-label="cdc   change data capture permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>DBMS의 clustering, sharding 등의 고가용성 목표의 이중화에도 활용되거나 DB data pipe-line 구축을 할 때도 사용된다. 핵심은 <code class="language-text">DB 데이터의 변경을 감지해서 Event 기반 또는 다양한 형태로 그 내용을 가져온다는 것</code>이다.</p>
+<h2 id="cdc의-목표" style="position:relative;">CDC의 목표<a href="#cdc%EC%9D%98-%EB%AA%A9%ED%91%9C" aria-label="cdc의 목표 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ol>
+<li>엔터프라이즈 DBMS 스트레스 및 부하 분산</li>
+<li>장기 보관 데이터 - 한 번 create되면 update될 일이 거의 없는 data위주 ex) 접속 로그, 매출 데이터, 출생 신고 이력 등의 이관</li>
+<li>다양한 text searching optimization 구현</li>
+</ol>
+<h1 id="log-based-cdc-vs-query-based-cdc" style="position:relative;">log-based CDC vs query-based CDC<a href="#log-based-cdc-vs-query-based-cdc" aria-label="log based cdc vs query based cdc permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<ul>
+<li><code class="language-text">log-based CDC</code> : DBMS에서 기본적으로 생성하는 <code class="language-text">transaction log</code>를 기반으로 하며, psql의 경우 wal file, mysql binary log 등을 활용해 CDC 환경을 구성하는 것이다.</li>
+<li><code class="language-text">query-based CDC</code> : CDC origin(target) DBMS 대상으로 big-query 또는 특정 주기로 schedule된 query를 바탕으로 CDC 환경을 구성하는 것이다.</li>
+</ul>
+<h1 id="docker-compose-file" style="position:relative;">docker compose file<a href="#docker-compose-file" aria-label="docker compose file permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<ul>
+<li>elastic cluster를 3개의 노드로 구성하고 있는 형태이다. 공식 홈페이지의 ELK Stack docker compose를 base로 한다.</li>
+<li><a href="https://www.elastic.co/kr/blog/getting-started-with-the-elastic-stack-and-docker-compose" target="_blank" rel="nofollow">Getting started with the Elastic Stack and Docker-Compose</a></li>
+</ul>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">version: <span class="token string">'3'</span>
+services:
+
+  setup:
+    image: docker.elastic.co/elasticsearch/elasticsearch:<span class="token variable">${STACK_VERSION}</span>
+    volumes:
+      - ./certs:/usr/share/elasticsearch/config/certs
+    user: <span class="token string">"0"</span>
+    command: <span class="token operator">></span>
+      <span class="token function">bash</span> -c <span class="token string">'
+        if [ x${ELASTIC_PASSWORD} == x ]; then
+          echo "Set the ELASTIC_PASSWORD environment variable in the .env file";
+          exit 1;
+        elif [ x${KIBANA_PASSWORD} == x ]; then
+          echo "Set the KIBANA_PASSWORD environment variable in the .env file";
+          exit 1;
+        fi;
+        if [ ! -f config/certs/ca.zip ]; then
+          echo "Creating CA";
+          bin/elasticsearch-certutil ca --silent --pem -out config/certs/ca.zip;
+          unzip config/certs/ca.zip -d config/certs;
+        fi;
+        if [ ! -f config/certs/certs.zip ]; then
+          echo "Creating certs";
+          echo -ne \
+          "instances:\n"\
+          "  - name: es01\n"\
+          "    dns:\n"\
+          "      - es01\n"\
+          "      - localhost\n"\
+          "    ip:\n"\
+          "      - 127.0.0.1\n"\
+          "  - name: es02\n"\
+          "    dns:\n"\
+          "      - es02\n"\
+          "      - localhost\n"\
+          "    ip:\n"\
+          "      - 127.0.0.1\n"\
+          "  - name: es03\n"\
+          "    dns:\n"\
+          "      - es03\n"\
+          "      - localhost\n"\
+          "    ip:\n"\
+          "      - 127.0.0.1\n"\
+          > config/certs/instances.yml;
+          bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip --in config/certs/instances.yml --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key;
+          unzip config/certs/certs.zip -d config/certs;
+        fi;
+        echo "Setting file permissions"
+        chown -R root:root config/certs;
+        find . -type d -exec chmod 750 \{\} \;;
+        find . -type f -exec chmod 640 \{\} \;;
+        echo "Waiting for Elasticsearch availability";
+        until curl -s --cacert config/certs/ca/ca.crt https://es01:9200 | grep -q "missing authentication credentials"; do sleep 30; done;
+        echo "Setting kibana_system password";
+        until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:${ELASTIC_PASSWORD}" -H "Content-Type: application/json" https://es01:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
+        echo "All done!";
+      '</span>
+    healthcheck:
+      test: <span class="token punctuation">[</span><span class="token string">"CMD-SHELL"</span>, <span class="token string">"[ -f config/certs/es01/es01.crt ]"</span><span class="token punctuation">]</span>
+      interval: 1s
+      timeout: 5s
+      retries: <span class="token number">120</span>
+    networks:
+      - esnet
+
+  es01:
+    depends_on:
+      setup:
+        condition: service_healthy
+    image: docker.elastic.co/elasticsearch/elasticsearch:<span class="token variable">${STACK_VERSION}</span>
+    container_name: es01
+    hostname: es01
+    volumes:
+      - ./certs:/usr/share/elasticsearch/config/certs
+      - ./esdata01:/usr/share/elasticsearch/data
+    ports:
+      - <span class="token variable">${ES_PORT}</span>:9200
+    environment:
+      - <span class="token assign-left variable">ELASTIC_PASSWORD</span><span class="token operator">=</span><span class="token variable">${ELASTIC_PASSWORD}</span>
+      - node.name<span class="token operator">=</span>es01
+      - cluster.name<span class="token operator">=</span><span class="token variable">${CLUSTER_NAME}</span>
+      - cluster.initial_master_nodes<span class="token operator">=</span>es01,es02,es03
+      - discovery.seed_hosts<span class="token operator">=</span>es02,es03
+      - bootstrap.memory_lock<span class="token operator">=</span>true
+      - xpack.security.enabled<span class="token operator">=</span>true
+      - xpack.security.http.ssl.enabled<span class="token operator">=</span>true
+      - xpack.security.http.ssl.key<span class="token operator">=</span>certs/es01/es01.key
+      - xpack.security.http.ssl.certificate<span class="token operator">=</span>certs/es01/es01.crt
+      - xpack.security.http.ssl.certificate_authorities<span class="token operator">=</span>certs/ca/ca.crt
+      - xpack.security.http.ssl.verification_mode<span class="token operator">=</span>certificate
+      - xpack.security.transport.ssl.enabled<span class="token operator">=</span>true
+      - xpack.security.transport.ssl.key<span class="token operator">=</span>certs/es01/es01.key
+      - xpack.security.transport.ssl.certificate<span class="token operator">=</span>certs/es01/es01.crt
+      - xpack.security.transport.ssl.certificate_authorities<span class="token operator">=</span>certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode<span class="token operator">=</span>certificate
+      - xpack.license.self_generated.type<span class="token operator">=</span><span class="token variable">${LICENSE}</span>
+    mem_limit: <span class="token variable">${MEM_LIMIT}</span>
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test:
+        <span class="token punctuation">[</span>
+          <span class="token string">"CMD-SHELL"</span>,
+          <span class="token string">"curl -s --cacert config/certs/ca/ca.crt https://localhost:9200 | grep -q 'missing authentication credentials'"</span>,
+        <span class="token punctuation">]</span>
+      interval: 10s
+      timeout: 10s
+      retries: <span class="token number">120</span>
+    networks:
+      - esnet
+
+  es02:
+    depends_on:
+      - es01
+    image: docker.elastic.co/elasticsearch/elasticsearch:<span class="token variable">${STACK_VERSION}</span>
+    container_name: es02
+    hostname: es02
+    volumes:
+      - ./certs:/usr/share/elasticsearch/config/certs
+      - ./esdata02:/usr/share/elasticsearch/data
+    environment:
+      - node.name<span class="token operator">=</span>es02
+      - cluster.name<span class="token operator">=</span><span class="token variable">${CLUSTER_NAME}</span>
+      - cluster.initial_master_nodes<span class="token operator">=</span>es01,es02,es03
+      - discovery.seed_hosts<span class="token operator">=</span>es01,es03
+      - bootstrap.memory_lock<span class="token operator">=</span>true
+      - xpack.security.enabled<span class="token operator">=</span>true
+      - xpack.security.http.ssl.enabled<span class="token operator">=</span>true
+      - xpack.security.http.ssl.key<span class="token operator">=</span>certs/es02/es02.key
+      - xpack.security.http.ssl.certificate<span class="token operator">=</span>certs/es02/es02.crt
+      - xpack.security.http.ssl.certificate_authorities<span class="token operator">=</span>certs/ca/ca.crt
+      - xpack.security.http.ssl.verification_mode<span class="token operator">=</span>certificate
+      - xpack.security.transport.ssl.enabled<span class="token operator">=</span>true
+      - xpack.security.transport.ssl.key<span class="token operator">=</span>certs/es02/es02.key
+      - xpack.security.transport.ssl.certificate<span class="token operator">=</span>certs/es02/es02.crt
+      - xpack.security.transport.ssl.certificate_authorities<span class="token operator">=</span>certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode<span class="token operator">=</span>certificate
+      - xpack.license.self_generated.type<span class="token operator">=</span><span class="token variable">${LICENSE}</span>
+    mem_limit: <span class="token variable">${MEM_LIMIT}</span>
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test:
+        <span class="token punctuation">[</span>
+          <span class="token string">"CMD-SHELL"</span>,
+          <span class="token string">"curl -s --cacert config/certs/ca/ca.crt https://localhost:9200 | grep -q 'missing authentication credentials'"</span>,
+        <span class="token punctuation">]</span>
+      interval: 10s
+      timeout: 10s
+      retries: <span class="token number">120</span>
+    networks:
+      - esnet
+
+  es03:
+    depends_on:
+      - es02
+    image: docker.elastic.co/elasticsearch/elasticsearch:<span class="token variable">${STACK_VERSION}</span>
+    container_name: es03
+    hostname: es03
+    volumes:
+      - ./certs:/usr/share/elasticsearch/config/certs
+      - ./esdata03:/usr/share/elasticsearch/data
+    environment:
+      - node.name<span class="token operator">=</span>es03
+      - cluster.name<span class="token operator">=</span><span class="token variable">${CLUSTER_NAME}</span>
+      - cluster.initial_master_nodes<span class="token operator">=</span>es01,es02,es03
+      - discovery.seed_hosts<span class="token operator">=</span>es01,es02
+      - bootstrap.memory_lock<span class="token operator">=</span>true
+      - xpack.security.enabled<span class="token operator">=</span>true
+      - xpack.security.http.ssl.enabled<span class="token operator">=</span>true
+      - xpack.security.http.ssl.key<span class="token operator">=</span>certs/es03/es03.key
+      - xpack.security.http.ssl.certificate<span class="token operator">=</span>certs/es03/es03.crt
+      - xpack.security.http.ssl.certificate_authorities<span class="token operator">=</span>certs/ca/ca.crt
+      - xpack.security.http.ssl.verification_mode<span class="token operator">=</span>certificate
+      - xpack.security.transport.ssl.enabled<span class="token operator">=</span>true
+      - xpack.security.transport.ssl.key<span class="token operator">=</span>certs/es03/es03.key
+      - xpack.security.transport.ssl.certificate<span class="token operator">=</span>certs/es03/es03.crt
+      - xpack.security.transport.ssl.certificate_authorities<span class="token operator">=</span>certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode<span class="token operator">=</span>certificate
+      - xpack.license.self_generated.type<span class="token operator">=</span><span class="token variable">${LICENSE}</span>
+    mem_limit: <span class="token variable">${MEM_LIMIT}</span>
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test:
+        <span class="token punctuation">[</span>
+          <span class="token string">"CMD-SHELL"</span>,
+          <span class="token string">"curl -s --cacert config/certs/ca/ca.crt https://localhost:9200 | grep -q 'missing authentication credentials'"</span>,
+        <span class="token punctuation">]</span>
+      interval: 10s
+      timeout: 10s
+      retries: <span class="token number">120</span>
+    networks:
+      - esnet
+
+  kibana:
+    depends_on:
+      es01:
+        condition: service_healthy
+      es02:
+        condition: service_healthy
+      es03:
+        condition: service_healthy
+    image: docker.elastic.co/kibana/kibana:<span class="token variable">${STACK_VERSION}</span>
+    container_name: kibana
+    hostname: kibana
+    volumes:
+      - ./certs:/usr/share/kibana/config/certs
+      - ./kibanadata:/usr/share/kibana/data
+    ports:
+      - <span class="token variable">${KIBANA_PORT}</span>:5601
+    environment:
+      - <span class="token assign-left variable">SERVERNAME</span><span class="token operator">=</span>kibana
+      - <span class="token assign-left variable">ELASTICSEARCH_HOSTS</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"https://es01:9200"</span>,<span class="token string">"https://es02:9200"</span>,<span class="token string">"https://es03:9200"</span><span class="token punctuation">]</span>
+      - <span class="token assign-left variable">ELASTICSEARCH_USERNAME</span><span class="token operator">=</span>kibana_system
+      - <span class="token assign-left variable">ELASTICSEARCH_PASSWORD</span><span class="token operator">=</span><span class="token variable">${KIBANA_PASSWORD}</span>
+      - <span class="token assign-left variable">ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES</span><span class="token operator">=</span>config/certs/ca/ca.crt
+    mem_limit: <span class="token variable">${MEM_LIMIT}</span>
+    healthcheck:
+      test:
+        <span class="token punctuation">[</span>
+          <span class="token string">"CMD-SHELL"</span>,
+          <span class="token string">"curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'"</span>,
+        <span class="token punctuation">]</span>
+      interval: 10s
+      timeout: 10s
+      retries: <span class="token number">120</span>
+    networks:
+      - esnet
+
+networks:
+  esnet:</code></pre></div>
+<ul>
+<li>필수 설정해야할 환경 변수는 아래와 같다. <code class="language-text">docker-compose.yml</code>과 같은 경로에 <code class="language-text">.env</code> 로 만들어서 세팅하자.</li>
+</ul>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token comment"># Password for the 'elastic' user (at least 6 characters)</span>
+<span class="token assign-left variable">ELASTIC_PASSWORD</span><span class="token operator">=</span>admin123<span class="token operator">!</span>
+
+<span class="token comment"># Password for the 'kibana_system' user (at least 6 characters)</span>
+<span class="token assign-left variable">KIBANA_PASSWORD</span><span class="token operator">=</span>admin123<span class="token operator">!</span>
+
+<span class="token comment"># Version of Elastic products</span>
+<span class="token assign-left variable">STACK_VERSION</span><span class="token operator">=</span><span class="token number">8.7</span>.0
+
+<span class="token comment"># Set the cluster name</span>
+<span class="token assign-left variable">CLUSTER_NAME</span><span class="token operator">=</span>elk-cdc-cluster
+
+<span class="token comment"># Set to 'basic' or 'trial' to automatically start the 30-day trial</span>
+<span class="token assign-left variable">LICENSE</span><span class="token operator">=</span>basic
+<span class="token comment">#LICENSE=trial</span>
+
+<span class="token comment"># Port to expose Elasticsearch HTTP API to the host</span>
+<span class="token assign-left variable">ES_PORT</span><span class="token operator">=</span><span class="token number">9200</span>
+
+<span class="token comment"># Port to expose Kibana to the host</span>
+<span class="token assign-left variable">KIBANA_PORT</span><span class="token operator">=</span><span class="token number">5601</span>
+
+<span class="token comment"># Increase or decrease based on the available host memory (in bytes)</span>
+<span class="token assign-left variable">MEM_LIMIT</span><span class="token operator">=</span><span class="token number">1073741824</span>
+
+<span class="token comment"># Project namespace (defaults to the current folder name if not set)</span>
+<span class="token assign-left variable">COMPOSE_PROJECT_NAME</span><span class="token operator">=</span>elk-cdc-app</code></pre></div>
+<ul>
+<li>
+<p>8.x version 부터는 보안 인증 세팅이 기본으로 되어있다. 그래서 https를 위한 ssl 인증서가 필요하다. <code class="language-text">setup</code> service가 이를 위해 존재하며, 해당 세팅을 한 뒤에 kill 된다. 실행하고 나면 <code class="language-text">certs</code> 디렉토리가 만들어질텐데 해당 파일이 ssl 인증서이다.</p>
+</li>
+<li>
+<p>compose 실행 시, project name을 <code class="language-text">elk-cdc-app</code>로 준다.</p>
+</li>
+</ul>
+<h2 id="execute" style="position:relative;">execute<a href="#execute" aria-label="execute permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">docker</span> compose -f ./docker-compose.yml -p elk-cdc-app up -d</code></pre></div>
+<p>해당 명령어로 실행 시, setup이 돌고 ssl를 갱신&#x26;생신 이후 es node 가 활성화 되며 뒤이어 kibana가 활성화 된다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5e027d675a2616f4b4caa47be494817f/85779/image-23.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 35.9375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABVklEQVQoz0WR63KDIBCF8xo1XhLxilwEFQVN0nY60x99/+c5HTaZ9gfDsrBnv7OcCm7A1IqiH5E1ElmrwJQD0x79FNCZDY12KMWECzfIO00rxuda0Iq18Zw2Cqe8N2ilBZMLkjYmJSo1I60FxXwOyDqNWjv01lNxpRao9U75pBrQGA/uHij1hlPBLUouwKYDzD6I8tyOSHuLnE/gU6DuTM60vzFOtMO8o3gJXsQMNnrUZseJ0HuNMnxCuAdZzsSGTB0o9IHO+ifFGG1bJBUHExOEO8h6vLuKBdXoUZnwFEy5Bgvv4NNBNjPhkek7LuMd0t1oTu3oqCjpF7JvwgfZJ0EZBQNqS4QW506ivn3DPH6QtRLpsL4Id5pbFLwOBqWYkdQKTE6Qf4Qc15flf8I46PUO5b+evz045DLgogJZTluFWi0otUcqNprnsOz0NjYrpUNldiL8Beg/0uQsnicSAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/5e027d675a2616f4b4caa47be494817f/a59e9/image-23.webp 192w,
+/static/5e027d675a2616f4b4caa47be494817f/0ca9f/image-23.webp 384w,
+/static/5e027d675a2616f4b4caa47be494817f/dc9b9/image-23.webp 768w,
+/static/5e027d675a2616f4b4caa47be494817f/e2c2f/image-23.webp 1152w,
+/static/5e027d675a2616f4b4caa47be494817f/13a37/image-23.webp 1239w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/5e027d675a2616f4b4caa47be494817f/3b721/image-23.png 192w,
+/static/5e027d675a2616f4b4caa47be494817f/66595/image-23.png 384w,
+/static/5e027d675a2616f4b4caa47be494817f/fe486/image-23.png 768w,
+/static/5e027d675a2616f4b4caa47be494817f/d2d74/image-23.png 1152w,
+/static/5e027d675a2616f4b4caa47be494817f/85779/image-23.png 1239w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/5e027d675a2616f4b4caa47be494817f/fe486/image-23.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+docker desktop 화면에서 정상 실행되고 있는 모습을 볼 수 있다. ES와 Kibana도 확인해보기로 하였다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 496px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/c837ffc1ad4b0d7bb4790b17905494cc/60009/image-24.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 78.125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACoklEQVQ4y21T2W7aQBT1c1vjLQSSQMJSNi/YYJsYGxsbSkMBJVG3SFFVVX3p/3/Bqc60jkiUh+O5M3Pn3HMXS3n+AXGcIZqnSJIl1pst3PEE5sCEbzmYmg4ix4VL23LgWQ6c8QR+MIPvh8K2HQ+9/hDd9wNI86TANIhxHSXwwxRZvsHYchCYDoadIbzBCJFpwx6MkDkTzE0X3jTAIs0RzlK4Ex8j00Gr3UWj2YL0+H2Dh68HhNdL/Pm1w36/w2pzwHab4+fjFsWHPW52tyhWn7DbrfD4cINitUOaLvD7x0cU6xvsD3e42R5we/sZ0n6bYLNOMfZCfLnLhOMsSlEsY9wfMiSLAllWYB4vsc5j3O0zXEcZoijCt/sc8zjFMl8hWSxF6SRNr0LTDei6BrmiQTcMqKoKWVbw5m0FlUoFsixDVRUoigZZVqFphI53wtagKKp4Q0j1eh1hGKDb7cK2LTiOg1qtjlarhXa7hcvLS3Q6bdRqNei6DsPQBQnBfbmWkE5PT2HbNsbjsVhJcHZ2Btd14XkegiCA7/vifjQa4eLiQig5JnlGaBiGeLhYLARZo9EQ6ggGq1arwvHk5ETY9H9JcqxWYrReryfUUQFBUioyTVOQsoaKojzVk6D9WuqCcDgcYjKZII5jtNttkVaWZSLd6XQqglmWJXySJMFsNhMlYUCeU8AzQqpi2hwFKiNpWQY2qd/viyzoRzISc0/1xHEZBGGn0xFOZXPoTJVlE/jA+D9OTJ215PpvnNSn1J9qSAVUF4ahIGaqTL+sI1eeMRDTY9d5znccp+OuSxwRdrTZbIrIXMtun5+f4+rqSqCcwxL05RmVH8+imEOSkICXHHTumSoflAHKh8co033WZX5Yj/KyrFP5K9EmXv4Rr80hCf8CFknDTVbLwa8AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/c837ffc1ad4b0d7bb4790b17905494cc/a59e9/image-24.webp 192w,
+/static/c837ffc1ad4b0d7bb4790b17905494cc/0ca9f/image-24.webp 384w,
+/static/c837ffc1ad4b0d7bb4790b17905494cc/8d866/image-24.webp 496w"
+              sizes="(max-width: 496px) 100vw, 496px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/c837ffc1ad4b0d7bb4790b17905494cc/3b721/image-24.png 192w,
+/static/c837ffc1ad4b0d7bb4790b17905494cc/66595/image-24.png 384w,
+/static/c837ffc1ad4b0d7bb4790b17905494cc/60009/image-24.png 496w"
+            sizes="(max-width: 496px) 100vw, 496px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/c837ffc1ad4b0d7bb4790b17905494cc/60009/image-24.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/960299cae5a0fece0540e774bd4d88dd/adc5a/image-25.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 59.375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABwklEQVQoz5WSW27TQBSGvY8mTgqNEoEEYk+8oLZKYjsVSDywANaBxB6QeKUgUEQVWmK3TVJaJaHQAonnZvtDtsmlVaQWS0cz/s/MN/85M1atdp8HDx9Rrd1jo1KlUqmyvr7BWqGEbZcpFMsU7TzWCmWKxdJibi/CLt2laN/Bcpp1XNfDcRxct0HLa9B0PLa2m+y06tQbHq6T6g5PNps0G9u0Wh6bW/VsbZrzXIenz1/g7jzD+jNVCGlQOkKqRcz+l/VsvqRHBpSO87zUSGWwJqHKBG3i/wplEoYXQ4Scok0y163fE8k0zF2mJ6Qn3xTpRhNB/9c5oRREMfNcBpyEer5wNl5xcw121BvgB0f0e98IDnsEh8eEQucO05Kvw1ZBZ3r6aRMhhETItF0aKRVxQg4UylxxsQo4y5kopn9yxuB0zOj7JcPxxTzORj8RUmMtQ5ahq4BRlNDuBHz47NPpDuh87dPp9rNx3x8QCoV1m1L13GFC98Dny94+7b2A3bbP+7bPu09dgsE4L/lG2JLDJI55+faUx68Ddo8vSR/iVKisl0qbrLfWrd5cBowxJuLNwQ9efRzRO58QGf3vYlKozC7oLxi+UC560SmQAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/960299cae5a0fece0540e774bd4d88dd/a59e9/image-25.webp 192w,
+/static/960299cae5a0fece0540e774bd4d88dd/0ca9f/image-25.webp 384w,
+/static/960299cae5a0fece0540e774bd4d88dd/dc9b9/image-25.webp 768w,
+/static/960299cae5a0fece0540e774bd4d88dd/a22c7/image-25.webp 1068w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/960299cae5a0fece0540e774bd4d88dd/3b721/image-25.png 192w,
+/static/960299cae5a0fece0540e774bd4d88dd/66595/image-25.png 384w,
+/static/960299cae5a0fece0540e774bd4d88dd/fe486/image-25.png 768w,
+/static/960299cae5a0fece0540e774bd4d88dd/adc5a/image-25.png 1068w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/960299cae5a0fece0540e774bd4d88dd/fe486/image-25.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+둘다 정상접속이 된다.</p>
+<h1 id="postgresql--logstash" style="position:relative;">PostgreSQL &#x26; Logstash<a href="#postgresql--logstash" aria-label="postgresql  logstash permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p><code class="language-text">데이터 포털 내의 PostgreSQL DB</code>와 연결하기 위해 logstash 폴더내의 conf 파일을 다음과 같이 설정해줬다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token comment"># Sample Logstash configuration for creating a simple</span>
+<span class="token comment"># Beats -> Logstash -> Elasticsearch pipeline.</span>
+
+input <span class="token punctuation">{</span>
+  jdbc <span class="token punctuation">{</span> 
+    jdbc_driver_library <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"./jar/postgresql-42.6.0.jar"</span>
+    jdbc_driver_class <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"org.postgresql.Driver"</span>
+    jdbc_connection_string <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"jdbc:postgresql://<span class="token variable">${POSTGRES_HOST}</span>:<span class="token variable">${POSTGRES_PORT}</span>/<span class="token variable">${POSTGRES_DB}</span>"</span>
+    jdbc_user <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"<span class="token variable">${POSTGRES_USER}</span>"</span>
+    jdbc_password <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"<span class="token variable">${POSTGRES_PASSWORD}</span>"</span>
+    schedule <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"* * * * *"</span>
+    statement <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"select * from tb_table_meta_info"</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+output <span class="token punctuation">{</span>
+    stdout <span class="token punctuation">{</span> codec <span class="token operator">=</span><span class="token operator">></span> json_lines <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div>
+<p>실행 후, Docker log 상에 1분마다 데이터를 SELECT 해와야 하는 내용이 적혀있어야 하지만, 다음과 같은 오류가 발생하였다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">Error: unable to load ./jar/postgresql-42.6.0.jar from :jdbc_driver_library, <span class="token function">file</span> not readable <span class="token punctuation">(</span>please check user and group permissions <span class="token keyword">for</span> the path<span class="token punctuation">)</span></code></pre></div>
+<p><code class="language-text">PluginLoadingError</code> 라고 한다. 한 번 해결해보자.</p>
+<h2 id="trouble-shooting-1---exception-logstash-pluginloadingerror" style="position:relative;">Trouble Shooting #1 - Exception: LogStash: PluginLoadingError<a href="#trouble-shooting-1---exception-logstash-pluginloadingerror" aria-label="trouble shooting 1   exception logstash pluginloadingerror permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<blockquote>
+<p>참고글 : <a href="https://dnai-deny.tistory.com/73" target="_blank" rel="nofollow">Logstash를 통해 PostgreSQL과 Elastic Stack 연동하기</a></p>
+</blockquote>
+<p>jdbc_driver_library에 다운로드한 JDBC Driver의 <code class="language-text">절대 경로</code> 값을 넣어줘야 한다고 한다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token comment"># Sample Logstash configuration for creating a simple</span>
+<span class="token comment"># Beats -> Logstash -> Elasticsearch pipeline.</span>
+
+input <span class="token punctuation">{</span>
+  jdbc <span class="token punctuation">{</span> 
+    jdbc_driver_library <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"/usr/share/logstash/postgresql-42.6.0.jar"</span>
+    jdbc_driver_class <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"org.postgresql.Driver"</span>
+    jdbc_connection_string <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"jdbc:postgresql://<span class="token variable">${POSTGRES_HOST}</span>:<span class="token variable">${POSTGRES_PORT}</span>/<span class="token variable">${POSTGRES_DB}</span>"</span>
+    jdbc_user <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"<span class="token variable">${POSTGRES_USER}</span>"</span>
+    jdbc_password <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"<span class="token variable">${POSTGRES_PASSWORD}</span>"</span>
+    schedule <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"* * * * *"</span>
+    statement <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"select * from tb_table_meta_info"</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+output <span class="token punctuation">{</span>
+    stdout <span class="token punctuation">{</span> codec <span class="token operator">=</span><span class="token operator">></span> json_lines <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<h2 id="logstashconf-input-설정" style="position:relative;">logstash.conf input 설정<a href="#logstashconf-input-%EC%84%A4%EC%A0%95" aria-label="logstashconf input 설정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ul>
+<li>
+<p><code class="language-text">jdbc_driver_library</code>: JDBC 드라이버 JAR 파일의 경로를 설정한다.</p>
+</li>
+<li>
+<p><code class="language-text">jdbc_connection_string</code>: PostgreSQL 데이터베이스에 연결하기 위한 정보를 설정한다.</p>
+</li>
+<li>
+<p><code class="language-text">jdbc_user</code> 및 <code class="language-text">jdbc_password</code>: PostgreSQL 데이터베이스에 액세스하기 위한 사용자 이름 및 비밀번호를 설정한다.</p>
+</li>
+<li>
+<p><code class="language-text">jdbc_driver_class</code>: jdbc를 사용하는 만큼 어떤 jdbc module을 핵심적으로 사용할지 세팅하는 부분이다.</p>
+</li>
+<li>
+<p><code class="language-text">statement</code>: 가져올 데이터를 쿼리로 세팅한다. query based cdc의 가장 핵심적인 부분이 된다.</p>
+</li>
+<li>
+<p><code class="language-text">schedule</code>: query를 실행할 주기를 cron 형태로 세팅한다. 안되어 있으면 한 번 input이 일어난 뒤에 service kill 된다.</p>
+</li>
+<li>
+<p><code class="language-text">jdbc_paging_enabled</code> &#x26; <code class="language-text">jdbc_page_size</code>: 위 설정값엔 없지만, select 등의 결과값을 한 번에 너무많이 가져올 경우 target db가 lock 걸릴 리스크가 있다. 특히 target db가 엔터프라이즈 db의 경우 CDC를 위한 query를 던질 때 마다 api가 timeout이 나는 기적을 경험할 수 있다.</p>
+<ul>
+<li>이를 위해 pagination 기능을 제공하며 size와 offset값을 활용해 세팅한 row값 만큼만 가져오게 세팅할 수 있으며, jdbc_paging_enabled가 true 여야 jdbc_page_size 를 세팅할 수 있다.</li>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html#plugins-inputs-jdbc-jdbc_paging_enabled" target="_blank" rel="nofollow">es jdbc official docs</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="추가적인-설정" style="position:relative;">추가적인 설정<a href="#%EC%B6%94%EA%B0%80%EC%A0%81%EC%9D%B8-%EC%84%A4%EC%A0%95" aria-label="추가적인 설정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">input <span class="token punctuation">{</span>
+  jdbc <span class="token punctuation">{</span>
+    statement <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"select * from tb_table_meta_info where table_meta_info_id > :sql_last_value limit :size offset :offset"</span>,
+    jdbc_paging_enabled <span class="token operator">=</span><span class="token operator">></span> true,
+    jdbc_paging_mode <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"explicit"</span>,
+    jdbc_page_size <span class="token operator">=</span><span class="token operator">></span> <span class="token number">100000</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ul>
+<li>
+<p>schedule 마다 실행되는 것은 좋으나, 계속 query의 result를 모두 output으로 준다는 것이다. CDC를 위해서 <code class="language-text">마지막으로 읽은 부분을 기억하고 해당 부분 부터 가져와야 한다</code> 것이 중요하다.</p>
+</li>
+<li>
+<p>가장 먼저 봤던 docker-compose.yml file에서 logstash의 volumes에 잡혀있던 /usr/share/logstash/inspector-index.dat 가 <code class="language-text">마지막으로 읽은 row, line을 기록하는 file</code> 이다. fluented, promtail 등이 사용하는 컨셉이 같다!</p>
+</li>
+<li>
+<p>그래서 볼륨으로 잡아줄 <code class="language-text">./logstash/inspector-index.dat</code>파일을 아래와 같이 구성하고, <code class="language-text">logstash.conf</code>에 설정값을 추가해주기로 하였다.</p>
+</li>
+</ul>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">input <span class="token punctuation">{</span>
+    jdbc <span class="token punctuation">{</span>
+		<span class="token comment"># ...생략</span>
+        <span class="token comment"># 추가 및 수정된 설정값</span>
+        use_column_value <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">true</span>
+        tracking_column <span class="token operator">=</span><span class="token operator">></span> table_meta_info_id
+        last_run_metadata_path <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"/usr/share/logstash/inspector-index.dat"</span>
+        statement <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"select * from tb_table_meta_info where table_meta_info_id > :sql_last_value order by id ASC"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ul>
+<li>
+<p><code class="language-text">use_column_value</code>: 해당 값이 true여야 statement에 sql_last_value 변수를 사용할 수 있으며, file로 저장되는 id 값 metadata를 저장하고 가져올 수 있다.</p>
+</li>
+<li>
+<p><code class="language-text">tracking_column</code>: 마지막에 읽은 값 기준을 잡아줄 컬럼 명을 설정하는 값이다. 기본적으로 auto increment 세팅이 되어있는 값을 pk로 잡으니, 해당 값을 기준으로 잡으면 좋다. 그리고 값은 numeric 또는 timestamp 를 가지며 기본값은 numeric 이다!</p>
+</li>
+<li>
+<p><code class="language-text">last_run_metadata_path</code>: 마지막에 읽은 값을 저장할 file path를 세팅한다. 위 compose yaml에서 세팅한 볼륨 경로로 맞춰주면 된다.</p>
+</li>
+<li>
+<p><code class="language-text">statement</code> 값 역시 위 설정에 맞춰서 바뀌었다. 그리고 “마지막에 읽은 값” 이기 때문에 select order by를 꼭 “ASC” 로 세팅해야한다.</p>
+</li>
+</ul>
+<p>이제 다시 실행해보면 inspector-index.dat 이 업데이트 되면서 매 분 query가 실행될 때 마다 같은 결과 값이 아닌 추가된 값만 출력되는 것을 볼 수 있다.</p>
+<h1 id="참고링크" style="position:relative;">참고링크<a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC" aria-label="참고링크 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<ul>
+<li><a href="https://velog.io/@qlgks1/Elasticsearch-ELK-stack-Postgresql-Logstash-query-based-CDC-%EB%A7%8C%EB%93%A4%EA%B8%B0-by-docker-compose" target="_blank" rel="nofollow">Elasticsearch - ELK stack &#x26; PostgreSQL &#x26; Logtash, query based CDC 만들기 by docker compose</a></li>
+</ul></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#cdc---change-data-capture">CDC - Change Data Capture</a></p>
+<ul>
+<li><a href="#cdc%EC%9D%98-%EB%AA%A9%ED%91%9C">CDC의 목표</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#log-based-cdc-vs-query-based-cdc">log-based CDC vs query-based CDC</a></p>
+</li>
+<li>
+<p><a href="#docker-compose-file">docker compose file</a></p>
+<ul>
+<li><a href="#execute">execute</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#postgresql--logstash">PostgreSQL &#x26; Logstash</a></p>
+<ul>
+<li><a href="#trouble-shooting-1---exception-logstash-pluginloadingerror">Trouble Shooting #1 - Exception: LogStash: PluginLoadingError</a></li>
+<li><a href="#logstashconf-input-%EC%84%A4%EC%A0%95">logstash.conf input 설정</a></li>
+<li><a href="#%EC%B6%94%EA%B0%80%EC%A0%81%EC%9D%B8-%EC%84%A4%EC%A0%95">추가적인 설정</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC">참고링크</a></p>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/CDC_with_ES/";window.___webpackCompilationHash="9d95a56ab776dd102373";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-833a5cd7c95939b57998.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-bc232f04269323ddddf7.js" async=""></script></body></html>
