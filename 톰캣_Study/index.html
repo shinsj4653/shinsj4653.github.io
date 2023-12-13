@@ -1,0 +1,885 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="4주간의 Tomcat 구현 스터디 회고록"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="톰캣 스터디 회고"/><meta data-react-helmet="true" property="og:description" content="4주간의 Tomcat 구현 스터디 회고록"/><meta data-react-helmet="true" property="og:image" content="/static/4f4f88b3d9cf94674f341b5ef65919ad/thumbnail-cs.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="톰캣 스터디 회고"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="톰캣 스터디 회고"/><meta data-react-helmet="true" name="twitter:description" content="4주간의 Tomcat 구현 스터디 회고록"/><meta data-react-helmet="true" name="twitter:image" content="/static/4f4f88b3d9cf94674f341b5ef65919ad/thumbnail-cs.png"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.811b76fa2f764e4356d7.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/톰캣_Study/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">톰캣 스터디 회고</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:619px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;471&#x27; width=&#x27;619&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADcUlEQVQ4y02UWW/bVhCF9d/6mAJFf0KB9qV5StACbV6KokCAtnCCOGmBLoideOni2HDaxIuQ2q4c24mtJdplWaRMazElSqK4SRS3LyDlBiVwycG5vMOZc84wFgAT10NtnhM4XhS7nsdQ0zBMk4njYE8mTFwXLwjfBtf3IPCBgCDwMbQJWn8c4bEQTqw8YHbmU/JG8+qAj9LrIXe76IZBW5YjfKgNqZ5Vo2QXxpi8ZtEdGKx8XefxzQt6bYtYO1dj7caHfBS/z7erVdLxKpPAiRIIYp3teBzbcXhTanHe6CA1uzgu3E5V+fiwwrlm0RMMxMwA2/aImb0hjdwr/klssTT7gtcvs0ybgWw2y34igWW7fPL5CpsJCVVcRGkc0LI8TEOLPnwsyJzUL6M4Ft7W6h12m0oElLcWSD36jonroJnWlLuwWklmOIJ29g494XcGqo9pjJh4Ll8+1/l1vwt4xEI+vsnUmClIUcLi3/Ok5m7jOtO2A9/Dc6fx/y+hdMHyj7u8OZW4Ppen1venFYYCyLpJUzcZmBa2bdMxxyylqyxnBW5sp/lqr8DPO694sJdk9iDHk1SJ7VoTe+ShqCPyuSRS5Yjx2CJWH2h8cGpwrQmfzS/y9M8FBk7AeqrIUkHip/00K8kSzwsCiydFdsoCP/ybYrXYRjiZI7Fxl36rjLh1C6V9RsxyXO7nRX4pN5h7+ow/flt+19ZuqcbDvWNWTgrc2T7gbvyQJ0dpZHUY7V+cvaRR2SQkpN/v4fn+VBTH0DD7CkNVRVaUyMChypIyIH/RptDqkBYkSq0O9Y7CaOJEPlCHRiSYKArEdzZptJrEwqwD3UDu9RnqBiPbxvH8yNz+1WRonR6B57+r3JnYzBdErmVkVoU2vfYlC+sPKVVKxMIjjufhuC41UYiWoet0Ly8ZjW0ylSLvP/uejcwhY3McVY4z4VauwXvJSx4dZfBtFbnTZTBQiY1HOpX1m0ipNeotmY7SoS6KlHM5ekqPRldm5vVflOUGg75KJpvFsix2Egnu35tFOjulnL6OVN+Y2kZXRArrX1B5cS8CdE2jcHxMrVTENPRpj+70kc3lWHq8QE0QONjfJ5VO4wagdNLkc4e4XkDMC2DsOKhdidHYYjQaYWh65MeQhpBL2/Oicaye1UgmkxiWFYnx348kuBrVMH4LzNA949Ob/gMAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/4f4f88b3d9cf94674f341b5ef65919ad/6a134/thumbnail-cs.webp 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/8fd4d/thumbnail-cs.webp 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/0a82c/thumbnail-cs.webp 619w" sizes="(min-width: 619px) 619px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 619px) 619px, 100vw" decoding="async" loading="lazy" data-src="/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png" data-srcset="/static/4f4f88b3d9cf94674f341b5ef65919ad/93ee6/thumbnail-cs.png 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/1a6a5/thumbnail-cs.png 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png 619w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/4f4f88b3d9cf94674f341b5ef65919ad/6a134/thumbnail-cs.webp 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/8fd4d/thumbnail-cs.webp 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/0a82c/thumbnail-cs.webp 619w" sizes="(min-width: 619px) 619px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 619px) 619px, 100vw" decoding="async" loading="lazy" src="/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png" srcSet="/static/4f4f88b3d9cf94674f341b5ef65919ad/93ee6/thumbnail-cs.png 155w,/static/4f4f88b3d9cf94674f341b5ef65919ad/1a6a5/thumbnail-cs.png 310w,/static/4f4f88b3d9cf94674f341b5ef65919ad/97b3f/thumbnail-cs.png 619w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">톰캣 스터디 회고</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>CS / Network</div><div>2023.12.02.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p>GDSC 동아리에서 처음으로 진행한 스터디가 바로 스프링의 내장 웹 서버인 <code class="language-text">톰캣을 직접 구현해보는 스터디</code>였다.<br>
+이번 스터디를 진행하면서 웹 서버, 톰캣의 구조와 서블릿, 그리고 HTTP 요청과 응답 처리에 대해 깊게 학습할 수 있었다.<br>
+스터디를 하면서 배운 개념, 그리고 트러블 슈팅들을 정리해보았다. 정리 후, 자료를 참고하지 않고 직접 스스로 구현해보는 연습도 해볼 예정이다.</p>
+<h1 id="wasweb-application-server와-wsweb-server의-차이" style="position:relative;">WAS(Web Application Server)와 WS(Web Server)의 차이<a href="#wasweb-application-server%EC%99%80-wsweb-server%EC%9D%98-%EC%B0%A8%EC%9D%B4" aria-label="wasweb application server와 wsweb server의 차이 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p><code class="language-text">WAS(Web Applcation Server)</code></p>
+<ul>
+<li>비즈니스 로직을 넣을 수 있음</li>
+<li><code class="language-text">Tomcat</code>, PHP, ASP, .NET 등</li>
+</ul>
+<p><code class="language-text">WS(Web Server)</code></p>
+<ul>
+<li>비즈니스 로직을 넣을 수 없음</li>
+<li>Nginx, <code class="language-text">Apache</code> 등</li>
+</ul>
+<h2 id="web-server와-wasweb-application-server에-대해" style="position:relative;">Web Server와 WAS(Web Application Server)에 대해<a href="#web-server%EC%99%80-wasweb-application-server%EC%97%90-%EB%8C%80%ED%95%B4" aria-label="web server와 wasweb application server에 대해 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/063f721f3da512341640d0d89fd6889c/88e66/image-28.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 35.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABf0lEQVQoz3WRS27TYBSFvQO2wZRVMGY7LIYVIAaMUYs6ILRUSR2T2HX8+B9+/c7LSZ04Jo4/VKsjKj7pTK6OztXRsfq+o7+c6fsLz9R1TaI1QbAgjiOkEEgpUVKilSbPc06n0+Dt+/6VLP5hvV7jP/pMJjaOM8NzXR49F9eb4/ve8GS32/M/rMr5SHX7gcM2GA67asO9HXBz5/LLEeTFmkB4/JheM3K+M3XHtM3xpc0TaZaxXC7Jsoz9fo+1+vaW1WeLlbxiu2sxRcZ4phg9xNzPUsIoJdIecfGALGyi1MWeS+4cxSKUmKJAKUWSJBhjsBZf3zH79Bx4ze7pTGnyIfB2Khm7KVGcIVIfOxxhhz8JE5dAlMTFkSQrMaZACEGapmy3W6z06j3yyxv25WSosVkvmbgJY6/A9kuUNsgswDc24eo3CzWnOdSD93LpOB4b2ralaRq6rsM6Nxv+HA3duR1MVVXhL2JiVRCJDK0TtJYIFSJ0hBARdX14Wfn1KH8BB04CxizGrtIAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/063f721f3da512341640d0d89fd6889c/a59e9/image-28.webp 192w,
+/static/063f721f3da512341640d0d89fd6889c/0ca9f/image-28.webp 384w,
+/static/063f721f3da512341640d0d89fd6889c/dc9b9/image-28.webp 768w,
+/static/063f721f3da512341640d0d89fd6889c/848e4/image-28.webp 790w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/063f721f3da512341640d0d89fd6889c/3b721/image-28.png 192w,
+/static/063f721f3da512341640d0d89fd6889c/66595/image-28.png 384w,
+/static/063f721f3da512341640d0d89fd6889c/fe486/image-28.png 768w,
+/static/063f721f3da512341640d0d89fd6889c/88e66/image-28.png 790w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/063f721f3da512341640d0d89fd6889c/fe486/image-28.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="1-web-server" style="position:relative;">1. Web Server<a href="#1-web-server" aria-label="1 web server permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ul>
+<li>클라이언트에게 요청을 받고 정적인 Request라면 (html, css 등) 정적인 콘텐츠를 Response 한다.</li>
+<li>클라이언트에게 요청을 받고 동적인 Request라면 WAS로 처리를 이관한 뒤, WAS가 처리한 결과를 클라이언트에게 전달한다.</li>
+</ul>
+<h2 id="2-was" style="position:relative;">2. WAS<a href="#2-was" aria-label="2 was permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ul>
+<li>DB 조회가 필요하거나 사용자의 입력을 받아 서버에서 가변적으로 로직을 수행하는 등의 <code class="language-text">동적인 처리</code> 가 필요한 요청을 처리해준다.</li>
+<li>Web Container의 JSP/Servlet 구동 환경을 제공하고 프로그래밍 언어(JSP, ASP, PHP 등)로 작성한 뒤 HTML 문서로 만들고 Web Server로 전달한다.</li>
+</ul>
+<ol>
+<li>프로그램 실행 환경과 DB 접속 기능을 제공</li>
+<li>여러 개의 트랜잭션을 관리</li>
+<li>업무를 처리하는 프로그래밍 언어의 비즈니스 로직을 수행</li>
+<li>Web Service 플랫폼으로서의 역할 병행</li>
+</ol>
+<h2 id="was-작동-프로세스" style="position:relative;">WAS 작동 프로세스<a href="#was-%EC%9E%91%EB%8F%99-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4" aria-label="was 작동 프로세스 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<ol>
+<li>Web Server로 요청이 오면 컨테이너가 응답</li>
+<li>컨테이너는 web.xml를 참조하여 해당 서블릿에 대한 쓰레드 생성하고 httpServletRequest, httpServletResponse 객체를 생성하여 서블릿에 전달</li>
+<li>컨테이너는 JSP/Servlet 호출</li>
+<li>호출된 Servlet의 작업을 담당하게 된 쓰레드(2번에서 만든 스레드)는 doPost() 또는 doGet()을 호출</li>
+<li>호출된 doPost(), doGet() 메서드는 생성된 동적 페이지를 Response 객체에 담아 컨테이너에 전달</li>
+<li>컨테이너는 전달받은 Response 객체를 HttpResponse 형태로 바꿔 WebServer에 전달하고 생성되었던 스레드를 종료하고 httpServletRequest, httpServletResponse 객체을 소멸시킨다.</li>
+</ol>
+<h2 id="web-server와-was-둘-다-사용하지-않고-was만-사용하면-되지-않나-둘이-분리한-이유" style="position:relative;">Web Server와 WAS 둘 다 사용하지 않고 WAS만 사용하면 되지 않나? 둘이 분리한 이유?<a href="#web-server%EC%99%80-was-%EB%91%98-%EB%8B%A4-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EA%B3%A0-was%EB%A7%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%A9%B4-%EB%90%98%EC%A7%80-%EC%95%8A%EB%82%98-%EB%91%98%EC%9D%B4-%EB%B6%84%EB%A6%AC%ED%95%9C-%EC%9D%B4%EC%9C%A0" aria-label="web server와 was 둘 다 사용하지 않고 was만 사용하면 되지 않나 둘이 분리한 이유 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Web Server를 WAS 앞에 둠으로써 얻는 이점을 살펴보면 된다.</p>
+<ol>
+<li>기능을 분리하여 서버 부하 방지</li>
+</ol>
+<ul>
+<li>단순한 정적 컨텐츠 요청은 Web Server에서 빠르게 클라이언트에게 제공하여 WAS로 넘어오지 않게 막는 것이 좋다.</li>
+</ul>
+<ol start="2">
+<li>물리적으로 분리하여 보안 강화</li>
+</ol>
+<ul>
+<li>WebServer와 WAS느 Port번호가 다르다.</li>
+<li>물리적으로 두 개의 서버를 완전히 분리하여 보안 강화 가능</li>
+<li>또한, SSL에 대한 암복호화 처리에 Web Server를 사용하여 웹 서비스의 보안 강화 가능</li>
+</ul>
+<ol start="3">
+<li>여러 대의 WAS 연결 가능</li>
+</ol>
+<ul>
+<li>Web Server 하나에 여러 대의 WAS를 설치하고 로드 밸런싱을 통해 WAS의 부하를 분산시킬 수 있다.</li>
+</ul>
+<p>위의 토픽 중, WAS의 동작 구조가 큰 도움이 되었다. doPost와 doGet 메서드를 구현하는 것이 스터디 Task 중 일부였기 때문에 큰 구조를 이해한 채로 스터디 진행이 가능하였다.</p>
+<h1 id="서블릿이란" style="position:relative;">서블릿이란?<a href="#%EC%84%9C%EB%B8%94%EB%A6%BF%EC%9D%B4%EB%9E%80" aria-label="서블릿이란 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<blockquote>
+<p>자바를 사용해 웹을 만들기 위해 필요한 기술</p>
+</blockquote>
+<p>클라이언트의 요청을 처리하고, 그 결과를 반환하는 Servlet 클래스의 구현 규칙을 지킨 자바 웹 프로그래밍 기술이다.<br>
+Spring MVC에서 <code class="language-text">Controller</code>로 이용되며, 사용자의 요청을 받아 처리한 후에 결과를 반환한다.</p>
+<h2 id="서블릿의-동작방식" style="position:relative;">서블릿의 동작방식<a href="#%EC%84%9C%EB%B8%94%EB%A6%BF%EC%9D%98-%EB%8F%99%EC%9E%91%EB%B0%A9%EC%8B%9D" aria-label="서블릿의 동작방식 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/cecd18de6d8f16d9baedfcbbdb510f61/476b8/image-29.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 45.3125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABz0lEQVQoz42SWU8aARRG+f/vmtamxqUiKDuUEsQMSBG1VnAfwgAOjoDCbEWYYRZOU2jf2sab3If75ebkLl+AN4Tj+Yiyyf2DSaM75vudQuW8QbUmcdNSF9pNx6A3nBB40S3k5ynKaIY8eMWyHCbjMYamoasanuNgWTOiRZlQoUOo0GI9ecnKboX34ROC+SbhwzbBgsy5qBI4u1fZzNzyIXpGtNRl1NdwNBWz10NXFBiPsVSDuCCxla6xuiOwHj8jUeqQK8tspS5Y+VQgXJC4lHQC30SNnZzIRvKCRPmR4UDHHPQZKgqDhwcmoxHOq8Vu7oa1vWM+xk55Fyov+ytPxIQWkdwtkVKXelMnoP2w6as2L4ZDX51iuz6zX2vaNhPLwvM9bMcnfayQPJLJCG2SFYXEkUzy6yPhfINg9npxinpTI/CWp1i2S/a0T1xokzoQiZe7ZE4GpKtLLXHQIFLsLoHz+Zz/JcyZ2i6Zao+1/SqrwRLb6TrZYodEXmT78xWbqRob6WvqkvHvCZew37Zx5xycPxMTJPbyd8SLEl+qT2TK8kKLCU32DyWuWvrfgX9gs9kM0zQxDANV1VE1g6ll43r+wpuON8dx/WXt+ni+z0/h6YsibdFfMQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/cecd18de6d8f16d9baedfcbbdb510f61/a59e9/image-29.webp 192w,
+/static/cecd18de6d8f16d9baedfcbbdb510f61/0ca9f/image-29.webp 384w,
+/static/cecd18de6d8f16d9baedfcbbdb510f61/dc9b9/image-29.webp 768w,
+/static/cecd18de6d8f16d9baedfcbbdb510f61/8d53d/image-29.webp 803w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/cecd18de6d8f16d9baedfcbbdb510f61/3b721/image-29.png 192w,
+/static/cecd18de6d8f16d9baedfcbbdb510f61/66595/image-29.png 384w,
+/static/cecd18de6d8f16d9baedfcbbdb510f61/fe486/image-29.png 768w,
+/static/cecd18de6d8f16d9baedfcbbdb510f61/476b8/image-29.png 803w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/cecd18de6d8f16d9baedfcbbdb510f61/fe486/image-29.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ol>
+<li>사용자가 URL 입력 시, HTTP Request가 <code class="language-text">Servlet Container</code>로 전송</li>
+<li>요청 받은 Servlet Container는 <code class="language-text">HttpServletRequest, HttpServletResponse</code> 객체를 생성</li>
+<li><code class="language-text">web.xml</code>을 기반으로 사용자가 <code class="language-text">요청한 URL이 어느 서블릿에 대한 요청인지 찾는다.</code></li>
+<li>해당 서블릿에서 <code class="language-text">service() 메서드를 호출한 후 GET, POST 여부에 따라 doGet() 또는 doPost() 호출</code></li>
+<li>doGet() 또는 doPost() 메서드는 동적 페이지를 생성한 후 <code class="language-text">HttpServletResponse 객체에 응답</code>을 보낸다.</li>
+<li><code class="language-text">응답이 끝나면 HtppServletRequest, HttpServletResponse 객체를 소멸</code>시킨다.</li>
+</ol>
+<h1 id="코드-기반-톰캣-실행-흐름" style="position:relative;">코드 기반 톰캣 실행 흐름<a href="#%EC%BD%94%EB%93%9C-%EA%B8%B0%EB%B0%98-%ED%86%B0%EC%BA%A3-%EC%8B%A4%ED%96%89-%ED%9D%90%EB%A6%84" aria-label="코드 기반 톰캣 실행 흐름 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="1-간단한-톰캣-구현-확인" style="position:relative;">1. 간단한 톰캣 구현 확인<a href="#1-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%86%B0%EC%BA%A3-%EA%B5%AC%ED%98%84-%ED%99%95%EC%9D%B8" aria-label="1 간단한 톰캣 구현 확인 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>메인 메서드이다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Application</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Tomcat</span> tomcat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Tomcat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tomcat<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Tomcat 객체를 생성하고 시작한다. Tomcat 클래스는 다음과 같이 구현되어 있다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Tomcat</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Connector</span> connector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Connector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        connector<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// make the application wait until we press any key.</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>in<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"web server stop."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            connector<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Tomcat에서는 Connector 객체를 만들고 이를 시작한다. Connector 객체는 다음과 같이 구현되어 있다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Connector</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> DEFAULT_PORT <span class="token operator">=</span> <span class="token number">8080</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> DEFAULT_ACCEPT_COUNT <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ServerSocket</span> serverSocket<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> stopped<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Connector</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">(</span>DEFAULT_PORT<span class="token punctuation">,</span> DEFAULT_ACCEPT_COUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Connector</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token keyword">int</span> port<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token keyword">int</span> acceptCount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>serverSocket <span class="token operator">=</span> <span class="token function">createServerSocket</span><span class="token punctuation">(</span>port<span class="token punctuation">,</span> acceptCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>stopped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">ServerSocket</span> <span class="token function">createServerSocket</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token keyword">int</span> port<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token keyword">int</span> acceptCount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">final</span> <span class="token keyword">int</span> checkedPort <span class="token operator">=</span> <span class="token function">checkPort</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">final</span> <span class="token keyword">int</span> checkedAcceptCount <span class="token operator">=</span> <span class="token function">checkAcceptCount</span><span class="token punctuation">(</span>acceptCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ServerSocket</span><span class="token punctuation">(</span>checkedPort<span class="token punctuation">,</span> checkedAcceptCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">UncheckedIOException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+   <span class="token keyword">private</span> <span class="token keyword">int</span> <span class="token function">checkPort</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token keyword">int</span> port<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token keyword">var</span> MIN_PORT <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token keyword">var</span> MAX_PORT <span class="token operator">=</span> <span class="token number">65535</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>port <span class="token operator">&lt;</span> MIN_PORT <span class="token operator">||</span> MAX_PORT <span class="token operator">&lt;</span> port<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> DEFAULT_PORT<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> port<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> <span class="token function">checkAcceptCount</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token keyword">int</span> acceptCount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>acceptCount<span class="token punctuation">,</span> DEFAULT_ACCEPT_COUNT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread<span class="token punctuation">.</span><span class="token function">setDaemon</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stopped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Web Application Server started {} port."</span><span class="token punctuation">,</span> serverSocket<span class="token punctuation">.</span><span class="token function">getLocalPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 클라이언트가 연결될때까지 대기한다.</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>stopped<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Socket</span> connection <span class="token operator">=</span> serverSocket<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">process</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>connection <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">Http11Processor</span> processor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Http11Processor</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>processor<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        stopped <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            serverSocket<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>connect()와 process() 메서드가 중요하다. 하지만 먼저, Http11Processor 클래스를 살펴보자.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Http11Processor</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span><span class="token punctuation">,</span> <span class="token class-name">Processor</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Http11Processor</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>connection <span class="token operator">=</span> connection<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"connect host: {}, port: {}"</span><span class="token punctuation">,</span> connection<span class="token punctuation">.</span><span class="token function">getInetAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> connection<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">process</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token keyword">var</span> inputStream <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             <span class="token keyword">final</span> <span class="token keyword">var</span> outputStream <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token comment">// TODO</span>
+
+            outputStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            outputStream<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> <span class="token operator">|</span> <span class="token class-name">UncheckedServletException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h2 id="2-클라이언트-커넥션-수락" style="position:relative;">2. 클라이언트 커넥션 수락<a href="#2-%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8-%EC%BB%A4%EB%84%A5%EC%85%98-%EC%88%98%EB%9D%BD" aria-label="2 클라이언트 커넥션 수락 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>요청의 시작은 클라이언트가 웹 서버로 요청을 보내는 것이며, 웹 서버는 클라이언트로부터 접속 요청이 오면 이를 수락해줘야 데이터를 주고받을 수 있다.<br>
+이 부분은 아래와 같이 구현된다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment">// serverSocket은 ServerSocket 타입</span>
+        <span class="token class-name">Socket</span> connection <span class="token operator">=</span> serverSocket<span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">process</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>우선 <code class="language-text">ServerSocket</code>의 accept()를 살펴보자.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/35cc91649dd86224caec7d769fa5f196/f2aa7/image-30.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 88.54166666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADV0lEQVQ4y2WT2XLjNhBF+S3eRO2iSIIguAJctVn2WCPbEzupmbzk/3/gpAh5nEnycKovulm3utGgsykLtlVPm5f0ura6Nw1dUbDVGlvX+oPy42zYlCV9kbM1xrKrKtpU4pz3W95Pzxeezvz2eOL7+YWNaSjSFp21FImhzJpPdDbUapsf6kPOFD1plODURc1x88B9f2Tf7DhuHjkdnmj7N2Txisy/EhfPpOYNVb4S5+dPnVbvyOyrjUF8jzuNcWRxJmv+RJl3ys1fNobJyX4g1IEw3hPIHVH6+KG3VvvR1uaFukckR9Zhx3ga4ai0o9AHpNqh0i+IaIsXtrgzycj1uXN9RuOQkRswGgcXPQ65cy/anQj7ze3dykZntU4RsSELW47qiYfkRKse0cUzifmG7n6QlM9k1Rtl+52i+cOS6FfLoIU64oWdbcRxJyHXtx6x2LKrfmdr3tmbdzblN1rzTqq/EagjYXywY/rRzo46sBYbmxtqInmwZ2c8i2zroV/TZme67EyTndkWr/T5CyY7Yao3ouzL5d4+jS93OJj9zA1dOsO9XN2s8AbD9jtl8YKSB/LkC1n6RJY8IuUemT3ZEWV2Is5PVqvymaR8QRVn2/l8VeAEoiTNe9J4R5V9pR6M1g3hqiRZN2R+y3KRfi7AMv1g8kuchJelyOGB6i2h6AiDjvlYMp8qJpOI2UQyn0S4w0bdgNvbgJsbn5sh3v6MH/rGZ+QKnCxq8fySRdjiqQ1uIFksBetZyszLmAYls0AzWSREOifpK+KmQHUa1eqLbjVJb5j7EY6cl8SRxu96vLogqmM8PyHyDKvQ4CUNa9Uw81KSWmMOHaopiesS1RjiWpO0FWlXMfdjnNFEsFwqhNRIaRBKM4taZlHNTNR4QYyIExZezGqtCMKY0Sjg6sr/Z/ybi75zQ5zZVKI8SVlUaK0pdE6YVERpTZjWKBVT5opISKuTdPgRUoRMmMz+vyQnDgPMvsMYzSZO2Zueen+ga0pLu2noD1u6uuCQJWxKwXQhWawk46n49/YHw1T4BLpjmldMxTBaxu1UcTUSXA+MY65cxbUruR5FSM+zow38NPvV1Ik8yTYMaYUgDzyS9YLMX5IFqw+W5MHlXIRL4rXH3fjy7v5rNhj+DZmDYJnJc93TAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/35cc91649dd86224caec7d769fa5f196/a59e9/image-30.webp 192w,
+/static/35cc91649dd86224caec7d769fa5f196/0ca9f/image-30.webp 384w,
+/static/35cc91649dd86224caec7d769fa5f196/dc9b9/image-30.webp 768w,
+/static/35cc91649dd86224caec7d769fa5f196/8a337/image-30.webp 782w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/35cc91649dd86224caec7d769fa5f196/3b721/image-30.png 192w,
+/static/35cc91649dd86224caec7d769fa5f196/66595/image-30.png 384w,
+/static/35cc91649dd86224caec7d769fa5f196/fe486/image-30.png 768w,
+/static/35cc91649dd86224caec7d769fa5f196/f2aa7/image-30.png 782w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/35cc91649dd86224caec7d769fa5f196/fe486/image-30.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>주석을 통해 해당 메소드는 <code class="language-text">ServerSocket</code>에 대한 연결(connection)이 이루어질 때 까지 기다렸다가 연결을 수락하고 새로운 <code class="language-text">Socket</code>을 생성하여 반환한다고 한다.</p>
+<p>그런데 왜 <code class="language-text">Socket</code> 을 새로 만들어 반환하는 것일까?? 이를 위해서는 웹 요청이 어떠한 과정을 통해 이뤄지는지에 대해서 알아야 한다.</p>
+<h3 id="웹-요청-프로세스" style="position:relative;">웹 요청 프로세스<a href="#%EC%9B%B9-%EC%9A%94%EC%B2%AD-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4" aria-label="웹 요청 프로세스 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>사용자가 브라우저를 통해 서버에 요청을 보내는 경우, 서버의 URL, Http Method와 입력된 데이터 등을 바탕으로 브라우저는 HTTP Request Message를 만든다. 이후 DNS 서버로부터 서버의 IP 주소를 조회하고 이곳에 요청 메세지를 보낸다.<br>
+이때 발생하는 데이터의 송-수신 과정은 다음과 같다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/e8edea3cc2b56f8556e1862ccb35e045/c0214/image-31.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACWElEQVQ4y2VTTWsTURTN73XbVYu4sQsrEao0C0ER0YWl0oLSUigFN3UTSJrWfDa2SWYymc9kPt98ZGaO3JvMxOqDy7yZue+8c889t5LnOTzPg23b/0WWZaBFOcWK45j/OY5TBr27rst5FSEEhsMhdF2HpmnrUDGdTjGbqSVgmqa8l2WZ/1F+ccYwDMYIwxAV3/cxmUyQJAknULIXCAgRYtDrwPc8BqJn5DsMaDsulJkKhS+dMcPxeLwBpKQoiuCuS48WGty5Ael+8LjkbAl59BuupUHYBhzX45KpSkmSNoCqqvJLEPgI4xjty0NYygOzKAALUE3XMWlcolf/gWUO+L7HuhJTAi4ZTmUZ3UEfimWguruF69sbvoiJZVnZIN2Y49vJZ7x7+wqLKMKAzigKy1YCkm5xFPFNvgjw+uU2+oMBTNPAv2thO7g4P8anD29AnMNQsFxEiksmy1CXaBFwv9dFrbqDdqcHSZ5ChBH8IOSgRimqiYuzY3z5WMPDSIKqzlbMdX3FkADn8zl/JOp3d0O8P9hF9fkW9l9s46D6FLV10H5/bwd7z57g/PshxhO5JGNZFoIg2NgmWpdM4pN2ve4vtK4bMDQF9xMZI0nm/U2rgU77FoZpcrme5/NglBqSYekWYtlut1Gv18tJSdMMfgaIJIcd5kjWDaKpIJtQbqvVgmmaWCwWq0n5W/Crq5/4enQE3VtCDQDZyTFzMyiaCUW3ILsZJCeDHgGmI3B2eopms/moaRVCLSxBrEjHlVVW3ovTHGIJhEsgSfO1J8GTRdNB2hXWIoZ/AGk7xxmcUKTSAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/e8edea3cc2b56f8556e1862ccb35e045/a59e9/image-31.webp 192w,
+/static/e8edea3cc2b56f8556e1862ccb35e045/0ca9f/image-31.webp 384w,
+/static/e8edea3cc2b56f8556e1862ccb35e045/dc9b9/image-31.webp 768w,
+/static/e8edea3cc2b56f8556e1862ccb35e045/c6463/image-31.webp 796w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/e8edea3cc2b56f8556e1862ccb35e045/3b721/image-31.png 192w,
+/static/e8edea3cc2b56f8556e1862ccb35e045/66595/image-31.png 384w,
+/static/e8edea3cc2b56f8556e1862ccb35e045/fe486/image-31.png 768w,
+/static/e8edea3cc2b56f8556e1862ccb35e045/c0214/image-31.png 796w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/e8edea3cc2b56f8556e1862ccb35e045/fe486/image-31.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>데이터를 송-수신하는 컴퓨터 사이에 데이터가 흐르는 <code class="language-text">통로</code>가 존재하며, 이를 통해 데이터가 흐르면서 상대측에 도착하게 된다<br>
+이러한 통로는 처음부터 연결된 상태로 존재하지 않는다. 데이터를 송-수신하기 전에 양 컴퓨터 사이에서 통로를 연결해주는 작업이 선행되어야 한다. 이때 해당 통로의 양 끝에 존재하는 데이터의 출입구를 <code class="language-text">소켓</code>이라 부른다. 통로를 연결하기 위해서는 이 <code class="language-text">소켓</code>을 먼저 만들어야 하고, 이후 양쪽의 소켓을 연결하는 작업이 필요하다.<br>
+실제 구현은 위의 코드에서 본 것과 같이, 서버에서 먼저 소켓을 만든 뒤 클라이언트에서 연결하기를 기다린다.<br>
+이후 클라이언트측에서 소켓을 만든 뒤, 서버의 소켓과 연결하게 되면 그때부터 데이터를 주고받을 수 있게 된다.</p>
+<blockquote>
+<p>데이터를 주고받기 위해서는 클라이언트 소켓이 서버 소켓에 연결되어야 한다.</p>
+</blockquote>
+<p>그다음으로 알아볼 것은, <code class="language-text">ServerSocket</code>과 <code class="language-text">Socket</code>에 대한 내용이다.</p>
+<h3 id="serversocket" style="position:relative;">ServerSocket<a href="#serversocket" aria-label="serversocket permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6a6619164c91924e4eec347b3bd7886e/f843c/image-32.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 27.604166666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAmElEQVQY041Riw7DIAj0/392aSqiWL3lYLbpsmUzOQ84wiOkWitUK4oqLAvGtuN4bJi9YwKYczp+vZWTchaIFJAde4bsGUUKSgkwzsa9949YxcjJjMHDBXtLvGm2/LtuZrcNEgOtmQuBfvrky25uc9Lg5rExxjmdTygSq6oqli3nuvrC5TOHeuQHs/i6ReIX3QMU/jnCt/cEZJ7XfNYti9UAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6a6619164c91924e4eec347b3bd7886e/a59e9/image-32.webp 192w,
+/static/6a6619164c91924e4eec347b3bd7886e/0ca9f/image-32.webp 384w,
+/static/6a6619164c91924e4eec347b3bd7886e/dc9b9/image-32.webp 768w,
+/static/6a6619164c91924e4eec347b3bd7886e/3acdd/image-32.webp 861w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6a6619164c91924e4eec347b3bd7886e/3b721/image-32.png 192w,
+/static/6a6619164c91924e4eec347b3bd7886e/66595/image-32.png 384w,
+/static/6a6619164c91924e4eec347b3bd7886e/fe486/image-32.png 768w,
+/static/6a6619164c91924e4eec347b3bd7886e/f843c/image-32.png 861w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6a6619164c91924e4eec347b3bd7886e/fe486/image-32.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>ServerSocket은 <code class="language-text">서버의 Socket</code>을 구현한다.</p>
+<h3 id="socket" style="position:relative;">Socket<a href="#socket" aria-label="socket permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/20d781fe57406994d626f02cd8673a0c/7bc11/image-33.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 20.3125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAdklEQVQY041Pyw7DMAjL/39pDzsCAfLw5LWJqqqHWbKwgBinZCbMKswMooaPJg4JCHtqe9Z7xx1zTryhLMNa6/m4OtQufeu7OzLbj8uM9ckSkRBR6JWGmol0pzsTrhnpHmAQHqGOiH2wtNb2As2pxxj4B2/f/gJaZDotXLWt6gAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/20d781fe57406994d626f02cd8673a0c/a59e9/image-33.webp 192w,
+/static/20d781fe57406994d626f02cd8673a0c/0ca9f/image-33.webp 384w,
+/static/20d781fe57406994d626f02cd8673a0c/dc9b9/image-33.webp 768w,
+/static/20d781fe57406994d626f02cd8673a0c/8fd2c/image-33.webp 878w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/20d781fe57406994d626f02cd8673a0c/3b721/image-33.png 192w,
+/static/20d781fe57406994d626f02cd8673a0c/66595/image-33.png 384w,
+/static/20d781fe57406994d626f02cd8673a0c/fe486/image-33.png 768w,
+/static/20d781fe57406994d626f02cd8673a0c/7bc11/image-33.png 878w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/20d781fe57406994d626f02cd8673a0c/fe486/image-33.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>즉, <code class="language-text">ServerSocket</code>의 accpet() 에서 반환해주는 <code class="language-text">Socket</code>은 <code class="language-text">서버 소켓</code>과 연결된 <code class="language-text">클라이언트 소켓</code>임을 알 수 있다.</p>
+<h2 id="3-요청-메세지-수신--처리" style="position:relative;">3. 요청 메세지 수신 &#x26; 처리<a href="#3-%EC%9A%94%EC%B2%AD-%EB%A9%94%EC%84%B8%EC%A7%80-%EC%88%98%EC%8B%A0--%EC%B2%98%EB%A6%AC" aria-label="3 요청 메세지 수신  처리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>클라이언트가 보낸 HTTP 요청 메시지를 네트워크로부터 읽어야 한다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>connection <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> processor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Http11Processor</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>processor<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Http11Processor</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span><span class="token punctuation">,</span> <span class="token class-name">Processor</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Logger</span> log <span class="token operator">=</span> <span class="token class-name">LoggerFactory</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token class-name">Http11Processor</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Http11Processor</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>connection <span class="token operator">=</span> connection<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"connect host: {}, port: {}"</span><span class="token punctuation">,</span> connection<span class="token punctuation">.</span><span class="token function">getInetAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> connection<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">process</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token keyword">var</span> inputStream <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             <span class="token keyword">final</span> <span class="token keyword">var</span> outputStream <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token class-name">String</span> request <span class="token operator">=</span> 요청_메세지_수신<span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 아래 두개가 '응답 생성'</span>
+            <span class="token class-name">String</span> responseBody <span class="token operator">=</span> 메시지에서_지정한_리소스_가져온다<span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">String</span> response <span class="token operator">=</span> 응답_생성<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+            <span class="token comment">// 아래 두개가 '응답 반환'</span>
+            outputStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            outputStream<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> <span class="token operator">|</span> <span class="token class-name">UncheckedServletException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>이때 요청 메세지를 수신하는 부분은 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token class-name">String</span> request <span class="token operator">=</span> 요청_메세지_수신<span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h2 id="4-리소스-매핑과-접근" style="position:relative;">4. 리소스 매핑과 접근<a href="#4-%EB%A6%AC%EC%86%8C%EC%8A%A4-%EB%A7%A4%ED%95%91%EA%B3%BC-%EC%A0%91%EA%B7%BC" aria-label="4 리소스 매핑과 접근 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">String</span> 메시지에서_지정한_리소스_가져온다<span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token class-name">String</span> 리소스_이름 <span class="token operator">=</span> 메시지에서_지정한_리소스_이름을_가져온다<span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> resources_디렉토리_내에서_리소스를_찾아_반환한다<span class="token punctuation">(</span>리소스_이름<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>이때 웹 서버의 <code class="language-text">resources</code> 디렉토리에 정적 파일들이 존재한다. 즉, 요청이 localhost:8080/index.html 인 경우, index.html을 찾아 반환해줘야 한다.</p>
+<h2 id="5-응답-메세지-생성" style="position:relative;">5. 응답 메세지 생성<a href="#5-%EC%9D%91%EB%8B%B5-%EB%A9%94%EC%84%B8%EC%A7%80-%EC%83%9D%EC%84%B1" aria-label="5 응답 메세지 생성 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// 아래 두개가 '응답 생성'</span>
+<span class="token class-name">String</span> responseBody <span class="token operator">=</span> 메시지에서_지정한_리소스_가져온다<span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> response <span class="token operator">=</span> 응답_생성<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>응답 헤더를 포함한 HTTP 응답 메세지를 생성한다. HTTP 응답 메세지는 다음과 같은 형태이다.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 682px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a603c66af9a22a025cc3e74ab6671a8e/0ea77/image-34.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 48.958333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACTUlEQVQoz22R3UuTcRTHf3Vnsz+g666iorvASsSbuogw9MJZ1GZUmDFf5gtkhDPKppJtczqUonK2rcY0gi4KsrqMWYkRXQTZnEm52bbneebj3J59Yi+aQQc+nMM58OV7zhFvbpj5PGZlxnaNDw4LCx4nIe8Qi147K147kseO7LUj+xzIHhuyf4T0zzDZdBopkUCSZRRFIZFIoGkaQn/zOMaBkxicVRitNRgGqjG6amiYMmIOGGifMmD2n6HNfzafr0xe4NvSJ1hfJ7ISJRJZ5tfyMvF4nGw2i6j23Oa0z0mdz47h6T3qJuwYAndpmJ7E8Pw+9YFHnH/1mKaPL2mam6Zj7jXz0R9k1CTfF0KEw2EkSSKTyZALUd8sMHVu59R1QW2nQN8u0HcX6tqrhVo/KDCOCPRDgpbREkLht6ynUsSkGLFYHFmRSaVSBcHmS+foMl+ktauR7nYTfR0tDPS00dvcyK1WE/29TVgtl+mzmLBaTIyN9PP1yyyZ9BoJWSIeTxCJRlFVtSD4cPc2Jvbv5MleHf59OgIHdbzYU8q7AzpmKnQED+kIHtYRPFJKsKyE98d2EZ+fQ9MKK26N/A1tZYLBSsFghWC4XNBzVHCnXGCrFDyoEkxVCSaLBE4IntXt4HdoFrLkv5oT2SDvcKnXQcI1juRyk3a5kYfd4HLDiBuGtuCcAMc4jPogGt+w9I+7vOCiIpMuNrVizmwh/R/ys0wGTcvmXebYXBlNQ1WSrMoKSUnerHOsKUlURfk7K/aTyWQeVV1jdVXd/HBO8A+EUHLOi50TnwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a603c66af9a22a025cc3e74ab6671a8e/a59e9/image-34.webp 192w,
+/static/a603c66af9a22a025cc3e74ab6671a8e/0ca9f/image-34.webp 384w,
+/static/a603c66af9a22a025cc3e74ab6671a8e/94607/image-34.webp 682w"
+              sizes="(max-width: 682px) 100vw, 682px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a603c66af9a22a025cc3e74ab6671a8e/3b721/image-34.png 192w,
+/static/a603c66af9a22a025cc3e74ab6671a8e/66595/image-34.png 384w,
+/static/a603c66af9a22a025cc3e74ab6671a8e/0ea77/image-34.png 682w"
+            sizes="(max-width: 682px) 100vw, 682px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a603c66af9a22a025cc3e74ab6671a8e/0ea77/image-34.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="6-응답-반환" style="position:relative;">6. 응답 반환<a href="#6-%EC%9D%91%EB%8B%B5-%EB%B0%98%ED%99%98" aria-label="6 응답 반환 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// 아래 두개가 '응답 반환'</span>
+outputStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+outputStream<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h2 id="7연결-종료" style="position:relative;">7.연결 종료<a href="#7%EC%97%B0%EA%B2%B0-%EC%A2%85%EB%A3%8C" aria-label="7연결 종료 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token keyword">var</span> inputStream <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">final</span> <span class="token keyword">var</span> outputStream <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span> <span class="token comment">// try with resource 를 통한 auto close</span></code></pre></div>
+<p>try with resource 를 사용하여 OutputStream이 close 되면서 연결이 종료된다.<br>
+connection.getOutputStream()의 타입은 SocketOutputStream인데, SocketOuputStream의 close() 메서드는 다음과 같다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 669px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/58098a681450f8be3f831edccb3ff315/66b6b/image-35.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 76.04166666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACWklEQVQ4y42S227bOBRF/StFausu60JSFCWRkuKL7DhXpEDzUKD9hPn/hzWQ0glmpknRhwOSh+DC3od71eY77vUDezHR5CO38kKteqJjR3p21HWJy0cu6pZzeSZrJ5rHb1TTM/rm67L6qUYOhq9/PbOKYk0QKpJioKhuEPoeaZ5IygN5daK2Tyhzj24eSDNH1T4i6gvN+PK2r90XtHukNDtWfqxYBwKVX6PliO0GejvhGoeSlrTYkeQ9aTESxDXbYiTJHFm5J816kq1jW16T5iNBZF6BXiiRiaPc1uxNx8E4TranKCSfNwWeX7LxS7xALutSXvHL3gsEKz9S+OErNAgr+uLIrjzTieOiaO7N939aq2C27EuMMky95WBbpGrItpZDOdHKPetILur8UP7n8WvvPWAgmH+7k5bT2HA/Oow0FHKkEwdOYkLkBi+2+Ot5BOIN9n/oYtkLFXHckMSaXXWNrnsabTHa4qqeXPdEzuI1HUHnCOU1y+zfU7jMMKrYLA3JNrLYWvL9RvPjrHiZFIcHzf5Lw/mpw+xaNvlA8FtgWOFFNXGs8YKKB7vl20nxclDc7SvGc8VwZ7jdO4665NNaEIQfWY4V/tzMB0YxcRSX5SySDJlkqDSjSjN0mqGybHHh/XTzocIgUmwCxdVGcOg6BtOxNi3e3uK5lqho+exXS3nBP7APYuMvMEklagbTchkstrFINbBrTozNRF60/1Ij36Dv5zCtllAXmV6y2ChDWRrSpMGkAyYbieL6w5j8CtxWzCrncF95gitPsvYEm0Bw5ZdL/SlsBv4Njl7hx1X3504AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/58098a681450f8be3f831edccb3ff315/a59e9/image-35.webp 192w,
+/static/58098a681450f8be3f831edccb3ff315/0ca9f/image-35.webp 384w,
+/static/58098a681450f8be3f831edccb3ff315/6c81e/image-35.webp 669w"
+              sizes="(max-width: 669px) 100vw, 669px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/58098a681450f8be3f831edccb3ff315/3b721/image-35.png 192w,
+/static/58098a681450f8be3f831edccb3ff315/66595/image-35.png 384w,
+/static/58098a681450f8be3f831edccb3ff315/66b6b/image-35.png 669w"
+            sizes="(max-width: 669px) 100vw, 669px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/58098a681450f8be3f831edccb3ff315/66b6b/image-35.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>소켓을 닫아줌으로써 연결을 종료하는 코드가 들어있는 것을 확인 가능하다.</p>
+<p>다음 글로는 InputStream과 OutputStream에 대해 작성해볼 생각이다.</p>
+<h1 id="til" style="position:relative;">TIL<a href="#til" aria-label="til permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="1-pathsget-vs-pathof" style="position:relative;">1. Paths.get() vs Path.of()<a href="#1-pathsget-vs-pathof" aria-label="1 pathsget vs pathof permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>특정 경로내의 파일을 읽어오기 위해선, 해당 경로를 Path 객체로 만들어야 한다. 여기서 사용할 수 있는 함수가 2가지 종류여서 이를 정리해봤다.</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Paths</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Path</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">URI</span> uri<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">Path</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>uri<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Paths.get() 를 호출하면, Path.of() 를 호출한 뒤, 받은 결과를 return 해준다. Java 8 이전에는 Interface 내에 정적 메서드 사용이 불가하였지만, Java 11부터는 정적 메서드 생성이 가능해졌다.</p>
+<p><a href="https://nanamare.tistory.com/129" target="_blank" rel="nofollow">인터페이스의 정적 메서드</a></p>
+<p>버전 간의 호환성을 위해 Paths.get() 를 사용가능하다.<br>
+하지만, 기존의 get() 함수의 이름 때문에 마치 getter() 처럼 느껴졌지만, Paths.get() 는 Paths 객체 요소 중 어느 하나도 get 해주지 않는다.<br>
+따라서, Path.of() 를 사용하는 것이 더 직관적이다. 또한, 자바의 표준 정적 팩토리 메서드이기 때문에 이를 사용하는 것이 더 바람직하다.</p>
+<p><a href="https://tecoble.techcourse.co.kr/post/2020-05-26-static-factory-method/" target="_blank" rel="nofollow">정적 팩토리 메서드는 왜 사용할까?</a></p>
+<h2 id="2-newcachedthreadpool-vs-newfixedthreadpool" style="position:relative;">2. newCachedThreadPool() vs newFixedThreadPool()<a href="#2-newcachedthreadpool-vs-newfixedthreadpool" aria-label="2 newcachedthreadpool vs newfixedthreadpool permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// Connector.java</span>
+<span class="token comment">// Connector.java</span>
+<span class="token keyword">public</span> <span class="token class-name">Connector</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token keyword">int</span> port<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token keyword">int</span> acceptCount<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token keyword">int</span> maxThreads<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>serverSocket <span class="token operator">=</span> <span class="token function">createServerSocket</span><span class="token punctuation">(</span>port<span class="token punctuation">,</span> acceptCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>executor <span class="token operator">=</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span>maxThreads<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>stopped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre></div>
+<ul>
+<li>newFixedThreadPool</li>
+</ul>
+<p>공유 언바운드 큐에서 작동하는 <code class="language-text">고정된 수의 쓰레드를 재사용하는 쓰레드풀</code>을 생성한다.</p>
+<p>만약 동시에 실행되는 태스크의 수가 최대 쓰레드의 수를 초과한다면, 작업 중 일부를 큐에 넣어 순서를 기다리게 된다.</p>
+<ul>
+<li>newCachedThreadPool</li>
+</ul>
+<p>사용가능 쓰레드 없을 시, 새롭게 쓰레드 생성한다.</p>
+<h2 id="3-submit-vs-exectue" style="position:relative;">3. submit() vs exectue()<a href="#3-submit-vs-exectue" aria-label="3 submit vs exectue permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Socket</span> connection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>connection <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"connect host: {}, port: {}"</span><span class="token punctuation">,</span> connection<span class="token punctuation">.</span><span class="token function">getInetAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> connection<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> processor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Http11Processor</span><span class="token punctuation">(</span>connection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        executor<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span>processor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre></div>
+<p>두 작업 모두 쓰레드풀에게 작업 처리 요청하는 메서드</p>
+<ul>
+<li>execute()</li>
+</ul>
+<p>작업 처리 도중, 예외 발생하면 해당 쓰레드는 제거되고, 새 쓰레드가 계속해서 생겨난다.</p>
+<ul>
+<li>submit()</li>
+</ul>
+<p>예외 발생하더라도 쓰레드가 종료되지 않고 계속해서 재사용되어 다른 작업 처리 가능</p>
+<p>⇒ 쓰레드 생성의 오버헤드 줄일 수 있다.</p>
+<p>또한, 작업 처리 결과를 받을 수 있도록 <code class="language-text">Future</code> 를 리턴하는데, 이는 작업 실행 결과나 작업 상태(실행중)를 확인하기 위한 객체</p>
+<p><a href="https://codechacha.com/ko/java-future/" target="_blank" rel="nofollow">Java-Future 사용 방법</a></p>
+<h2 id="4-concurrenthashmap" style="position:relative;">4. ConcurrentHashMap<a href="#4-concurrenthashmap" aria-label="4 concurrenthashmap permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token comment">// SessionManager.java</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Session</span><span class="token punctuation">></span></span> SESSIONS <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">Session</span> session<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        SESSIONS<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>session<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> session<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre></div>
+<p>put() 메서드에 대해서 synchronized 를 붙여, 읽기에 대해서는 여러 쓰레드에서 동시에 읽을 수 있도록 하지만, 쓰기에 있어서는 동시에 하나의 쓰레드만 접근 가능하도록 한다.</p>
+<h2 id="느낀점" style="position:relative;">느낀점<a href="#%EB%8A%90%EB%82%80%EC%A0%90" aria-label="느낀점 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>코드 구현력도 중요하지만, 무엇보다 말로 설명할 수 있을 만큼 기본 CS 지식을 쌓는 것이 중요하다는 것을 느꼈다. 2024년 취뽀를 위해 CS 기본기를 틈틈이, 꾸준히 쌓아나가야겠다.</p>
+<h1 id="참고자료" style="position:relative;">참고자료<a href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C" aria-label="참고자료 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<ul>
+<li><a href="https://lealea.tistory.com/224" target="_blank" rel="nofollow">기술면접 Spring - 1/3</a></li>
+<li><a href="https://ttl-blog.tistory.com/1483#%F0%9F%90%B3%201.%20%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%20%EC%BB%A4%EB%84%A5%EC%85%98%20%EC%88%98%EB%9D%BD-1" target="_blank" rel="nofollow">웹 서버가 하는 일 알아보기</a></li>
+</ul></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#wasweb-application-server%EC%99%80-wsweb-server%EC%9D%98-%EC%B0%A8%EC%9D%B4">WAS(Web Application Server)와 WS(Web Server)의 차이</a></p>
+<ul>
+<li><a href="#web-server%EC%99%80-wasweb-application-server%EC%97%90-%EB%8C%80%ED%95%B4">Web Server와 WAS(Web Application Server)에 대해</a></li>
+<li><a href="#1-web-server">1. Web Server</a></li>
+<li><a href="#2-was">2. WAS</a></li>
+<li><a href="#was-%EC%9E%91%EB%8F%99-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4">WAS 작동 프로세스</a></li>
+<li><a href="#web-server%EC%99%80-was-%EB%91%98-%EB%8B%A4-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EA%B3%A0-was%EB%A7%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%A9%B4-%EB%90%98%EC%A7%80-%EC%95%8A%EB%82%98-%EB%91%98%EC%9D%B4-%EB%B6%84%EB%A6%AC%ED%95%9C-%EC%9D%B4%EC%9C%A0">Web Server와 WAS 둘 다 사용하지 않고 WAS만 사용하면 되지 않나? 둘이 분리한 이유?</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%84%9C%EB%B8%94%EB%A6%BF%EC%9D%B4%EB%9E%80">서블릿이란?</a></p>
+<ul>
+<li><a href="#%EC%84%9C%EB%B8%94%EB%A6%BF%EC%9D%98-%EB%8F%99%EC%9E%91%EB%B0%A9%EC%8B%9D">서블릿의 동작방식</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%BD%94%EB%93%9C-%EA%B8%B0%EB%B0%98-%ED%86%B0%EC%BA%A3-%EC%8B%A4%ED%96%89-%ED%9D%90%EB%A6%84">코드 기반 톰캣 실행 흐름</a></p>
+<ul>
+<li>
+<p><a href="#1-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%86%B0%EC%BA%A3-%EA%B5%AC%ED%98%84-%ED%99%95%EC%9D%B8">1. 간단한 톰캣 구현 확인</a></p>
+</li>
+<li>
+<p><a href="#2-%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8-%EC%BB%A4%EB%84%A5%EC%85%98-%EC%88%98%EB%9D%BD">2. 클라이언트 커넥션 수락</a></p>
+<ul>
+<li><a href="#%EC%9B%B9-%EC%9A%94%EC%B2%AD-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4">웹 요청 프로세스</a></li>
+<li><a href="#serversocket">ServerSocket</a></li>
+<li><a href="#socket">Socket</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#3-%EC%9A%94%EC%B2%AD-%EB%A9%94%EC%84%B8%EC%A7%80-%EC%88%98%EC%8B%A0--%EC%B2%98%EB%A6%AC">3. 요청 메세지 수신 &#x26; 처리</a></p>
+</li>
+<li>
+<p><a href="#4-%EB%A6%AC%EC%86%8C%EC%8A%A4-%EB%A7%A4%ED%95%91%EA%B3%BC-%EC%A0%91%EA%B7%BC">4. 리소스 매핑과 접근</a></p>
+</li>
+<li>
+<p><a href="#5-%EC%9D%91%EB%8B%B5-%EB%A9%94%EC%84%B8%EC%A7%80-%EC%83%9D%EC%84%B1">5. 응답 메세지 생성</a></p>
+</li>
+<li>
+<p><a href="#6-%EC%9D%91%EB%8B%B5-%EB%B0%98%ED%99%98">6. 응답 반환</a></p>
+</li>
+<li>
+<p><a href="#7%EC%97%B0%EA%B2%B0-%EC%A2%85%EB%A3%8C">7.연결 종료</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#til">TIL</a></p>
+<ul>
+<li><a href="#1-pathsget-vs-pathof">1. Paths.get() vs Path.of()</a></li>
+<li><a href="#2-newcachedthreadpool-vs-newfixedthreadpool">2. newCachedThreadPool() vs newFixedThreadPool()</a></li>
+<li><a href="#3-submit-vs-exectue">3. submit() vs exectue()</a></li>
+<li><a href="#4-concurrenthashmap">4. ConcurrentHashMap</a></li>
+<li><a href="#%EB%8A%90%EB%82%80%EC%A0%90">느낀점</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a></p>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2023<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/톰캣_Study/";window.___webpackCompilationHash="9d95a56ab776dd102373";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c9fa82aa5b1f9c65f078.js"],"app":["/app-dd0ccd6d60b1e2317090.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-a8f00140345dd074d812.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-833a5cd7c95939b57998.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-bacc44475795f7d3bfca.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-2da67f5ea0abf2e2e52a.js"]};/*]]>*/</script><script src="/polyfill-c9fa82aa5b1f9c65f078.js" nomodule=""></script><script src="/app-dd0ccd6d60b1e2317090.js" async=""></script><script src="/framework-c45ea1cbb39153ed5c73.js" async=""></script><script src="/webpack-runtime-bc232f04269323ddddf7.js" async=""></script></body></html>
