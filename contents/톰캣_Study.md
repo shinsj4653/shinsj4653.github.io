@@ -24,7 +24,7 @@ GDSC 동아리에서 처음으로 진행한 스터디가 바로 스프링의 내
 
 ## Web Server와 WAS(Web Application Server)에 대해
 
-![Alt text](image-28.png)
+![Alt text](image-36.png)
 
 ## 1. Web Server
 
