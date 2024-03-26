@@ -3,7 +3,7 @@ date: '2023-09-04'
 title: 'ElasticSearch - Nori Tokenizer & Pattern 기반 검색 정확도 향상'
 categories: ['VISANG', 'ElasticSearch', 'Logstash', 'Kibana']
 summary: 'ES의 한글 형태소 기반 검색'
-thumbnail: './images/thumbnail-elk.png'
+thumbnail: './images/thumbnail-elasticsearch.webp'
 ---
 
 메타 데이터는 `테이블ID, 테이블 코멘트, 하위 주제` 로 구성되어 있다. 여기서 이 요소들을 기준으로 더 정확한 검색을 위해 다음의 과정을 거쳤다. 테이블 코멘트와 하위 주제는 `의미 있는 한글 형태소 기반`으로, 테이블 ID는 `'_' -> 언더바`를 기준으로 나누어서 검색되도록 하였다.

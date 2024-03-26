@@ -3,7 +3,7 @@ date: '2023-09-01'
 title: 'ElasticSearch - 개념정리'
 categories: ['VISANG', 'ElasticSearch']
 summary: 'ELK Stack 기반 실시간 검색어 순위 기능 구현'
-thumbnail: './images/thumbnail-elasticsearch.png'
+thumbnail: './images/thumbnail-elasticsearch.webp'
 ---
 
 데이터 포털의 `메타 데이터 검색` 기능 고도화를 위해, 여러 데이터 노드에 분산 저장해서 빠르게 검색하고 분석하는 Document Database 형태를 갖출 수 있는 `ElasticSearch`를 사용하기로 하였다.

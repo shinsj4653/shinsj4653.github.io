@@ -444,6 +444,17 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+              
+              case 'OpenSource':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#40AA54', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+              
             }
           })}
         </Category>

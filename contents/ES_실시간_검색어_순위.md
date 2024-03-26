@@ -3,7 +3,7 @@ date: '2023-09-11'
 title: 'ElasticSearch - 실시간 검색어 순위'
 categories: ['VISANG', 'ElasticSearch', 'Logstash', 'Kibana']
 summary: 'ELK Stack 기반 실시간 검색어 순위 기능 구현'
-thumbnail: './images/thumbnail-elk.png'
+thumbnail: './images/thumbnail-elasticsearch.webp'
 ---
 데이터 포털 SpringBoot 프로젝트에서 메타데이터 검색 API 실행 시, 해당 검색어 로그를 Logstash를 통해 ES로 전송 후, 해당 로그들을 일정 기준으로 집계하여 `실시간 검색어 순위`를 파악하고자 한다.
 
