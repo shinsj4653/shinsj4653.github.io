@@ -3,7 +3,7 @@ date: '2023-10-12'
 title: '데이터 포털 웹 서비스 - 통합 DB 구축 방안 토의'
 categories: ['VISANG', 'Airflow']
 summary: 'ELK 플랫폼 구축 후, 향후 개선안에 대한 정리'
-thumbnail: './images/thumbnail-airflow.png'
+thumbnail: './images/thumbnail-airflow.webp'
 ---
 
 # 문제점

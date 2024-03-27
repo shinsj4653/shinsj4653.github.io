@@ -3,7 +3,7 @@ date: '2023-04-10'
 title: '택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크'
 categories: ['CS', 'Network']
 summary: '요즘 IT의 네트워크 이야기 글 정리'
-thumbnail: './images/thumbnail-cs.png'
+thumbnail: './images/thumbnail-cs-book.jpeg'
 ---
 
 요즘 IT의 `주니어 개발자를 위한 엄청 쉬운 네트워크 이야기`의 다음 편을 읽어보고 내용을 정리해보았다.

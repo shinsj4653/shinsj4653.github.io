@@ -3,7 +3,7 @@ date: '2023-04-08'
 title: '주니어 개발자를 위한 엄청 쉬운 네트워크 이야기'
 categories: ['CS', 'Network']
 summary: '요즘 IT의 네트워크 이야기 글 정리'
-thumbnail: './images/thumbnail-cs.png'
+thumbnail: './images/thumbnail-cs-book.jpeg'
 ---
 
 요즘 IT 사이트에서 `주니어 개발자를 위한 엄청 쉬운 네트워크 이야기` 를 보고 글 내용을 정리해보았다.

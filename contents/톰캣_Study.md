@@ -3,7 +3,7 @@ date: '2023-12-02'
 title: '톰캣 스터디 회고'
 categories: ['CS', 'Network']
 summary: '4주간의 Tomcat 구현 스터디 회고록'
-thumbnail: './images/thumbnail-cs.png'
+thumbnail: './images/thumbnail-cs-book.jpeg'
 ---
 
 GDSC 동아리에서 처음으로 진행한 스터디가 바로 스프링의 내장 웹 서버인 `톰캣을 직접 구현해보는 스터디`였다.  

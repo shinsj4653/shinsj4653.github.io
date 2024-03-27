@@ -3,7 +3,7 @@ date: '2023-04-10'
 title: '주니어 개발자를 위한 엄청 쉬운 TCP/IP 4계층 이야기'
 categories: ['CS', 'Network']
 summary: '요즘 IT의 네트워크 이야기 글 정리'
-thumbnail: './images/thumbnail-cs.png'
+thumbnail: './images/thumbnail-cs-book.jpeg'
 ---
 
 `택배 배송 과정으로 알아보는 엄청 쉬운 컴퓨터 네트워크` 글의 다음편이다. 에전 글에서 본 내용이 `인터넷에서 어떤식으로 이루어지는지`를 보았고, 내용을 정리해보았다.
