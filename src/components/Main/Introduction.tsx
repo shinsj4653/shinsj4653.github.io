@@ -77,7 +77,7 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
         <ProfileImage profileImage={profileImage} />
         <div>
           <SubTitle>Nice to Meet You,</SubTitle>
-          <Title>I'm a Junior Web Developer Shin.</Title>
+          <Title>I'm an Ardent Engineer Shin.</Title>
         </div>
         <div style={{ display: 'flex' }}>
           <FaGithub

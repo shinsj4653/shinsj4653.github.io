@@ -454,6 +454,16 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'Oracle':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#FF141D', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
               
             }
           })}
