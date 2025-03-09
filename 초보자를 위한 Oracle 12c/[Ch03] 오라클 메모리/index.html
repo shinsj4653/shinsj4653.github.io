@@ -1,0 +1,2012 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="초보자를 위한 Oracle 12c Ch3 요약"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="초보자를 위한 Oracle 12c - Ch3. 오라클 메모리"/><meta data-react-helmet="true" property="og:description" content="초보자를 위한 Oracle 12c Ch3 요약"/><meta data-react-helmet="true" property="og:image" content="/static/3a6001083ba8250eb7edf0ebb4f484f6/thumbnail-oracle.jpg"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="초보자를 위한 Oracle 12c - Ch3. 오라클 메모리"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="초보자를 위한 Oracle 12c - Ch3. 오라클 메모리"/><meta data-react-helmet="true" name="twitter:description" content="초보자를 위한 Oracle 12c Ch3 요약"/><meta data-react-helmet="true" name="twitter:image" content="/static/3a6001083ba8250eb7edf0ebb4f484f6/thumbnail-oracle.jpg"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/초보자를%20위한%20Oracle%2012c/[Ch03]%20오라클%20메모리/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">초보자를 위한 Oracle 12c - Ch3. 오라클 메모리</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1f7djos">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:600px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;337&#x27; width=&#x27;600&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/jpeg;base64,/9j/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAYCBwn/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAX/2gAMAwEAAhADEAAAAds52KBqLYyiwf/EABkQAAIDAQAAAAAAAAAAAAAAAAIDBAUGEP/aAAgBAQABBQJuhJTlaIDOtsCsYvf/xAAiEQACAQMCBwAAAAAAAAAAAAABAgMREiETIgAEBRQVUVL/2gAIAQMBAT8B7rphS3xJDW01F5+cNX6tZHSvoW0wtQdwaZ43lkeKEQxM5McN7yaak4TUbc9oxccnj//EACARAAEDAgcAAAAAAAAAAAAAAAEAAhESMQMTITNRgZH/2gAIAQIBAT8Boxp3+spvlwU0ENAc6oxq6AJPMCy//8QAJRAAAgEEAQEJAAAAAAAAAAAAAQIDBBESEwUAFBUgISJCUmFx/9oACAEBAAY/AjH3TyUoEjq7wwl9SRziAvKLekvfbCoL50+UpdAturScfyVMuetzUUsqOpIdlcRBGLwEKg3K1hJMkZFw+Iqex1FJd2XTVrqnXH5x+0/Xn+nwf//EABoQAQEBAAMBAAAAAAAAAAAAAAERABAhMVH/2gAIAQEAAT8hKJ/oQAy0FhLTCRQUNazrSr2XfttXNCsVr3REQ9tOf//aAAwDAQACAAMAAAAQPx//xAAaEQEAAwADAAAAAAAAAAAAAAABETFBACFR/9oACAEDAQE/EGZ6LhfLAuigThs5Iy5MmASx7r//xAAYEQEBAQEBAAAAAAAAAAAAAAARASExAP/aAAgBAgEBPxAkLFYGdQFNq7SzCkicTI0jxKtJSI89/8QAHhABAAEEAgMAAAAAAAAAAAAAAQARIVFhMXGBkbH/2gAIAQEAAT8QDsdNAC5OaiGH/i8ibFoE+REAiroEjQQJPAFRj7brHiUN+01mBTif/9k=" alt=""/><picture><source type="image/webp" data-srcset="/static/3a6001083ba8250eb7edf0ebb4f484f6/6958a/thumbnail-oracle.webp 150w,/static/3a6001083ba8250eb7edf0ebb4f484f6/b3177/thumbnail-oracle.webp 300w,/static/3a6001083ba8250eb7edf0ebb4f484f6/8da49/thumbnail-oracle.webp 600w" sizes="(min-width: 600px) 600px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 600px) 600px, 100vw" decoding="async" loading="lazy" data-src="/static/3a6001083ba8250eb7edf0ebb4f484f6/fc94a/thumbnail-oracle.jpg" data-srcset="/static/3a6001083ba8250eb7edf0ebb4f484f6/308d1/thumbnail-oracle.jpg 150w,/static/3a6001083ba8250eb7edf0ebb4f484f6/cbb4a/thumbnail-oracle.jpg 300w,/static/3a6001083ba8250eb7edf0ebb4f484f6/fc94a/thumbnail-oracle.jpg 600w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/3a6001083ba8250eb7edf0ebb4f484f6/6958a/thumbnail-oracle.webp 150w,/static/3a6001083ba8250eb7edf0ebb4f484f6/b3177/thumbnail-oracle.webp 300w,/static/3a6001083ba8250eb7edf0ebb4f484f6/8da49/thumbnail-oracle.webp 600w" sizes="(min-width: 600px) 600px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 600px) 600px, 100vw" decoding="async" loading="lazy" src="/static/3a6001083ba8250eb7edf0ebb4f484f6/fc94a/thumbnail-oracle.jpg" srcSet="/static/3a6001083ba8250eb7edf0ebb4f484f6/308d1/thumbnail-oracle.jpg 150w,/static/3a6001083ba8250eb7edf0ebb4f484f6/cbb4a/thumbnail-oracle.jpg 300w,/static/3a6001083ba8250eb7edf0ebb4f484f6/fc94a/thumbnail-oracle.jpg 600w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">초보자를 위한 Oracle 12c - Ch3. 오라클 메모리</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>Oracle</div><div>2025.02.28.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 1ajclra">.css-1ajclra{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1ajclra p{padding:3px 0;}.css-1ajclra h1,.css-1ajclra h2,.css-1ajclra h3{font-weight:800;margin-bottom:30px;}.css-1ajclra *+h1,.css-1ajclra *+h2,.css-1ajclra *+h3{margin-top:30px;}.css-1ajclra hr+h1,.css-1ajclra hr+h2,.css-1ajclra hr+h3{margin-top:0;}.css-1ajclra h1{font-size:30px;}.css-1ajclra h2{font-size:25px;}.css-1ajclra h3{font-size:20px;}.css-1ajclra blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1ajclra ol,.css-1ajclra ul{margin-left:20px;padding:30px 0;}.css-1ajclra hr{border:1px solid #000000;margin:100px 0;}.css-1ajclra a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-1ajclra pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1ajclra pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1ajclra code[class*='language-'],.css-1ajclra pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1ajclra{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-1ajclra h1{font-size:23px;}.css-1ajclra h2{font-size:20px;}.css-1ajclra h3{font-size:17px;}.css-1ajclra img{width:100%;}.css-1ajclra hr{margin:50px 0;}}</style><div class="css-1ajclra e1ijh0y10"><p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/e3001729333ae0ed1a9c2f85e4067675/3e3fe/image-6.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 94.79166666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAAC2klEQVQ4y31USW/TYBDNf4IrVzhV4sJvgRuiB/gzlRCII6UQ4ixtY2dzVmdzliZpGttJnMTZHnpjOyVtYaTR+FvmzfY+R/b7PbbbLTabDTab0PrKff/seP9e/TPeIQ4lwoUznWK1WmGxXGK5WmG9XsPz1mLpSBuq53nwQuutA/Uwn7vY7naI0GG5XCIURry9HcO2HUwsSyz1bmJhPL6DNbExmViiluWIdd2FABNLABeLxQGQ33RmCbvdTpTiOFOYZkf2wzNa+lu2c6jmSUCmTxmNbmFZNmazmaxZmml2MRqNJVvbcXz7P0CWTyde7PVucHMzwHA4krXrutKObrcv99rtDtptU4Ku136vHwFyOIVCCbVaHZqWk+9yuYp0WoOqZtDpdKX0atVALJaQYPxm+exjAHg/FJaVyeRQqxow2x3U603JIpW8gl4oYjAYoNfrwzAaiCsp8dX18sH3UYZcK0oS0V8xpFJXiEYVJJOX+PrlGxQljnyugEJBh6pqOP9+Idnqeimoznu65FrNgGHUUSyW5XJcSaBSqcp+IpFE+loVQLbh8vIarVYb+8D3iaGspH+MbJomWq0W1LSGZpOltwXIMAxpw3U6DVXLoFFv+gxZLgPAgNjhMyyVKnIxk81BL5Yks3K5IlkWiyU0Gs2gCgOalhHwkHIHQHfuCuv7fVJleOAgn+V0OhNucook9Gw2lz36TqdT7AKiHwDJKb6Efr8vFMjndWQzOckmHk8KsW3bFgI3G018OP2Ik5M3+HkRParsCJCbzMon8lCAFSUhoOGwmBXLPj39hJevXkNNZ+WM2RGQxD8A3k0mUm6n05OhtFumAJCL8oNw/OdFp3dv3+PZ8xfI5/R/A3JzMBgKBUiZXK6A2G8FP84v8FA0LYuzs8/ySkI56iGRHwojsnccRphBqH8L/XkeZh9h75ghF74uMHddeVLk5CI4Y3RaBmAgTpeWE5/PfeXP4Q9ZdJR8KvGTLAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/e3001729333ae0ed1a9c2f85e4067675/a59e9/image-6.webp 192w,
+/static/e3001729333ae0ed1a9c2f85e4067675/0ca9f/image-6.webp 384w,
+/static/e3001729333ae0ed1a9c2f85e4067675/dc9b9/image-6.webp 768w,
+/static/e3001729333ae0ed1a9c2f85e4067675/521f7/image-6.webp 860w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/e3001729333ae0ed1a9c2f85e4067675/3b721/image-6.png 192w,
+/static/e3001729333ae0ed1a9c2f85e4067675/66595/image-6.png 384w,
+/static/e3001729333ae0ed1a9c2f85e4067675/fe486/image-6.png 768w,
+/static/e3001729333ae0ed1a9c2f85e4067675/3e3fe/image-6.png 860w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/e3001729333ae0ed1a9c2f85e4067675/fe486/image-6.png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="sgasystem-global-area" style="position:relative;">SGA(System Global Area)<a href="#sgasystem-global-area" aria-label="sgasystem global area permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>모든 사용자가 공유 가능</p>
+<h2 id="pgaprogram-global-area-private-global-area" style="position:relative;">PGA(Program Global Area, Private Global Area)<a href="#pgaprogram-global-area-private-global-area" aria-label="pgaprogram global area private global area permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<aside>
+💡
+<p>데이터베이스에 접속하는 모든 유저에게 할당되는 각각의 서버 프로세스가 독자적으로 사용하는 오라클 메모리 영역</p>
+</aside>
+<p>사용자마다 개별적으로 사용</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/22514297cde6a1e4390067c29d74eee4/e0a8c/image%20(1).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 132.8125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAbCAYAAAB836/YAAAACXBIWXMAABYlAAAWJQFJUiTwAAAFRklEQVRIx41VWW9TZxD1n2qrSqgPFBAS3SVe+tBWrVqVPLS0hZeKBxRoQYpYAqJpKJBAoAmhCSGJiUkIxdmJk3hJcm1f72u8L9f7kpzqjBtX4qkjje7n6/nON3PmzHd1zWYTr9vu7i6aTXrzf3mj0Xru7e1Bl85ksLWpwGF3wuPxwevzo1gqoVyuoFQqo1gsiWtaAVqhKF6pVFGvN9BoNmVdrdbE05kcdPV6HcVCEblsHvlcHvm81s600WjIqa8bwROJJILBMLLZHKLRGCrlCvJaAbr9lJlFXtMkuFAoSAl8R1D+9nkDcLt8CPjDMJttCIUiCIejKJVKqDcaqNXqKBSK0HFDKpVGIBBEwB9EOBSBzxeA2+2F2+OFw+HExBM9hv8cw/DgBO72D2F22ojxcQNu3LiJ+wMPYTQuSObZXL6VYbPZQCQShcftgaLYYbc7EAgGkclkUa1WEYvFsbFuxYvnRlgsNrhUN/R6A4YfjqCj4xROnz7zHyDJZWm5XF48nc6goBWEO/LDd6FwBBsbNqysmmF49gIDAw9x+84g3vvgU5z84QwGB0db3LJk1s6S/X5y5JHTPW6WqkrZDqeKsTE9+u4Mou/eMIaGHmN5aRVjY1M4+ePPOHf+MtxuP/b2dlGpVluA1F0kEoGqqlBVF5xOVSigURZaPg+r1Ya5+UWsmtYwMzOLe3cfoLPzAk6dPgurVZFYYulEP+kM4vEEksmUZEvX8ppkvb5uhnFuEfrJaTwZn8LtvvsYfjSKy92/4c23DuKT41/g+vVeASTfumqtJpuZmc1qg3nDjLW1ddhsmwIciUaxvGLC6Kgeo48nYHy5ALviwPiEHuc7L2JkZAylckteTE5HtSfiCQQDIexEd6AoDjjsKsLhCCLhqBxGoxpyuRySyST8Pr8owWKxtv/ngNRqNegoDaLzBTfxWS6XRbCapsnkcAzp3ND6ryxxwtu/8TyMMQLIzkp3PV5kMhlUKhUBpJOXeCIBvy/QEn8giFAojFAwLPEEYzwlxqcIO5fNIZlIIZVMydDTqEPKgMam7RtBqFsaG7m3u9eeeymZrd7/wRPoPJVSKhaLEpxIpISzacOMyOfVyqo4ud+//liJdJmTQKJdqku0x2c8HhcACpzZ7OzEMTc3j4nxSTgcDhj/NmL2+QukU+k2IBMSQL4goNPhhKIosFgs4sq2IiUxU/JGGd3tH4DX64N+Qo+Z6ecy4/vXWwuwBh03kPxsNivTEovF2iUr23YUikXpHqUSjUYFhCMa24nJIOyX2s6QEgj4A3C52GUP7Ha7bDSZ1rC8tIJodEfmenNLweamgjnjAubnFrC9pcjtRFWQqjZgi/QEnE4n1kxr2NjYwPraunSWo9fTcxPXuntwqasH5zov4VLXdQwOPELXxSs4e/ZXDA39hXw+L1yKbPZnmaVQkyyZWZOCYDAo68WFJegnn+GZYRabtk24VBUnvv0OBw4cwaFDH2J5eUV4JFUCSNIZyKaYTKbWTJstQgNvINO6GQsrr/DUMINbt/rR+/sdfPP19zh27Dg+/+yEKKJ9OXDBbwYzc7vc8Pl8CIfCEkA+e3tv40p3L7qu9uCXC1fR3/cATyen0dHxEw6++z6udf8hlzCbKIBMk01gh9kA8sa5VJ0qXC6XiJ4X7eLSK8wvLMH40gjDlAFfftWBtw8cxpWrPaISxvHu1FFHFDJL295WYLVYsbW1Ba/XK6e+boxlyUcOf4w33nwHR49+JJTRCKxrfair0gQKnM4132nyWdWkixx+rpm90+mCYWoGw8MjmJ9fFOkwhln+A9INj5aqwmZ8AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/22514297cde6a1e4390067c29d74eee4/a59e9/image%20(1).webp 192w,
+/static/22514297cde6a1e4390067c29d74eee4/0ca9f/image%20(1).webp 384w,
+/static/22514297cde6a1e4390067c29d74eee4/dc9b9/image%20(1).webp 768w,
+/static/22514297cde6a1e4390067c29d74eee4/f14a3/image%20(1).webp 998w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/22514297cde6a1e4390067c29d74eee4/3b721/image%20(1).png 192w,
+/static/22514297cde6a1e4390067c29d74eee4/66595/image%20(1).png 384w,
+/static/22514297cde6a1e4390067c29d74eee4/fe486/image%20(1).png 768w,
+/static/22514297cde6a1e4390067c29d74eee4/e0a8c/image%20(1).png 998w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/22514297cde6a1e4390067c29d74eee4/fe486/image%20(1).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>Dedicated 서버 방식, Shared 서버 방식이 존재</p>
+<p>PGA 내부의 UGA 위치만 다르다</p>
+<p>PGA는 서버 프로세스에 생성되며, 오라클에서 사용하는 메모리 영역</p>
+<p>유저 프로세스 : 데이터베이스에 접속하기 위해 실행한 프로그램 → 그 프로그램을 수행하는 클라이언트에는 유저 프로세스가 생성됨. DB에 접속하는 순간, 모든 정보를 서버 프로세스에게 전달함</p>
+<p><strong>서버 프로세스 : 유저 프로세스로부터 해당 SQL과 기타 정보를 전달받음. 받은 정보들을 저장하기 위해 자신만의 메모리인 PGA 활용</strong></p>
+<p><strong><code class="language-text">Dedicated 서버 방식</code></strong></p>
+<ul>
+<li><strong>PGA = 변수 저장공간 (Stack Space) + UGA</strong></li>
+<li>실무에서 거의 이 방식 사용</li>
+<li>하나의 유저 프로세스에 하나의 서버 프로세스, 그리고 하나의 PGA를 생성</li>
+</ul>
+<p>Shared 서버 방식</p>
+<ul>
+<li>PGA = 변수 저장 공간</li>
+<li>UGA 는 기본적으로 Shared Pool에 저장하며 Large Pool로 변경 가능</li>
+</ul>
+<h2 id="pga" style="position:relative;">PGA<a href="#pga" aria-label="pga permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/f1a4cd640a11443d29a0753a899c10bb/4c530/image%20(3).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 83.85416666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABYlAAAWJQFJUiTwAAACuUlEQVQ4y11Ua3OiQBD0//+n3KdcrozxgTwVDCAPAaMgKKAk6asexMrdVg0su7OzPT09jK7XK+q6we12E2uaRuxcndG2rVjTtI85ffq13m9Yp31/f2N0OV+Q5zk+Pg5IkgSmaWG1WsPzfByPR5yKE/K8QFGccDzmCMMIh8MBRVHcrd8/n8/4/PzEiOh8z4dhmDANE5a1wmw2R5Zl4vT19SWouq4Ti+OdBCaiy6WWNfoxMH1HddPAcz1YpgVN1QXdYqEgSVLUdS3OuzjBfv8hqXNEUQRV1QQZ5+u1jdOp7BGShyiMkKUZFEWF5/pw313s93v4/hZLRcVsOoem6XIRLY5jhGEI1/Wg67q8iVwQEnIUxYLINFcShBQcDkeZO/YG220ga1t/i+fn3/A8D2maQdcNuYBc27Yt6EeESWd7bWP6NoOmGeIYBIGk8jaZQtcMQa8uNTw9/YKiLIWi8XiMl5c/cBxHLpEqM2AYhGI8TJSGbsAyV4Js42xg286DW6Jk8Vg4danidTyBoigCQDhkypRIEISYvL5JIKKNo1gKoeusvnW/yITjbAQ5VeG6bs/tfCE8CoeUBG9dWWtJ17LWmM8VpGkqnLTtFddrL3i+yXWyS7DbJQjCUPjLj7mogU0iAVnl942L+XwJw7CwXGrYbN6lMFm2R1mWGAYPMRsiJSp+D+uPgJQB06IOaewGBqL+KAdyyW6imImEg98sDrnlnBl0tw6jPp1esERyuVxkk7erqi6ySZNMdDp5nWI2W0iRuF5V1T/IBeHQUv8PImd//xzsDKbK/icdVdW35hCQGYyGvwwHdTQYB3u1LCuUVSU/gq0fiNgpahq5pLGA3BeEfDBFBuFtYvc5dUXjN/uaFeU35cRALCQRk2PSJQh5kBNy2aPtcOt66+5vrl/v/8H2zlX3Y59nmQ2F/ReofPig+DltSAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/f1a4cd640a11443d29a0753a899c10bb/a59e9/image%20(3).webp 192w,
+/static/f1a4cd640a11443d29a0753a899c10bb/0ca9f/image%20(3).webp 384w,
+/static/f1a4cd640a11443d29a0753a899c10bb/dc9b9/image%20(3).webp 768w,
+/static/f1a4cd640a11443d29a0753a899c10bb/e2c2f/image%20(3).webp 1152w,
+/static/f1a4cd640a11443d29a0753a899c10bb/85556/image%20(3).webp 1252w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/f1a4cd640a11443d29a0753a899c10bb/3b721/image%20(3).png 192w,
+/static/f1a4cd640a11443d29a0753a899c10bb/66595/image%20(3).png 384w,
+/static/f1a4cd640a11443d29a0753a899c10bb/fe486/image%20(3).png 768w,
+/static/f1a4cd640a11443d29a0753a899c10bb/d2d74/image%20(3).png 1152w,
+/static/f1a4cd640a11443d29a0753a899c10bb/4c530/image%20(3).png 1252w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/f1a4cd640a11443d29a0753a899c10bb/fe486/image%20(3).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="sql-work-area" style="position:relative;">SQL Work Area<a href="#sql-work-area" aria-label="sql work area permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ol>
+<li>비트맵 생성 영역</li>
+</ol>
+<ul>
+<li>비트맵 인덱스 사용 시 사용하는 비트맵 인덱스 생성 영역</li>
+</ul>
+<ol>
+<li>비트맵 병합 영역</li>
+</ol>
+<ul>
+<li>비트맵 인덱스를 사용하여 실행을 분석한 후 비트맵을 병합해야하는 경우 사용하는 영역</li>
+<li>ex) 비트맵 인덱스의 컬럼을 WHERE 조건에서 OR 연산자를 이용하는 경우에 2개의 비트 값을 비교해야 하므로 비트맵 병합 발생</li>
+</ul>
+<ol>
+<li>정렬 공간 (Sort Area)</li>
+</ol>
+<ul>
+<li>Order By 또는 Group By 등의 정렬을 수행하기 위한 공간</li>
+<li>해당 공간에서만 정렬이 완료된다면 이를 메모리 정렬이라 부름</li>
+<li>정렬 시 메모리 공간 부족하다면, 디스크에 구성되는 임시(TEMP) 테이블스페이스를 이용하게 된다</li>
+</ul>
+<ol>
+<li>해쉬 공간 (Hash Area)</li>
+</ol>
+<ul>
+<li>조인 방식 중 하나인 해쉬 조인의 해쉬 영역을 생성하는 공간으로 사용</li>
+</ul>
+<h3 id="uga" style="position:relative;">UGA<a href="#uga" aria-label="uga permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ol>
+<li>세션 메모리 (Session Memory)</li>
+</ol>
+<ul>
+<li>서버 프로세스에 의해 추출된 결과 값을 전달하기 위해 필요한 <strong>유저 프로세스의 세션 정보</strong> 저장</li>
+</ul>
+<h3 id="private-sql-area" style="position:relative;">Private SQL Area<a href="#private-sql-area" aria-label="private sql area permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ol>
+<li>영구 영역 (Persistent Area)</li>
+</ol>
+<ul>
+<li>바인드 변수 값을 저장하며 바인드 변수는 실행되는 런타임 시 SQL 문에 제공됨</li>
+<li>바인드 변수 == SQL에서 상수 값을 변수 처리한 부분을 의미함</li>
+</ul>
+<ol>
+<li>런타임 영역 (Run Time Area)</li>
+</ol>
+<ul>
+<li>쿼리 실행 상태 정보를 저장</li>
+<li>ex) 현재 테이블 스캔을 통해 지금까지 몇 개의 행이 출력되었는지에 대한 정보를 저장하고 있다</li>
+<li>DML 문장의 경우, SQL 문장이 완료될 때 런타임 영역도 해제한다.</li>
+</ul>
+<h2 id="pgaprogram-global-area의-관리" style="position:relative;">PGA(Program Global Area)의 관리<a href="#pgaprogram-global-area%EC%9D%98-%EA%B4%80%EB%A6%AC" aria-label="pgaprogram global area의 관리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>다음과 같은 파라미터에 의해 PGA 크기 관리 가능</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5dbd0e2c35379ed23cf9bc880b97d85f/58498/image%20(4).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 80.72916666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAADEElEQVQ4y22TW2/TWBSF89vQIKEZEIUKtdAX4AWqoaXQhlIIF3F54ffwML8AJant2HHiSxzHuSe0TZz7PVmjtdMiIWHpxOccO99Ze63tyPfv/2F7+yGi0RiePNnDwcErfP38DYeHb3By8hEvXh5jb/8Qe/tH2H8elXUs9gnHrz/g6FUMxyfvET2O4d2HL+h2e4gQuLPzGG/ffMTT3ed49u9LRI9i2N09EMD9B4+wcWcLm/d2sHF3G3/f3MTW9kPcur2F6zc2cOOfu7j2103c2XyAi1YLEVxe8/kcf7p6vR5qtbqMQiFApVJFtVqTUS5XEQRleF4BrVYo70eWyyUuLlrwvDyazZ8Yj8eYTCa/IPV6A34hgGXZcBwXjpODZTnw/QCu6yFtZqEbJgqF4iVwtfpN0WKxECiVTWczUWTbLsxMFvYlkGtCdT0tKnkoxQhwvljg/PwCQVBCvdbAaDQShc1mE0FQFJUpzZA/E8KhajpOT1WkUgZsJwfP81EqV7BardYlE8BT+v0+ZrMZJuMJisWSlFQqleG4OSmL0EzWQiZjiQiqol1nZ+dotdprIMPgA5ZRKpYxGAxEJfcIpflSspkVD92cJ345oiyPYqmMSoUh1dfAyWSK4XAkJ45GY0ynU4G2222EYUegqpqCpunQjTS0lI544hSKkhKlQbGEcqWK5s+zNZA/nU5XAJQ9Go4kGK4bjYZYQWAyqSCRVJDNWlAUTUIyDBOW7Qjcv0qZntG7fn8gCqmYJTPlfq8v4WQyWZhmRkDr1nFh2454m8/7aLdDdHu9tUKqoUIayxJZMtuG8zAMxUv6RmVM1TDSUFVNgFxTvZmx5B2yIsvlSjz0/YL4yE0G1e12Ua/VBcgW0XUDiqIiHk/ix484EokkXDcnDV4IiuL1ZclzUXV1XYVCPweDoTQ2FRlpE6qWkrtyqiIRT0jKfE4Y76KQkHYYygabmL4RylBq1Roajab0n5f3pS/ZPvSTvmpaSuZsKybOnv4VCtUMh0MJh2v6yvlVj9J8fjnrb9mWQYWdztprWkSF/wONWmZvGMJo8gAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/5dbd0e2c35379ed23cf9bc880b97d85f/a59e9/image%20(4).webp 192w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/0ca9f/image%20(4).webp 384w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/dc9b9/image%20(4).webp 768w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/e2c2f/image%20(4).webp 1152w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/f3efb/image%20(4).webp 1536w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/45fb5/image%20(4).webp 2134w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/5dbd0e2c35379ed23cf9bc880b97d85f/3b721/image%20(4).png 192w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/66595/image%20(4).png 384w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/fe486/image%20(4).png 768w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/d2d74/image%20(4).png 1152w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/e8464/image%20(4).png 1536w,
+/static/5dbd0e2c35379ed23cf9bc880b97d85f/58498/image%20(4).png 2134w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/5dbd0e2c35379ed23cf9bc880b97d85f/fe486/image%20(4).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>주의</p>
+<ul>
+<li>
+<p>PGA_AGGREGATE_TARGET 파라메터는 PGA의 총합을 제한하는 파라메터는 아니다</p>
+</li>
+<li>
+<p>하나의 서버 프로세스에서 할당되는 PGA의 크기에 대한 단순 지표를 제공함</p>
+</li>
+<li>
+<p>WORKAREA_SIZE_POLICY : AUTO면 SORT_AREA_SIZE 및 HAS_AREA_SIZE 파라메터는 무시됨</p>
+</li>
+</ul>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4e7c3a9a329301eecde98880679ba61b/52c6a/image%20(5).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 94.79166666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAADqUlEQVQ4y21Ua1PbRhTVT+2008RAwMGl1OCSDiGZ9A9kOslM/0foDBBiwAZjw/iBH8IvPZAlWbYetowf0unca6v5Us3cuavd1dE9555dIQxDLBYLLIJgGTReBa1NJhN8/PgXGg0R9MzncwRB8P8RhhDoA88bwfcnGPs+Z38yge/7mE6nGA5tfP70N2q1BmazGe8djcYYj33O9O56IwxtB2N/AoH+KMsKdMOErhvQNB2WNUC/b8E0+xhYQ3juCIPBEK7rwrKGvE7vZn/AQJQpiCEDNlttiGITkqyg8lBDqVRBuVJFLldApVJl4F7PWIIYfdi2w5VbgyE8bwzHcWENbCwWAQSi0e3KaLc7kGUVrVYbnY6ETqfLudfT4bguPM/jDwmIwazBf0wMZmdiOptBILEP3hzi7dGf2E4k8TL2Ci9iG/jp5zVsxXc4fvjxJV7ENhFbj2NjYxuJRBKbWztIpQ7xW/INNuO/Ira2jWq1DoG6GelD1RUK97i/LyKXy+PmJs+biLaiqLAdB6ZpotuVoKoqFFmFpvWYDVVKrhDICiQ80aBJ2kybms0WRPGR9aO16KHOq4qKpyeNm0i09Z4BQzd5XSDU6CGgYrGMSvkBpVKZKybtPNdjGz0/PzM4saH3ycpe/spCxJYBTcNc/kk38EBdLpYY8PGxCUVVWXTLstDnbvd4n2EYXEBP6y2rCUKEQUgaBtBW5RPNXO4W6fQlzs/TuLzM4Ooqyw4gnSiTJLZtw3Ec2EMbju1gNBoxC65wNp+z4GRu+qOiKPyRJMlMuVato1FvLDVtiDxP1RErahDZigvS9BUg+1DiySf1iauo18WlLyUZw8EQhm7AdVxuENEmoEgmao4iKzB1EyGdFKJPoNHZJaGJwng85rnvTQv5AogujSgW8/lqOeQ9AnUtm7lGPn/H+t3m8pwzmSxurm9weXmFi/QFrrPXyGayODs9w9ev55xPT07x5csxjo//wcnJKYJgAaFSecDreAJvD99hJ7GL3d09bG69Rjy+jfW1V1hfX0Zi+xccHb1DMrmPvb197O+nkEr9joODP5DcS+H9+w+YTicQyD+5zC2+naWRPrvAQ6XKlVCkv32v7K5QQLvd5sY0xUc0anV0Wm102x20my08KQoQBhDIlOViBfncHW4yOdRqdfZgPl9AIV9Yjm/zEEURmqZBlmVugtTpQpEkqIoCqduF3JFYT4HEj24Q8hadgshnNBeNaZ6aFQX5zlvdQqPRckzN/ReB21JmIpzsewAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/4e7c3a9a329301eecde98880679ba61b/a59e9/image%20(5).webp 192w,
+/static/4e7c3a9a329301eecde98880679ba61b/0ca9f/image%20(5).webp 384w,
+/static/4e7c3a9a329301eecde98880679ba61b/dc9b9/image%20(5).webp 768w,
+/static/4e7c3a9a329301eecde98880679ba61b/e2c2f/image%20(5).webp 1152w,
+/static/4e7c3a9a329301eecde98880679ba61b/688d3/image%20(5).webp 1452w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/4e7c3a9a329301eecde98880679ba61b/3b721/image%20(5).png 192w,
+/static/4e7c3a9a329301eecde98880679ba61b/66595/image%20(5).png 384w,
+/static/4e7c3a9a329301eecde98880679ba61b/fe486/image%20(5).png 768w,
+/static/4e7c3a9a329301eecde98880679ba61b/d2d74/image%20(5).png 1152w,
+/static/4e7c3a9a329301eecde98880679ba61b/52c6a/image%20(5).png 1452w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/4e7c3a9a329301eecde98880679ba61b/fe486/image%20(5).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>AWR(Automatic Workload Repository)</p>
+<p>→ 현재 오라클의 부하 지표를 저장하고 있다</p>
+<ul>
+<li>V$PROCESS 동적 성능 뷰에서 평소 사용되는 PGA의 크기 확인 가능</li>
+</ul>
+<h2 id="sgasystem-global-area의-개념" style="position:relative;">SGA(System Global Area)의 개념<a href="#sgasystem-global-area%EC%9D%98-%EA%B0%9C%EB%85%90" aria-label="sgasystem global area의 개념 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<aside>
+💡
+<p>오라클은 필요한 데이터를 <strong>디스크에서 액세스 후 메모리에 저장한 다음에는 메모리에 저장된 데이터를 읽거나 변경을 수행</strong>함</p>
+<p>→ 이러한 일련의 작업에서 사용되는 공용 메모리 영역</p>
+<p>→ 결국, 오라클이 SQL을 수행하기 위해 데이터를 읽거나 변경하기 위해 사용하는 공용 메모리 영역</p>
+</aside>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8279171880f6705b984c4e36a5a3d521/5205e/image%20(6).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 77.60416666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAACm0lEQVQ4y1WUh3LiMBCG8/5vlZnLXI4jxIALGNwxbjR3U/+bf22Si2bWsqTVt9oivbRdh+58RtedpT8P8pzj/+12w/lykf/r9Yrr9YbLMP7S78643+944adtux/Sdb1QsSwrrNY26qbB+XwZ1p7GLwKmQXJuBDZNi+PxBPbf0qCqazRti7KqkBeFjOu6+dKp6gZVVQuc84Q/Ho8eyB9aSpJU4G3bgo2ncV0fYRhhu43g+4F4kKYZ0nQn4vkBiqKUeQEWRSEbkjRFuI0QRTGSNEO228m87biwLEfAlu3ADzYCjuME0SBZtv8GZlkG1/OxCUOY5hq27crG6XQOVdWx3x8QJykOxyNOpxyGsUSW7WQzPWDcHNeXWA/AnZyqLEtRTJIMcZxivbYxn6uy5nm+uLyNYijTOQ6Hg4SEADYC6bYAU57Q9VFVlbiy2WwlyITMBqDregiCDYIgxMdEwX6/FxAz+wTmRYk7gbvdHsrnFJZlYzKZ4u3XO1RNx5/RGNPZXAzYjodgEwpcUWYShh9Ax8MpL/o6pJvmciXKtMxM839prvCpzLAJt3BcT3q6zDkego31x8a4M74CTJipKBb/qcjstU0nmR5/TCR2fdK2Yowx5Ob/GyuB5SZAQkajsWT47e0dr6+/sFiYGI8nMq/rhiRHVTUsTRO/30dy4j6BqfSqZiDPhxhWZQVrbUsSHMdFEATQNB2zmSpxNYwFFoulJExRpjKmLt1koli/mk5g0QPzPJcYcvN6bUlGe4gpIE0zpPYIZAg4pxsLzOcadH0h9ft3PBlcfuClrmvYtvN1G2idlnkjmD2emoW+WltikN5wzDXPC0SfMWZh8/q+sNrlpbj1T9LlepWLzpeG4+dz9dR5CucvstYL65gPxT94G65ksnK5CgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/8279171880f6705b984c4e36a5a3d521/a59e9/image%20(6).webp 192w,
+/static/8279171880f6705b984c4e36a5a3d521/0ca9f/image%20(6).webp 384w,
+/static/8279171880f6705b984c4e36a5a3d521/dc9b9/image%20(6).webp 768w,
+/static/8279171880f6705b984c4e36a5a3d521/e2c2f/image%20(6).webp 1152w,
+/static/8279171880f6705b984c4e36a5a3d521/92c1e/image%20(6).webp 1222w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/8279171880f6705b984c4e36a5a3d521/3b721/image%20(6).png 192w,
+/static/8279171880f6705b984c4e36a5a3d521/66595/image%20(6).png 384w,
+/static/8279171880f6705b984c4e36a5a3d521/fe486/image%20(6).png 768w,
+/static/8279171880f6705b984c4e36a5a3d521/d2d74/image%20(6).png 1152w,
+/static/8279171880f6705b984c4e36a5a3d521/5205e/image%20(6).png 1222w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/8279171880f6705b984c4e36a5a3d521/fe486/image%20(6).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>동일 데이터베이스에 접속하는 모든 사용자는 동일 SGA를 사용하게 된다.</p>
+<p>SGA는 인스턴스가 시작될 때 시스템 메모리에서 할당받으며 종료될 때 다시 시스템 메모리 영역으로 반환된다.</p>
+<p>SGA의 중요 요소에 대한 목적</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>목적</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared Pool</td>
+<td>SQL의 빠른 파싱</td>
+</tr>
+<tr>
+<td>Data Buffer Cache</td>
+<td>데이터 블록의 빠른 액세스 (재사용 포함)</td>
+</tr>
+<tr>
+<td>Redo Log Buffer</td>
+<td>데이터베이스의 모든 변경사항에 대한 로그를 기록하여 장애 발생 시 복구</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sga의-관리" style="position:relative;">SGA의 관리<a href="#sga%EC%9D%98-%EA%B4%80%EB%A6%AC" aria-label="sga의 관리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h3 id="sga-변경" style="position:relative;">SGA 변경<a href="#sga-%EB%B3%80%EA%B2%BD" aria-label="sga 변경 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SQL</span><span class="token operator">></span> <span class="token keyword">ALTER</span> SYSTEM <span class="token keyword">SET</span> parameter_name <span class="token operator">=</span> 변경값<span class="token punctuation">;</span></code></pre></div>
+<p>SGA의 설정 값을 변경하고자 하는 경우 전체 SGA를 값이 SGA_MAX_SIZE 파라미터에서 정한 값 이하까지 alter system set 명령을 이용하여 동적으로 변경 가능</p>
+<p>ex)</p>
+<ul>
+<li>SGA_MAX_SIZE - 64GB</li>
+<li>데이터 버퍼 캐시 - 24GB</li>
+<li>Shared Pool - 24GB</li>
+</ul>
+<p>위와 같은 경우 다음과 같이 변경 가능</p>
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SQL</span><span class="token operator">></span> <span class="token keyword">ALTER</span> SYSTEM <span class="token keyword">SET</span> db_cache_size <span class="token operator">=</span> <span class="token number">20</span>G<span class="token punctuation">;</span>
+<span class="token keyword">SQL</span><span class="token operator">></span> <span class="token keyword">ALTER</span> SYSTEM <span class="token keyword">SET</span> shared_pool_size <span class="token operator">=</span> <span class="token number">28</span>G<span class="token punctuation">;</span></code></pre></div>
+<p>데이터 버퍼 캐시에서 축소한 4GB만큼 Shared Pool에 할당</p>
+<p>만약 데이터 버퍼 캐시를  64GB로 변경하려 한다면 SGA의 전체 합이 SGA_MAX_SIZE 파라메터의 값을 초과하므로, ORA-00384 Insufficient memory to grow cache 에러 발생</p>
+<h3 id="설정된-sga-크기-확인" style="position:relative;">설정된 SGA 크기 확인<a href="#%EC%84%A4%EC%A0%95%EB%90%9C-sga-%ED%81%AC%EA%B8%B0-%ED%99%95%EC%9D%B8" aria-label="설정된 sga 크기 확인 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>다음과 같은 데이터 딕셔너리 뷰 조회 또는 SQL*PLUS 명령어로 확인 가능</p>
+<ul>
+<li>V$SGA</li>
+<li>V$PARAMETER</li>
+<li>V$SPPARAMETER</li>
+<li>V$SGA_DYNAMIC_COMPONENTS</li>
+<li>show parameter 명령어</li>
+</ul>
+<p>SQL*PLUS 접속 후, show sga 명령 수행 하면 다음 결과 출력</p>
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SQL</span><span class="token operator">></span> <span class="token keyword">show</span> sga</code></pre></div>
+<p>위의 예에서 SharedPool의 일부, Large Pool 및 자바 Pool은 Variable Size로 통합되어 보여진다.</p>
+<p>V$SPPARAMETER 또는 V$PARAMETER 를 검색하면 SGA의 구성 요소에 설정된 정확한 값 확인 가능</p>
+<h2 id="shared-pool" style="position:relative;">Shared Pool<a href="#shared-pool" aria-label="shared pool permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<aside>
+💡
+<p>파라메터 정보, 실행된 SQL, SQL 분석/실행 정보 및 오라클 오브젝트 정보를 저장하는 메모리 영역</p>
+</aside>
+<p>SQL을 수행하는 과정에서 <code class="language-text">파싱</code>의 역할 수행</p>
+<p>파싱 : 유저 프로세스에서 요청한 SQL을 수행하기 전에 수행할 수 있는 SQL인지 아닌지를 검증하고 분석하는 단계</p>
+<p>파싱은 소프트 파싱, 하드 파싱으로 구분됨</p>
+<ul>
+<li>소프트 파싱 : 검색 단계에서 기존에 동일한 SQL이 수행된 걸 확인하고 해당 SQL의 파싱 정보를 재사용</li>
+<li>하드 파싱 : 기존에 동일한 SQL이 수행되었지만 메모리가 부족하여 LRU 알고리즘에 의해 버려지거나 수행된 적이 없는 SQL로 다시 파싱을 수행</li>
+</ul>
+<p>결국, 목적은</p>
+<p>파싱을 효과적으로 수행하기 위한 것!</p>
+<p>목적 달성을 위해서는,</p>
+<ul>
+<li>이전에 수행된 SQL에 대해서 소프트 파싱 유도</li>
+<li>하드 파싱 시 적은 자원 사용</li>
+</ul>
+<h3 id="shared-pool-구성요소" style="position:relative;">Shared Pool 구성요소<a href="#shared-pool-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C" aria-label="shared pool 구성요소 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 642px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/80779076c1ffadc45e8b21a59771642b/58a74/image%20(7).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAAChElEQVQ4y21UaW/aQBDl//+OXErzqa2itgptpNKqaZuEAj4wBhJiwDbGJ76ww6veEKd86Eoj787O9d7MurXb7fD8/PwqPDfC1dwf6uu6RrndYitSifBMu1ZZbpHnBcqyxLaqxIi6MIqx9gNEcYKiKFAUpdhlWS73dK7rvXBPX9q1mC3Lc8wXS4zHU7juShz8IIRpTqBphuhoE8cJNpsUtrMS58PFoEza4iYIIyyXNuI4hrf2Yc0X0Icj9PoK+gMNsycLSbKRJEvbgT40BQGrD8MImzRDVdX7gCw5CEJEUSyZwijC0DBhjMbodH7g9q4LY2RiaIzguCs4jgtVG0rAyfQR48kDLGuBoiwFmUBmZmZqAg4UDW/fXeLk7AJHx+c4OX2D07MLfPjUxn23h5E5EdjThxk8z4eqGkIB+RfIDOisPFR1DXflQdMN9AcKrtrXaH++xtfOd1y1v+D95Uf8vr2XgJa1RLc7wN1dD72+KnBfKiSHIczJVPiZPc3xZM2xXvuwHRezmYXJ9EF0bA75VVRdIFNIF5vFYl44rEVJHhzbxXy+EJ54yQbZtgPbdoUSjg27/Kc3QP6fLnP0JCAdFwtbKmCVbMJiuYSiaNJtVdVFTHMMVdPR+XbzOvSNyCySQ045s/p+gCRJpNvj8QSKospX14e4+flLzvrQwHT6KGjoc/iiqqoSabHdzbPbK+tXGHQil6zUcVbwvLUk5EySJvo0i10m2ha54qZZTUY6HR+dYzBQkec5HNcVFK7rCTX+OpACDgPKW2bAJsjhStNMGtHvK3iczSQp6eH38GeyP++QZlkTsECy2SDLMqRpKoFYETvKfQORdnv9P9n/NAp5JfRnYX8BcUhu5Zv1r3MAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/80779076c1ffadc45e8b21a59771642b/a59e9/image%20(7).webp 192w,
+/static/80779076c1ffadc45e8b21a59771642b/0ca9f/image%20(7).webp 384w,
+/static/80779076c1ffadc45e8b21a59771642b/321fb/image%20(7).webp 642w"
+              sizes="(max-width: 642px) 100vw, 642px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/80779076c1ffadc45e8b21a59771642b/3b721/image%20(7).png 192w,
+/static/80779076c1ffadc45e8b21a59771642b/66595/image%20(7).png 384w,
+/static/80779076c1ffadc45e8b21a59771642b/58a74/image%20(7).png 642w"
+            sizes="(max-width: 642px) 100vw, 642px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/80779076c1ffadc45e8b21a59771642b/58a74/image%20(7).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>구성요소</th>
+<th>구성요소</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>고정 영역</td>
+<td></td>
+<td>프로세스 목록/세션 목록/Enqueue 목록/트랜잭션 목록</td>
+</tr>
+<tr>
+<td>동적 영역</td>
+<td>라이브러리 캐쉬</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>데이터 딕셔너리 캐시 (로우 캐쉬)</td>
+<td>시스템 테이블 스페이스의 딕셔너리 정보 저장</td>
+</tr>
+<tr>
+<td>Reserved 영역</td>
+<td></td>
+<td>동적 메모리 할당을 위한 공간으로 파싱 공간을 많이 필요로 하는 SQL 파싱에 주로 사용</td>
+</tr>
+</tbody>
+</table>
+<p>동적 영역 - 라이브러리 캐시</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 431px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7b07fd1b1eb846efe687cb94ec49c6aa/7921f/image%20(8).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABaElEQVQY0yWOvU8TYQCH779ycITYommBEEiImAgOLhgavlTC2qRATDHEQRdHjXtJI6X30WuPg1paYmuBiPTee9/3jrFDBxwe07o+v1/yPEY2u0MqPUcms8bSi5ekpmZIpaZJJNIkJyZJJidJp2fJrKzz7Okir5ZXebO5zcLCEmPjT3g0MUXi8TQPHo6T281jfPz0mfn557zd3GZleYPX61vs5w/Yyb3j/f4H9vbyFApFzk7r2FYF1/WoVU9w3RqWVcG2XWzH5bB4ROviJ4ZUd1Qdj/J3E/vY4feva7SK6LQ7XHavaPw4RwhBHN8hpURrTRTFKKXRUhNHMTKUiEDw9/4eIxAK03T48vUbh4UijUaTVusC07SxLIfjUplSqYxju/j+KfV6A98/w6v5uJUanudTrXqj+n6/jzG0tdsdms0W3W6Xm5s/hKHk9rZHrxcgRDiqGbLhV+sIpRRSqhELw/97EAgGgwH/ACSwN/vOpsFbAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7b07fd1b1eb846efe687cb94ec49c6aa/a59e9/image%20(8).webp 192w,
+/static/7b07fd1b1eb846efe687cb94ec49c6aa/0ca9f/image%20(8).webp 384w,
+/static/7b07fd1b1eb846efe687cb94ec49c6aa/262e0/image%20(8).webp 431w"
+              sizes="(max-width: 431px) 100vw, 431px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7b07fd1b1eb846efe687cb94ec49c6aa/3b721/image%20(8).png 192w,
+/static/7b07fd1b1eb846efe687cb94ec49c6aa/66595/image%20(8).png 384w,
+/static/7b07fd1b1eb846efe687cb94ec49c6aa/7921f/image%20(8).png 431w"
+            sizes="(max-width: 431px) 100vw, 431px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7b07fd1b1eb846efe687cb94ec49c6aa/7921f/image%20(8).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>동적 영역 중, <strong>라이브러리 캐시에서 SQL 파싱 수행</strong></p>
+<p>해당 영역의 해시 테이블, LRU 리스트의 사용 목적</p>
+<p>해시 테이블</p>
+<ul>
+<li>메모리 크기 내에서 <strong>지금까지 수행된 모든 SQL 저장</strong></li>
+<li>새로운 SQL 수행 시, 해쉬 테이블 검색하여 동일한 SQL 존재하는지 확인</li>
+<li>동일 SQL 존재하면 하드 파싱 수행X, 소프트 파싱 수행함</li>
+</ul>
+<p>LRU 리스트</p>
+<ul>
+<li>메모리는 유한함 → 수행된 SQL을 모두 저장할 수 없다</li>
+<li>최근에 가장 적게 사용된 SQL을 메모리에서 삭제하여 자주 사용될 SQL 정보를 저장하고 유지하여 메모리 사용 효율을 극대화함</li>
+</ul>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 616px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/c9485afcf6ecd29116b2e52e69362e1e/274fb/image%20(9).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 79.6875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAACq0lEQVQ4y01UiW7aQBDl/z+olSrlaEUawuWDw/dtbEMIAXPYHNGr3jhGXWnYYXb37Zt5s+7UdY2qqnC9XnE+n7Hf77ErSzH6VV1LnFbXtPpuTazxD8cjqqpGh38ulwtOp5PYURYqnM8XMYLsdiUc15NLCMKDjVViPEcczh2CrddrbLdblOVegsvlClEYI0lSHA4HiZVlicPhiNXqHcVyhSzLkecF8qIQn3FeJoAfHxthw8EbCURL04WsEfB2u+Hr6wvr9QeGwxHCMMJms8FgMESSphLn2Q43ZlmG6XQGTdPx8PCEyWSKMAyRxCl0dYKX7itMw4RhmAiCQA7udjvoui6sGEuSRErXoRik/vT0G7o+harqGI9VjEZjuI6LP89dvP7tQ1E0dLsvcpiDQGTH4QcBPN+XLASQ6Lo+wfv7GkWxxGKRIU1TmKaFyWQmMy/r9d5gmua9NIqiiO95HvwWkD+e50tdNG0Cy7KlyKwh5zCM4TieXOS6npSGg6qqqnoHpN0BbduW+rFFqCYHBRmPFcznJkYjBZbl4PHxWdi2gJqmNSn7PhzXbVNuGLapMMhBdgSNogTTmSF+vz8UwVpAisJBAUlKAKlMnuciiucHIj97kIz8gBtd+EEk7dPvD+D7jShsIcMwvrNJYduOvLZvlXP8/PFL2oMq6toEo5GK2dyEadrStEEQotfrYz43pMEpYH8wkMZndqz9d9vcsFwuEUWRUGfdFEWV1nl7G4i6/4MzZdf1BcCyLDiOK+1D5vJS2j5k60RRLEVvNtuiOtM2LVvU5utQxqowtmxHwOI4geM0vjCsqxqfn1uEUSSLcdw8uSRZIMsLFMVK3i4vTdOsWV9ksjeKE4RRDMOw5P3fPw50OJMt7Xa9iWKtUQAafZaIe9vPWfu1OR5PUtt/isahmqD5spoAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/c9485afcf6ecd29116b2e52e69362e1e/a59e9/image%20(9).webp 192w,
+/static/c9485afcf6ecd29116b2e52e69362e1e/0ca9f/image%20(9).webp 384w,
+/static/c9485afcf6ecd29116b2e52e69362e1e/cec2c/image%20(9).webp 616w"
+              sizes="(max-width: 616px) 100vw, 616px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/c9485afcf6ecd29116b2e52e69362e1e/3b721/image%20(9).png 192w,
+/static/c9485afcf6ecd29116b2e52e69362e1e/66595/image%20(9).png 384w,
+/static/c9485afcf6ecd29116b2e52e69362e1e/274fb/image%20(9).png 616w"
+            sizes="(max-width: 616px) 100vw, 616px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/c9485afcf6ecd29116b2e52e69362e1e/274fb/image%20(9).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="고정-영역" style="position:relative;">고정 영역<a href="#%EA%B3%A0%EC%A0%95-%EC%98%81%EC%97%AD" aria-label="고정 영역 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ul>
+<li>
+<p>오라클이 SGA를 관리하는 매커니즘 및 오라클 파라메터 정보가 저장됨</p>
+</li>
+<li>
+<p>고정 영역의 크기는 SQL *PLUS에서 show sga 명령으로 확인 가능</p>
+<p>→ 결과에서 Fixed Size의 값이 고정 영역의 크기</p>
+</li>
+<li>
+<p>고정 영역의 크기는 파라메터 설정 값 등을 고려하여 자동으로 할당되며 사용자가 지정 불가능</p>
+</li>
+</ul>
+<h3 id="동적-영역" style="position:relative;">동적 영역<a href="#%EB%8F%99%EC%A0%81-%EC%98%81%EC%97%AD" aria-label="동적 영역 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ul>
+<li>라이브러리 캐쉬와 데이터 딕셔너리 캐쉬로 구분</li>
+<li>동적 영역의 크기는 SHARED_POOL_SIZE 파라메터를 사용하여 지정 가능</li>
+</ul>
+<p><strong>라이브러리 캐쉬</strong></p>
+<ul>
+<li>DB에 접속한 유저가 실행한 SQL, 오라클이 내부적으로 사용하는 SQL(Recursive SQL), SQL에 대한 분석 정보 (Parse Tree) 및 실행계획 (Execution Plan)이 저장됨</li>
+<li>여기서 파싱을 수행함!!!</li>
+</ul>
+<p>데이터 딕셔너리 캐쉬 (로우 캐쉬)</p>
+<ul>
+<li>테이블, 인덱스, 함수 및 트리거 등 <strong>오라클 오브젝트 정보</strong> 및 <strong>권한</strong> 외에도 <strong>시스템 테이블스페이스의 모든 딕셔너리 정보</strong>가 저장됨</li>
+</ul>
+<h3 id="reserved-영역" style="position:relative;">Reserved 영역<a href="#reserved-%EC%98%81%EC%97%AD" aria-label="reserved 영역 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ul>
+<li>동적 메모리 할당을 위한 공간</li>
+<li>파싱 공간을 많이 필요로 하는 SQL 파싱에 주로 사용됨</li>
+</ul>
+<h3 id="라이브러리-캐쉬의-subpool" style="position:relative;">라이브러리 캐쉬의 Subpool<a href="#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%BA%90%EC%89%AC%EC%9D%98-subpool" aria-label="라이브러리 캐쉬의 subpool permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 573px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/b9aebaccb4609f8acbc467d2cc596651/f5c00/image%20(10).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 109.89583333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAAsTAAALEwEAmpwYAAADOElEQVQ4y41Ua2+iUBDl//+nZre7SdtobVcRi6IiD+Ul8lAeovZsziDGNvthbzIBhnvPnDkzc5WmOeF0op1xPDatNQ0a2ul09R3Falp9RFlVKMsKRVmKdd/EUehYrz0EQYQwbM0PQvHxncCfn5+4XC43O5/PX4w+gjGYUtc1aPv9HkmSoigK2URG3MTVARGYdr+678vlU7JReLCqKmy3MbIsw8bz4fvh7UBZlvD9AFG4RRCEsu9fi8DEEoZkxPQmH1MslibyPEdRlOLPshybjS/M83wvwfb7A5I0RRzvYNsu0jRDVdcijzA8HAr5yZTJIoy2IsN6vZFAPNCxIGPuM2ZLGLMFprO57B+NJ7LvxpARV5aNpbkSJjw8nc7Q778KSy5qSqasqLWyYS5XwoqAT889kUOpqloOd5sJzkXWTJv6kn1XHPo8z4c20aUblqaF9cZDr/+GKIpbhgSKoq1YHMdSGFaMAFmeiwxsCTLfbDykWSZaM4M/QxVjbYIfP3+LFAoZkDYPzecLqKomWpApD3teIOY4a+RZfsuAMliWLXscx8Vul8g/5b6iFLy+VouM+E5J6GcW7XeFw+Eg75SJk8ZMukyVQ1HAdVyJwmiu68J11yI6v5kmN8uoFS0wjaAcBj7p756S8oF9laTY7drWoY8pZHcp/s+SxuZhUmclWXZKQOBuMR3pzSBEkiS3Fvo+ggzMTBSmQh04XqzaSB1LL7JtKAMLRT/NMOZYLk3RmCQ6bfl9x7AtAgF1fQbz2thctu3g+flFQE3TEmNbkfFY0zAzDAwGb6I120iKQppE9jxPGIxGKubGQujPZgZ6vT4MY4GpbkAbT5DsEmE2eBtgrI0lVQZ5enqRPhYNOw3ibfxFPwI+Pv6SdD8+9LZHk1S0fn9/h67r0os0Asrodf3Eq4uRupZI5TaJoaoqbMuW9FemJS3Fd/oNw8Dr6wCaNsHDww9EUdTeNtSQ/ec4DkzThK5Pb/PMqFLlMITv+xKEy1yt5OIYDoei43A4aqvMojBdpm5ZFhaL5e22JhB12cU7aZvseo11N/n3JYBkR5GbY3MdpUbA6euA6eNlQR+ng7LwyW7oJoeS8dxf8ICIN5SZFUUAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/b9aebaccb4609f8acbc467d2cc596651/a59e9/image%20(10).webp 192w,
+/static/b9aebaccb4609f8acbc467d2cc596651/0ca9f/image%20(10).webp 384w,
+/static/b9aebaccb4609f8acbc467d2cc596651/954eb/image%20(10).webp 573w"
+              sizes="(max-width: 573px) 100vw, 573px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/b9aebaccb4609f8acbc467d2cc596651/3b721/image%20(10).png 192w,
+/static/b9aebaccb4609f8acbc467d2cc596651/66595/image%20(10).png 384w,
+/static/b9aebaccb4609f8acbc467d2cc596651/f5c00/image%20(10).png 573w"
+            sizes="(max-width: 573px) 100vw, 573px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/b9aebaccb4609f8acbc467d2cc596651/f5c00/image%20(10).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+Latch</p>
+<ul>
+<li>메모리에 대한 락 메커니즘</li>
+</ul>
+<p>Enqueue</p>
+<ul>
+<li>테이블 등의 오브젝트에 대한 락 메커니즘</li>
+</ul>
+<p>락 메커니즘?</p>
+<p>→ 어떤 공유 자원에 대해서 동시 변경을 방지하기 위해 순차적으로 엑세스하게 하는 요소</p>
+<p>PGA의 경우는 공유 자원이 아니므로 Latch 등에 의해 락 메커니즘 구현 X</p>
+<p>→ 하지만, SGA는 공유 자원이므로 많은 Latch가 존재함</p>
+<p>SQL에 대한 하드 파싱 수행 시, 파싱 정보를 메모리에 저장해야 하므로 라이브러리 캐시에서 메모리 조작을 할당받아야함</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 730px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ece2bb44612b590b44ae112fe91da34e/a6a70/image%20(11).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 26.041666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABWUlEQVQY0yWPSUsCAQCF/avdig62mJDlMKZZZgVdioioaTMM6yTUVdssp5mM0FJzmUUdlyiYPAh+0fTgg/cuj/dckiThdrtZWYni9/sRBD/hcNghEok4hEKLBAJBlpejeGYEJqbmmPbM4570MTY+w8jIKF7vLLZt4zo5juOZ9BFeWGPeFyIUXCK6uoYgiIhiAFFcQAwEWV/fYG//kM2tXbZ3JGKnCY6OzziJJZAOYiSTlwwGA1wfpTp3aZWb9DOplEo+X0bTDPKFInXNoFrTKJUrjtcNE1036XS6WO0Omm5Q13QKb0U63R5/cqlKjotEkng8yfnFFenrDFn5ifvMI/KTiqI+8/CQJX19y2NWQVFz5F5ekWWVrKxQLleoVutYVvu/0DQbvBWKFEsfvL+XqFSqNBpNZ02tpmGYppObzRZWu03v85NWy6LRbDlPvr6+6ff72PYPw+GQXz3lQZJhjxeGAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ece2bb44612b590b44ae112fe91da34e/a59e9/image%20(11).webp 192w,
+/static/ece2bb44612b590b44ae112fe91da34e/0ca9f/image%20(11).webp 384w,
+/static/ece2bb44612b590b44ae112fe91da34e/3a833/image%20(11).webp 730w"
+              sizes="(max-width: 730px) 100vw, 730px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ece2bb44612b590b44ae112fe91da34e/3b721/image%20(11).png 192w,
+/static/ece2bb44612b590b44ae112fe91da34e/66595/image%20(11).png 384w,
+/static/ece2bb44612b590b44ae112fe91da34e/a6a70/image%20(11).png 730w"
+            sizes="(max-width: 730px) 100vw, 730px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ece2bb44612b590b44ae112fe91da34e/a6a70/image%20(11).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>Subpool</p>
+<ul>
+<li>
+<p>라이브러리 캐시를 여러 개의 Pool로 구분함으로써 기존에 하나의 Shared Pool Latch가 하나일 때 발생하는 경합을 최소화시킴</p>
+</li>
+<li>
+<p>장점 : Shared Pool Latch 경합 감소</p>
+</li>
+<li>
+<p>단점 : 너무 많은 개수로 Subpool을 구성하게 되면 ORA-4031 발생 가능성 증가</p>
+</li>
+<li>
+<p>ORA-4031</p>
+<p>unable to allocate %s bytes of shared memory</p>
+<p>SQL 정보를 저장할 수 있는 충분한 크기의 사용 가능 메모리 조각을 Shared Pool의 프리리스트에서 찾지 못하고 LRU 리스트를 검색해도 찾지 못할 경우 발생</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 716px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/81e2af4b91a96a0eb346a430a11891ab/62b6c/image%20(27).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 130.72916666666669%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEfUlEQVRIx4VVaW8bVRT1P0UgaEIaO4ubpKW0FQgJ+EK/oIqfUH5BJVIRyGYnduI98TZje1aPd894j52Dzh07ilAFlq7fLO/dd+4957wJ4H9+4/EY79//Dk3T5H6xWPzn/ECv10e32wNH1/XgeR6GwxFGozHu7u7Q7fXw7t1vyGSyWCzuZYPxeILxZILpdIrpdIbpbIbJdCrzA1xwe1uEolZRrWool1WYpo1iSUG1pqGsVKDrJip8p6jIF0owDAuDwQC9vgtvMMRgMBQw8/kcAW8wQLWmw2k0ZSIX2rYjSRiqWpHENU1Hs9mC02jIaNcd1OsNNJot1J0mGo2mX7JaqeLDh0P89fcp/jj8E4eHRzg6OsbZeRQnJxFEojEcH58hkUgJekZFraJSqT5spOsGLMuW/gaSyQx+/ukt3v7yK/b2v8X+wWscPH+D7d0XEqGdF9gI7iEcfom9/df44qsg1ta28GQthC/XQniyvoXPPv8awa196X3gMUO1mg5NM2CalpTPayIigl6/L8SxXKJhO0zLlrmVigbDtHF/f4/A3d18yXIPqVQG6XQWqXQWyVQG11dJlMoK6o4jbPddkjDAaDTCcDQSYlzPk/C8gV8yJdBqtdHpdGFZddh2HbphSvAZpTFaLiZCRr/vLiU2kOf+OMSCCMejsSRhKe1WG81GUxK12225d5yGBOe02x259t93hNl63ZGx1e74LPNFPJ7AzU1eIpPJoVAoIp8volAooVRSoGk6ajXtAR1RMYbD4dIEIxG79DAajWEjGMZ33/+IV69/QPjgFXbCz7H+dBtPg7vY2NzF+sY2NkPPsBkK4+U3b7AZ2sX2zh52wvvY3nmGYGhPFEIeAp/yI1Enk2koiiqIT07OEYlc4PIijuPjU0Sjl4jFrnB+HsXHj0c4PYvgPHLpW2++WEjmbrcr46osfekM9ogipnRYNgnkwtVvdViwXOkhDU+WXPrS9Xz2XA+WaT30TtcM0R11qYrna0IMQbiuK7LjOunh/BPHEZFRj1rNT0jBE6GiVCRhsViCqlRQKpVRLitIZ3JQ1IqvQ/4xO+XCcrgr5ZLPF2CapiRi+PJoyFirarAsSzxtGIbIhn2X04YwKQFOJLLhYCgavLpKIB6/FvckE2khh89IyMVFTJCxdF3XYRqmrH9ISB1J4zVDDtZ+r49s9kZYZlmlYlk0udJpLneDZCIlG6TTGUlsGKbPMr1Me9EJjuPINUtmQnHAkulV+AeDIWWzv0TKZ81m0+8hEfqK94OK74h7roUEJi6XFHEM3UN0JCWbzQm6WCwubeD9bDZDYD5fiPbYN5LDfrJkkqIIkwqKxbJcM25vC1J2LHaNZDIlaLkB0UrJRMSmKmUVhXxRzN9wGsjlbuWeWjR49hmWLFptQr+zd7ZtS8kMv4fzOSaTiVjtInrpi9x15chnrERMSa2CxxwPViZh70kI5/kfKc9DvV6XjxGFzAm0ICcT7erzSjdQa0xIeZEwvheibFvQE0yAWR9/vEnS43tePw7OZ9/9cf6v53P8Azb4XTvoevHRAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/81e2af4b91a96a0eb346a430a11891ab/a59e9/image%20(27).webp 192w,
+/static/81e2af4b91a96a0eb346a430a11891ab/0ca9f/image%20(27).webp 384w,
+/static/81e2af4b91a96a0eb346a430a11891ab/693e2/image%20(27).webp 716w"
+              sizes="(max-width: 716px) 100vw, 716px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/81e2af4b91a96a0eb346a430a11891ab/3b721/image%20(27).png 192w,
+/static/81e2af4b91a96a0eb346a430a11891ab/66595/image%20(27).png 384w,
+/static/81e2af4b91a96a0eb346a430a11891ab/62b6c/image%20(27).png 716w"
+            sizes="(max-width: 716px) 100vw, 716px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/81e2af4b91a96a0eb346a430a11891ab/62b6c/image%20(27).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+</li>
+</ul>
+<h3 id="라이브러리-캐쉬의-해쉬-테이블" style="position:relative;">라이브러리 캐쉬의 해쉬 테이블<a href="#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%BA%90%EC%89%AC%EC%9D%98-%ED%95%B4%EC%89%AC-%ED%85%8C%EC%9D%B4%EB%B8%94" aria-label="라이브러리 캐쉬의 해쉬 테이블 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>기존 SQL의 검색 속도 향상을 위해 사용</p>
+<p>파싱의 과정</p>
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SQL</span><span class="token operator">></span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> EMP<span class="token punctuation">;</span>
+
+<span class="token number">1.</span> 문장 확인 <span class="token punctuation">(</span>Syntax <span class="token keyword">Check</span><span class="token punctuation">)</span> : Shared Pool의 라이브러리 캐시 및 데이터 딕셔너리 캐시
+
+<span class="token operator">-</span> <span class="token keyword">SQL</span> 문장 점검한 후 문법에 오류가 있지 않으면 다음 단계 이동
+
+<span class="token number">2.</span> Semantic 확인 <span class="token punctuation">(</span><span class="token keyword">Database</span> Resolution<span class="token punctuation">)</span> : Shared Pool의 데이터 딕셔너리 캐쉬
+
+<span class="token operator">-</span> 해당 <span class="token keyword">SQL</span>이 참조하는 테이블이나 칼럼이 존재하는지 등을 확인
+<span class="token operator">-</span> 해당 작업을 수행할 수 있는 권한이 있는지도 확인
+<span class="token operator">-</span><span class="token operator">></span> 이는 Shared Pool의 데이터 딕셔너리 캐시에 캐싱되어 있는 오라클의 데이터 딕셔너리 테이블을 통해 확인함
+<span class="token operator">-</span><span class="token operator">></span> 필요한 데이터 딕셔너리 테이블이 존재하지 않으면<span class="token punctuation">,</span> 오라클 시스템 테이블스페이스로부터 해당 정보를 
+데이터 딕셔너리 캐쉬로 로우 단위로 캐싱함
+<span class="token operator">-</span><span class="token operator">></span> 이러한 이유에서 데이터 딕셔너리 캐쉬를 로우 캐쉬라고도 함
+
+<span class="token number">3.</span> 검색<span class="token punctuation">(</span>Search<span class="token punctuation">)</span> : Shared Pool의 라이브러리 캐쉬
+
+<span class="token operator">-</span> 기존에 동일한 <span class="token keyword">SQL</span>이 수행되었던 적이 있는지 확인
+<span class="token operator">-</span> 수행된 적이 있었다면 별도로 파싱을 수행하지 않고 기존에 수행된 <span class="token keyword">SQL</span>의 파싱 정보 그대로 재사용
+<span class="token operator">-</span><span class="token operator">></span> 해쉬 테이블 탐색
+
+<span class="token number">4.</span> Optimization : 옵티마이저
+
+<span class="token operator">-</span> 좀 더 좋은 실행계획을 생성하기 위해서 쿼리를 변경하는 단계
+
+<span class="token number">5.</span> TM 락 : 서버 프로세스
+
+<span class="token operator">-</span> 파싱 트리를 만드는 동안 테이블이 삭제되면 안되므로 아주 잠깐 테이블에 TM <span class="token keyword">Lock</span> 수행</code></pre></div>
+<p>여기서 3번째 단계인 검색을 살펴보자</p>
+<p>Shared Cursor</p>
+<ul>
+<li>실제 수행한 SQL에 대한 정보 가지고 있음</li>
+<li>수행한 SQL과 동일한 Shared Cursor가 존재할 경우 해당 SQL은 소프트 파싱이 가능</li>
+</ul>
+<p>→ 결국, 소프트 파싱은 수행하는 SQL에 대해서 해당 해쉬 테이블을 검색하여 동일한 SQL의 Shared Cursor 를 찾아 재사용하는 것!</p>
+<ul>
+<li>Shared Pool의 해시 테이블에서 SQL에 대한 Object Handle을 의미함</li>
+</ul>
+<p>파싱의 <strong>검색</strong> 단계를 더 살펴보자</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 722px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/eec0216f01cb5f810c56512fb10ece9a/ad973/image%20(12).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 73.4375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACM0lEQVQ4y3WUCW/aQBCF8///U9tUKglKFQzmMOY02JgmnAbMYY5XfYOMoFFXGrzHzNs3b2Z5Op1OyrKjttutkmSlNN1qk6babDZK01Tr9drW6/VGu91OWZZpvz9ov9/f1sSez2cxnvgB9HA46H7gwB6BGPPj8ajlcqnBYKB6ra5+v6/pdGrAebwB4ojBaDKZaDSKLWg4HNp3PB7bGYFhGKnkOFqtVup0OnKcsl1O/B3Ds9LtVu12R36rrYpb1ft7yYLtgji+MR+NRmo0GgqCQI2GZ35X2bJ/Us4y9fuBarW6qtWqGYG+76vZbBooYO12W29vv1UovOj5+acqFdfYHQ53gJfLxVKKokifn5+mE3PYAQC461YVRSPTDOD5fG5++M/nCyN1A0QD9EE7qst4fS2qXq/r4+NDrVZLw2Fo4OjZ6/VuEuDPJQ9VhiGbpZKjIBhYq8Co0+kaYK1WUxiGphu6IgEMieEC5g8MAeQA/a6FmKrw60We51l65XLZziqVilUebfnCmKy+pMwCvWjQPA2q12z6NidlWDqOY0Awj8JIQT9QHMdaLBZfG5sDSg9b9EQnUmGfqhaLRbmua8UCNLaqX8Fms9kjIGVPksQAMOYw7na7iuOxMaXBfb9loFzmNTwrGvu8pIc+ZJFv5AOw799+mPAY7UHj89xgiAxo+V/AZJmYhvQjDuPxH3le09K/vtXM/jjwwZ+3S9r0IjFI9VBldLy3fDBHH774YaxzzfJ1Pv8LvcRrf5LMTwoAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/eec0216f01cb5f810c56512fb10ece9a/a59e9/image%20(12).webp 192w,
+/static/eec0216f01cb5f810c56512fb10ece9a/0ca9f/image%20(12).webp 384w,
+/static/eec0216f01cb5f810c56512fb10ece9a/6aa51/image%20(12).webp 722w"
+              sizes="(max-width: 722px) 100vw, 722px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/eec0216f01cb5f810c56512fb10ece9a/3b721/image%20(12).png 192w,
+/static/eec0216f01cb5f810c56512fb10ece9a/66595/image%20(12).png 384w,
+/static/eec0216f01cb5f810c56512fb10ece9a/ad973/image%20(12).png 722w"
+            sizes="(max-width: 722px) 100vw, 722px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/eec0216f01cb5f810c56512fb10ece9a/ad973/image%20(12).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>Shared Pool의 라이브러리 캐쉬 → 해쉬 테이블로 구성</p>
+<p>해쉬 Bucket</p>
+<ul>
+<li>이미 정해져 있는 값</li>
+<li>해쉬 함수를 수행하면 무조건 이미 정해진 값 중 하나가 리턴됨</li>
+</ul>
+<ol>
+<li>
+<p>클라이언트에서 수행한 SQL을 전달받은 서버 프로세스는 해당 SQL을 ASCII 값으로 전환하여 해쉬 함수 수행</p>
+</li>
+<li>
+<p>해쉬 함수를 수행한 결과 값에 해당하는 해쉬 Bucket 선택</p>
+</li>
+</ol>
+<ul>
+<li>해쉬 함수를 수행하여 추출될 수 있는 모든 결과에 대해 하나씩 존재</li>
+<li>따라서, 어떠한 SQL이던 해쉬 함수를 수행하게 되면 해쉬 Bucket이 선택됨</li>
+</ul>
+<ol start="3">
+<li>특정 해쉬 Bucket 선택 완료되면, 기존에 동일한 SQL이 수행되었을 경우에는 해당 해쉬 Bucket 아래 Object Handle이 연결되어 있다</li>
+</ol>
+<ul>
+<li>해당 해쉬 Bucket 에 연결되어 있는 Object Handle 중 뒤에서부터 액세스하여 동일한 SQL이 존재하는지 확인</li>
+</ul>
+<ol start="4">
+<li>
+<p>이전에 수행된 적이 없거나, 해당 해쉬 테이블의 공간이 부족하여 Object Handle이 메모리에서 제거되어 동일한 SQL 정보를 저장하고 있는 Object Handle를 발견하지 못하면 해당 SQL에 대해 다시 파싱을 수행함</p>
+<p>→ 이를 HARD 파싱이라함</p>
+<p>→ 하드 파싱을 수행하는 단계에서는 해당 해쉬 Bucket의 마지막 Object Handle 뒤에 파싱 정보를 새로 생성함</p>
+</li>
+<li>
+<p>수행한 SQL과 동일한 내용을 가지는 Object Handle을 찾게 되면 검색을 정지하고 해당 SQL 수행정보 및 실행 계획 등을 재사용함</p>
+</li>
+</ol>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 729px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/19eb3fb566304e4456bce5e115d105ec/06066/image%20(13).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 35.416666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsTAAALEwEAmpwYAAABu0lEQVQozz2QaW8SARCG+a2NaazEq40fTGtNU0Rto2niH/BKtPYAS5BEW69ooBTYBZZrr+5VKCmLSzkNIY9hSZ3kycyXefLOBLI5gZev3hCNxvh4ECcSjfHl8BtHX3/4HB59J574zH4kRiyWIP5pNu/tH/BhN8q77T1ev33P9k6EwWBAYHcnwrW5GyzfX+fhgw1uL65wZ2mZ68FFgrfuMTd/k/mFuywEl1hZfUQo/JzVtTDroU0eP91i49kL1kKbhJ9s0e32CDTOzhFOJH79FKgWTWy7TcvtoKo6p4aFrhtYluOjqDqOU+es3sR2Gth2g/PmBYbp4Loe0wroukkyXaBUc3DqbfrDv3idS34n0whikVK5SqFYIifkKRTLyIpOpaJQrak+sqyhaQatVpvJZEJA0y0SR0mykol3OWQ8HvvRszmRTFYkX5BIHWf+y8sVGUmqUpM1n6k8ny9RriizhKZdJyPWMK0GjUYTz+swGo0QxYIvLUplUqkTjtNZP+GVVBCKSKWq/xZVPcWx6zNh+49Hy20zHA79ZP1+H9dtoygasqz6fYphWJimjaYbGFfdsLlouXR7PX93evI/M3jbbxjqEV8AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/19eb3fb566304e4456bce5e115d105ec/a59e9/image%20(13).webp 192w,
+/static/19eb3fb566304e4456bce5e115d105ec/0ca9f/image%20(13).webp 384w,
+/static/19eb3fb566304e4456bce5e115d105ec/a8c67/image%20(13).webp 729w"
+              sizes="(max-width: 729px) 100vw, 729px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/19eb3fb566304e4456bce5e115d105ec/3b721/image%20(13).png 192w,
+/static/19eb3fb566304e4456bce5e115d105ec/66595/image%20(13).png 384w,
+/static/19eb3fb566304e4456bce5e115d105ec/06066/image%20(13).png 729w"
+            sizes="(max-width: 729px) 100vw, 729px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/19eb3fb566304e4456bce5e115d105ec/06066/image%20(13).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><strong>해쉬 테이블에서 해쉬 Bucket으로 분기하여 검색</strong>하는 이유</p>
+<p>→ 검색 대상을 감소시켜 검색 속도를 빠르게 하기 위해서!</p>
+<p>해쉬 Bucket이 100개일 때 기존 수행된 SQL이 10,000개라면 평균적으로 하나의 해쉬 Bucket에는</p>
+<p>100개의 Object의 Object Handle이 연결될 것이다.</p>
+<p>새로운 SQL 실행되면 해쉬 함수에 의해 결과 값을 리턴받고, 하나의 해쉬 Bucket이 선택됨</p>
+<p>→ 해당 SQL과 동일한 SQL이 이전에 수행되었다면 동일한 해쉬 함수 값 리턴 받음</p>
+<p>→ 해당 해쉬함수의 리턴 값에 해당하는 해쉬 Bucket에 연결됨</p>
+<p>→ 그렇기 때문에 다른 해쉬 Bucket에는 해당 SQL과 해당 해쉬 함수의 리턴 값에 해당하는 SQL의 정보 존재 X</p>
+<p>→ 따라서, 해당 해쉬 Bucket만 검색하여 소프트 파싱 할지 하드 파싱 할지 확인 가능</p>
+<p>결국, 10,000개 SQL 검색이 아닌 100개의 SQL만 검색하면 파싱을 할 수 있다.</p>
+<p>소프트 파싱, 즉 SQL 정보 재사용하게 되면</p>
+<p>SQL문 분석, 오브젝트 확인 및 실행계획 수립 절차를 수행하지 않기 때문에 파싱에 대한 부하를 감소시켜 전체 실행 시간 단축 및 자원 사용을 감소시킬 수 있다.</p>
+<p>동일한 SQL이 되려면</p>
+<ul>
+<li>대, 소문자 일치</li>
+<li>띄어쓰기 일치</li>
+<li>오브젝트 소유자 일치</li>
+</ul>
+<h3 id="shared-pool의-공간-관리-해쉬-테이블-공간" style="position:relative;">Shared Pool의 공간 관리 (해쉬 테이블 공간)<a href="#shared-pool%EC%9D%98-%EA%B3%B5%EA%B0%84-%EA%B4%80%EB%A6%AC-%ED%95%B4%EC%89%AC-%ED%85%8C%EC%9D%B4%EB%B8%94-%EA%B3%B5%EA%B0%84" aria-label="shared pool의 공간 관리 해쉬 테이블 공간 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Shared Pool의 크기는 제한되어 있기 때문에 SHARED_POOL_SIZE 파라메터에 지정된 크기 이상의 정보가 저장되어야 한다면?</p>
+<p>→ 저장되어 있던 정보를 제거하고 새로운 정보를 저장하게 된다</p>
+<p>→ 이 때 LRU 알고리즘 사용</p>
+<p>→ 해쉬 테이블의 Object Handle을 제거하거나 보관하게 된다</p>
+<p>결국, LRU 알고리즘의 목적</p>
+<ul>
+<li>해쉬 테이블의 Object Handle 및 기타 정보에 대해 자주 사용되는 자원을 지속적으로 보관하도록 구현하여 <strong>소프트 파싱</strong> 유도</li>
+</ul>
+<p>SQL 실행되면, 해당 SQL에 대한 파싱 정보를 해쉬 테이블에 저장하기 위해 Shared Pool에 여유 공간 탐색</p>
+<p>→ 사용할 수 있는 메모리 공간을 사용 가능 메모리 조각 (Free Chunk) 라고 함</p>
+<p>→ 해당 조각들은 Shared Pool Latch에 의해 할당된다</p>
+<p>결국, 실행된 SQL에 대한 정보를 보관하기 위해서는 <strong>메모리 조각</strong>이 존재해야 하며 이러한 메모리 조각을 관리하는 것이 LRU 리스트</p>
+<h3 id="shared-pool의-reserved-공간" style="position:relative;">Shared Pool의 Reserved 공간<a href="#shared-pool%EC%9D%98-reserved-%EA%B3%B5%EA%B0%84" aria-label="shared pool의 reserved 공간 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Shared Pool에 대해 미리 공간을 예약함으로써 메모리 조각 부족으로 인한 SQL 수행 실패를 방지하기 위한 방법</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 558px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a3aaac9ae7c3193b16cea419522538b7/65207/image%20(14).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 128.64583333333331%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEOklEQVRIx4VVi5KiSBDk/z/qZndmHd/KSxAUlKcIKqD4vJnJiyx1bu/iIq4iKhoaujorK6tbaZoG+/0B9X6Pw6HB+XzB7fYnbreb+PV2w+VylflDc0Rd71H95vVjLcfj6QylrCp4/gKet8AyCBHHKZJ0hVW2RppmWK0yNM0RzfEoAXZlJV6WNbi2rGpUVY3drkQUxVD4slgGiKMESZIijhOEYYwojBEEEZI4xel0lqD/Z67jQmG6hmGi3x9iOBxjNBxjPFLR7w0xHmnQNQOddg+tVgee5yMMo394EIQy+v4Svr+Awp2Px7sfmgb39xNOpxOaxztpWCwC+ac5NPKdfDM7pkxemTLnlc12h81mh8vlIsQXxRbBMpR0+Y1zdBbmer0iy9ZYLkOs0gybYoui2CDLcqzXhcRRGJnOgERVlhXyvJCR3HGeSImIz6TIceYIg0j+Z9EM3cJ2u0Nd1VC42DRtOM4M87mPPOduuXAyMe070s0WVVnDth1EcfJdhPFYQ1mW8hxFCWYzD8o6L9DtDtDpDhCEkXzknGHasCxHuCMymmU7UoCndTt9QUmLoxiWNYWSrjKYExtFUcji8+mM2WyOdrsHw5jANC1Ji/xxAbX2jXCkCi20hVR5CSVOUszmPj4+PkR/7BISTwoWiyXmM0/S4ryq6iJ62ufnJ9Sxjuv1Ju9T20W2WkOhmN2ZJ2lR4IfDAfv9XsjnSElwpOBfXn5KVWlETA4JhMbN6rq+p8zWY0DXnSMIAry/d0TsmmZAU++epiu0frWlmjRqjt+f1usNZXOF/er5S0FEAXPH8/kuF6Ig6XynoFk8SoxG1Jpmfgdkp1GLCiViGJakRMLZSkTq+z5cdybIiryQ6r69tQTFM6Cu/x2QbZvnGyjZOhcdkjsKmP348sdPqGMNg8EIYRgKSgb+8eNVAtGIdDRSpTjMpNcbCB2iQ5Kr6wZGozFUVYNpmvLe6/Xx+voGXdfRar2j3xvAsmxxVdaYcniY5kR4Z28rTHWz3WK73WI+9xBF7IwN5p4nBWJgyoeLWChqlKfOe6uN4WCEdruLycTC22vrjpAyGI9VDAZDQcix3x/IT91uD29vv9Bud4Q/frPtqQRiJkRI8TNDjlVV3c9DZ+rIzvxpOnWgaboE40b5OpfgRJmtMiyXAXZlKQcBG0C66HIVDTJbhV1wfpw0FCerzMqXPN+ao3QJOWNRPM8TtOSNVWUhWJhBfwhN1e9XAI+py2MHEkukC38Bx3ElPVaVc8/rgeh1TYehG5hMbCRJIrIiCB5xcqew7BQ0Jxk4TVM8b0Meb0T9NGZC0V/OFznBfzfGUai/9XqNLMuklcgXyaf+yCEFzrmvry/xfxvnqMVnOyp8ICqic11XisJ0bGsqZxxTZuv9lz03eTr/FYRMg/7sFrmMmkYC8Xh6Xg/ix9Pj+/Fxid0vsvspdcBfhCWG2r59TR8AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a3aaac9ae7c3193b16cea419522538b7/a59e9/image%20(14).webp 192w,
+/static/a3aaac9ae7c3193b16cea419522538b7/0ca9f/image%20(14).webp 384w,
+/static/a3aaac9ae7c3193b16cea419522538b7/92196/image%20(14).webp 558w"
+              sizes="(max-width: 558px) 100vw, 558px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a3aaac9ae7c3193b16cea419522538b7/3b721/image%20(14).png 192w,
+/static/a3aaac9ae7c3193b16cea419522538b7/66595/image%20(14).png 384w,
+/static/a3aaac9ae7c3193b16cea419522538b7/65207/image%20(14).png 558w"
+            sizes="(max-width: 558px) 100vw, 558px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a3aaac9ae7c3193b16cea419522538b7/65207/image%20(14).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>위 처럼 세팅하면, 일반 Shared Pool로 90MB 할당되며, Shared Pool Reserved 공간으로는 10MB 할당 받음</p>
+<p>→ 이렇게 되면 4400 Byte (0.0044 MB) 이상의 메모리 조작이 필요한 SQL1 은 Shared Pool Reserved 공간의 메모리를 사용하게 되며, 4,400 Byte 이하인 SQL2는 일반 Shared Pool 를 사용함</p>
+<p>만약 Shared Pool Reserved 공간을 따로 설정 안하면 Shared Pool 크기의 5%로 설정된다 (보통 5%에서 10% 정도 설정하는 것이 유리)</p>
+<p>→ Shared Pool Reserved 공간은 Shared Pool의 50% 이상 설정할 수 없다</p>
+<h2 id="데이터-버퍼-캐쉬" style="position:relative;">데이터 버퍼 캐쉬<a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC" aria-label="데이터 버퍼 캐쉬 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<aside>
+💡
+<p>오라클이 데이터를 읽고 수정하기 위해 디스크에 존재하는 데이터를 읽어 저장하는 메모리 공간</p>
+</aside>
+<h3 id="데이터-버퍼-캐쉬의-개념" style="position:relative;">데이터 버퍼 캐쉬의 개념<a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC%EC%9D%98-%EA%B0%9C%EB%85%90" aria-label="데이터 버퍼 캐쉬의 개념 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>자주 사용하되는 데이터 블록들의 메모리 저장 공간</p>
+<p>→ 필요한 데이터 블록을 최대한 디스크가 아닌 메모리에서 액세스 할 수 있도록</p>
+<p><strong>목적 : 데이터 블록에 대한 빠른 액세스</strong></p>
+<ul>
+<li>액세스 하고자 하는 데이터 블록에 대해 데이터베이스 버퍼 캐쉬에 계속 보관해서 Logical Read가 발생할 수 있도록 구현한 LRU 알고리즘 사용</li>
+<li>버퍼 캐쉬에 존재하는 데이터 블록에 대한 검색 기능을 강화한 해쉬 테이블 아키텍쳐 사용</li>
+</ul>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 474px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ce55083eaa8fd81ac02f1782a8cbc411/823f8/image%20(15).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 104.16666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAAA7DAAAOwwHHb6hkAAADSElEQVQ4y21V2W7aQBTlP6s+9Avalz5VqtTfadSHqupbpChb07AEgglhMYsxhjh4xQu2WU51rmMCbUcajTP35syZc88dSlm2RpplWK/X2Gw2f80tttvj+b9Ysbfd7VAKghBZliFJUrieD9f1ZPWK6S9l+rK+7vkHk4TSNMUqSVGK4hgcq9UKY02HYczxZD5jNn/CcKRhNNbguB7Wmw14G96EM3tZmVMMkirFBWCSoKk8oFaro3GvoFypCVi1Vkevp8JxHCwWC1iWjYVlwbJtOI4rubvdTqYAkhl14AiCQJLy6chqOw4GwxEm+lTkmEx0uJ4nMct2YNuO/C8BeXUB5B+kv1wGCMJQVk7qE4YhtImeX91x0O8PRALGSID5LAgxKIkAchCADBgwZnNomi46LpdLifOqDw+PGI3GMM1nTKcGRiNNcqIokhwWphTHOWAUxZKo61No2kTW2Wye700N+e72+mg0FCkaZWARbcdFUYckSV6rTGCy4qmqOpTJb+5dXl2j1WpD1w2cn1+hWr3DzU1Z5FAHQ2G2BzxEp1a9ripsCt2GwxHOzs6FDSUhQL+volKuiX8pAaubWy9BKYyiF0HzYKVSw+NjB4ryIJoprTZOT89Qr9/jsdOV+NXVL1xcXIs0fXWANM321itFL4CkbRgz0Ya+U9UByuUq7puKVJYS3JYruLi8FnD6lTHeIkkPGYbh3pRPponn54UA02tkyGrSa2w7Mux2e/A8T9hxn5IcARYM6SUmNZstcX+90USleidsKtWaMCLD29sKand1yWNxhGFyBBjvXT4eazJ7fRV8NHgIDc+Ckc1iYUmlefB0OhNzs2NeW+8FkGM+n6Pdzq9Ii7AoLBQHW5PG5mEE5bcxm2EwGEpukSOARacQkHqYpilGVpQWihhP56Cd3n/4iDdv3+HT5y/ygBTxI0Bu2LYtYOaTKd3Bk/m6sGjLIJD2om5fT77h5OQbvv/4id+35X1r/gNoWZZch2BRGKHd7ux7lMlsfMMw4Hu+5MdxHqO2xcudHPqQbDqdLnq9PqaGIeYurlwM13VFRx7K2/i+v2eYt2+Mkjzdq5UYm47nKfxmhWkHup8+4z6/SYAS8KeAz9lSnrhIpGHsD59YJ8W0uJJ+AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ce55083eaa8fd81ac02f1782a8cbc411/a59e9/image%20(15).webp 192w,
+/static/ce55083eaa8fd81ac02f1782a8cbc411/0ca9f/image%20(15).webp 384w,
+/static/ce55083eaa8fd81ac02f1782a8cbc411/dbefe/image%20(15).webp 474w"
+              sizes="(max-width: 474px) 100vw, 474px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ce55083eaa8fd81ac02f1782a8cbc411/3b721/image%20(15).png 192w,
+/static/ce55083eaa8fd81ac02f1782a8cbc411/66595/image%20(15).png 384w,
+/static/ce55083eaa8fd81ac02f1782a8cbc411/823f8/image%20(15).png 474w"
+            sizes="(max-width: 474px) 100vw, 474px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ce55083eaa8fd81ac02f1782a8cbc411/823f8/image%20(15).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>SQL을 수행한 후 해당 SQL이 Shared pool에서 파싱이 완료되었다면 다음 단계에서 데이터 버퍼 캐쉬에 해당 데이터가 저장되어 있는 데이터 블록이 존재하는지 검색</p>
+<p>→ 존재하지 않는다면 서버 프로세스가 필요한 데이터 블록을 디스크로부터 데이터 버퍼 캐쉬로 캐싱</p>
+<p>→ 만약 존재한다면 디스크 액세스 필요 없음</p>
+<p>여기서 Physical Read 혹은 Logical Read 발생</p>
+<p>Physical Read</p>
+<ul>
+<li>데이터 버퍼 캐시에 해당 데이터가 저장되어 있는 데이터 블록이 존재하지 않는다면 서버 프로세스가 필요한 데이터 블록을 디스크로부터 데이터 버퍼 캐쉬로 캐싱</li>
+</ul>
+<p>Logical Read</p>
+<ul>
+<li>디스크 액세스 필요없이, 데이터 버퍼 캐쉬에서 필요한 데이터 블록 접근 가능한 경우</li>
+</ul>
+<p>기본 데이터 버퍼 캐쉬 → DB_CACHE_SIZE 파라미터로 결정</p>
+<p>show sga 명령어 결과에선 Database Buffers가 데이터 버퍼 캐쉬의 크기이다.</p>
+<p>데이터베이스 성능 향상을 위해 가급적 필요한 데이터를 디스크 I/O (Physical Read/Write) 없이 메모리에서 엑세스 하는 것이 성능에 유리!</p>
+<p>→ 이를 위해 SGA 영역 중에서 데이터 버퍼 캐쉬에 가장 많은 크기를 할당함</p>
+<h3 id="데이터-버퍼-캐쉬의-활용" style="position:relative;">데이터 버퍼 캐쉬의 활용<a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC%EC%9D%98-%ED%99%9C%EC%9A%A9" aria-label="데이터 버퍼 캐쉬의 활용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 438px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/1579c98c628374d6d3e5756ddbc28b49/a3b87/image%20(16).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 83.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAA7DAAAOwwHHb6hkAAACuklEQVQ4y21U227aQBTkY1tVrdSfSB/6Pa3Up0hVEEqaGzcbKPhusDG+EDDGNrcw1ZxAQlBXOux6OTs7Z+bYlaIoUK5WWK3W4DovChRFidVh7xhledw7xHqN9WaD7XaLzWYjwXVlsVhgv98jimJEUYIwjGQdx4nMYRRjMgkxDiYYBwF8f4yR52M08mDbruQTiJcsl0tU+LPd7uQwB8FPB1mbpoX1eo3z8fz8jOn06fW5LFdHwC2SZCqbi3QhjJhI9hwsx3VH8P0A4/EEy2Uu+cLU81/A9/sXwCzLsNvtMB4HmM9TARsOPXkOgokcnM3mst9uq1J6mi5gOy4UtfuusqIsqWEmD7puSqhqD82Wim63LwcYDw91xEkiGpJdo9mGYVjwPB+Gab0BFuWbKbphQtdMEdqyHQwGOkzLhqp2cXNzC8dx0e9rwqhWu4ZpWIjjGJpmvALmeXECqBuoXtVwf/eIbreHXu+vAF9f/5FIkgSuMxQnb2/vBSiKIvQH+hlglolbZGDZtpTQ6/WhKB0oiioMm8027u4ehCnBHx8bsl+vN0TLt5ILVNKDk2xcavD0NEMUJzKzx+gqDWH/MWzbEcMmYSj78/n8PUM6duw9OkqTyJiNy+bmILBhmNJGdJ45nNlaeZ6LDBxcV9I0PWnMUkT3fR+NelNKJvBgoMGybGkfTdPlAppGtq2WAnc4lPPypsxmM2gDXRx2bEcOdjpdSZa2MExcXv7GVbUGRe0IOC9qNFpoNltw3aFUxmpEQzY2b6QR1IggNIgzS/zx8xc+fPyCT5+/4uLbd1SrNYyGo8PFvcMFHWH/YspJyedjnqaSxCqoTxiG8DwPxzPUmvrzTZOSqSFd4h/nISIvc0ynUwRBINpyJnNW9b8PCd8i+TiwNCaRRSHfw0IEPjrITiCr0zzuH4PPbJksW+If8DH4Utkm/doAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/1579c98c628374d6d3e5756ddbc28b49/a59e9/image%20(16).webp 192w,
+/static/1579c98c628374d6d3e5756ddbc28b49/0ca9f/image%20(16).webp 384w,
+/static/1579c98c628374d6d3e5756ddbc28b49/3f92f/image%20(16).webp 438w"
+              sizes="(max-width: 438px) 100vw, 438px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/1579c98c628374d6d3e5756ddbc28b49/3b721/image%20(16).png 192w,
+/static/1579c98c628374d6d3e5756ddbc28b49/66595/image%20(16).png 384w,
+/static/1579c98c628374d6d3e5756ddbc28b49/a3b87/image%20(16).png 438w"
+            sizes="(max-width: 438px) 100vw, 438px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/1579c98c628374d6d3e5756ddbc28b49/a3b87/image%20(16).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>서버 프로세스</p>
+<ul>
+<li>디스크로부터 필요한 데이터 블록을 액세스하여 데이터 버퍼 캐쉬에 저장</li>
+<li>필요한 데이터 블록의 수가 여러 개 일지라도, 하나씩 데이터 버퍼 캐쉬로 캐싱하게 된다.</li>
+<li>하지만, SQL에서 전체 테이블 검색을 수행하는 경우 DB_FILE_MULTIBLOCK_READ_COUNT 파라미터에 저장된 데이터 블록의 수 만큼 데이터 버퍼 캐쉬로 한 번에 읽게 된다.</li>
+</ul>
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SQL</span><span class="token operator">></span> <span class="token keyword">show</span> parameter DB_FILE_MUTLIBLOCK_READ_COUNT</code></pre></div>
+<p>16 출력되면 테이블 전체를 엑세스하는 경우에 16개 블록 단위로 I/O 발생</p>
+<p>DBWR(Database Writer) 백그라운드 프로세스</p>
+<ul>
+<li>데이터 버퍼 캐쉬에 저장되어 있는 블록 중 <strong>변경된 데이터 블록의 내용을 디스크에 저장</strong>하는 프로세스</li>
+</ul>
+<p>둘 다 데이터 블록 단위로 읽고 기록한다.</p>
+<p>→ 왜냐하면, 오라클의 I/O 단위는 데이터 블록이기 때문</p>
+<h3 id="다중-데이터-블록-크기-지정" style="position:relative;">다중 데이터 블록 크기 지정<a href="#%EB%8B%A4%EC%A4%91-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B8%94%EB%A1%9D-%ED%81%AC%EA%B8%B0-%EC%A7%80%EC%A0%95" aria-label="다중 데이터 블록 크기 지정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 461px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7ba32fec0a2f994b83903b2009363df7/31fe3/image%20(17).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 68.75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACK0lEQVQ4y3VTyW4TQRCdf4MD3xCJ7wiIgw/8RnxAiviEiAtwsCAxOMbJIQRsMx40+770LF4femW3RQ4uqdQ909WvXlW9NqqyQp4XyLIcZVmiKAqUZYWqqg77EkrVUEo98bpu0LYtmqaRc8bz20iSBLPZHA8PP7FYWHh8/IUgCGVvmqasDKbtdjucMp4xuVE3DTabDbquw2q1QhiGiKIYruvCsv7CcRxh7zgukiRFEATIsgy2bSOKIvlv2w6SOBHmBoEqpTAajWH+MSU4jmMJ9n1f2KZpJlVMZzNcXPTx/NkLnJ29RK/3FoPBFyFCF0DWXdc1THMh2dq2kYO2aaHPurZDGEa4vv4miS8v36Pff4fXr3o4P39zLJuxhm4syyM79oElkqEGXC6XwnYw+Iq27cBBRnGC4fA7rq4+SMwRUEquKkwmd4ijWMA5XfaIgGTbNK307/Z2jNFohJubocR//PQZlmVJQs7hyJDu+4E03PN8eJ4nbAkusqiU9Ig2/T2FK4OwpefaCMpYASTDH+MJPNeTae+1pQ4aVEjTVORD5hyYlgnjtPGe6JA0udEyiONELmmnTsmejGnr9Vqc4IznXgPSjb3qa8xncymXbPWLKYr9muf5k1W/Iq7sLTEILIC6vPu7e5GNqpUEMolOpp+WfnZVpQ7DaqQCrtvtdg+Ypak0XTOg4hnEvrFM/uNb36+5/PvfKXoCsioBXK/WMkGO/ZQz+ynnOe+zZA7qHzwZH2EleJuMAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7ba32fec0a2f994b83903b2009363df7/a59e9/image%20(17).webp 192w,
+/static/7ba32fec0a2f994b83903b2009363df7/0ca9f/image%20(17).webp 384w,
+/static/7ba32fec0a2f994b83903b2009363df7/7786c/image%20(17).webp 461w"
+              sizes="(max-width: 461px) 100vw, 461px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7ba32fec0a2f994b83903b2009363df7/3b721/image%20(17).png 192w,
+/static/7ba32fec0a2f994b83903b2009363df7/66595/image%20(17).png 384w,
+/static/7ba32fec0a2f994b83903b2009363df7/31fe3/image%20(17).png 461w"
+            sizes="(max-width: 461px) 100vw, 461px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7ba32fec0a2f994b83903b2009363df7/31fe3/image%20(17).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>데이터 블록 크기 : DB_BLOCK_SIZE 파라메터로 설정</p>
+<p>하지만, 9i 부터는 여러 개의 데이터 블록 크기 설정 가능</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 586px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/428393ceff6cacfc064ca4411fe3499b/52581/image%20(18).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 41.14583333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABvElEQVQozz2R227aQBRF/f//krcKUtqKqqQlbVJjG4jjCwkEHGzAxpcZjydNtSpPoj5sHc3D2bPO3lZV1Txtd+yShO0uIXnekx2O5HlBVVVIKRFCIKSkbRVKdXRdZ6ZRp9H6hZc/r7y+/sUKw5jx+BuOt+DWdrAdD2/ps1j6bJ621E3Nuawpzv2s6AEaIagbwbmqKStBWSvKSiGExoqCmMvByCzfRzFPuy1+ELBP92RZhuu5HI4npFTvav9Taq0NYas0tdBvhqEfcTn4yPWvn0yuvuPNPWa2zWQyYT6fY9s2j49rOqVp6sacL4U0UbRtaz4QsidsaRqFFdxHDAdDptdTrqZTvMWS+WKB47rcBwFVVZqlXr2BNmTd+9Qm10ZITkV/vsSKoxVfPo+5ub3lx/SamethOw6/ZzOiKCYMI9I0NUR9fqpVb3RS0nUK+W6YZQWnU4V1twy5uPjAcDhiPJ5wc+Mw+vSVwXBkCorjFXme03XalFLkBeX5jGgaQ9yqzpQWRY9s1gnW4XDC90Oi8IF4teHOX+G6Pq53Rxg/sF5vKM6lISmKkuckJU0zjsfcvOu64XjICYOY52TPP2sdTU9gD5pkAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/428393ceff6cacfc064ca4411fe3499b/a59e9/image%20(18).webp 192w,
+/static/428393ceff6cacfc064ca4411fe3499b/0ca9f/image%20(18).webp 384w,
+/static/428393ceff6cacfc064ca4411fe3499b/70839/image%20(18).webp 586w"
+              sizes="(max-width: 586px) 100vw, 586px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/428393ceff6cacfc064ca4411fe3499b/3b721/image%20(18).png 192w,
+/static/428393ceff6cacfc064ca4411fe3499b/66595/image%20(18).png 384w,
+/static/428393ceff6cacfc064ca4411fe3499b/52581/image%20(18).png 586w"
+            sizes="(max-width: 586px) 100vw, 586px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/428393ceff6cacfc064ca4411fe3499b/52581/image%20(18).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>위의 value 값을 변경하려면, 오라클의 파라메터 파일 (init<SID>.ora) 변경하면됨</p>
+<p>실제 운영에서는, 다중 데이터 블록의 크기 설정은 안 쓰는 것이 유리함</p>
+<p>→ 운영에서 테이블 스페이스 별로 블록의 크기라 다르다면 테이블을 서로 다른  데이터 블록의 크기로 이동하는 것이 힘들기 때문</p>
+<p>→ 서로 다른 크기의 데이터 블록을 가지는 테이블스페이스 간에는 여러 작업에 제한이 발생</p>
+<h3 id="데이터-블록-크기와-데이터-버퍼-캐쉬" style="position:relative;">데이터 블록 크기와 데이터 버퍼 캐쉬<a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B8%94%EB%A1%9D-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC" aria-label="데이터 블록 크기와 데이터 버퍼 캐쉬 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>데이터 블록의 크기가 큰 경우</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 446px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/07fd5669d1e535f224c3c2c39e2fc7d7/6dbe6/image%20(19).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 80.20833333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC9ElEQVQ4y4VUO2/TYBT1D0JiYkBiYwEJCSZ+BQgVsaCyIZBgoAuCgbULG4JKVSWkKjSPNmkpTVzXceJn/IjzsJPYTpwozkH3WknZuNKNlXy+555z7v0iRHGMKIowGAz5OZ1OOWez2SaTZIokSRDHcX6Wpvl7fJZszqlemE5nMK0Ojo9rMEwL/X4f3a6PXq/PTUajMVar1Sb7/QFkWYFhmLCsDnTDRBTFoKDmwiSKYDsuA4RhyCBe14fresxC0w1kqwzLZcbvtFptqJrOJFRVh+N6cBwXdsdh5gKhN5UWGo1LyHITjYbInSXpCrphoF5vIAhDBEEA23bQVjX4fo+LR6MRMyMSFxcNxHECIU1TKEoLBwc/IYoSDMOArhsMpqoaPM/jonQ+Z5/C0Qiu1wXVjccTPiMbLkUJcZJAIFRNM9Bua8yg07GhaTrLogICJh89r8vn5+d/WEkYjthrakKMq9XT3EOajGXZ7Bl1opcIqNvtckpX8mYg9H1//wB7e/soFsv4VTjC0VEJhUIR9bqI+XyRT5k61qqnODmpoVSuMIta7ZSThkBBgP8LWithNkv5y3g8huO68H2fh0JrQVOnyLIs9zFNcXhYwKfPX/Du/Q4+7HzE7u5X1C9EbkjyBdJN4ff6kJsKD0RtqxBFEa7r8tlyueRnqVTBvfuPcOPmLdy+cxcPHj7Gs61tvHn7AYZhYbFY5FOmWJscBCF6vR4Ph9j+K1dsSLBMC1eyjOFgyJ5SbL96jVrtNyvZSCYgkkpLapomS14XrBkeV6oY9AcYDgNmQzZRPHn6Amdn58iy5bXkIS+uzUnsmooCWZYxmUx4+lT8/dsPNJsKn5O/tEoUz7deQlHauWS6XjnDgFmSdArHcTZLvZZM9hBgsVhCuVxhTzVVw2A4ZLmTSXTtIQHW63UehiRJvEpr9vn1ylkSAN2mMAhhmhY3pT8UakpXUaAPupeUfMltm8Ho9/l8zqDUlAZExZTkMW2ApmnodDqwHYetoYZ/AS0bmadIPKTeAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/07fd5669d1e535f224c3c2c39e2fc7d7/a59e9/image%20(19).webp 192w,
+/static/07fd5669d1e535f224c3c2c39e2fc7d7/0ca9f/image%20(19).webp 384w,
+/static/07fd5669d1e535f224c3c2c39e2fc7d7/1ad36/image%20(19).webp 446w"
+              sizes="(max-width: 446px) 100vw, 446px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/07fd5669d1e535f224c3c2c39e2fc7d7/3b721/image%20(19).png 192w,
+/static/07fd5669d1e535f224c3c2c39e2fc7d7/66595/image%20(19).png 384w,
+/static/07fd5669d1e535f224c3c2c39e2fc7d7/6dbe6/image%20(19).png 446w"
+            sizes="(max-width: 446px) 100vw, 446px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/07fd5669d1e535f224c3c2c39e2fc7d7/6dbe6/image%20(19).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>데이터 블록 크기 : 16KB</p>
+<p>데이터 블록이 크기 때문에, 유저 A와 유저 B의 SQL 결과가 동일 데이터 블록에 저장됨</p>
+<p>장점</p>
+<ul>
+<li>한 번의 디스크 I/O 로 많은 데이터 추출 가능</li>
+</ul>
+<p>단점</p>
+<ul>
+<li>데이터 블록에 대한 경합 발생 가능성 증가</li>
+</ul>
+<p>→ 동시에 많은 유저 동일 데이터 블록을 사용할 확률이 높아지므로 해당 데이터 블록에 대한 경합 발생</p>
+<p>데이터 블록의 크기가 작은 경우</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a3532c517249d605b4ac9e5eb5e7b493/78ab6/image%20(20).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 83.85416666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABYlAAAWJQFJUiTwAAAC9klEQVQ4y1VUy27TUBDNLyGxYNMdLNiyQWz5BFas2fEQEiBRJKqqtKpSQaWqLKj4gAqqtmlejpP4kdiOnWfzsh076eOgM46jMtLoOrlzz8ycOfdmZlGEKIoQxzHm84Wss1mEMJzJyj2uic/E5/M54ngusXfjoyhGhgcuL4dQ1Somkymurq6wWCxkjZcH+c1k6d5wOMR4PFn6WBLc3NwIaCYMQ1i2A0034DgtWJYDXTdR13T0en10uz2EQQgaARnvtNzEHReWbUtBBGWyjO/7MAwTtu0IWFWtodVyoaq1ZQIbtZqGgIktG4VCCZpmyDe92bTQ7w8EnMkzROXho1+/cXZ6jnJZQb2uQ63WUCopUBQVfhDg+vpaKhkOR9A0XdbL4RCDwUAqazZtAU1atmwBZZWe15bKXNfDaDQWnlgB47jnui4qahVeu4Nevy+0RHEMx24lgNPpVDI6jiMldzpdye55HQHjbyai8bBpNiW5YTSEGkWprKhotzuccgxdN5DPF3F2lsPx8R+oqioBJyenyF8UQJ5pbJt8X+SLMHQTptmQuFwuL0mpBOGQxkobZgOmYYrX6xo6nY5M9vb2Vjw13w/QXSrAn/qrPUoww3EngL5kZLW6ZqCQL8JZtkqN0Rj7+u0H3Lu/hgdrD/Ho8RM8ffYcb959gm23JPkKkG2xbJJO8gnKwaSt0shRNruP9S8b+Lz+FRub29g/OMT2zh4Ofx5JzAowCAJ4nicgHATF7rlt3LW210Uxr0glbNcSDfbxY/8QW9+yCSCvVgqYCpWaqlSqMkn+z6tG2VCTJ3/PE4omISrlKnb3DvDi5Stsbu2mgPGqZfJIANpkMoFtOUJ4OjiSXi5X5Obw6uUuitjJfsf7j+soK+r/gAwuFcsiHR6iFLwlhzRWSHr4GFSrNeGz5bqiTe7R5C6zInJC4skZBc7K3DtgqagH/YH8TzAOkPxRGaRqNBpJN5n0jUs8fRuTt453mPpk+6wiCEJZeRmSNzFZeZaFMe4f5troca8ZhH8AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a3532c517249d605b4ac9e5eb5e7b493/a59e9/image%20(20).webp 192w,
+/static/a3532c517249d605b4ac9e5eb5e7b493/0ca9f/image%20(20).webp 384w,
+/static/a3532c517249d605b4ac9e5eb5e7b493/dc9b9/image%20(20).webp 768w,
+/static/a3532c517249d605b4ac9e5eb5e7b493/81cde/image%20(20).webp 1112w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a3532c517249d605b4ac9e5eb5e7b493/3b721/image%20(20).png 192w,
+/static/a3532c517249d605b4ac9e5eb5e7b493/66595/image%20(20).png 384w,
+/static/a3532c517249d605b4ac9e5eb5e7b493/fe486/image%20(20).png 768w,
+/static/a3532c517249d605b4ac9e5eb5e7b493/78ab6/image%20(20).png 1112w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a3532c517249d605b4ac9e5eb5e7b493/fe486/image%20(20).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>장점</p>
+<ul>
+<li>데이터 블록에 대한 경합 발생 가능성 감소</li>
+</ul>
+<p>단점</p>
+<ul>
+<li>더 많은 디스크 I/O 발생</li>
+</ul>
+<p>데이터 블록 크기는 대부분 8K로 설정</p>
+<h3 id="다중-데이터-버퍼-캐쉬-설정" style="position:relative;">다중 데이터 버퍼 캐쉬 설정<a href="#%EB%8B%A4%EC%A4%91-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC-%EC%84%A4%EC%A0%95" aria-label="다중 데이터 버퍼 캐쉬 설정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/939b3ec9c4386e01942fc2c444a2d796/b38ab/image%20(21).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 64.0625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABzklEQVQ4y3VSi27aQBDk/3+reVUtlZBRaAoJ2AZjbOzz+8FrqhnnCJGSlVa+8+3NzszeqGkalGWJJEmRpgapMTAmQ5blKIoCddOgroeasqyUeZ6rhvWsIwaTMarrGklqEO4i7PeJMo73iKJYTTzPh+t6WvMsTYfG3BtjVNc0rQAvlwtGXLDLd9G27bX7d+dkT1ABUlKW59q4ro/lcoX5/FVFLy//xG4+X+DtbSnmQbCF53rwPR+rlYvBsuqD4eBPpU6URN8oazb7i/V6jSShDXuE4U7gBGSzMAyx20Xo+1573r9KJmBV1ei6XjJ4MJ1OZT7X5/NZF+gnWTKqqkIcxe+A1WdAHvIHk3E6nQTISXJ9PB7B4VFiHMeqybJM4DwjmU9DGSaWSabjTDGZTDAe/8Hdjzs8Pf3Ew8Oj8v7+Ub46joPfv8ZizHsEtGQE2HWdfCBTMmHSy2ATSPZmE4jRdhuqlr63bXdVRdn8f32HjLW/wfPzTAPJ80Jvjc0omeD0keBfxQDYW8DhjR0OB3kURZFAOXFawb1VQZZ2aDY/AN8ZFkWpA1JfLF71TMiQl2+Tw7DGk61N+7hpgQDthJiUZn289ZNpa27T+scvp03A/1PV4oovSSDDAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/939b3ec9c4386e01942fc2c444a2d796/a59e9/image%20(21).webp 192w,
+/static/939b3ec9c4386e01942fc2c444a2d796/0ca9f/image%20(21).webp 384w,
+/static/939b3ec9c4386e01942fc2c444a2d796/dc9b9/image%20(21).webp 768w,
+/static/939b3ec9c4386e01942fc2c444a2d796/e2c2f/image%20(21).webp 1152w,
+/static/939b3ec9c4386e01942fc2c444a2d796/ba85f/image%20(21).webp 1168w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/939b3ec9c4386e01942fc2c444a2d796/3b721/image%20(21).png 192w,
+/static/939b3ec9c4386e01942fc2c444a2d796/66595/image%20(21).png 384w,
+/static/939b3ec9c4386e01942fc2c444a2d796/fe486/image%20(21).png 768w,
+/static/939b3ec9c4386e01942fc2c444a2d796/d2d74/image%20(21).png 1152w,
+/static/939b3ec9c4386e01942fc2c444a2d796/b38ab/image%20(21).png 1168w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/939b3ec9c4386e01942fc2c444a2d796/fe486/image%20(21).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>기본(Default)</p>
+<ul>
+<li>일반 데이터 버퍼 캐시</li>
+<li>DB_CACHE_SIZE 파라메터에 의해 설정됨</li>
+<li>일반적인 테이블이나 인덱스는 기본 데이터 버퍼 캐쉬를 이용함</li>
+</ul>
+<p>고정(Keep)</p>
+<ul>
+<li>해당 데이터 버퍼 캐쉬로 읽혀진 데이터 블록은 재사용률이 높다고 판단하여 해당 데이터 버퍼 캐쉬의 내용을 삭제하지 않으려고 한다</li>
+<li>DB_KEEP_CACHE_SIZE 파라메터에 의해 설정</li>
+<li>자주 사용되고 성능 좌우하는 테이블, 인덱스를 위치시킴(코드성 테이블)</li>
+</ul>
+<p>재활용(Recycle)</p>
+<ul>
+<li>재사용이 거의 안 됨</li>
+<li>DB_RECYCLE_CACHE_SIZE 파라메터에 의해 설정됨</li>
+</ul>
+<p>각각의 데이터 버퍼 캐쉬는 독립된 영역 및 LRU 리스트 가짐</p>
+<p>버퍼 캐쉬의 크기는 고정 > 기본 > 재활용 순</p>
+<p>테이블 및 인덱스 단위로 지정 가능</p>
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SQL</span><span class="token operator">></span> <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> EMP STORAGE<span class="token punctuation">(</span>BUFFER_POOL KEEP<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SQL</span><span class="token operator">></span> <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> EMP STORAGE<span class="token punctuation">(</span>BUFFER_POOL RECYCLE<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h2 id="리두-로그-버퍼-redo-log-buffer" style="position:relative;">리두 로그 버퍼 (Redo Log Buffer)<a href="#%EB%A6%AC%EB%91%90-%EB%A1%9C%EA%B7%B8-%EB%B2%84%ED%8D%BC-redo-log-buffer" aria-label="리두 로그 버퍼 redo log buffer permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/09d7d5cb81141c11c3096084a3b6969f/07220/image%20(22).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 88.54166666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABYlAAAWJQFJUiTwAAACsElEQVQ4y3VU227aUBDky1upn9JK/YkmavsQqSkFAhiKuRjjGxhI8AUT4wBTzdimiaqutFrbZ3fOzuw5buR5jiw7gJH+/Ex/lh9qPxxwODy/ceYpv6o7Ho/CabCQxpc4SZHEKaIoxm4XIYoiPSdpqrU4Tqq10vmepnvs95kwuFGDO10uF0RRgqJ4wWs7n884ny9wHA9pmurb6XRSPo2RniSpaol1BUzTTJH0sixD3Tnt8fFJnXCNVryUxcyr2b3oGzvMqw7jBPssQxiusVqGWK83VeIJrudjOBxpjUbwXs/AdGpJP1L+C1h1snA8mOZEPjLHGI3GmM9tDAa/1SHBqGu3a8DzAoEejwWCYInVKlRTbwDntqMdCTKbWXLHcXF39wOO68K2HQHd3nzHwnaw3+81Wdf1BEqtK8BcgJZlo91+gD1fYDQyMR5P0Ol0cXP7Db7vY7FwECyXuPnyVZstlyt4fiApguVKA6TGDWpAo06kR5BmswXTHGMwGGoTwxig3zf03mp10Gk/oPWrjel0pnXP9QXIIV2Hwnbz/IjNZqtEdsDOfD8QLdKnk55tL+Q8dxwcYwmoDo+aULjeKInFlmXBtm24rouZVepJ4euzF8exJOHmr8+sKFNY0uYUqRNBORjP89UpnTeCutYHmcUcSgnEb3irIV88aThUoWmaGA5/o9vtwTAMOI6jTV5bHMX/3CpNuQasr9XHT5/x7v0H3N//xHa7xXrN87e70qU8vIaWNVfnZFgDEkvHhkA06kRtms22kqkndWLs9/pIkkQ5jJRmu32UJLWWAsyrKZdXKpWvwjVa7Y6ockCkXx8vxiAIMJlMtDmBa4aiXI++PDY5np52V6phGKqYYpMaY/3vI/WiKBTLf2GmO90gOhf4+2Ek/fK3da4meKnWiyvI/5w1fwAk3FMoAodHaQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/09d7d5cb81141c11c3096084a3b6969f/a59e9/image%20(22).webp 192w,
+/static/09d7d5cb81141c11c3096084a3b6969f/0ca9f/image%20(22).webp 384w,
+/static/09d7d5cb81141c11c3096084a3b6969f/dc9b9/image%20(22).webp 768w,
+/static/09d7d5cb81141c11c3096084a3b6969f/e2c2f/image%20(22).webp 1152w,
+/static/09d7d5cb81141c11c3096084a3b6969f/694bf/image%20(22).webp 1156w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/09d7d5cb81141c11c3096084a3b6969f/3b721/image%20(22).png 192w,
+/static/09d7d5cb81141c11c3096084a3b6969f/66595/image%20(22).png 384w,
+/static/09d7d5cb81141c11c3096084a3b6969f/fe486/image%20(22).png 768w,
+/static/09d7d5cb81141c11c3096084a3b6969f/d2d74/image%20(22).png 1152w,
+/static/09d7d5cb81141c11c3096084a3b6969f/07220/image%20(22).png 1156w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/09d7d5cb81141c11c3096084a3b6969f/fe486/image%20(22).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<aside>
+💡
+<p>개념 : 오브젝트 및 데이터 변경 시 생성되는 로그를 저장하는 SGA 메모리 공간
+목적 : 데이터베이스내의 모든 변경 작업에 대한 복구를 지원</p>
+</aside>
+<p>서버 프로세스가 로그를 리두 로그 버퍼에 저장한 다음, 백그라운드 프로세스인 LGWR 프로세스에 의해 리두 로그 파일에 저장된다.</p>
+<p>LOG_BUFFER 파라메터로 지정 가능</p>
+<h3 id="복구-vs-롤백" style="position:relative;">복구 vs 롤백<a href="#%EB%B3%B5%EA%B5%AC-vs-%EB%A1%A4%EB%B0%B1" aria-label="복구 vs 롤백 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>복구 : 장애(디스크 장애, 인스턴스가 비정상 종료했을 때)에 대한 DB 복구</p>
+<p>주체 : 리두 로그 파일 + 언두 데이터</p>
+<p>롤백 : 작업에 대한 작업 전 데이터로 복구</p>
+<p>주체 : 언두 데이터</p>
+<h3 id="리두-로그-버퍼의-아키텍쳐" style="position:relative;">리두 로그 버퍼의 아키텍쳐<a href="#%EB%A6%AC%EB%91%90-%EB%A1%9C%EA%B7%B8-%EB%B2%84%ED%8D%BC%EC%9D%98-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90" aria-label="리두 로그 버퍼의 아키텍쳐 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><strong>Physiological 로깅</strong></p>
+<p>DB 로깅에는 다음 3가지가 존재</p>
+<ul>
+<li>Logical 로깅 : 작업에 대한 이전 이미지와 이후 이미지가 아닌 작업에 대한 명세서 기록</li>
+<li>Physical 로깅 : 변경된 블록에 대한 이전 이미지, 이후 이미지 모두 저장</li>
+<li>Physiological 로깅 : 변경된 데이터에 대해서는 이전/이후 이미지를 저장하며 명세서 작성</li>
+</ul>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/dcfdc14daed5c740cbdc3ecc436c8924/dc992/image%20(23).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 19.270833333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAABEUlEQVQY0x3MW2/BAADFcR99e+TR2EaHmrXRqEtkzyZpsvEgmUyjLtOJUaMtc2lZwn/R83bOSX6hZDJDpfKMIIhksxKlchVVraAoRRKJNKl0DjlfQnzMI8tFrq7D3NwIxOMZotEHIpEY4XAUWVY5nU6E4reXU+DuPoWYlcgrKrFYgkKhTFIQyUkKarHKk1SgVtOovWi8NVq8t3Xq9Vc0rUGz2aKjG5zPZ0L+4YDjuFyyXv8yMr8wjD6TyZS957O0Hb6nM7pGn17/E98/4LorZtacj06XdltnMDQ5Hv8CI2SaY3q9AavVmqVtMxyO0PUutuNiWT/BvljajMcTNptt0C+g53lMpxbz+YK957Hd7QLwH22yDi0GDgEIAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/dcfdc14daed5c740cbdc3ecc436c8924/a59e9/image%20(23).webp 192w,
+/static/dcfdc14daed5c740cbdc3ecc436c8924/0ca9f/image%20(23).webp 384w,
+/static/dcfdc14daed5c740cbdc3ecc436c8924/dc9b9/image%20(23).webp 768w,
+/static/dcfdc14daed5c740cbdc3ecc436c8924/e2c2f/image%20(23).webp 1152w,
+/static/dcfdc14daed5c740cbdc3ecc436c8924/70acd/image%20(23).webp 1178w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/dcfdc14daed5c740cbdc3ecc436c8924/3b721/image%20(23).png 192w,
+/static/dcfdc14daed5c740cbdc3ecc436c8924/66595/image%20(23).png 384w,
+/static/dcfdc14daed5c740cbdc3ecc436c8924/fe486/image%20(23).png 768w,
+/static/dcfdc14daed5c740cbdc3ecc436c8924/d2d74/image%20(23).png 1152w,
+/static/dcfdc14daed5c740cbdc3ecc436c8924/dc992/image%20(23).png 1178w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/dcfdc14daed5c740cbdc3ecc436c8924/fe486/image%20(23).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>기본적으로 로그 양이 적고, 복구가 완벽한 Physiological 로깅 사용</p>
+<p><strong>Write-Ahead 로깅 (로그 Ahead)</strong></p>
+<p>기록하는 작업을 먼저 수행한다는 의미</p>
+<p>이렇게 해야 장애 발생해도 해당 작업에 대해 복구 수행 가능!</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d77a07abde4d34630bb9fbe3ba1ed120/d2d74/image%20(24).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 19.791666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAABD0lEQVQY0x2Na0vCYACF94sjSKKiUgmyD3kptYuarrIhNWiCIhn9C9NcuE3zMue6eO2D6RO+Hw4HzsM5RyqXX7hMZHjUCijKPenMLfL1HcmUTCKZEezsPEUkHCedznISvcDnD+D1HbK948ezuceGZ5e19S0qrzWkUumZcCRO6uqGUDhGMBQlGDpl33tA4OhYsFg8gSxnUZQHcjkVVdWE57UCmlZEVfMUik/YtoMEMJ3O+Pr+YTQcsVwu6XZ7NBqGkGGYGIaFrr9Trb5hmU0qlapg9bqOZbVwnAGu+8lisUCaTKbYdp9+3xHuDlza7Y4YWpWazRamaQmt8lW5/dERp3bPZjgcMZv9Mh5PmM//+AcxRQYhlf6ebgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d77a07abde4d34630bb9fbe3ba1ed120/a59e9/image%20(24).webp 192w,
+/static/d77a07abde4d34630bb9fbe3ba1ed120/0ca9f/image%20(24).webp 384w,
+/static/d77a07abde4d34630bb9fbe3ba1ed120/dc9b9/image%20(24).webp 768w,
+/static/d77a07abde4d34630bb9fbe3ba1ed120/e2c2f/image%20(24).webp 1152w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d77a07abde4d34630bb9fbe3ba1ed120/3b721/image%20(24).png 192w,
+/static/d77a07abde4d34630bb9fbe3ba1ed120/66595/image%20(24).png 384w,
+/static/d77a07abde4d34630bb9fbe3ba1ed120/fe486/image%20(24).png 768w,
+/static/d77a07abde4d34630bb9fbe3ba1ed120/d2d74/image%20(24).png 1152w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d77a07abde4d34630bb9fbe3ba1ed120/fe486/image%20(24).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><strong>로그 Force At Commit</strong></p>
+<p>커밋된 데이터는 반드시 리두 로그 파일에 로그를 기록하게 된다</p>
+<h3 id="리두-로그의-생성-과정" style="position:relative;">리두 로그의 생성 과정<a href="#%EB%A6%AC%EB%91%90-%EB%A1%9C%EA%B7%B8%EC%9D%98-%EC%83%9D%EC%84%B1-%EA%B3%BC%EC%A0%95" aria-label="리두 로그의 생성 과정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/e2f590a10fcd2f8357e29cd244257689/fe4d8/image%20(25).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 87.5%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABYlAAAWJQFJUiTwAAAC8ElEQVQ4y1VU227aQBRE6gf0P9rX/lelvvRDqrZSpTy0kfKWVnnqRSKpVCkhEAJJuBljMLa5GfAFm6sxU80BA1npyLv2ntmZc2adWiwWmM/nmM+3z8ViidVqheVyuX9/mB9iNpsdzeeSw5GKokgmm81GIhnJPIrWCMMQxyPZe5xDYpynuHk8djCZTOB5/jZ8H67rwfV8DOwhGo0mHMeVGDsOfN+X/ZMggD+ZyHuqEEAuOp0ehsMRPM/D0B6h2Wyh3+9jMLDJZ8c0kojjGKPRGJ1OF6ZpwbK6QojSBZAL2x7Ki9FoJJu63R7S6X84OzvH9x8/UamqzyT3+wMYhgldb0v0B/ZBMpltmUBYaQ1NaqY127i5ucPFxS9kbvMIghBbNV1RkgxKVxRV2AsgwRJAJmSzOVQq1X3CcDhEEASHhsSxdPgYsFpVsF6vD5LrdRXVag1PTyWUyhXcF4qyLpUq8sxk7nD69RyfP53iw8cTXF9noCgKyuUKCoWC5NANAsjTwukUYbgNSuv1+nKy70/km64bqCtNlMt1FB9K6A8GmE6n0kjW2/W8Q5dpSE5Yt8RXbFAyaHTKToy7jiJ0u12YhikHE5gjwRFAy7JQLlehKHXpdFKjdtuQ94ZhIZu9g6pqAlKr1aCqqtiHgLTSM4a2bUtNWq2WfExuA61ASfSlZXWkDHynaRqKxSIcx5HDmUMlAsgN9NLV1V/k8/fP/BbHG6xWkbiAz2TQOo8Pj2g0NPFwLJ3fGZtUx+Mx0ulLkcjG0NxG2xS78ApWKjVhykTWWtd1GIaBeL1GuLMUmQog/ybclMvl992lVUyrI/LIzjQ7cB1331Ua23Vd/P5ziS8n36BqTWkKDxTJ7OLtbQ6a1hQ5ZMpEypFD/EDWrZYuFuIexqvXb5B68RJv371HFO0ASZUu57WjXbZd70BvG7KmLymbzKmEQKw581gq3ioy30tOfrC8i6wnu8WPjFUUyQHT6QzzBX+0KwFlcE0iiQeT6/kf3NNJoBbEeNwAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/e2f590a10fcd2f8357e29cd244257689/a59e9/image%20(25).webp 192w,
+/static/e2f590a10fcd2f8357e29cd244257689/0ca9f/image%20(25).webp 384w,
+/static/e2f590a10fcd2f8357e29cd244257689/dc9b9/image%20(25).webp 768w,
+/static/e2f590a10fcd2f8357e29cd244257689/e2c2f/image%20(25).webp 1152w,
+/static/e2f590a10fcd2f8357e29cd244257689/22565/image%20(25).webp 1388w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/e2f590a10fcd2f8357e29cd244257689/3b721/image%20(25).png 192w,
+/static/e2f590a10fcd2f8357e29cd244257689/66595/image%20(25).png 384w,
+/static/e2f590a10fcd2f8357e29cd244257689/fe486/image%20(25).png 768w,
+/static/e2f590a10fcd2f8357e29cd244257689/d2d74/image%20(25).png 1152w,
+/static/e2f590a10fcd2f8357e29cd244257689/fe4d8/image%20(25).png 1388w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/e2f590a10fcd2f8357e29cd244257689/fe486/image%20(25).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>리두 로그를 리두 로그 버퍼에 기록하기 위해서는 리두 Copy Latch 를 획득해야한다.</p>
+<p>리두 Copy Latch 는 <strong>리두 로그 버퍼에 로그를 기록하는 Latch</strong>이다</p>
+<p>그 다음엔 Allocation Latch를 획득해 리두 로그 버퍼로부터 로그 기록할 수 있는 여유 공간을 할당받아야한다.</p>
+<p>해당 공간에 리두 Copy Latch를 이용하여 리두 로그를 기록하게 된다</p>
+<p>리두 로그 버퍼에 공간 없으면, 해당 서버 프로세스는 리두 Writing Latch를 획득함</p>
+<p>→ Writing Latch는 DB에 하나만이 존재하며 해당 Latch를 획득한 서버 프로세스만이 LGWR 백그라운드 프로세스를 기동시킬 수 있다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4658eafb452d1431cae0fd348293d75c/e9562/image%20(28).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 45.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB00lEQVQoz51SXWsTURDd/6xgRaiNSUxSN6H6pgVbkEKSbbvYSkWEvlSs60ttUti6MUm735v9MLv5JLvNkZkU9NmBuXOZO/fMOXeukKYpwjCE5w3Yk2QEMsovFgsAy3sHlstVJMuyjGuyNMW/JkRRBFl+j48nnyBJh2g2DtBo7KNel/Dh+AT1+z3lms0DSJKMvb0G9qVDyPIR3u68w5vtHbze3oV6rUHQdR0PH6xh7dE6Np4W8WKzhkq5hmKhgme5IgrFCvL5MjZyz5EvVFAqiRDFLdSqL1EuiahWX2FT3MLjJzl8PVcgkKyrKxVfzhTY9oBpTyZTGIYJTevA8zyWRnLv7jI+j+MYvV4fqnoN13Uxm83+Sp5MJjg9PcPx0We02z+5OI4TXFz8gKJ8h6ZpnBsMfPi+j9FozGDfzhW0Wm1cXrZ4BlH0G/P5HAItWqcLVdVgmjbG4zGoCXW+vdUxHA45R5GczhzHhWVZHF3HRZIkPExSK5AcGszqQowgCOG6Hk9c1w2+SE7gpmXBth1m5PsBbNtm1lRnGiY3Y8n9/g06nV/odnvodfsMQICGbsCxHTiOw4BBELB0akgkwjDiHIFS/XQ6XTGkNyKGRJ3ej/7Y/9ofmxuD1i1b9IAAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/4658eafb452d1431cae0fd348293d75c/a59e9/image%20(28).webp 192w,
+/static/4658eafb452d1431cae0fd348293d75c/0ca9f/image%20(28).webp 384w,
+/static/4658eafb452d1431cae0fd348293d75c/dc9b9/image%20(28).webp 768w,
+/static/4658eafb452d1431cae0fd348293d75c/e2c2f/image%20(28).webp 1152w,
+/static/4658eafb452d1431cae0fd348293d75c/e40a7/image%20(28).webp 1438w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/4658eafb452d1431cae0fd348293d75c/3b721/image%20(28).png 192w,
+/static/4658eafb452d1431cae0fd348293d75c/66595/image%20(28).png 384w,
+/static/4658eafb452d1431cae0fd348293d75c/fe486/image%20(28).png 768w,
+/static/4658eafb452d1431cae0fd348293d75c/d2d74/image%20(28).png 1152w,
+/static/4658eafb452d1431cae0fd348293d75c/e9562/image%20(28).png 1438w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/4658eafb452d1431cae0fd348293d75c/fe486/image%20(28).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>리두 로그 버퍼는 메모리 영역이므로 해당 공간에서 락이 필요하게 되면 Latch를 사용하게 된다
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/2a3c7f174f02b7cea7793cca61068634/5b89d/image%20(29).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 26.041666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABPUlEQVQY00XNW0vCAACG4f3oIrIUSdPsQGIQdCVGpWi1LOxgJN30CzJsLrLNw9x0B3KbZcIbDqOL9+rh4xOe6w0WFiPs7O6T3jsgtr5FaivN5naGZCpNPLFDOJpkJRwnFI6zvBpjI5UmtZlhKbRGaDUWWCSaJBJNIHQ1g2zulKPjM07yZYqlK2qPT1Ru7hEvrxHLFQpFkdJpmWwuz0nhjELxgnOxQvawgFi+5v7hkdtqjbtqDcEfT5CaHSRJ5b3VQ+vbeP4XtuNgmha6PqDT6WIYA1othZ7Wp9vTUJQ2arvD5+cIzx/zPZnwPflB8P0x8puKLKs0ZYWm/IFpOZiWhWEMUdQ29ZcGr5KMpukMTZPh8L++bqAbA2zbwbIdhOl0iuf5Qa7rMRq5QZ7vMztz5xa4N3d33sgNNn+7mf8CF0xUD0q1YZAAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/2a3c7f174f02b7cea7793cca61068634/a59e9/image%20(29).webp 192w,
+/static/2a3c7f174f02b7cea7793cca61068634/0ca9f/image%20(29).webp 384w,
+/static/2a3c7f174f02b7cea7793cca61068634/dc9b9/image%20(29).webp 768w,
+/static/2a3c7f174f02b7cea7793cca61068634/e2c2f/image%20(29).webp 1152w,
+/static/2a3c7f174f02b7cea7793cca61068634/3c106/image%20(29).webp 1410w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/2a3c7f174f02b7cea7793cca61068634/3b721/image%20(29).png 192w,
+/static/2a3c7f174f02b7cea7793cca61068634/66595/image%20(29).png 384w,
+/static/2a3c7f174f02b7cea7793cca61068634/fe486/image%20(29).png 768w,
+/static/2a3c7f174f02b7cea7793cca61068634/d2d74/image%20(29).png 1152w,
+/static/2a3c7f174f02b7cea7793cca61068634/5b89d/image%20(29).png 1410w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/2a3c7f174f02b7cea7793cca61068634/fe486/image%20(29).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="리두-로그의-성능" style="position:relative;">리두 로그의 성능<a href="#%EB%A6%AC%EB%91%90-%EB%A1%9C%EA%B7%B8%EC%9D%98-%EC%84%B1%EB%8A%A5" aria-label="리두 로그의 성능 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>과다한 트랜잭션은 리두 로그 많이 발생시키며 성능 저하로 이어질 수 있음</p>
+<p>Log File Sync</p>
+<p>리두 로그 버퍼 관련 대기 이벤트 중 하나</p>
+<h1 id="large-pool" style="position:relative;">Large Pool<a href="#large-pool" aria-label="large pool permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>필수적으로 지정해야하는 SGA 영역이 아니다</p>
+<p>Shared Pool의 부하 감소시킴</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/f489a6d0a2bd5be73cd27185093516e2/f967b/image%20(30).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 90.625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABYlAAAWJQFJUiTwAAADQ0lEQVQ4y21UXW8TVxT0/66A8tEURah9AIRaGpwGHBKbGFD7yEMfWvUlcRLv96fX612vvWtnF3Dxd6aas3ZBoisdn3OvdufOnDPXlXqjiTv3drH/6yEePf4Ze9XnqFZrqB02UG+8xquTtziqN/G8VsdJ8zccHTexf/AS1f0aftk7wMPHT7H74CFu3dmFYdqo/PnX3ziuv8a7d3+g8eoNDl4cYef7H3D77i5u3NrBNze/w81v72Pn/o94Vq3h6d4BnvxUxbP9Gl4c1vHyuImTN7/juPEWUdxHBf/zXOUFsmyENMtQFO+RFwXSNEM/GWCYZhhf5YjiBMkglegnQ3SCEMvlCpXVao3x+EpeGA5TzGZzdDoBNM2AomiSLctBm7VuiizPDwQg7g/kENbcm83nqFwDuL6+xmq1AsGZDdOCqunw/I5kgl62VSiaIaCO68N2fVi2K2vb8RCGkeBU1us1GFzwISDlDtNU5CWDIeK4L3tlG0a4ynNko7HUg2GKuJ9ITZyverhcLmHZDjRNl6xSMte6IczJisxdr4Nu2BOwbreHOE6ETGWxWCLPC/h+IKd++jSVD9uKCt0wcdlWpDYMS/ZLYBudoCvglMsDbNvFfLFAhYwozXV9BEGI6XSKMOyh2w2Fge+XTMJeJNLJqN9PZJ0kA/SiWGoBnC8+S57P59JHBpmQnWnacF0PtuPi4rKNi0tF9rkmO8omWETQMColc7LbgWx7WPbIh2mV0jzPh+O4UpM91dAmfIeWkoM9H4vFhmGWjWWaNDSZel4HiqpBVXW0zi9wetpCq3UBk0OxbAlayXE9YciW9HpROWX+0Fet87Z46sOHj8KQjOI4lr75m3WwYUvJZUssCQ7MtBxwwMKQVHmdptMZVsuV0OcHmq6LfQzDhKKoMm1OOYpjTCYT5HkuV5IuYQjDL/vHh7YhC1XVoKhq6cetTF2HbTuwbBtBtysy/U4g7OnF9XpzU3gDKJd3mHeZDNlD0yp9d9Y6L+sv2G4dQDDucTgbYy/kT4F/EKPRGEVRQFF1nJ61cHbWgq4b8tE2wjAUj7KfJbNyTW+K5NlsJv2YTP6R4FCSwUCm14siYc932N8yT//L3GOmMxiU/C/D4xEu3VLLOAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/f489a6d0a2bd5be73cd27185093516e2/a59e9/image%20(30).webp 192w,
+/static/f489a6d0a2bd5be73cd27185093516e2/0ca9f/image%20(30).webp 384w,
+/static/f489a6d0a2bd5be73cd27185093516e2/dc9b9/image%20(30).webp 768w,
+/static/f489a6d0a2bd5be73cd27185093516e2/e2c2f/image%20(30).webp 1152w,
+/static/f489a6d0a2bd5be73cd27185093516e2/fdbfa/image%20(30).webp 1418w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/f489a6d0a2bd5be73cd27185093516e2/3b721/image%20(30).png 192w,
+/static/f489a6d0a2bd5be73cd27185093516e2/66595/image%20(30).png 384w,
+/static/f489a6d0a2bd5be73cd27185093516e2/fe486/image%20(30).png 768w,
+/static/f489a6d0a2bd5be73cd27185093516e2/d2d74/image%20(30).png 1152w,
+/static/f489a6d0a2bd5be73cd27185093516e2/f967b/image%20(30).png 1418w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/f489a6d0a2bd5be73cd27185093516e2/fe486/image%20(30).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>RMAN : 오라클 백업, 복구 용 유틸리티</p>
+<p>병렬 프로세스 간 주고받은 메세지 → Large Pool 설정 안하면 Shared Pool에 저장됨</p>
+<p>→ 이 경우 메세지의 크기가 너무 커지면 ORA-4031 에러 발생</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/e9562/image%20(31).png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 25.520833333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABR0lEQVQY00WMy07CYBSE+6ImLt1oDEpEASNBjQuJC+NTGBMjGC5yjaAuFGIDilD6twUjUqRUWhQ3n6EuXHyZM5M5I1VrMmv+EHv7MWJHJwRDUXYiB4S299gKRwlt73oaCEbwb4Q5jB17fv7jWw+y4ttkeTXAwuISp2fnSLY9oVi6JZnMkc2ViMeTlMt3lCu3XGULZPMlUpkc6UyOxGWaxGWKi3jSu+OJlEehWCaVyaN0VCR3OkPofeQnBbneovb4jKLoaJpBq91B6QiE0Hl6bqIKDSE0DKPLS0uhraioQseyxoxGFt/fM6S3vsl1pcr1zT3ZQoXKzQO1ah3d6FJvNJHlBh11PtKj23v1cqPbQ9MNhGagGz2PeWc8tpFmsx8sy/aM/TnBsixMc8jAHPI+MD2GHyMcx2U6/cJ1pziu+4/zx8RxmW/9Ag4RT+ju/D5uAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/a59e9/image%20(31).webp 192w,
+/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/0ca9f/image%20(31).webp 384w,
+/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/dc9b9/image%20(31).webp 768w,
+/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/e2c2f/image%20(31).webp 1152w,
+/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/e40a7/image%20(31).webp 1438w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/3b721/image%20(31).png 192w,
+/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/66595/image%20(31).png 384w,
+/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/fe486/image%20(31).png 768w,
+/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/d2d74/image%20(31).png 1152w,
+/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/e9562/image%20(31).png 1438w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/4eb96c7ef1b67bb9aaadeb0cff5f4488/fe486/image%20(31).png"
+            alt="Alt text"
+            title="Alt text"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h1 id="java-pool-및-streams-pool" style="position:relative;">Java Pool 및 Streams Pool<a href="#java-pool-%EB%B0%8F-streams-pool" aria-label="java pool 및 streams pool permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1></div></div><div class="table-of-content"><ul>
+<li>
+<ul>
+<li>
+<p><a href="#sgasystem-global-area">SGA(System Global Area)</a></p>
+</li>
+<li>
+<p><a href="#pgaprogram-global-area-private-global-area">PGA(Program Global Area, Private Global Area)</a></p>
+</li>
+<li>
+<p><a href="#pga">PGA</a></p>
+<ul>
+<li><a href="#sql-work-area">SQL Work Area</a></li>
+<li><a href="#uga">UGA</a></li>
+<li><a href="#private-sql-area">Private SQL Area</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#pgaprogram-global-area%EC%9D%98-%EA%B4%80%EB%A6%AC">PGA(Program Global Area)의 관리</a></p>
+</li>
+<li>
+<p><a href="#sgasystem-global-area%EC%9D%98-%EA%B0%9C%EB%85%90">SGA(System Global Area)의 개념</a></p>
+</li>
+<li>
+<p><a href="#sga%EC%9D%98-%EA%B4%80%EB%A6%AC">SGA의 관리</a></p>
+<ul>
+<li><a href="#sga-%EB%B3%80%EA%B2%BD">SGA 변경</a></li>
+<li><a href="#%EC%84%A4%EC%A0%95%EB%90%9C-sga-%ED%81%AC%EA%B8%B0-%ED%99%95%EC%9D%B8">설정된 SGA 크기 확인</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#shared-pool">Shared Pool</a></p>
+<ul>
+<li><a href="#shared-pool-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C">Shared Pool 구성요소</a></li>
+<li><a href="#%EA%B3%A0%EC%A0%95-%EC%98%81%EC%97%AD">고정 영역</a></li>
+<li><a href="#%EB%8F%99%EC%A0%81-%EC%98%81%EC%97%AD">동적 영역</a></li>
+<li><a href="#reserved-%EC%98%81%EC%97%AD">Reserved 영역</a></li>
+<li><a href="#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%BA%90%EC%89%AC%EC%9D%98-subpool">라이브러리 캐쉬의 Subpool</a></li>
+<li><a href="#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%BA%90%EC%89%AC%EC%9D%98-%ED%95%B4%EC%89%AC-%ED%85%8C%EC%9D%B4%EB%B8%94">라이브러리 캐쉬의 해쉬 테이블</a></li>
+<li><a href="#shared-pool%EC%9D%98-%EA%B3%B5%EA%B0%84-%EA%B4%80%EB%A6%AC-%ED%95%B4%EC%89%AC-%ED%85%8C%EC%9D%B4%EB%B8%94-%EA%B3%B5%EA%B0%84">Shared Pool의 공간 관리 (해쉬 테이블 공간)</a></li>
+<li><a href="#shared-pool%EC%9D%98-reserved-%EA%B3%B5%EA%B0%84">Shared Pool의 Reserved 공간</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC">데이터 버퍼 캐쉬</a></p>
+<ul>
+<li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC%EC%9D%98-%EA%B0%9C%EB%85%90">데이터 버퍼 캐쉬의 개념</a></li>
+<li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC%EC%9D%98-%ED%99%9C%EC%9A%A9">데이터 버퍼 캐쉬의 활용</a></li>
+<li><a href="#%EB%8B%A4%EC%A4%91-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B8%94%EB%A1%9D-%ED%81%AC%EA%B8%B0-%EC%A7%80%EC%A0%95">다중 데이터 블록 크기 지정</a></li>
+<li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B8%94%EB%A1%9D-%ED%81%AC%EA%B8%B0%EC%99%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC">데이터 블록 크기와 데이터 버퍼 캐쉬</a></li>
+<li><a href="#%EB%8B%A4%EC%A4%91-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B2%84%ED%8D%BC-%EC%BA%90%EC%89%AC-%EC%84%A4%EC%A0%95">다중 데이터 버퍼 캐쉬 설정</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EB%A6%AC%EB%91%90-%EB%A1%9C%EA%B7%B8-%EB%B2%84%ED%8D%BC-redo-log-buffer">리두 로그 버퍼 (Redo Log Buffer)</a></p>
+<ul>
+<li><a href="#%EB%B3%B5%EA%B5%AC-vs-%EB%A1%A4%EB%B0%B1">복구 vs 롤백</a></li>
+<li><a href="#%EB%A6%AC%EB%91%90-%EB%A1%9C%EA%B7%B8-%EB%B2%84%ED%8D%BC%EC%9D%98-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90">리두 로그 버퍼의 아키텍쳐</a></li>
+<li><a href="#%EB%A6%AC%EB%91%90-%EB%A1%9C%EA%B7%B8%EC%9D%98-%EC%83%9D%EC%84%B1-%EA%B3%BC%EC%A0%95">리두 로그의 생성 과정</a></li>
+<li><a href="#%EB%A6%AC%EB%91%90-%EB%A1%9C%EA%B7%B8%EC%9D%98-%EC%84%B1%EB%8A%A5">리두 로그의 성능</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#large-pool">Large Pool</a></p>
+</li>
+<li>
+<p><a href="#java-pool-%EB%B0%8F-streams-pool">Java Pool 및 Streams Pool</a></p>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2025<!-- --> Web Developer Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/초보자를 위한 Oracle 12c/[Ch03] 오라클 메모리/";window.___webpackCompilationHash="b67f2a38aa529bcd3fce";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-9db1e57833f5efb89dcb.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-2294c7fe09522d3ae52f.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-c16cb2e01f7b32df7973.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-7041c2b810fcfafe4522.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-b6456e995b4edcf0a899.js"]};/*]]>*/</script><script src="/app-9db1e57833f5efb89dcb.js" async=""></script><script src="/framework-56be8f8147b8f429c830.js" async=""></script><script src="/webpack-runtime-f93c302d6ad292462605.js" async=""></script></body></html>
