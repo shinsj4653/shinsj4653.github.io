@@ -1,5 +1,5 @@
 ---
-date: '2024-10-09'
+date: '2024-11-23'
 title: 'Linux RHEL 8.8에 Oracle Database 19c 설치 시 문제점 정리'
 categories: ['Oracle']
 summary: '오라클 설치 도중 생겼던 문제들 및 해결방법들 정리'

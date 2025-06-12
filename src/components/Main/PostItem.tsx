@@ -464,6 +464,26 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+            
+              case 'Docker':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#1E63ED', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
+              
+              case 'Kafka':
+                return (
+                  <CategoryItem
+                    style={{ backgroundColor: '#232021', color: '#fff' }}
+                    key={item}
+                  >
+                    {item}
+                  </CategoryItem>
+                )
               
             }
           })}
