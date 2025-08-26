@@ -22,7 +22,7 @@ const Footer: FunctionComponent = function () {
   return (
     <FooterWrapper>
       Thank You for Visiting My Blog, Have a Good Day 😆
-      <br />© {year} Web Developer Shin, Powered By Gatsby.
+      <br />© {year} Data Engineer Seongjun Shin, Powered By Gatsby.
     </FooterWrapper>
   )
 }

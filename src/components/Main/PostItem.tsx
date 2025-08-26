@@ -484,6 +484,16 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
                     {item}
                   </CategoryItem>
                 )
+
+              case 'k8s':
+                return (
+                    <CategoryItem
+                      style={{ backgroundColor: '#326EE4', color: '#fff' }}
+                      key={item}
+                    >
+                      {item}
+                    </CategoryItem>
+                )
               
             }
           })}
