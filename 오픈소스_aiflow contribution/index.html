@@ -1,0 +1,1269 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.20.0"/><meta data-react-helmet="true" name="description" content="apache airflow 기여과정 정리 및 회고"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="Apache Airflow Contribution"/><meta data-react-helmet="true" property="og:description" content="apache airflow 기여과정 정리 및 회고"/><meta data-react-helmet="true" property="og:image" content="/static/570f9bd1f8d8c461cfbd1b5d075550b8/thumbnail-airflow.webp"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="Apache Airflow Contribution"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Apache Airflow Contribution"/><meta data-react-helmet="true" name="twitter:description" content="apache airflow 기여과정 정리 및 회고"/><meta data-react-helmet="true" name="twitter:image" content="/static/570f9bd1f8d8c461cfbd1b5d075550b8/thumbnail-airflow.webp"/><meta data-react-helmet="true" name="twitter:site" content="@username"/><meta data-react-helmet="true" name="twitter:creator" content="@username"/><meta data-react-helmet="true" name="google-site-verification" content="G3_La3tI5z6krV3tJYP4VbJvi2dKTemqeU2svzgSaq0"/><meta data-react-helmet="true" name="naver-site-verification" content="88290c4cfe2d3116362cf74eb2c6a5bfc790793d"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><link rel="canonical" href="https://shinsj4653.github.io/오픈소스_aiflow%20contribution/" data-baseprotocol="https:" data-basehost="shinsj4653.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true">Apache Airflow Contribution</title><link data-react-helmet="true" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA" rel="icon" type="image/x-icon"/><link data-react-helmet="true" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script></head><body><script>
+void function() {
+  window.__onThemeChange = function() {}
+
+  var preferredTheme
+  try {
+    preferredTheme = localStorage.getItem('theme')
+  } catch (err) { }
+
+  function setTheme(newTheme) {
+    if (preferredTheme && document.body.classList.contains(preferredTheme)) {
+      document.body.classList.replace(preferredTheme, newTheme)
+    } else {
+      document.body.classList.add(newTheme)
+    }
+
+    window.__theme = newTheme
+    preferredTheme = newTheme
+    window.__onThemeChange(newTheme)
+  }
+
+  window.__setPreferredTheme = function(newTheme) {
+    setTheme(newTheme)
+    try {
+      localStorage.setItem('theme', newTheme)
+    } catch (err) {}
+  }
+
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  darkQuery.addListener(function(e) {
+    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+  })
+
+  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+}()
+    </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main style="background-color:var(--bg);color:var(--textNormal);transition:color 0.2s ease-out, background 0.2s ease-out" class="css-13ku56z e1strnqo0"><style data-emotion="css-global 1u0vf20">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}body{--bg:white;--textNormal:#222;--textTitle:#222;--textLink:blue;--hr:hsla(0, 0%, 0%, 0.2);background-color:var(--bg);}body code.language-text{color:#fff;background-color:#000;}body .css-m14mk4-MarkdownRenderer a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body .css-2whywe-NotFoundPageWrapper{color:black;}body .css-czusl8-IconButton{background-color:#fff;color:#333;border:2px solid #333;}body .table-of-content{background-color:#fafafa;}body .content a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}body.dark{--bg:#212529;--textNormal:rgba(255, 255, 255, 0.88);--textTitle:white;--textLink:yellow;--hr:hsla(0, 0%, 100%, 0.2);}body.dark code.language-text{color:#000;background-color:#fff;}body.dark .css-m14mk4-MarkdownRenderer a{color:yellow;-webkit-text-decoration:underline;text-decoration:underline;}body.dark .css-2whywe-NotFoundPageWrapper{color:white;}body.dark .css-czusl8-IconButton{background-color:#333;color:#fff;border:2px solid #fff;}body.dark .table-of-content{background-color:#2d2d2d;}body.dark .content a{color:var(--textLink);-webkit-text-decoration:underline;text-decoration:underline;}body.dark table th,body.dark table td{border-color:#444;}body.dark table th{background-color:#333;}body.dark table tr:nth-of-type(even){background-color:#2a2a2a;}body.dark table tr:hover{background-color:#363636;}body *::selection{background:gray;color:#fff;}body::-webkit-scrollbar{width:10px;height:10px;}body::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}body::-webkit-scrollbar-track{background:#d0d0d0;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}input[type='checkbox']{display:none;}.blog-post-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin:100px auto 0;width:calc(100% * 2 / 3);}.blog-post-container .content{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;width:100%;-webkit-flex-basis:calc(100% * 2 / 3);-ms-flex-preferred-size:calc(100% * 2 / 3);flex-basis:calc(100% * 2 / 3);margin-right:1rem;}.blog-post-container .table-of-content::before{width:100%;display:block;content:'📃 On This Page';background-color:gray;color:white;font-weight:900;padding:5px;}.blog-post-container .table-of-content{box-shadow:5px 5px 15px 5px rgba(0, 0, 0, 0.25);border-radius:7px;top:90px;-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;min-width:400px;width:90%;-webkit-flex-basis:calc(100% / 3);-ms-flex-preferred-size:calc(100% / 3);flex-basis:calc(100% / 3);margin-left:0rem;max-height:calc(100vh - 200px);position:-webkit-sticky;position:sticky;overflow:auto;margin-left:1rem;}.blog-post-container .table-of-content ul li a{padding:8px;width:100%;border-bottom:1px solid lightgray;}.blog-post-container .table-of-content ul li a{display:block;font-size:15px;}.blog-post-container .table-of-content ul li ul li a{display:block;font-size:14px;padding-left:15px;}.blog-post-container .table-of-content ul li ul li ul li a{display:block;font-size:13px;padding-left:30px;}.table-of-content::-webkit-scrollbar{width:8px;height:8px;}.table-of-content::-webkit-scrollbar-thumb{height:30%;background:#747474;border-radius:10px;}.table-of-content::-webkit-scrollbar-track{background:#d0d0d0;}@media (max-width: 1460px){.blog-post-container{width:100%;padding:0 20px;-webkit-flex-direction:column-reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.blog-post-container .content{width:inherit;}.blog-post-container .table-of-content{min-width:calc(100% * 2 / 3);top:0;position:relative;margin-bottom:50px;}}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1h99q0d">.css-1h99q0d{z-index:0;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1h99q0d{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1h99q0d e1opi4mu0"><div style="max-width:1920px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;1000&#x27; width=&#x27;1920&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/webp;base64,UklGRv4AAABXRUJQVlA4IPIAAACQBQCdASoUAAoAAAAAJYwAxQD+AbwBwAH6AbwibABdjH9m/FX4Nf7d+M3GAfrMd02k3jal4AD+//++On9h//uUAALnOX//iReBZls6RP/0M9m//+eD/8uN//gbcpaX/7z6q7qNNNo8SnP/8Fiat/er4f9z9j4fyI97f+oR+7TOo83FNDX/YWF/p/3PT/idTToM0wI2M2FaNb+PP8Fi1pMaFe8WQK/MxDXssX/yDVuzI2V44/+df8KchJFE73+m7i0GKMfuvPB27E/+sJ5b7/v+m/IcyYHbdJRgzK//05//GLTSyFprsUHDwmP+ZKMacgAAAA==" alt=""/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1920px) 1920px, 100vw" decoding="async" loading="lazy" data-src="/static/570f9bd1f8d8c461cfbd1b5d075550b8/360d3/thumbnail-airflow.webp" data-srcset="/static/570f9bd1f8d8c461cfbd1b5d075550b8/e6508/thumbnail-airflow.webp 480w,/static/570f9bd1f8d8c461cfbd1b5d075550b8/24212/thumbnail-airflow.webp 960w,/static/570f9bd1f8d8c461cfbd1b5d075550b8/360d3/thumbnail-airflow.webp 1920w" alt="thumbnail"/><noscript><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1920px) 1920px, 100vw" decoding="async" loading="lazy" src="/static/570f9bd1f8d8c461cfbd1b5d075550b8/360d3/thumbnail-airflow.webp" srcSet="/static/570f9bd1f8d8c461cfbd1b5d075550b8/e6508/thumbnail-airflow.webp 480w,/static/570f9bd1f8d8c461cfbd1b5d075550b8/24212/thumbnail-airflow.webp 960w,/static/570f9bd1f8d8c461cfbd1b5d075550b8/360d3/thumbnail-airflow.webp 1920w" alt="thumbnail"/></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css 1ar61t5">.css-1ar61t5{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;z-index:1;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-1ar61t5{width:30px;height:30px;font-size:18px;}}</style><div class="css-1ar61t5 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css kjdbv3">.css-kjdbv3{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;z-index:1;}@media (max-width: 768px){.css-kjdbv3{font-size:30px;}}</style><div class="css-kjdbv3 e1st1jau1">Apache Airflow Contribution</div><style data-emotion="css te3vxy">.css-te3vxy{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;z-index:1;}@media (max-width: 768px){.css-te3vxy{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-te3vxy e1st1jau0"><div>OpenSource / Airflow</div><div>2025.12.14.</div></div></div></div><div class="blog-post-container"><div class="content"><style data-emotion="css 17rfr83">.css-17rfr83{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding-bottom:100px;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-17rfr83 p{padding:3px 0;}.css-17rfr83 h1,.css-17rfr83 h2,.css-17rfr83 h3{font-weight:800;margin-bottom:30px;}.css-17rfr83 *+h1,.css-17rfr83 *+h2,.css-17rfr83 *+h3{margin-top:30px;}.css-17rfr83 hr+h1,.css-17rfr83 hr+h2,.css-17rfr83 hr+h3{margin-top:0;}.css-17rfr83 h1{font-size:30px;}.css-17rfr83 h2{font-size:25px;}.css-17rfr83 h3{font-size:20px;}.css-17rfr83 blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-17rfr83 ol,.css-17rfr83 ul{margin-left:20px;padding:30px 0;}.css-17rfr83 hr{border:1px solid #000000;margin:100px 0;}.css-17rfr83 a{color:#0800ff;-webkit-text-decoration:underline;text-decoration:underline;}.css-17rfr83 table{width:100%;margin:30px 0;border-collapse:collapse;font-size:15px;}.css-17rfr83 th,.css-17rfr83 td{border:1px solid #ddd;padding:12px 15px;text-align:left;}.css-17rfr83 th{background-color:#f5f5f5;font-weight:700;}.css-17rfr83 tr:nth-of-type(even){background-color:#fafafa;}.css-17rfr83 tr:hover{background-color:#f0f0f0;}.css-17rfr83 pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-17rfr83 pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-17rfr83 code[class*='language-'],.css-17rfr83 pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-17rfr83{width:100%;padding:40px 0px;line-height:1.6;font-size:14px;}.css-17rfr83 h1{font-size:23px;}.css-17rfr83 h2{font-size:20px;}.css-17rfr83 h3{font-size:17px;}.css-17rfr83 img{width:100%;}.css-17rfr83 hr{margin:50px 0;}}</style><div class="css-17rfr83 e1ijh0y10"><h1 id="최근-근황" style="position:relative;">최근 근황<a href="#%EC%B5%9C%EA%B7%BC-%EA%B7%BC%ED%99%A9" aria-label="최근 근황 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>DBA에서 데이터 엔지니어를 희망하여 이직하였지만, 데이터 파이프라인을 구축하며 오히려 <strong>잘 설계된 DB의 가치</strong>를 체감했고, 데이터를 ‘활용’하는 것보다 <strong>‘지키고 관리’하는 일</strong>에서 더 큰 보람을 느낀다는 걸 깨달았다. 결국 나는 데이터의 흐름을 만드는 것보다, 그 데이터가 담기는 단단한 ‘그릇’을 책임지는 역할에 더 끌린다는 걸 깨달아 다시 DBA로 직무 전환을 하였고, 앞으론 DBA를 메인 커리어로 가져가기로 다짐하였다.</p>
+<p>다만, 데이터 엔지니어링을 아예 놓진 않고, 공부를 병행하며 데이터 엔지니어링 역량도 함께 보유한 DBA로 성장하는게 좋을거라 판단하여 이번 airflow 기여에 도전하였다. 총 기간은 3개월, 생각보다 금방 Merge 결과를 받아 아직도 얼떨떨한 느낌이 든다. 도파민도 최강이다. 이래서 다들 오픈소스를 기여하나보다. (두근두근)</p>
+<p>각설하고, 3개월간의 오픈소스 기여 과정을 정리해보겠다.</p>
+<h1 id="1-이슈-선정" style="position:relative;">1. 이슈 선정<a href="#1-%EC%9D%B4%EC%8A%88-%EC%84%A0%EC%A0%95" aria-label="1 이슈 선정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p><a href="https://medium.com/opensource-contributors/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4%EC%9D%98-%ED%8C%90%EB%8F%84%EB%A5%BC-%EB%B0%94%EA%BF%80-ai%EB%A1%9C-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4-%EA%B8%B0%EC%97%AC-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C%EC%99%80-%ED%94%84%EB%A1%EC%ED%8A%B8-%EA%B3%B5%EC%9C%A0-2db85bf736b8" target="_blank" rel="nofollow">⭐AI 활용 오픈소스 기여 가이드 — 오픈소스 기여의 진입 장벽을 낮추고 판도를 바꿀!</a></p>
+<p>이번에도 역시 오픈소스 스승님이신 인제님의 블로그 글을 참고하였다. 가장 중요한 첫번째 단계, 바로 <code class="language-text">적합한 이슈 선정</code>이다.</p>
+<h2 id="이슈-선정-기준" style="position:relative;">이슈 선정 기준<a href="#%EC%9D%B4%EC%8A%88-%EC%84%A0%EC%A0%95-%EA%B8%B0%EC%A4%80" aria-label="이슈 선정 기준 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>좋은 이슈를 고르기 위해 세운 기준은 다음과 같다.</p>
+<ol>
+<li><code class="language-text">good first issue</code> 라벨이 붙어있을 것</li>
+<li>메인테이너가 문제를 확인하고, <strong>명확한 해결 방향</strong>을 제시했을 것</li>
+<li>아직 담당자가 없거나, 진행 중인 PR이 없을 것</li>
+</ol>
+<p>이 기준으로 Airflow 이슈들을 쭉 훑어보았다.</p>
+<h2 id="후보-이슈-분석" style="position:relative;">후보 이슈 분석<a href="#%ED%9B%84%EB%B3%B4-%EC%9D%B4%EC%8A%88-%EB%B6%84%EC%84%9D" aria-label="후보 이슈 분석 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<table>
+<thead>
+<tr>
+<th>이슈</th>
+<th>제목</th>
+<th>기준 부합도</th>
+<th>난이도</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>#55405</strong></td>
+<td><strong>Airflow emits INFO logs despite logging_level=ERROR</strong></td>
+<td><strong>상</strong></td>
+<td><strong>중</strong></td>
+<td>메인테이너가 해결 방향 명시</td>
+</tr>
+<tr>
+<td>#2</td>
+<td>Not able to see all tags when the list is too long</td>
+<td>상</td>
+<td>하</td>
+<td>UI 버그, CSS 수정</td>
+</tr>
+<tr>
+<td>#30</td>
+<td>Sensitive data from extra fields is visible…</td>
+<td>상</td>
+<td>중</td>
+<td>UI 마스킹 기능</td>
+</tr>
+<tr>
+<td>#54965</td>
+<td>Show the file name… on the Code tab</td>
+<td>상</td>
+<td>중</td>
+<td>풀스택(API+UI)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="최종-선택-55405" style="position:relative;">최종 선택: #55405<a href="#%EC%B5%9C%EC%A2%85-%EC%84%A0%ED%83%9D-55405" aria-label="최종 선택 55405 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>결국 선택한 이슈는 <a href="https://github.com/apache/airflow/issues/55405" target="_blank" rel="nofollow">#55405 - Airflow emits INFO logs despite logging_level=ERROR</a> 이다.</p>
+<p><strong>선택 이유:</strong></p>
+<ul>
+<li><code class="language-text">good first issue</code> 라벨 ✅</li>
+<li>메인테이너(@potiuk)가 직접 해결 방향을 제시함 → <code class="language-text">AIRFLOW__LOGGING__UVICORN_LOGGING_LEVEL</code> 설정 추가 ✅</li>
+<li>담당자 없음, 진행 중인 PR 없음 ✅</li>
+</ul>
+<p><strong>이슈 내용 요약:</strong>
+Airflow의 <code class="language-text">logging_level</code>을 <code class="language-text">ERROR</code>로 설정해도, uvicorn 같은 서드파티 라이브러리의 <code class="language-text">INFO</code> 로그가 계속 출력되는 문제다. Airflow 설정이 자체 로거에만 적용되고, 외부 라이브러리 로거에는 영향을 주지 않기 때문에 발생한다.</p>
+<p>메인테이너가 “새로운 설정 옵션을 추가해서 서드파티 로그 레벨도 제어할 수 있게 하자”라고 방향을 잡아줘서, 뭘 해야 하는지 명확했다. 이게 결정적이었다.</p>
+<p>최종적으로 위 이슈를 선택하였고, 해당 이슈 해결을 위한 작업진행을 해도 되는지 댓글에 작성하였다. 물론 오픈소스 생태계에선 PR를 먼저 올리는 분이 우선순위에 올라간다고 하여, 나 역시도 작업 진행에 대한 통보(?)에 가까운 댓글을 남기고 얼른 작업 진행을 하려고 하였다.<br>
+하지만, elasticsearch 기여때와는 다르게 potuik이라는 메인테이너분께서 직접 나를 해당 이슈에 assign 해주셨다는 점이다. 정말 진귀한 경험이었다. 나의 두번째 오픈소스 스승님으로 모시고 싶을 정도였다.</p>
+<h1 id="2-실행-환경-세팅" style="position:relative;">2. 실행 환경 세팅<a href="#2-%EC%8B%A4%ED%96%89-%ED%99%98%EA%B2%BD-%EC%84%B8%ED%8C%85" aria-label="2 실행 환경 세팅 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>나의 변경사항을 로컬에서 airflow 운영 환경처럼 동일하게 실행할 수 있도록 하는 방법을 찾아본 결과, <code class="language-text">breeze</code> 를 통해 가능하다는 걸 찾았다.</p>
+<h2 id="breeze란" style="position:relative;">breeze란?<a href="#breeze%EB%9E%80" aria-label="breeze란 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Breeze는 Apache Airflow의 <strong>개발 및 테스트 환경을 손쉽게 구축</strong>할 수 있도록 돕는 도구다. Docker 컨테이너를 활용해서 일관된 개발 환경을 제공하며, 복잡한 설정 없이도 Airflow 코드베이스에 기여하거나 테스트를 수행할 수 있게 해준다.</p>
+<p>쉽게 말하면, **“내 로컬에서 Airflow 운영 환경을 그대로 재현”**할 수 있게 해주는 녀석이다.</p>
+<h2 id="사전-준비" style="position:relative;">사전 준비<a href="#%EC%82%AC%EC%A0%84-%EC%A4%80%EB%B9%84" aria-label="사전 준비 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Breeze를 사용하려면 아래 도구들이 필요하다.</p>
+<ul>
+<li><strong>Docker</strong> (필수)</li>
+<li><strong>Docker Compose</strong> (필수)</li>
+<li><strong>pipx</strong> 또는 <strong>uv</strong> (Breeze 설치용)</li>
+</ul>
+<h2 id="환경-설정-순서" style="position:relative;">환경 설정 순서<a href="#%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95-%EC%88%9C%EC%84%9C" aria-label="환경 설정 순서 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h3 id="1-airflow-소스-코드-클론" style="position:relative;">1. Airflow 소스 코드 클론<a href="#1-airflow-%EC%86%8C%EC%8A%A4-%EC%BD%94%EB%93%9C-%ED%81%B4%EB%A1%A0" aria-label="1 airflow 소스 코드 클론 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/apache/airflow.git
+<span class="token builtin class-name">cd</span> airflow</code></pre></div>
+<h3 id="2-breeze-설치" style="position:relative;">2. Breeze 설치<a href="#2-breeze-%EC%84%A4%EC%B9%98" aria-label="2 breeze 설치 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>pipx를 사용하는 방법:</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">pipx <span class="token function">install</span> -e ./dev/breeze</code></pre></div>
+<p>또는 uv를 사용하는 방법:</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">uv tool <span class="token function">install</span> -e ./dev/breeze</code></pre></div>
+<h3 id="3-breeze-실행" style="position:relative;">3. Breeze 실행<a href="#3-breeze-%EC%8B%A4%ED%96%89" aria-label="3 breeze 실행 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">breeze</code></pre></div>
+<p>처음 실행하면 Docker 이미지를 빌드하느라 시간이 좀 걸린다. 커피 한 잔 하고 오면 된다. ☕</p>
+<h3 id="4-airflow-웹-서버-접속" style="position:relative;">4. Airflow 웹 서버 접속<a href="#4-airflow-%EC%9B%B9-%EC%84%9C%EB%B2%84-%EC%A0%91%EC%86%8D" aria-label="4 airflow 웹 서버 접속 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Breeze가 실행되면 <code class="language-text">http://localhost:8080</code>으로 접속해서 Airflow 웹 UI를 확인할 수 있다.</p>
+<p>기본 계정:</p>
+<ul>
+<li><strong>ID</strong>: admin</li>
+<li><strong>PW</strong>: admin</li>
+</ul>
+<h2 id="유용한-breeze-명령어" style="position:relative;">유용한 Breeze 명령어<a href="#%EC%9C%A0%EC%9A%A9%ED%95%9C-breeze-%EB%AA%85%EB%A0%B9%EC%96%B4" aria-label="유용한 breeze 명령어 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-text">breeze</code></td>
+<td>Breeze 컨테이너 진입</td>
+</tr>
+<tr>
+<td><code class="language-text">breeze start-airflow</code></td>
+<td>Airflow 웹서버 + 스케줄러 실행</td>
+</tr>
+<tr>
+<td><code class="language-text">breeze shell</code></td>
+<td>Breeze 쉘 진입</td>
+</tr>
+<tr>
+<td><code class="language-text">breeze stop</code></td>
+<td>Breeze 컨테이너 중지</td>
+</tr>
+<tr>
+<td><code class="language-text">breeze cleanup</code></td>
+<td>Docker 리소스 정리</td>
+</tr>
+</tbody>
+</table>
+<p>이렇게 환경 세팅을 마치고, 본격적으로 이슈 분석에 들어갔다.</p>
+<h1 id="3-이슈-분석-및-해결-방향-도출하기" style="position:relative;">3. 이슈 분석 및 해결 방향 도출하기<a href="#3-%EC%9D%B4%EC%8A%88-%EB%B6%84%EC%84%9D-%EB%B0%8F-%ED%95%B4%EA%B2%B0-%EB%B0%A9%ED%96%A5-%EB%8F%84%EC%B6%9C%ED%95%98%EA%B8%B0" aria-label="3 이슈 분석 및 해결 방향 도출하기 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이슈를 선택했으면 끝? 아니다. 이제부터가 진짜 시작이다. 코드를 건드리기 전에, <strong>문제의 근본 원인</strong>을 정확히 파악해야 한다.</p>
+<h2 id="문제-상황-정리" style="position:relative;">문제 상황 정리<a href="#%EB%AC%B8%EC%A0%9C-%EC%83%81%ED%99%A9-%EC%A0%95%EB%A6%AC" aria-label="문제 상황 정리 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>사용자가 보고한 현상을 다시 정리해보면:</p>
+<ul>
+<li><strong>Airflow 버전</strong>: 3.0.2 (Helm Chart 1.18.0)</li>
+<li><strong>배포 환경</strong>: Kubernetes 클러스터</li>
+<li><strong>설정</strong>: <code class="language-text">logging_level = ERROR</code>로 변경</li>
+<li><strong>문제</strong>: 설정을 바꿨는데도 <code class="language-text">INFO</code> 레벨 로그가 계속 출력됨</li>
+</ul>
+<p><code class="language-text">airflow config get-value logging logging_level</code> 명령어로 확인해도 <code class="language-text">ERROR</code>가 잘 반환된다. 설정은 분명히 적용됐는데, 왜 로그는 계속 나오는 걸까?</p>
+<h2 id="로그-출처-분석" style="position:relative;">로그 출처 분석<a href="#%EB%A1%9C%EA%B7%B8-%EC%B6%9C%EC%B2%98-%EB%B6%84%EC%84%9D" aria-label="로그 출처 분석 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>문제가 되는 로그들을 자세히 살펴보니 패턴이 보였다.</p>
+<p><strong>API 서버 로그:</strong></p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">INFO:     10.244.1.1:53666 - "GET /api/v2/version HTTP/1.1" 200 OK</code></pre></div>
+<p><strong>Triggerer 로그:</strong></p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">[2025-09-08 10:30:56 +0000] [14] [INFO] Starting gunicorn 23.0.0
+[2025-09-08 10:30:56 +0000] [14] [INFO] Listening at: http://[::]:8794 (14)</code></pre></div>
+<p>이건 <strong>Airflow 애플리케이션이 생성한 로그가 아니다.</strong></p>
+<table>
+<thead>
+<tr>
+<th>컴포넌트</th>
+<th>역할</th>
+<th>사용하는 웹서버</th>
+<th>로그 유형</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API 서버</strong></td>
+<td>REST API 제공 (FastAPI 기반), 외부 클라이언트 요청 처리</td>
+<td>uvicorn</td>
+<td>HTTP 요청마다 access log 출력</td>
+</tr>
+<tr>
+<td><strong>Triggerer</strong></td>
+<td>장시간 대기 Task를 Worker 점유 없이 효율적으로 관리하는 백그라운드 서비스</td>
+<td>gunicorn</td>
+<td>서버 시작/워커 부팅 시 startup log 출력</td>
+</tr>
+</tbody>
+</table>
+<p><strong>차이점:</strong></p>
+<ul>
+<li><strong>API 서버</strong>: 사용자/외부 시스템이 Airflow에 API 호출할 때마다 <code class="language-text">INFO: GET /api/v2/...</code> 형태의 access log가 <strong>지속적으로</strong> 출력됨</li>
+<li><strong>Triggerer</strong>: 서버 시작 시점에 <code class="language-text">Starting gunicorn</code>, <code class="language-text">Booting worker</code> 같은 startup log가 <strong>한 번</strong> 출력됨</li>
+</ul>
+<blockquote>
+<p>💡 <strong>심화: Triggerer 내부 아키텍처</strong></p>
+<p>Triggerer는 실제로 <strong>두 개의 웹서버</strong>를 사용합니다:</p>
+<table>
+<thead>
+<tr>
+<th>역할</th>
+<th>웹서버</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>메인 워커 관리</td>
+<td><strong>gunicorn</strong></td>
+<td>Triggerer 프로세스 관리 (<code class="language-text">Starting gunicorn</code> 로그 출력)</td>
+</tr>
+<tr>
+<td>로그 서빙 서버</td>
+<td><strong>uvicorn</strong></td>
+<td>Task 실행 로그를 HTTP로 외부에 제공 (<code class="language-text">serve_logs/core.py</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>따라서 이번 PR에서는 <strong>gunicorn 로깅 레벨</strong>뿐 아니라 Triggerer 내부의 <strong>uvicorn 로그 서버 설정</strong>도 함께 수정했습니다.</p>
+</blockquote>
+<p>즉, <code class="language-text">AIRFLOW__LOGGING__LOGGING_LEVEL</code> 설정은 <strong>Airflow 자체 로거에만 적용</strong>되고, uvicorn이나 gunicorn 같은 <strong>서드파티 웹서버 라이브러리의 로거에는 영향을 주지 않는다.</strong></p>
+<h2 id="코드-분석" style="position:relative;">코드 분석<a href="#%EC%BD%94%EB%93%9C-%EB%B6%84%EC%84%9D" aria-label="코드 분석 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>airflow 오픈소스에서 API 서버 로그 실행 역할을 담당하는 소스파일들의 흐름은 다음과 같다.</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token punctuation">[</span>사용자<span class="token punctuation">]</span> airflow api-server 명령 실행
+        ↓
+<span class="token punctuation">[</span>airflow/cli/commands/api_server_command.py<span class="token punctuation">]</span>  ← CLI 명령 처리 및 서버 시작
+        ↓
+<span class="token punctuation">[</span>uvicorn / gunicorn<span class="token punctuation">]</span> 웹서버 프로세스 시작
+        ↓
+<span class="token punctuation">[</span>uvicorn 내부 로거<span class="token punctuation">]</span> <span class="token assign-left variable">access_log</span><span class="token operator">=</span>True로 설정된 경우 INFO 레벨 로그 출력
+        ↓
+<span class="token string">"INFO: 10.244.1.1:53666 - GET /api/v2/version HTTP/1.1 200 OK"</span> 형태의 로그 출력</code></pre></div>
+<p>문제 상황이 어디서 발생하고, 이로 인해 영향을 받는 소스파일이 어딘지 분석한 결과이다.</p>
+<table>
+<thead>
+<tr>
+<th>문제 발생 위치</th>
+<th>파일 경로</th>
+<th>문제 상황</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>설정 옵션 부재</td>
+<td><code class="language-text">airflow-core/src/airflow/configuration.py</code></td>
+<td>uvicorn/gunicorn 로깅 레벨 설정 옵션이 <strong>존재하지 않음</strong></td>
+</tr>
+<tr>
+<td>하드코딩된 설정</td>
+<td><code class="language-text">airflow-core/src/airflow/cli/commands/api_server_command.py</code></td>
+<td><code class="language-text">access_log: True</code>가 하드코딩되어 있어 항상 INFO 로그 출력</td>
+</tr>
+<tr>
+<td>설정값 미연동</td>
+<td>동일 파일</td>
+<td>Airflow의 <code class="language-text">logging_level</code> 설정이 uvicorn에 <strong>전달되지 않음</strong></td>
+</tr>
+</tbody>
+</table>
+<p>이를 통해 수정이 필요한 소스코드 파일을 아래와 같이 결론내렸다.</p>
+<table>
+<thead>
+<tr>
+<th>수정 파일</th>
+<th>수정 내용</th>
+<th>목적</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-text">configuration.py</code></td>
+<td><code class="language-text">uvicorn_logging_level</code>, <code class="language-text">gunicorn_logging_level</code> 설정 옵션 추가</td>
+<td>사용자가 환경변수로 로깅 레벨 제어 가능하게 함</td>
+</tr>
+<tr>
+<td><code class="language-text">api_server_command.py</code></td>
+<td>설정값을 읽어서 uvicorn <code class="language-text">log_level</code> 파라미터에 전달</td>
+<td>실제로 uvicorn 로깅 레벨을 변경</td>
+</tr>
+<tr>
+<td><code class="language-text">config.yml</code></td>
+<td>새 설정 옵션의 문서화 및 기본값 정의</td>
+<td>설정 옵션 메타데이터 관리</td>
+</tr>
+</tbody>
+</table>
+<p>실제 Airflow 코드베이스를 살펴보니 원인이 명확해졌다.</p>
+<p><strong><code class="language-text">api_server_command.py</code>의 uvicorn 설정:</strong></p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">uvicorn_kwargs <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"host"</span><span class="token punctuation">:</span> args<span class="token punctuation">.</span>host<span class="token punctuation">,</span>
+    <span class="token string">"port"</span><span class="token punctuation">:</span> args<span class="token punctuation">.</span>port<span class="token punctuation">,</span>
+    <span class="token string">"workers"</span><span class="token punctuation">:</span> num_workers<span class="token punctuation">,</span>
+    <span class="token string">"access_log"</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token comment"># ← 이게 INFO 로그를 생성!</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><code class="language-text">access_log: True</code>가 하드코딩 되어있다. 사용자가 아무리 Airflow 로깅 레벨을 바꿔봤자, uvicorn은 자기 설정대로 동작하는 거다.</p>
+<p><strong>현재 Airflow가 지원하는 로깅 설정:</strong></p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"logging_level"</span><span class="token punctuation">)</span><span class="token punctuation">:</span> _available_logging_levels<span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"fab_logging_level"</span><span class="token punctuation">)</span><span class="token punctuation">:</span> _available_logging_levels<span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"celery_logging_level"</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">*</span>_available_logging_levels<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">]</span><span class="token punctuation">,</span></code></pre></div>
+<p>uvicorn이나 gunicorn 로깅 레벨을 제어하는 설정은 <strong>아예 존재하지 않는다.</strong></p>
+<h2 id="근본-원인" style="position:relative;">근본 원인<a href="#%EA%B7%BC%EB%B3%B8-%EC%9B%90%EC%9D%B8" aria-label="근본 원인 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>정리하면 이렇다:</p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>버그 여부</strong></td>
+<td>버그 아님. 기능 부족(Feature Gap)</td>
+</tr>
+<tr>
+<td><strong>문제 원인</strong></td>
+<td>Airflow 로깅 설정이 서드파티 라이브러리까지 커버하지 못함</td>
+</tr>
+<tr>
+<td><strong>영향 범위</strong></td>
+<td>uvicorn, gunicorn 등 웹서버 컴포넌트의 로그</td>
+</tr>
+</tbody>
+</table>
+<h2 id="해결-방향" style="position:relative;">해결 방향<a href="#%ED%95%B4%EA%B2%B0-%EB%B0%A9%ED%96%A5" aria-label="해결 방향 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>메인테이너(@potiuk)가 제시한 방향을 따르기로 했다.</p>
+<p><strong>새로운 설정 옵션 추가:</strong></p>
+<ul>
+<li><code class="language-text">AIRFLOW__LOGGING__UVICORN_LOGGING_LEVEL</code></li>
+<li><code class="language-text">AIRFLOW__LOGGING__UVICORN_ACCESS_LOG</code> (access log on/off)</li>
+</ul>
+<p><strong>구현 포인트:</strong></p>
+<ol>
+<li>설정 옵션 정의 추가</li>
+<li><code class="language-text">api_server_command.py</code>에서 설정값을 읽어서 uvicorn에 전달</li>
+<li>문서 업데이트</li>
+</ol>
+<p>방향이 잡혔으니, 이제 실제 코드 수정에 들어갔다.</p>
+<h1 id="4-코드-수정-및-테스팅" style="position:relative;">4. 코드 수정 및 테스팅<a href="#4-%EC%BD%94%EB%93%9C-%EC%88%98%EC%A0%95-%EB%B0%8F-%ED%85%8C%EC%8A%A4%ED%8C%85" aria-label="4 코드 수정 및 테스팅 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<h2 id="구현-내용" style="position:relative;">구현 내용<a href="#%EA%B5%AC%ED%98%84-%EB%82%B4%EC%9A%A9" aria-label="구현 내용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>uvicorn과 gunicorn의 로깅 레벨을 Airflow 메인 로깅과 <strong>독립적으로 제어</strong>할 수 있는 설정 옵션을 추가했다.</p>
+<p>핵심은 간단하다:</p>
+<ul>
+<li><code class="language-text">uvicorn_logging_level</code> 설정 추가</li>
+<li><code class="language-text">gunicorn_logging_level</code> 설정 추가</li>
+<li>API 서버에서 이 값을 읽어서 uvicorn에 전달</li>
+<li>Triggerer log server에도 동일하게 적용</li>
+</ul>
+<h2 id="코드-수정" style="position:relative;">코드 수정<a href="#%EC%BD%94%EB%93%9C-%EC%88%98%EC%A0%95" aria-label="코드 수정 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>총 3개 파일을 수정했다.</p>
+<h3 id="1-code-classlanguage-textconfigurationpycode---설정-옵션-정의" style="position:relative;">1) <code class="language-text">configuration.py</code> - 설정 옵션 정의<a href="#1-code-classlanguage-textconfigurationpycode---%EC%84%A4%EC%A0%95-%EC%98%B5%EC%85%98-%EC%A0%95%EC%9D%98" aria-label="1 code classlanguage textconfigurationpycode   설정 옵션 정의 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>먼저 새로운 설정 옵션을 Airflow 설정 시스템에 등록했다.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token comment"># airflow-core/src/airflow/configuration.py</span>
+
+<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"fab_logging_level"</span><span class="token punctuation">)</span><span class="token punctuation">:</span> _available_logging_levels<span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"celery_logging_level"</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">*</span>_available_logging_levels<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token comment"># 👇 새로 추가</span>
+<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"uvicorn_logging_level"</span><span class="token punctuation">)</span><span class="token punctuation">:</span> _available_logging_levels<span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"gunicorn_logging_level"</span><span class="token punctuation">)</span><span class="token punctuation">:</span> _available_logging_levels<span class="token punctuation">,</span></code></pre></div>
+<p>이렇게 하면 <code class="language-text">AIRFLOW__LOGGING__UVICORN_LOGGING_LEVEL</code> 환경변수나 <code class="language-text">airflow.cfg</code>에서 설정할 수 있게 된다.</p>
+<h3 id="2-code-classlanguage-textapi_server_commandpycode---api-서버에-적용" style="position:relative;">2) <code class="language-text">api_server_command.py</code> - API 서버에 적용<a href="#2-code-classlanguage-textapi_server_commandpycode---api-%EC%84%9C%EB%B2%84%EC%97%90-%EC%A0%81%EC%9A%A9" aria-label="2 code classlanguage textapi_server_commandpycode   api 서버에 적용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>API 서버 실행 시 설정값을 읽어서 uvicorn에 전달하도록 수정했다.</p>
+<p><strong>Production 모드 (gunicorn + uvicorn workers):</strong></p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token comment"># airflow-core/src/airflow/cli/commands/api_server_command.py</span>
+
+<span class="token comment"># 설정에서 uvicorn 로그 레벨 읽기</span>
+uvicorn_log_level <span class="token operator">=</span> conf<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"uvicorn_logging_level"</span><span class="token punctuation">,</span> fallback<span class="token operator">=</span><span class="token string">"info"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># ERROR 이상이면 access log 끄기</span>
+access_log_enabled <span class="token operator">=</span> uvicorn_log_level <span class="token keyword">not</span> <span class="token keyword">in</span> <span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span> <span class="token string">"critical"</span><span class="token punctuation">,</span> <span class="token string">"fatal"</span><span class="token punctuation">)</span>
+
+uvicorn_kwargs <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"host"</span><span class="token punctuation">:</span> args<span class="token punctuation">.</span>host<span class="token punctuation">,</span>
+    <span class="token string">"port"</span><span class="token punctuation">:</span> args<span class="token punctuation">.</span>port<span class="token punctuation">,</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token string">"access_log"</span><span class="token punctuation">:</span> access_log_enabled<span class="token punctuation">,</span>  <span class="token comment"># 기존: True (하드코딩)</span>
+    <span class="token string">"log_level"</span><span class="token punctuation">:</span> uvicorn_log_level<span class="token punctuation">,</span>    <span class="token comment"># 새로 추가</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>Dev 모드 (standalone uvicorn):</strong></p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token comment"># 개발 모드에서도 동일하게 적용</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    uvicorn_log_level <span class="token operator">=</span> conf<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"uvicorn_logging_level"</span><span class="token punctuation">,</span> fallback<span class="token operator">=</span><span class="token string">"info"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    run_args<span class="token punctuation">.</span>extend<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"--log-level"</span><span class="token punctuation">,</span> uvicorn_log_level<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre></div>
+<p>핵심 포인트는 <code class="language-text">access_log</code> 제어다. 로그 레벨이 <code class="language-text">error</code>, <code class="language-text">critical</code>, <code class="language-text">fatal</code>이면 access log 자체를 꺼버린다. 어차피 INFO 로그인데 ERROR 레벨에서 보일 필요가 없으니까.</p>
+<h3 id="3-code-classlanguage-textserve_logscorepycode---triggerer-log-server에도-적용" style="position:relative;">3) <code class="language-text">serve_logs/core.py</code> - Triggerer log server에도 적용<a href="#3-code-classlanguage-textserve_logscorepycode---triggerer-log-server%EC%97%90%EB%8F%84-%EC%A0%81%EC%9A%A9" aria-label="3 code classlanguage textserve_logscorepycode   triggerer log server에도 적용 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>Triggerer에서 로그 서빙할 때 쓰는 uvicorn에도 동일하게 적용했다.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token comment"># airflow-core/src/airflow/utils/serve_logs/core.py</span>
+
+<span class="token comment"># 설정에서 uvicorn 로그 레벨 읽기</span>
+uvicorn_log_level <span class="token operator">=</span> conf<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span> <span class="token string">"uvicorn_logging_level"</span><span class="token punctuation">,</span> fallback<span class="token operator">=</span><span class="token string">"info"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 기존: log_level="info" (하드코딩)</span>
+uvicorn<span class="token punctuation">.</span>run<span class="token punctuation">(</span>
+    <span class="token string">"airflow.utils.serve_logs.log_server:get_app"</span><span class="token punctuation">,</span> 
+    host<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span> 
+    port<span class="token operator">=</span>port<span class="token punctuation">,</span> 
+    log_level<span class="token operator">=</span>uvicorn_log_level  <span class="token comment"># 설정값 사용</span>
+<span class="token punctuation">)</span></code></pre></div>
+<h2 id="테스트-진행" style="position:relative;">테스트 진행<a href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%A7%84%ED%96%89" aria-label="테스트 진행 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>Breeze로 띄운 Dev Container에서 테스트했다.</p>
+<ul>
+<li><strong>환경</strong>: Apache Airflow Dev Container</li>
+<li><strong>백엔드</strong>: PostgreSQL</li>
+<li><strong>Python</strong>: 3.10</li>
+</ul>
+<h2 id="테스트-시나리오" style="position:relative;">테스트 시나리오<a href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4" aria-label="테스트 시나리오 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<h3 id="1-수정-전-기본-동작" style="position:relative;">1) 수정 전 (기본 동작)<a href="#1-%EC%88%98%EC%A0%95-%EC%A0%84-%EA%B8%B0%EB%B3%B8-%EB%8F%99%EC%9E%91" aria-label="1 수정 전 기본 동작 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>먼저 기존 동작을 확인했다.</p>
+<p><strong>터미널 1 - API 서버 실행:</strong></p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">airflow api-server --port <span class="token number">8080</span> --host <span class="token number">0.0</span>.0.0</code></pre></div>
+<p><strong>터미널 2 - API 호출:</strong></p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token function">curl</span> -s http://localhost:8080/api/v2/version
+  <span class="token builtin class-name">echo</span> <span class="token string">"✅ API call <span class="token variable">$i</span> completed"</span>
+  <span class="token function">sleep</span> <span class="token number">1</span>
+<span class="token keyword">done</span></code></pre></div>
+<p><strong>결과 - INFO 로그가 줄줄 나옴:</strong></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/99b04ab3f1443cce5175514fde72d2a4/aaf92/airflow-contribution-test-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBAgX/xAAUAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHKo5CBIP8A/8QAGBAAAgMAAAAAAAAAAAAAAAAAARACEUH/2gAIAQEAAQUCy1IAP//EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAwEBPwEdn//EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPwFMn//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABkQAAMBAQEAAAAAAAAAAAAAAAABESFRsf/aAAgBAQABPyGPWHGFZMnoxLD/2gAMAwEAAgADAAAAEKAP/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAEDAQE/ECGk/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAECAQE/EFeM/8QAGRABAQEBAQEAAAAAAAAAAAAAAREAITGB/9oACAEBAAE/EJAMp7ldQvmAOONilt6wCTAhm//Z'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/99b04ab3f1443cce5175514fde72d2a4/a59e9/airflow-contribution-test-1.webp 192w,
+/static/99b04ab3f1443cce5175514fde72d2a4/0ca9f/airflow-contribution-test-1.webp 384w,
+/static/99b04ab3f1443cce5175514fde72d2a4/dc9b9/airflow-contribution-test-1.webp 768w,
+/static/99b04ab3f1443cce5175514fde72d2a4/e2c2f/airflow-contribution-test-1.webp 1152w,
+/static/99b04ab3f1443cce5175514fde72d2a4/f3efb/airflow-contribution-test-1.webp 1536w,
+/static/99b04ab3f1443cce5175514fde72d2a4/0b34d/airflow-contribution-test-1.webp 1920w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/99b04ab3f1443cce5175514fde72d2a4/150b2/airflow-contribution-test-1.jpg 192w,
+/static/99b04ab3f1443cce5175514fde72d2a4/6985d/airflow-contribution-test-1.jpg 384w,
+/static/99b04ab3f1443cce5175514fde72d2a4/19de6/airflow-contribution-test-1.jpg 768w,
+/static/99b04ab3f1443cce5175514fde72d2a4/4472f/airflow-contribution-test-1.jpg 1152w,
+/static/99b04ab3f1443cce5175514fde72d2a4/d58d1/airflow-contribution-test-1.jpg 1536w,
+/static/99b04ab3f1443cce5175514fde72d2a4/aaf92/airflow-contribution-test-1.jpg 1920w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/jpeg"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/99b04ab3f1443cce5175514fde72d2a4/19de6/airflow-contribution-test-1.jpg"
+            alt="airflow-contribution-test-1"
+            title="airflow-contribution-test-1"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>예상대로다. access log가 INFO 레벨로 찍히고 있다.</p>
+<h3 id="2-설정-변경" style="position:relative;">2) 설정 변경<a href="#2-%EC%84%A4%EC%A0%95-%EB%B3%80%EA%B2%BD" aria-label="2 설정 변경 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>환경변수로 uvicorn 로깅 레벨을 ERROR로 바꿨다.<br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/c1a0bf573dc3621cb193aaf5847de328/dc4d2/airflow-contribution-test-2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.77083333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAACAUlEQVQoz3WS604bMRCF8w5hr7G93l07tne99yQQEnqBqkWAqKpKff8HsXxQFzUtUH4cjTXS+XRmPIumUc7U0lWVdKaSrrbKNY12daNdP7VumqzrOuusrdw49q4fOldZ7eRaulKUbq2ea22t06ZyC0oIxrFG12n0g0HTKfRDjXE3oO0tWiuRFzlUraGUgtYGBS9ACcVyuUSapIiiGNa2MMZiQXPphZDemMqbuvbKGC9V5XOhfM5Ln1HuhRB+d7nzTdP4oRt8ta28rKXXSvs0TX0URT6OYx9FsV9wztF1LYQoQSgByRjWUoAxitVqhbOzJQgh0EpDSom1XCNXObIiQ5EXSJJkThjHMcIoxqIoChw/foaxHVgukPMcRVag5AUYY0hW2WwIguCk8CxEGITzO4qiWScg5wxfbyv8/NXi/tHi9tsaD7cGN58UDscSu4sSlKanFP/TCyDlDM02x5frGjfXDQ4fGjQdhxAppCRzTdO/pn8hf3ovgDFbIakEdptz7C8POB6vsL84oBtGEC0QBG+Nr5O9AEaMouxbbDfnmLbn6KcdhNRgjINmHIRkSJIU8SvYuyNnNMHV3mA3cEwtw2YqMU3yWaPEZqvBMjJ/QBxHp1HfKAwRhBEW5eUd9t9/YHN3j83DI6bjhL5l0IZDqWzeY8YICKHzibyX8vdFpCuCJ3mNNJ0J33tbAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/c1a0bf573dc3621cb193aaf5847de328/a59e9/airflow-contribution-test-2.webp 192w,
+/static/c1a0bf573dc3621cb193aaf5847de328/0ca9f/airflow-contribution-test-2.webp 384w,
+/static/c1a0bf573dc3621cb193aaf5847de328/dc9b9/airflow-contribution-test-2.webp 768w,
+/static/c1a0bf573dc3621cb193aaf5847de328/e2c2f/airflow-contribution-test-2.webp 1152w,
+/static/c1a0bf573dc3621cb193aaf5847de328/f3efb/airflow-contribution-test-2.webp 1536w,
+/static/c1a0bf573dc3621cb193aaf5847de328/b4681/airflow-contribution-test-2.webp 1594w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/c1a0bf573dc3621cb193aaf5847de328/3b721/airflow-contribution-test-2.png 192w,
+/static/c1a0bf573dc3621cb193aaf5847de328/66595/airflow-contribution-test-2.png 384w,
+/static/c1a0bf573dc3621cb193aaf5847de328/fe486/airflow-contribution-test-2.png 768w,
+/static/c1a0bf573dc3621cb193aaf5847de328/d2d74/airflow-contribution-test-2.png 1152w,
+/static/c1a0bf573dc3621cb193aaf5847de328/e8464/airflow-contribution-test-2.png 1536w,
+/static/c1a0bf573dc3621cb193aaf5847de328/dc4d2/airflow-contribution-test-2.png 1594w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/c1a0bf573dc3621cb193aaf5847de328/fe486/airflow-contribution-test-2.png"
+            alt="airflow-contribution-test-2"
+            title="airflow-contribution-test-2"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">AIRFLOW__LOGGING__UVICORN_LOGGING_LEVEL</span><span class="token operator">=</span>ERROR
+airflow config get-value logging uvicorn_logging_level
+<span class="token comment"># ERROR</span></code></pre></div>
+<p>설정이 잘 먹혔다.</p>
+<h3 id="3-수정-후-info-로그-억제됨" style="position:relative;">3) 수정 후 (INFO 로그 억제됨)<a href="#3-%EC%88%98%EC%A0%95-%ED%9B%84-info-%EB%A1%9C%EA%B7%B8-%EC%96%B5%EC%A0%9C%EB%90%A8" aria-label="3 수정 후 info 로그 억제됨 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>같은 테스트를 다시 돌렸다.</p>
+<p><strong>터미널 1:</strong></p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">airflow api-server --port <span class="token number">8080</span> --host <span class="token number">0.0</span>.0.0</code></pre></div>
+<p><strong>터미널 2:</strong></p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token function">curl</span> -s http://localhost:8080/api/v2/version
+  <span class="token builtin class-name">echo</span> <span class="token string">"✅ API call <span class="token variable">$i</span> completed"</span>
+  <span class="token function">sleep</span> <span class="token number">1</span>
+<span class="token keyword">done</span></code></pre></div>
+<p><strong>결과:</strong><br>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/3046c/airflow-contribution-test-3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 57.29166666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAACBUlEQVQoz42S227bMBBE9RGxLFsSRVKiSMmSdaNvSZrm3hZF0af+/6ecVg6SoGgL9GGwT3swsztBXRtKW2DKgtIaSlfiKourK7Z9R983tO2GzaamHzq2XYurLTrXZxlToLRm0zRkKidYi5iiVfhpg/cNx2PH5aljOrToRqFkSCYlVVNhjMFahxSSeB2zWCxYrVasVmu22x6lDUFcOoqu4bA74v2ebtyhdIEQApFlrOOEwhjG/ci2bRmGgfqwoXQWay1RFLGMIpIkYRmtCVSuubsd2e8t3hv2+5LdrsR7h/cVw/ByAn/0Z9hut6MZG0pbIqV6Ay6XSy4WS4JcS25vK66vC66uNB9vck4nxTQpxlGxbVOcM4x+om0b+r6nOtQYa3DOnSPPsBm8CCMCKbOzu2kqmLxhmHK8LxlHx3Zr6LrZSYZSCqUkWmtSmRInMWmSnkGvugiXBKkQFIXFuRpXNxhboYsNIq+QoiBLc6LV+vyAMAzf5uzqdb47XBLMx2yamjxXSJWhC41zlkxmJElMGC5+c/GnZmD0DhSZ5ObuE24zEGcFaSqRqUIKRTxHigVRtPpPYESQxSHPj4ZvXy1PDwXPjyWfHx13H0pOl5rRa9br6BzvZfkfCsOXL8vdA/sv99z9eOLq+z3+aBh6QVUL6irDuRQhEuI4IVr93elcm7mz4a8e/gTB0DdGO7fpHwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/a59e9/airflow-contribution-test-3.webp 192w,
+/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/0ca9f/airflow-contribution-test-3.webp 384w,
+/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/dc9b9/airflow-contribution-test-3.webp 768w,
+/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/e2c2f/airflow-contribution-test-3.webp 1152w,
+/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/13d37/airflow-contribution-test-3.webp 1504w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/3b721/airflow-contribution-test-3.png 192w,
+/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/66595/airflow-contribution-test-3.png 384w,
+/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/fe486/airflow-contribution-test-3.png 768w,
+/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/d2d74/airflow-contribution-test-3.png 1152w,
+/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/3046c/airflow-contribution-test-3.png 1504w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/0eaafb56dcaf0cd0adcc1eb4037c2d89/fe486/airflow-contribution-test-3.png"
+            alt="airflow-contribution-test-3"
+            title="airflow-contribution-test-3"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span><br>
+access log가 안 나온다! ERROR 레벨로 설정했으니 INFO 로그는 찍히지 않는 게 맞다.</p>
+<p>API 응답은 정상적으로 오고, 로그만 깔끔하게 정리됐다.</p>
+<h2 id="하위-호환성" style="position:relative;">하위 호환성<a href="#%ED%95%98%EC%9C%84-%ED%98%B8%ED%99%98%EC%84%B1" aria-label="하위 호환성 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>기존 사용자한테 영향이 가면 안 되니까 이 부분도 신경 썼다.</p>
+<ul>
+<li><strong>기본값</strong>: <code class="language-text">info</code> (기존과 동일)</li>
+<li><strong>Breaking Change</strong>: 없음</li>
+<li><strong>동작 방식</strong>: 원하는 사람만 설정해서 쓰면 됨</li>
+</ul>
+<h1 id="5-피드백" style="position:relative;">5. 피드백<a href="#5-%ED%94%BC%EB%93%9C%EB%B0%B1" aria-label="5 피드백 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>오픈소스 기여 과정 중 가장 고통스러운 시간, PR 게시 후 피드백 기다리기이다. 나의 과정을 정리해보았다.</p>
+<h2 id="925-리뷰가-안온다" style="position:relative;">9/25: 리뷰가 안온다..<a href="#925-%EB%A6%AC%EB%B7%B0%EA%B0%80-%EC%95%88%EC%98%A8%EB%8B%A4" aria-label="925 리뷰가 안온다 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>9월 25일날 PR를 게시하였고, 이슈에다가도 멘션하였지만 내가 수정한 코드 영역의 담당자분들, bugraoz93와 potuik는 묵묵부답이셨다.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token comment"># .github/CODEOWNERS</span>
+
+<span class="token comment"># Airflow CLI</span>
+<span class="token operator">/</span>airflow<span class="token operator">-</span>core<span class="token operator">/</span>src<span class="token operator">/</span>airflow<span class="token operator">/</span>cli<span class="token operator">/</span> @bugraoz93 @potiuk</code></pre></div>
+<h2 id="124-응원자-1명-등장" style="position:relative;">12/4: 응원자 1명 등장<a href="#124-%EC%9D%91%EC%9B%90%EC%9E%90-1%EB%AA%85-%EB%93%B1%EC%9E%A5" aria-label="124 응원자 1명 등장 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p>약 두달간 묵묵부답인 메인테이너분들..<br>
+한번더 댓글로 ping을 날려 PR 리뷰를 부탁드리려던 찰나, 어떤 외국인 한분께서 댓글을 달아주셨다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Thanks you @shinsj4653 for submitting the PR. I would love that feature! Is there any way I can help so that it gets a review?</code></pre></div>
+<p>나의 해결 로직을 원하는 사람이 등장한 것 이다. 기분이 매우 뿌듯하면서 설렜었다.<br>
+이 분 말씀대로, 어떻게 하면 이 PR이 리뷰 받을 수 있도록 할 수 있는지를 고민하였다.<br>
+그랬더니 문득, 내가 올린 PR의 브랜치가 main의 변경사항을 담고 있지 못한다는 문구가 눈에 들어왔다. main브랜치와의 상태를 일치시키기 위해선 <code class="language-text">force-push</code>를 사용하면 된다는 가이드를 받아, 우선 이것부터 해보기로 하였다.<br>
+그랬더니, 놀라운 변경사항이 생겼다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/082da35caae44a9b089480952621a71a/b989c/airflow-contribution-force-push.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 17.1875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAmklEQVQI12WOSRLCMAwE84BAQuIllpfYjrMUgQM3/v+xoawquHDog3pUGjXaJeSy4/l6I+QDk1swuQxBBcrv0OGAsBuUPxhJC8QUeDeWO/L2wKAdXNowKIemFwRNET7tLLrRMNWP2rOr1PmbVa6DweWm/2gURZAN3EahQJoZwsyoPq0n7LxymQkF2mb+3vgF0kS0neQjba9+fABXTE416zsA0QAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/082da35caae44a9b089480952621a71a/a59e9/airflow-contribution-force-push.webp 192w,
+/static/082da35caae44a9b089480952621a71a/0ca9f/airflow-contribution-force-push.webp 384w,
+/static/082da35caae44a9b089480952621a71a/dc9b9/airflow-contribution-force-push.webp 768w,
+/static/082da35caae44a9b089480952621a71a/e2c2f/airflow-contribution-force-push.webp 1152w,
+/static/082da35caae44a9b089480952621a71a/477d4/airflow-contribution-force-push.webp 1224w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/082da35caae44a9b089480952621a71a/3b721/airflow-contribution-force-push.png 192w,
+/static/082da35caae44a9b089480952621a71a/66595/airflow-contribution-force-push.png 384w,
+/static/082da35caae44a9b089480952621a71a/fe486/airflow-contribution-force-push.png 768w,
+/static/082da35caae44a9b089480952621a71a/d2d74/airflow-contribution-force-push.png 1152w,
+/static/082da35caae44a9b089480952621a71a/b989c/airflow-contribution-force-push.png 1224w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/082da35caae44a9b089480952621a71a/fe486/airflow-contribution-force-push.png"
+            alt="force-push로 인해 requested review 요청 발생"
+            title="force-push로 인해 requested review 요청 발생"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>requested review 이벤트가 트리거 된 것 이었다. Github에 아래 기능이 내장되어 있었던 걸 알지 못헀다..</p>
+<h3 id="github-자동-리뷰어-할당-방식" style="position:relative;">GitHub 자동 리뷰어 할당 방식<a href="#github-%EC%9E%90%EB%8F%99-%EB%A6%AC%EB%B7%B0%EC%96%B4-%ED%95%A0%EB%8B%B9-%EB%B0%A9%EC%8B%9D" aria-label="github 자동 리뷰어 할당 방식 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<ol>
+<li>CODEOWNERS 파일 (.github/CODEOWNERS)</li>
+</ol>
+<ul>
+<li>PR에서 수정된 파일 경로를 기반으로 자동으로 리뷰어 요청</li>
+<li>Force push 시에도 파일이 변경되면 해당 담당자에게 리뷰 요청</li>
+</ul>
+<ol start="2">
+<li>GitHub 저장소 설정</li>
+</ol>
+<ul>
+<li>Settings → Branches → Branch protection rules</li>
+<li>“Require review from Code Owners” 옵션이 활성화되어 있으면 CODEOWNERS 기반으로 리뷰어 자동 할당</li>
+</ul>
+<p>다음엔 이런 사항들까지 모두 사전 점검해야겠다.</p>
+<h2 id="128-첫번째-test-workflow" style="position:relative;">12/8: 첫번째 Test Workflow<a href="#128-%EC%B2%AB%EB%B2%88%EC%A7%B8-test-workflow" aria-label="128 첫번째 test workflow permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><a href="https://github.com/apache/airflow/actions/runs/19982198173" target="_blank" rel="nofollow">1st Test Workflow</a></p>
+<p>airflow의 <code class="language-text">ci-amd-arm.yml</code> 덕분에 나의 PR에 대한 workflow가 github actions 에 등록되었고, requested review 이벤트 덕분에 potuik 메인테이너께서 test workflow를 실행해주셨다.</p>
+<h3 id="-ci-워크플로우-실행-권한" style="position:relative;">📍 CI 워크플로우 실행 권한<a href="#-ci-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0-%EC%8B%A4%ED%96%89-%EA%B6%8C%ED%95%9C" aria-label=" ci 워크플로우 실행 권한 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<h4>1. GitHub 저장소 설정 위치</h4>
+<p><strong>Settings → Actions → General → Fork pull request workflows from outside collaborators</strong></p>
+<p>여기서 다음 옵션 중 하나가 선택되어 있습니다:</p>
+<ul>
+<li>✅ <strong>“Require approval for first-time contributors”</strong></li>
+<li>✅ <strong>“Require approval for all outside collaborators”</strong></li>
+</ul>
+<p>이 설정 때문에 외부 기여자(fork에서 PR 보낸 사람)의 워크플로우는 <strong>메인테이너가 승인해야</strong> 실행된다.</p>
+<hr>
+<h4>2. Github Actions 설정</h4>
+<p><code class="language-text">ci-amd-arm.yml</code>에서 일부 힌트:</p>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># 35-37줄</span>
+<span class="token key atrule">permissions</span><span class="token punctuation">:</span>
+  <span class="token comment"># All other permissions are set to none by default</span>
+  <span class="token key atrule">contents</span><span class="token punctuation">:</span> read</code></pre></div>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># 257-259줄 - fork PR은 packages write 권한 없음</span>
+<span class="token key atrule">permissions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">contents</span><span class="token punctuation">:</span> read
+  <span class="token comment"># This write is only given here for `push` events from "apache/airflow" repo. </span>
+  <span class="token comment"># It is not given for PRs from forks.</span>
+  <span class="token key atrule">packages</span><span class="token punctuation">:</span> write</code></pre></div>
+<hr>
+<h4>3. 왜 이렇게 설정하나?</h4>
+<p><strong>보안상의 이유:</strong></p>
+<ul>
+<li>Fork에서 온 PR이 악성 코드를 실행할 수 있음</li>
+<li>Secrets에 접근하거나 이미지를 빌드/푸시하는 것을 방지</li>
+<li>메인테이너가 코드를 검토한 후 승인하면 실행</li>
+</ul>
+<hr>
+<h3 id="요약" style="position:relative;">요약<a href="#%EC%9A%94%EC%95%BD" aria-label="요약 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<table>
+<thead>
+<tr>
+<th>위치</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub 저장소 Settings</strong></td>
+<td>Fork PR 워크플로우 승인 필요 설정</td>
+</tr>
+<tr>
+<td><code class="language-text">ci-amd-arm.yml</code></td>
+<td>permissions 제한, 조건부 실행</td>
+</tr>
+</tbody>
+</table>
+<p>코드 자체에는 “메인테이너만”이라는 명시적 설정이 없고, <strong>GitHub 저장소 관리자 설정</strong>에서 제어됩니다! 👍</p>
+<p>위 내용처럼, 정해진 사람들만 나의 변경사항에 대한 workflow를 실행할 수 있다. 실행 workflow의 결과는 아래와 같다.</p>
+<table>
+<thead>
+<tr>
+<th>테스트 카테고리</th>
+<th>실패 항목</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CI Image checks</td>
+<td>Static check</td>
+<td>❌ 실패</td>
+</tr>
+<tr>
+<td>Postgres/MySQL/Sqlite tests:core</td>
+<td>API, CLI, Core, Serialization</td>
+<td>❌ 실패</td>
+</tr>
+<tr>
+<td>Low dep tests:core</td>
+<td>API, CLI, Core, Serialization</td>
+<td>❌ 실패</td>
+</tr>
+</tbody>
+</table>
+<h3 id="오류-1-static-check-실패" style="position:relative;">오류 1: Static Check 실패<a href="#%EC%98%A4%EB%A5%98-1-static-check-%EC%8B%A4%ED%8C%A8" aria-label="오류 1 static check 실패 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><strong>핵심 에러:</strong></p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span> uvicorn_log_level = conf.get("logging", "uvicorn_logging_level", fallback="info").lower()
+<span class="token prefix deleted">-</span>     
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> uvicorn_log_level = conf.get("logging", "uvicorn_logging_level", fallback="info").lower()
+<span class="token prefix inserted">+</span></span></code></pre></div>
+<p><strong>원인:</strong> <code class="language-text">core.py</code>에서 trailing whitespace(줄 끝 공백)가 있어서 pre-commit hook이 실패</p>
+<p><strong>수정:</strong> 줄 끝 공백 제거 및 코드 포맷팅 정리</p>
+<h3 id="오류-2-unit-test-실패" style="position:relative;">오류 2: Unit Test 실패<a href="#%EC%98%A4%EB%A5%98-2-unit-test-%EC%8B%A4%ED%8C%A8" aria-label="오류 2 unit test 실패 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><strong>핵심 에러:</strong></p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">FAILED test_api_server_command.py::TestCliApiServer::test_run_command_daemon
+
+Expected: run<span class="token punctuation">(</span><span class="token punctuation">..</span>., <span class="token assign-left variable">access_log</span><span class="token operator">=</span>True, <span class="token assign-left variable">proxy_headers</span><span class="token operator">=</span>False<span class="token punctuation">)</span>
+Actual:   run<span class="token punctuation">(</span><span class="token punctuation">..</span>., <span class="token assign-left variable">access_log</span><span class="token operator">=</span>True, <span class="token assign-left variable">log_level</span><span class="token operator">=</span><span class="token string">'info'</span>, <span class="token assign-left variable">proxy_headers</span><span class="token operator">=</span>False<span class="token punctuation">)</span></code></pre></div>
+<p><strong>원인:</strong> <code class="language-text">log_level</code> 파라미터를 추가했는데, 기존 테스트 코드에는 이 파라미터가 없어서 테스트가 실패</p>
+<p><strong>수정:</strong> 테스트 기대값에 <code class="language-text">log_level='info'</code> 추가</p>
+<h3 id="수정-커밋" style="position:relative;">수정 커밋<a href="#%EC%88%98%EC%A0%95-%EC%BB%A4%EB%B0%8B" aria-label="수정 커밋 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><a href="https://github.com/apache/airflow/commit/0b10e39cb2046d89fc42d1df22d671e1894eeda7" target="_blank" rel="nofollow">Fix unit tests for uvicorn log level and fix trailing whitespace</a></p>
+<p><strong>수정 파일:</strong></p>
+<table>
+<thead>
+<tr>
+<th>파일</th>
+<th>수정 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-text">serve_logs/core.py</code></td>
+<td>trailing whitespace 제거</td>
+</tr>
+<tr>
+<td><code class="language-text">test_api_server_command.py</code></td>
+<td>테스트 기대값에 <code class="language-text">log_level='info'</code> 추가 (2곳)</td>
+</tr>
+</tbody>
+</table>
+<p>수정 커밋에 대해 push 후, 리뷰 재요청을 드렸다.</p>
+<h2 id="129-두번째-test-workflow" style="position:relative;">12/9: 두번째 Test Workflow<a href="#129-%EB%91%90%EB%B2%88%EC%A7%B8-test-workflow" aria-label="129 두번째 test workflow permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><a href="https://github.com/apache/airflow/actions/runs/20017506205" target="_blank" rel="nofollow">2nd Test Workflow</a></p>
+<p>potiuk은 신이시다. 재요청에 하루도 안되어서 응답해주셨다. 하지만 아쉽게도, 또 실패했다.</p>
+<table>
+<thead>
+<tr>
+<th>테스트 카테고리</th>
+<th>실패 항목</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CI Image checks</td>
+<td>Static check</td>
+<td>❌ 실패</td>
+</tr>
+</tbody>
+</table>
+<h3 id="오류-static-check-실패-또" style="position:relative;">오류: Static Check 실패 (또..)<a href="#%EC%98%A4%EB%A5%98-static-check-%EC%8B%A4%ED%8C%A8-%EB%98%90" aria-label="오류 static check 실패 또 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><strong>핵심 에러:</strong></p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span> uvicorn.run("airflow.utils.serve_logs.log_server:get_app", host="", port=port, log_level=uvicorn_log_level)
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span> uvicorn.run(
+<span class="token prefix inserted">+</span>     "airflow.utils.serve_logs.log_server:get_app", host="", port=port, log_level=uvicorn_log_level
+<span class="token prefix inserted">+</span> )</span></code></pre></div>
+<p><strong>원인:</strong> 분명 저번엔 trailing whitespace(줄 끝 공백)를 없애서 해당 오류가 안 날 줄 알았는데 다시 발생해서 의아했다. 알고 보니 <strong>한 줄이 너무 길어서</strong> 코드 포맷팅 규칙에 위반된 것이었다.<br>
+이에 potuik은 <code class="language-text">prek</code>를 사용해보라고 권장해주셨다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/47b1066a9e87e04901b8c441de3a4c4e/b989c/airflow-contribution-prek.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 26.5625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA4ElEQVQY032QyW6EMBBEObMMYAzGxjA2yzBbtv//uBfZg6IcohyeqtwqtbqcvO87y3Znvn5i/RXrb0zLg84uCHWm6d3/aIedb6hxpZIDiWwNnT7jtif+8sa03HDbA7feo7bGUYiesjGUjf4DQylfnIQmScuWUvTY9YNcOtJCkFUdedmSH5oF/0vDPPj0JCPZMStqRRJM3VqkGhj9BWVnGjXSqClWltrTaI+IFX2sKbqRzjj0uGCm9ciP8eKfhZNb2R9f9HZG9lMM1Cr80YzofeTlHXU7xExYGvLhrQZPJQ3f6YCAcBa/YtoAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/47b1066a9e87e04901b8c441de3a4c4e/a59e9/airflow-contribution-prek.webp 192w,
+/static/47b1066a9e87e04901b8c441de3a4c4e/0ca9f/airflow-contribution-prek.webp 384w,
+/static/47b1066a9e87e04901b8c441de3a4c4e/dc9b9/airflow-contribution-prek.webp 768w,
+/static/47b1066a9e87e04901b8c441de3a4c4e/e2c2f/airflow-contribution-prek.webp 1152w,
+/static/47b1066a9e87e04901b8c441de3a4c4e/477d4/airflow-contribution-prek.webp 1224w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/47b1066a9e87e04901b8c441de3a4c4e/3b721/airflow-contribution-prek.png 192w,
+/static/47b1066a9e87e04901b8c441de3a4c4e/66595/airflow-contribution-prek.png 384w,
+/static/47b1066a9e87e04901b8c441de3a4c4e/fe486/airflow-contribution-prek.png 768w,
+/static/47b1066a9e87e04901b8c441de3a4c4e/d2d74/airflow-contribution-prek.png 1152w,
+/static/47b1066a9e87e04901b8c441de3a4c4e/b989c/airflow-contribution-prek.png 1224w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/47b1066a9e87e04901b8c441de3a4c4e/fe486/airflow-contribution-prek.png"
+            alt="prek"
+            title="prek"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="prek-이란" style="position:relative;">prek 이란?<a href="#prek-%EC%9D%B4%EB%9E%80" aria-label="prek 이란 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<blockquote>
+<p>💡 <strong>prek (pre-commit)</strong>: Git 커밋 전에 코드 스타일, 포맷팅, lint 등을 자동으로 검사하고 수정해주는 도구. Airflow 프로젝트에서는 <code class="language-text">prek</code>라는 alias로 사용한다.</p>
+</blockquote>
+<p><strong>사용 방법:</strong></p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token comment"># 모든 파일에 대해 prek 실행</span>
+prek run --all-files
+
+<span class="token comment"># git hook으로 설치 (커밋 시 자동 실행)</span>
+prek <span class="token function">install</span></code></pre></div>
+<h3 id="교훈" style="position:relative;">교훈<a href="#%EA%B5%90%ED%9B%88" aria-label="교훈 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p>단순히 trailing whitespace만 제거하는 게 아니라, <strong>prek를 로컬에서 먼저 실행</strong>해서 모든 포맷팅 이슈를 확인해야 했다. 이후부터는 push 전에 항상 <code class="language-text">prek run --all-files</code>를 실행하기로 했다.</p>
+<h2 id="1210-세번째-test-workflow" style="position:relative;">12/10: 세번째 Test Workflow<a href="#1210-%EC%84%B8%EB%B2%88%EC%A7%B8-test-workflow" aria-label="1210 세번째 test workflow permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><img src="https://github.com/apache/airflow/actions/runs/20067666832/workflow" alt="3rd Test Workflow"></p>
+<p>드디어, 테스트 결과가 올 성공으로 나왔다 (감격..)<br>
+하지만..
+potuik께서 이런 말씀을 하셨다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a1edb743c06aae4d48f0d5a6dcd404a8/b989c/airflow-contribution-config.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 21.354166666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAz0lEQVQY023J7U6DMBTGcT7LWGGspbRsbXkpg8HEqdH7v6Bewck5BmLMNH745Z88TzR1HtpugPqygDI9lMZD5QbgqgbGK8iKM+TSQC7tQ+2vTdsLlGcPKa8g4kKjUBb9uOAwv+L4/I7z/ROH2xtOLx/YT3c0zYC1n9G2VzTNuHHdFU07bpyftmZcY/S058QOkmy/kHITCWWo0I6EsiSrmvLiRElWUJKJ7xa0S8VPH61btEtFYHkZuG5CcjyFmB1DzESIGd+sf3KQYf/Hf9vqC0tKZxcQUE8YAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a1edb743c06aae4d48f0d5a6dcd404a8/a59e9/airflow-contribution-config.webp 192w,
+/static/a1edb743c06aae4d48f0d5a6dcd404a8/0ca9f/airflow-contribution-config.webp 384w,
+/static/a1edb743c06aae4d48f0d5a6dcd404a8/dc9b9/airflow-contribution-config.webp 768w,
+/static/a1edb743c06aae4d48f0d5a6dcd404a8/e2c2f/airflow-contribution-config.webp 1152w,
+/static/a1edb743c06aae4d48f0d5a6dcd404a8/477d4/airflow-contribution-config.webp 1224w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a1edb743c06aae4d48f0d5a6dcd404a8/3b721/airflow-contribution-config.png 192w,
+/static/a1edb743c06aae4d48f0d5a6dcd404a8/66595/airflow-contribution-config.png 384w,
+/static/a1edb743c06aae4d48f0d5a6dcd404a8/fe486/airflow-contribution-config.png 768w,
+/static/a1edb743c06aae4d48f0d5a6dcd404a8/d2d74/airflow-contribution-config.png 1152w,
+/static/a1edb743c06aae4d48f0d5a6dcd404a8/b989c/airflow-contribution-config.png 1224w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a1edb743c06aae4d48f0d5a6dcd404a8/fe486/airflow-contribution-config.png"
+            alt="config.yml"
+            title="config.yml"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>아뿔싸, 새로 추가한 <code class="language-text">uvicorn_logging_level</code>에 대한 설명을 config.yml 에 추가했어야했다.</p>
+<p><a href="https://github.com/apache/airflow/commit/8d33a7a9a7b6172f37f658f2b9108bdb94690a38" target="_blank" rel="nofollow">commit <code class="language-text">8d33a7a</code>: add unvicorn_logging_level to config.yml</a></p>
+<div class="gatsby-highlight" data-language="diff"><pre class="language-diff"><code class="language-diff"><span class="token unchanged"><span class="token prefix unchanged"> </span>     type: string
+<span class="token prefix unchanged"> </span>     example: ~
+<span class="token prefix unchanged"> </span>     default: "WARNING"
+</span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span>   uvicorn_logging_level:
+<span class="token prefix inserted">+</span>     description: |
+<span class="token prefix inserted">+</span>       Logging level for uvicorn (API server and serve-logs).
+<span class="token prefix inserted">+</span>
+<span class="token prefix inserted">+</span>       Supported values: ``CRITICAL``, ``ERROR``, ``WARNING``, ``INFO``, ``DEBUG``.
+<span class="token prefix inserted">+</span>     version_added: 3.2.0
+<span class="token prefix inserted">+</span>     type: string
+<span class="token prefix inserted">+</span>     example: ~
+<span class="token prefix inserted">+</span>     default: "INFO"
+</span><span class="token unchanged"><span class="token prefix unchanged"> </span>   logging_config_class:
+<span class="token prefix unchanged"> </span>     description: |
+<span class="token prefix unchanged"> </span>       Logging class</span></code></pre></div>
+<p>위와 같이 <code class="language-text">config.yml</code>에 <code class="language-text">uvicorn_logging_level</code> 설정 옵션의 설명을 추가했다.</p>
+<h2 id="1211-네번째-test-workflow" style="position:relative;">12/11: 네번째 Test Workflow<a href="#1211-%EB%84%A4%EB%B2%88%EC%A7%B8-test-workflow" aria-label="1211 네번째 test workflow permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><a href="https://github.com/apache/airflow/actions/runs/20069559767/job/57583891734?pr=56062" target="_blank" rel="nofollow">4th test workflow</a></p>
+<table>
+<thead>
+<tr>
+<th>테스트 카테고리</th>
+<th>실패 항목</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build CI images</td>
+<td>Build CI linux/amd64 image 3.10</td>
+<td>❌ 실패</td>
+</tr>
+</tbody>
+</table>
+<h3 id="오류-ci-캐시-파일-오류" style="position:relative;">오류: CI 캐시 파일 오류<a href="#%EC%98%A4%EB%A5%98-ci-%EC%BA%90%EC%8B%9C-%ED%8C%8C%EC%9D%BC-%EC%98%A4%EB%A5%98" aria-label="오류 ci 캐시 파일 오류 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h3>
+<p><strong>핵심 에러:</strong></p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">Verify ci-cache <span class="token function">file</span> exists
+Process completed with <span class="token builtin class-name">exit</span> code <span class="token number">1</span>.</code></pre></div>
+<p><strong>원인 분석:</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>오류 유형</strong></td>
+<td>GitHub Actions 인프라 문제</td>
+</tr>
+<tr>
+<td><strong>원인</strong></td>
+<td>CI 빌드에 필요한 캐시 파일이 존재하지 않음</td>
+</tr>
+<tr>
+<td><strong>내 코드 문제?</strong></td>
+<td>❌ 아님. GitHub Actions의 캐시 만료 또는 인프라 이슈</td>
+</tr>
+<tr>
+<td><strong>해결 방법</strong></td>
+<td>워크플로우 재실행 (Re-run) 요청</td>
+</tr>
+</tbody>
+</table>
+<p>이 오류는 <strong>내 코드와 무관한 CI 인프라 문제</strong>였다. GitHub Actions에서 Docker 이미지 빌드 시 사용하는 캐시 파일이 만료되거나 손상되어 발생하는 일시적인 오류다. 메인테이너에게 워크플로우 재실행을 요청했다.</p>
+<h2 id="1211-마지막-test-workflow-그리고-pr-merge" style="position:relative;">12/11: 마지막 Test Workflow, 그리고 PR Merge<a href="#1211-%EB%A7%88%EC%A7%80%EB%A7%89-test-workflow-%EA%B7%B8%EB%A6%AC%EA%B3%A0-pr-merge" aria-label="1211 마지막 test workflow 그리고 pr merge permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2>
+<p><a href="https://github.com/apache/airflow/actions/runs/20108443529" target="_blank" rel="nofollow">5th test workflow</a></p>
+<p>마침내 마지막 Test Workflow가 통과되었고, 인생 첫 오픈소스 Contribution에 성공하였다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7fb6dd553e30c644e89499db373fb3c5/047c3/airflow-contribution-pr-merge.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 89.58333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABYlAAAWJQFJUiTwAAADGklEQVQ4y42Uy67bNhCGtT3Hsm4kRYkiRV0tybKtY59rkQAJmrbooqsWCYpsu+h79TG10F+QqnsaoEWz+DDD4UXizM9xxuaH+fef/sCH59+WYbrD8fyC4/nZ2vHpe7TTW3SnF3SXb9Gc3qC9e4f+8h794R5ZsYNPUnhRYtmGHM6tR+dCPeHx9OPSDCNk0YFwBVnswFWHQB5AM+Pv4LMcm1DADYXdHLAMdT+haA/Q7QFMFHCa/ji3wwk01UuiarC0AElyRDy3B0csQ8gkovjfIXZdDpoWCKiA88vHz/PPnz5D6N3SHx9Q7I7I6z2K9oiyOyFRLbhsEMsa/C+MT7PGYsYsq0DsgRmcjc9m8/u78bzs9mcI3SDNGySygtCtvboqOxvLdGsxfpj1iLIe0syp2qZgGyZw3IDbA9NiWCI54HYb4dajlo21xLL5R8zg+gSumduu89sgXovih2wOSIpY7hYqGoS8QJSU1no0f4XlX46pgh9rhLxEEBcWjwg4KktnKTXK8ZulHl+QlBNke7HQfLSw/ACqxlfy1XKzdvcI0dyDl3f2Q44X8tknAu0wLe0woT9cMBzOEHlt8yeLNY9C1cj0ax5NLFUVEllC6hYs1XBXHbLZDRMjl8WI8yrUjcf+zuV/w3DrM9xsCTY+W4sSczknQoOk5RLGOQwR1whjhYB9HSTRVrdelMKpdDV3bY+qn5ai2UOVPWQ1WKFGibaL/4+s6JCo5qrDeHYDDlXtF90/gGStlYEbxnCDr8Nc173K5sYL501AwES9GKH6vMY24KtQgxVzFZNbP3rlGjP5vh5mfOdx/3F+Gn8FFXKRualmA1kMEHmHTHeQugeJcwTEvGmFkCprI5M/IsHSCnk12j0BlXBK9TLX+VtU3bgc7p4xTM/oL++wf/iAw9N3GO7fQ/RvQOQeNFG2ecSiWJsIV+CygukBdTchIMrIxpu9iCJOq4UlBUIq4UUZArr+jfXjCj7V8IIEXph+getz3GzME2R27OSZmOuyRHe4X/bT49o0aYYwlhbT40w7M8I1FV3H2qrAEGfViqxsf/wTCGjaI2EJ3S4AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7fb6dd553e30c644e89499db373fb3c5/a59e9/airflow-contribution-pr-merge.webp 192w,
+/static/7fb6dd553e30c644e89499db373fb3c5/0ca9f/airflow-contribution-pr-merge.webp 384w,
+/static/7fb6dd553e30c644e89499db373fb3c5/dc9b9/airflow-contribution-pr-merge.webp 768w,
+/static/7fb6dd553e30c644e89499db373fb3c5/e2c2f/airflow-contribution-pr-merge.webp 1152w,
+/static/7fb6dd553e30c644e89499db373fb3c5/a5bb4/airflow-contribution-pr-merge.webp 1208w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7fb6dd553e30c644e89499db373fb3c5/3b721/airflow-contribution-pr-merge.png 192w,
+/static/7fb6dd553e30c644e89499db373fb3c5/66595/airflow-contribution-pr-merge.png 384w,
+/static/7fb6dd553e30c644e89499db373fb3c5/fe486/airflow-contribution-pr-merge.png 768w,
+/static/7fb6dd553e30c644e89499db373fb3c5/d2d74/airflow-contribution-pr-merge.png 1152w,
+/static/7fb6dd553e30c644e89499db373fb3c5/047c3/airflow-contribution-pr-merge.png 1208w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7fb6dd553e30c644e89499db373fb3c5/fe486/airflow-contribution-pr-merge.png"
+            alt="pr-merge-success"
+            title="pr-merge-success"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h1 id="7-느낀점" style="position:relative;">7. 느낀점<a href="#7-%EB%8A%90%EB%82%80%EC%A0%90" aria-label="7 느낀점 permalink" class="anchor after"><svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h1>
+<p>이번 기여를 통해 느낀 점을 정리해본다.</p>
+<ol>
+<li>이슈 선정이 기여의 90%다.</li>
+</ol>
+<blockquote>
+<p>솔직히 이번 기여는 난이도가 엄청 높진 않았다. Airflow 웹서버 실행 흐름을 파악하고, 관련 소스파일 몇 개를 수정한 게 전부였으니까. 하지만 그래서 더 중요한 걸 깨달았다. 나같은 뉴비한테는 <strong>적당한 난이도의 이슈를 찾는 것 자체가 절반의 성공</strong>이라는 거다. <code class="language-text">good first issue</code> 라벨이 붙어있고, 메인테이너가 방향을 제시해준 이슈. 이런 보석 같은 이슈를 발굴하는 눈을 기르는 게 첫 번째 과제였다.</p>
+</blockquote>
+<ol start="2">
+<li>메인테이너의 관심도가 생각보다 중요하다.</li>
+</ol>
+<blockquote>
+<p>처음 PR 올리고 3개월이나 기다렸는데, 막상 potiuk이 리뷰를 시작하니까 일주일도 안 돼서 머지됐다. 12월 둘째주는 매일 피드백이 올 때마다 도파민이 터졌다. 리뷰어가 적극적으로 봐주면 이렇게 빨리 끝날 수 있구나 싶었다.</p>
+</blockquote>
+<ol start="3">
+<li>테스트 코드와 린트는 기본 중의 기본.</li>
+</ol>
+<blockquote>
+<p>코드 수정은 했는데 테스트가 깨지고, 린트 에러가 나고… 이런 실수를 반복하면서 깨달았다. 오픈소스 기여의 끝은 결국 <strong>테스트 통과</strong>다. 내 수정사항이 맞다고 우기는 게 아니라, 테스트 결과로 증명해야 한다. 다음 기여 때는 첫 커밋부터 변경사항에 대응하는 테스트 코드 검증 및 <code class="language-text">prek run --all-files</code>를 습관화해야겠다.</p>
+</blockquote>
+<p>다음 기여는 회사에서 사용 중인 모니터링 도구, datadog에 기여해보기로 하였다. 위 교훈들을 다음엔 바로 적용할 수 있는, 성장하는 컨트리뷰터가 되겠다.</p></div></div><div class="table-of-content"><ul>
+<li>
+<p><a href="#%EC%B5%9C%EA%B7%BC-%EA%B7%BC%ED%99%A9">최근 근황</a></p>
+</li>
+<li>
+<p><a href="#1-%EC%9D%B4%EC%8A%88-%EC%84%A0%EC%A0%95">1. 이슈 선정</a></p>
+<ul>
+<li><a href="#%EC%9D%B4%EC%8A%88-%EC%84%A0%EC%A0%95-%EA%B8%B0%EC%A4%80">이슈 선정 기준</a></li>
+<li><a href="#%ED%9B%84%EB%B3%B4-%EC%9D%B4%EC%8A%88-%EB%B6%84%EC%84%9D">후보 이슈 분석</a></li>
+<li><a href="#%EC%B5%9C%EC%A2%85-%EC%84%A0%ED%83%9D-55405">최종 선택: #55405</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#2-%EC%8B%A4%ED%96%89-%ED%99%98%EA%B2%BD-%EC%84%B8%ED%8C%85">2. 실행 환경 세팅</a></p>
+<ul>
+<li>
+<p><a href="#breeze%EB%9E%80">breeze란?</a></p>
+</li>
+<li>
+<p><a href="#%EC%82%AC%EC%A0%84-%EC%A4%80%EB%B9%84">사전 준비</a></p>
+</li>
+<li>
+<p><a href="#%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95-%EC%88%9C%EC%84%9C">환경 설정 순서</a></p>
+<ul>
+<li><a href="#1-airflow-%EC%86%8C%EC%8A%A4-%EC%BD%94%EB%93%9C-%ED%81%B4%EB%A1%A0">1. Airflow 소스 코드 클론</a></li>
+<li><a href="#2-breeze-%EC%84%A4%EC%B9%98">2. Breeze 설치</a></li>
+<li><a href="#3-breeze-%EC%8B%A4%ED%96%89">3. Breeze 실행</a></li>
+<li><a href="#4-airflow-%EC%9B%B9-%EC%84%9C%EB%B2%84-%EC%A0%91%EC%86%8D">4. Airflow 웹 서버 접속</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%9C%A0%EC%9A%A9%ED%95%9C-breeze-%EB%AA%85%EB%A0%B9%EC%96%B4">유용한 Breeze 명령어</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#3-%EC%9D%B4%EC%8A%88-%EB%B6%84%EC%84%9D-%EB%B0%8F-%ED%95%B4%EA%B2%B0-%EB%B0%A9%ED%96%A5-%EB%8F%84%EC%B6%9C%ED%95%98%EA%B8%B0">3. 이슈 분석 및 해결 방향 도출하기</a></p>
+<ul>
+<li><a href="#%EB%AC%B8%EC%A0%9C-%EC%83%81%ED%99%A9-%EC%A0%95%EB%A6%AC">문제 상황 정리</a></li>
+<li><a href="#%EB%A1%9C%EA%B7%B8-%EC%B6%9C%EC%B2%98-%EB%B6%84%EC%84%9D">로그 출처 분석</a></li>
+<li><a href="#%EC%BD%94%EB%93%9C-%EB%B6%84%EC%84%9D">코드 분석</a></li>
+<li><a href="#%EA%B7%BC%EB%B3%B8-%EC%9B%90%EC%9D%B8">근본 원인</a></li>
+<li><a href="#%ED%95%B4%EA%B2%B0-%EB%B0%A9%ED%96%A5">해결 방향</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#4-%EC%BD%94%EB%93%9C-%EC%88%98%EC%A0%95-%EB%B0%8F-%ED%85%8C%EC%8A%A4%ED%8C%85">4. 코드 수정 및 테스팅</a></p>
+<ul>
+<li>
+<p><a href="#%EA%B5%AC%ED%98%84-%EB%82%B4%EC%9A%A9">구현 내용</a></p>
+</li>
+<li>
+<p><a href="#%EC%BD%94%EB%93%9C-%EC%88%98%EC%A0%95">코드 수정</a></p>
+<ul>
+<li><a href="#1-code-classlanguage-textconfigurationpycode---%EC%84%A4%EC%A0%95-%EC%98%B5%EC%85%98-%EC%A0%95%EC%9D%98">1) <code class="language-text">configuration.py</code> - 설정 옵션 정의</a></li>
+<li><a href="#2-code-classlanguage-textapi_server_commandpycode---api-%EC%84%9C%EB%B2%84%EC%97%90-%EC%A0%81%EC%9A%A9">2) <code class="language-text">api_server_command.py</code> - API 서버에 적용</a></li>
+<li><a href="#3-code-classlanguage-textserve_logscorepycode---triggerer-log-server%EC%97%90%EB%8F%84-%EC%A0%81%EC%9A%A9">3) <code class="language-text">serve_logs/core.py</code> - Triggerer log server에도 적용</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%A7%84%ED%96%89">테스트 진행</a></p>
+</li>
+<li>
+<p><a href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4">테스트 시나리오</a></p>
+<ul>
+<li><a href="#1-%EC%88%98%EC%A0%95-%EC%A0%84-%EA%B8%B0%EB%B3%B8-%EB%8F%99%EC%9E%91">1) 수정 전 (기본 동작)</a></li>
+<li><a href="#2-%EC%84%A4%EC%A0%95-%EB%B3%80%EA%B2%BD">2) 설정 변경</a></li>
+<li><a href="#3-%EC%88%98%EC%A0%95-%ED%9B%84-info-%EB%A1%9C%EA%B7%B8-%EC%96%B5%EC%A0%9C%EB%90%A8">3) 수정 후 (INFO 로그 억제됨)</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%ED%95%98%EC%9C%84-%ED%98%B8%ED%99%98%EC%84%B1">하위 호환성</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#5-%ED%94%BC%EB%93%9C%EB%B0%B1">5. 피드백</a></p>
+<ul>
+<li>
+<p><a href="#925-%EB%A6%AC%EB%B7%B0%EA%B0%80-%EC%95%88%EC%98%A8%EB%8B%A4">9/25: 리뷰가 안온다..</a></p>
+</li>
+<li>
+<p><a href="#124-%EC%9D%91%EC%9B%90%EC%9E%90-1%EB%AA%85-%EB%93%B1%EC%9E%A5">12/4: 응원자 1명 등장</a></p>
+<ul>
+<li><a href="#github-%EC%9E%90%EB%8F%99-%EB%A6%AC%EB%B7%B0%EC%96%B4-%ED%95%A0%EB%8B%B9-%EB%B0%A9%EC%8B%9D">GitHub 자동 리뷰어 할당 방식</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#128-%EC%B2%AB%EB%B2%88%EC%A7%B8-test-workflow">12/8: 첫번째 Test Workflow</a></p>
+<ul>
+<li>
+<p><a href="#-ci-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0-%EC%8B%A4%ED%96%89-%EA%B6%8C%ED%95%9C">📍 CI 워크플로우 실행 권한</a></p>
+<ul>
+<li><a href="#1-github-%EC%A0%80%EC%9E%A5%EC%86%8C-%EC%84%A4%EC%A0%95-%EC%9C%84%EC%B9%98">1. GitHub 저장소 설정 위치</a></li>
+<li><a href="#2-github-actions-%EC%84%A4%EC%A0%95">2. Github Actions 설정</a></li>
+<li><a href="#3-%EC%99%9C-%EC%9D%B4%EB%A0%87%EA%B2%8C-%EC%84%A4%EC%A0%95%ED%95%98%EB%82%98">3. 왜 이렇게 설정하나?</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#%EC%9A%94%EC%95%BD">요약</a></p>
+</li>
+<li>
+<p><a href="#%EC%98%A4%EB%A5%98-1-static-check-%EC%8B%A4%ED%8C%A8">오류 1: Static Check 실패</a></p>
+</li>
+<li>
+<p><a href="#%EC%98%A4%EB%A5%98-2-unit-test-%EC%8B%A4%ED%8C%A8">오류 2: Unit Test 실패</a></p>
+</li>
+<li>
+<p><a href="#%EC%88%98%EC%A0%95-%EC%BB%A4%EB%B0%8B">수정 커밋</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#129-%EB%91%90%EB%B2%88%EC%A7%B8-test-workflow">12/9: 두번째 Test Workflow</a></p>
+<ul>
+<li><a href="#%EC%98%A4%EB%A5%98-static-check-%EC%8B%A4%ED%8C%A8-%EB%98%90">오류: Static Check 실패 (또..)</a></li>
+<li><a href="#prek-%EC%9D%B4%EB%9E%80">prek 이란?</a></li>
+<li><a href="#%EA%B5%90%ED%9B%88">교훈</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#1210-%EC%84%B8%EB%B2%88%EC%A7%B8-test-workflow">12/10: 세번째 Test Workflow</a></p>
+</li>
+<li>
+<p><a href="#1211-%EB%84%A4%EB%B2%88%EC%A7%B8-test-workflow">12/11: 네번째 Test Workflow</a></p>
+<ul>
+<li><a href="#%EC%98%A4%EB%A5%98-ci-%EC%BA%90%EC%8B%9C-%ED%8C%8C%EC%9D%BC-%EC%98%A4%EB%A5%98">오류: CI 캐시 파일 오류</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#1211-%EB%A7%88%EC%A7%80%EB%A7%89-test-workflow-%EA%B7%B8%EB%A6%AC%EA%B3%A0-pr-merge">12/11: 마지막 Test Workflow, 그리고 PR Merge</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#7-%EB%8A%90%EB%82%80%EC%A0%90">7. 느낀점</a></p>
+</li>
+</ul></div></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<!-- --><br/>© <!-- -->2025<!-- --> Data Engineer Seongjun Shin, Powered By Gatsby.<!-- --></footer><label style="width:100px;height:42px;background-color:#fff;color:#333;border:2px solid #333;border-radius:20px;cursor:pointer;display:flex;justify-content:center;align-items:center;position:fixed;bottom:30px;right:100px;z-index:9"><input type="checkbox"/> <!-- --><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path></svg></label><div></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/오픈소스_aiflow contribution/";window.___webpackCompilationHash="a124ad1a2850da78789b";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-6f4c9e56ef2d1857a25e.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-2294c7fe09522d3ae52f.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-28b04ca7ad540e2264f7.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-7041c2b810fcfafe4522.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-903ac8618925b077822c.js"]};/*]]>*/</script><script src="/app-6f4c9e56ef2d1857a25e.js" async=""></script><script src="/framework-56be8f8147b8f429c830.js" async=""></script><script src="/webpack-runtime-b4eacec1d7e8fc1da489.js" async=""></script></body></html>
