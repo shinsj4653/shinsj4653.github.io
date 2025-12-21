@@ -79,6 +79,20 @@ const defaultStyle = css`
       color: var(--textLink);
       text-decoration: underline;
     }
+    // Dark mode table styles
+    table th,
+    table td {
+      border-color: #444;
+    }
+    table th {
+      background-color: #333;
+    }
+    table tr:nth-of-type(even) {
+      background-color: #2a2a2a;
+    }
+    table tr:hover {
+      background-color: #363636;
+    }
   }
 
   body *::selection {

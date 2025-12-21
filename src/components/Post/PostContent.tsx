@@ -83,6 +83,34 @@ const MarkdownRenderer = styled.div`
     text-decoration: underline;
   }
 
+  // Adjust Table Style
+  table {
+    width: 100%;
+    margin: 30px 0;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f5f5f5;
+    font-weight: 700;
+  }
+
+  tr:nth-of-type(even) {
+    background-color: #fafafa;
+  }
+
+  tr:hover {
+    background-color: #f0f0f0;
+  }
+
   // Adjust Code Style
   pre[class*='language-'] {
     margin: 30px 0;

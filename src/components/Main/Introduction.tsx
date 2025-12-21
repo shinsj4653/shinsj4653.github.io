@@ -3,8 +3,7 @@ import styled from '@emotion/styled'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import ProfileImage from 'components/Main/ProfileImage'
 import backgroundImage from '../../assets/banner.png'
-import { FaGithub } from 'react-icons/fa'
-import { SiNotion } from 'react-icons/si'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiGmail } from 'react-icons/si'
 
 type IntroductionProps = {
@@ -56,13 +55,10 @@ const Title = styled.div`
 `
 
 const goTo = (location: string) => {
-  if (location == 'github') {
+  if (location === 'github') {
     window.open('https://github.com/shinsj4653', '_blank')
-  } else if (location === 'notion') {
-    window.open(
-      'https://forested-dive-1ea.notion.site/Welcome-to-my-Notion-Page-0fda5a0b60d94c0bbd0ea579a226fc31',
-      '_blank',
-    )
+  } else if (location === 'linkedin') {
+    window.open('https://www.linkedin.com/in/seongjun-shin-an-ardent-developer/', '_blank')
   } else if (location === 'gmail') {
     window.open('mailto:shinsj4653@gmail.com', '_blank')
   }
@@ -77,25 +73,25 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
         <ProfileImage profileImage={profileImage} />
         <div>
           <SubTitle>Nice to Meet You,</SubTitle>
-          <Title>I'm a Data Engineer, Seongjun Shin.</Title>
+          <Title>I'm Seongjun Shin, a Database Engineer.</Title>
         </div>
         <div style={{ display: 'flex' }}>
           <FaGithub
             size="30"
             color="black"
             style={{ cursor: 'pointer', marginRight: '15px' }}
-            title="Visit Github"
+            title="GitHub"
             onClick={() => {
               goTo('github')
             }}
           />
-          <SiNotion
+          <FaLinkedin
             size="30"
             color="black"
             style={{ cursor: 'pointer', marginRight: '15px' }}
-            title="Visit Notion"
+            title="LinkedIn"
             onClick={() => {
-              goTo('notion')
+              goTo('linkedin')
             }}
           />
           <SiGmail
