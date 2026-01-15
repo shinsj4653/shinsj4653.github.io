@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import { FaGithub } from 'react-icons/fa'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiGmail } from 'react-icons/si'
 
 const FooterWrapper = styled.footer`
@@ -56,6 +56,14 @@ const Footer: FunctionComponent = function () {
         >
           <FaGithub size={16} />
           GitHub
+        </FooterLink>
+        <FooterLink 
+          href="https://www.linkedin.com/in/seongjun-shin-an-ardent-developer/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <FaLinkedin size={16} />
+          LinkedIn
         </FooterLink>
         <FooterLink href="mailto:shinsj4653@gmail.com">
           <SiGmail size={14} />
