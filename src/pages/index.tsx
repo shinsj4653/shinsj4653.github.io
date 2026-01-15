@@ -38,6 +38,11 @@ const ContentArea = styled.div`
   width: 0;
   min-width: 0;
   overflow: hidden;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    flex: none;
+  }
 `
 
 type IndexPageProps = {
