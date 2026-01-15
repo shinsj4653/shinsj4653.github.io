@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useMemo, useState, useRef } from 'react'
+import React, { FunctionComponent, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
 import PostItem from 'components/Main/PostItem'
 import { PostListItemType } from 'types/PostItem.types'
@@ -29,58 +29,60 @@ type PostListProps = {
 
 const Container = styled.div`
   position: relative;
-  max-width: 768px;
-  margin: 0 auto;
-  padding: 50px 0;
+  width: 100%;
+  min-width: 0;
+`
+
+const SectionHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+`
+
+const SectionTitle = styled.h2`
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex-shrink: 0;
 `
 
 const SearchBarWrapper = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  width: 100%;
+  max-width: 300px;
+  flex-shrink: 0;
 `
 
 const PostListWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-  margin-top: 20px;
-  min-width: 768px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    width: 100%;
-    padding: 0 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 400px;
+  width: 100%;
 `
 
 const Placeholder = styled.div`
-  grid-column: 1 / -1;
   text-align: center;
-  padding: 50px 0;
-  font-size: 18px;
-  color: #888;
+  padding: 60px 20px;
+  font-size: 16px;
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  width: 100%;
 `
 const PostList: FunctionComponent<PostListProps> = function ({
   selectedCategory,
   posts,
 }) {
-
   const [searchKeyword, setSearchKeyword] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
   const { containerRef, postList }: useInfiniteScrollType = useInfiniteScroll(
     selectedCategory,
     posts,
   )
 
-  const handleSearchChange = (event) => {
-    const { scrollTop, scrollLeft } = containerRef.current
-
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(event.target.value)
-    requestAnimationFrame(() => {
-      containerRef.current.scrollTop = scrollTop
-      containerRef.current.scrollLeft = scrollLeft
-    })
   }
 
   const filteredPosts = useMemo(() => {
@@ -89,20 +91,22 @@ const PostList: FunctionComponent<PostListProps> = function ({
       return (
         title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
         summary.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-        categories.join('').toLowerCase().includes(searchKeyword.toLowerCase()) ||
-        searchTerm.toLowerCase().includes(searchKeyword.toLowerCase()) 
-        )
+        categories.join('').toLowerCase().includes(searchKeyword.toLowerCase())
+      )
     })
-  }, [searchKeyword, postList, searchTerm, selectedCategory, posts])
+  }, [searchKeyword, postList])
 
   return (
     <Container>
-      <SearchBarWrapper>
-        <SearchBar
-          value={searchKeyword}
-          onChange={handleSearchChange}
-        />
-      </SearchBarWrapper>
+      <SectionHeader>
+        <SectionTitle>최신 글</SectionTitle>
+        <SearchBarWrapper>
+          <SearchBar
+            value={searchKeyword}
+            onChange={handleSearchChange}
+          />
+        </SearchBarWrapper>
+      </SectionHeader>
       <PostListWrapper ref={containerRef}>
         {filteredPosts.length > 0 ? (
           filteredPosts.map(

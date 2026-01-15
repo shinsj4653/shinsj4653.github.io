@@ -1,16 +1,11 @@
 import React, {
   FunctionComponent,
   ReactNode,
-  useState,
-  useEffect,
-  useCallback,
 } from 'react'
 import styled from '@emotion/styled'
 import GlobalStyle from 'components/Common/GlobalStyle'
-import Footer from 'components/Common/Footer'
 import { Helmet } from 'react-helmet'
-import TopBtn from 'components/Common/TopBtn'
-import ThemeButton from 'components/Common/ThemeButton'
+import FloatingButtons from 'components/Common/FloatingButtons'
 type TemplateProps = {
   title: string
   description: string
@@ -43,9 +38,9 @@ const Template: FunctionComponent<TemplateProps> = function ({
       <Helmet>
         <title>{title}</title>
         <link
-          href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAMP/AADZ/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIiIiIiIiIiIiIgAiIiEQIiIiACIiIQAiIiAAAiIRAAIiIAACIhAAAiIAAAAhEAAAIgAAACEAAAAgAAAAAQAAAAIiIiIQAAAAAiIiIRAAAAAAIiIhAAAAAAAiIhEAAAAAAAIiEAAAAAAAAiEQAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAAYAAAIGBAACDwQAAw8MAAMfjAADn5wAA7/cAAPAPAADwDwAA+B8AAPgfAAD8PwAA/D8AAP5/AAD+fwAA"
+          href="/triforce.png"
           rel="icon"
-          type="image/x-icon"
+          type="image/png"
         />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -85,9 +80,7 @@ const Template: FunctionComponent<TemplateProps> = function ({
 
       <GlobalStyle />
       {children}
-      <Footer />
-      <ThemeButton />
-      <TopBtn showBelow={250} />
+      <FloatingButtons showTopBelow={250} />
     </Container>
   )
 }
