@@ -810,7 +810,7 @@ public void testMultiMatchFunctionNotAllowedAfterCommands() throws Exception {
 }
 ```
 
-AI로 테스트 코드를 작성하다 보니 이런 실수가 생겼다. AI가 생성한 코드는 반드시 2~3번 이상 반복해서 점검해야겠다.
+이슈의 본질에 집중해서 테스트 코드를 작성해야겠다고 반성하였다.
 
 ---
 
