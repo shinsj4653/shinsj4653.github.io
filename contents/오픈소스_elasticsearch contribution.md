@@ -1,5 +1,5 @@
 ---
-date: '2026-01-05'
+date: '2026-01-18'
 title: 'ElasticSearch Contribution'
 categories: ['OpenSource', 'ElasticSearch']
 summary: 'ElasticSearch 기여과정 정리 및 회고'
@@ -32,7 +32,8 @@ elasticsearch 기여 도전을 시작한지 약 1년 6개월만에 첫 머지에
 --- 
   
 # 2. 이슈 선정
-이번에도 중요하게 본 기준은 
+이번에 중요하게 본 기준은 
+- 코드 로직을 수정할 수 있는가
 - 해결 방법이 명확한가
 - 게시된 PR이 없는가
 
