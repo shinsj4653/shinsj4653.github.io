@@ -6,24 +6,28 @@ summary: 'ElasticSearch 기여과정 정리 및 회고'
 thumbnail: './images/thumbnail-elasticsearch.webp'
 ---
 
-2026 병오년, 새해 첫 글을 또 하나의 오픈소스 기여글로 시작한다는 게 참 좋은 시작인 것 같다.  
-[elasticsearch-java 기여](https://shinsj4653.github.io/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4%203%EA%B8%B0%20%EB%A9%98%ED%86%A0%EB%A7%81_%EC%BD%94%EB%93%9C%20%EC%88%98%EC%A0%95%20%EB%B0%8F%20%EA%B8%B0%EC%97%AC%20%EC%99%84%EB%A3%8C/)    
-2024년 5월 31일날, 나의 코드 기여사항이 elasticsearch의 java 공식 배포판에 반영되었다는 소식을 접하였다. V사 인턴 때 가장 깊게 다뤘던 기술 스택에 기여한 점은 좋았지만, 나의 PR이 머지된 것이 아니여서 contributor 라벨을 얻진 못하였다. elasticsearch-java 프로젝트 특성상, 외부인의 PR이 머지되는건 불가능하다는 원칙 때문이었다.  
-그 이후로, elasticsearch 만큼은 꼭 contributor 라벨을 따내보자라는 마음을 먹었고, 2025년 5월 26일날 게시한 PR이 마침내 머지되었다.    
+2026 병오년, 새해 첫 글을 Airflow에 이은 또 하나의 오픈소스 기여글로 시작한다.  
+> [elasticsearch-java 기여](https://github.com/elastic/elasticsearch-java/issues/718)    
+![es-java-contribution](./images/es-java-contribution.png)
 
-[https://github.com/elastic/elasticsearch/pull/128429](https://github.com/elastic/elasticsearch/pull/128429)
-![es 기여 성공](.//images/es-merge-success.png)
+2024년 5월 31일, elasticsearch의 java 공식 배포판에 내 코드 기여사항이 반영됐다는 소식을 들었다. V사 인턴 때 가장 깊게 다뤘던 기술 스택에 기여한 점은 좋았지만, 내 PR이 실제로 머지된 건 아니라서 contributor 라벨은 못 얻었다. elasticsearch-java 프로젝트 특성상 외부인의 PR은 머지가 안 된다는 원칙 때문이었다. 
+그 이후로 elasticsearch 만큼은 꼭 contributor 라벨을 따내보자고 다짐했고, 2025년 5월 26일에 올린 PR이 마침내 2026년 1월 2일에 머지됐다.    
 
-약 7개월 간의 여정을 회고해본다.  
+> [https://github.com/elastic/elasticsearch/pull/128429](https://github.com/elastic/elasticsearch/pull/128429)
+![es 기여 성공](.//images/es-merge-success.png)  
+![es-merge-final](./images/es-merge-final.png)
+
+elasticsearch 기여 도전을 시작한지 약 1년 6개월만에 첫 머지에 성공하였다.  
+약 7개월간의 여정을 정리해본다.  
 
 ---
 
 # 1. 오픈소스 스터디 8기 참여
 
-[기여모임 8기 후기](https://medium.com/opensource-contributors/%EA%B8%B0%EC%97%AC%EB%AA%A8%EC%9E%84-8%EA%B8%B0-%ED%9B%84%EA%B8%B0-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4-%EA%B8%B0%EC%97%AC%EB%AA%A8%EC%9E%84-8%EA%B8%B0%EC%97%90%EC%84%9C-%ED%95%A8%EA%BB%98-%EB%A7%8C%EB%93%A0-pr%EA%B3%BC-%EA%B8%B0%EB%B6%80-%ED%9B%84%EA%B8%B0%EB%A5%BC-%EA%B3%B5%EC%9C%A0%ED%95%A9%EB%8B%88%EB%8B%A4-a87ad7b4d7ff)  
-때는 2025년 5월, 오픈소스 스터디 8기에 참여하여 이번에야말로 elasticsearch 에 기여하기로 다짐하였다.  
-이번에도 역시, 인제님의 가이드를 따라 가장 중요한 이슈 선정을 맨 처음에 진행하였다.  
-[인제님의 오픈소스 기여 가이드](https://medium.com/opensource-contributors/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4%EC%9D%98-%ED%8C%90%EB%8F%84%EB%A5%BC-%EB%B0%94%EA%BF%80-ai%EB%A1%9C-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4-%EA%B8%B0%EC%97%AC-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C%EC%99%80-%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8-%EA%B3%B5%EC%9C%A0-2db85bf736b8)
+> [기여모임 8기 후기](https://medium.com/opensource-contributors/%EA%B8%B0%EC%97%AC%EB%AA%A8%EC%9E%84-8%EA%B8%B0-%ED%9B%84%EA%B8%B0-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4-%EA%B8%B0%EC%97%AC%EB%AA%A8%EC%9E%84-8%EA%B8%B0%EC%97%90%EC%84%9C-%ED%95%A8%EA%BB%98-%EB%A7%8C%EB%93%A0-pr%EA%B3%BC-%EA%B8%B0%EB%B6%80-%ED%9B%84%EA%B8%B0%EB%A5%BC-%EA%B3%B5%EC%9C%A0%ED%95%A9%EB%8B%88%EB%8B%A4-a87ad7b4d7ff)  
+2025년 5월, 오픈소스 스터디 8기에 참여했다. 이번에야말로 elasticsearch 기여에 성공해보기로 했다.  
+이번에도 인제님의 가이드를 따라 이슈 선정부터 시작했다.  
+> [인제님의 오픈소스 기여 가이드](https://medium.com/opensource-contributors/%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4%EC%9D%98-%ED%8C%90%EB%8F%84%EB%A5%BC-%EB%B0%94%EA%BF%80-ai%EB%A1%9C-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4-%EA%B8%B0%EC%97%AC-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C%EC%99%80-%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8-%EA%B3%B5%EC%9C%A0-2db85bf736b8)
 
 --- 
   
@@ -32,7 +36,7 @@ thumbnail: './images/thumbnail-elasticsearch.webp'
 - 해결 방법이 명확한가
 - 게시된 PR이 없는가
 
-이 2가지였고, 그 때 당시 추천받은 이슈는 아래와 같았다.  
+이 2가지였고, 그때 추천받은 이슈는 아래와 같다.  
 [https://github.com/elastic/elasticsearch/issues/114036](https://github.com/elastic/elasticsearch/issues/114036)  
   
 ## 2-1. 이슈에 필요한 개념 학습
@@ -41,79 +45,74 @@ thumbnail: './images/thumbnail-elasticsearch.webp'
 
 ### ES|QL 핵심 개념 이해하기
 
-이 이슈를 이해하기 위해서는 Elasticsearch의 ES|QL(Elasticsearch Query Language)에서 사용되는 몇 가지 핵심 개념들을 먼저 이해해야 한다.
+이 이슈를 이해하려면 ES|QL(Elasticsearch Query Language)의 몇 가지 핵심 개념을 알아야 한다.
 
 ### `1. Evaluator란?`
 
-**Evaluator**는 ES|QL에서 실제로 데이터를 처리하고 계산을 수행하는 컴포넌트이다.  
-예를 들어, `GREATEST(a, b, c)` 함수를 호출하면, 해당 함수의 Evaluator가 실제로 a, b, c 값들을 비교하여 가장 큰 값을 반환하는 로직을 실행한다.
+**Evaluator**는 ES|QL에서 실제 데이터 처리와 계산을 담당하는 컴포넌트다.  
+`GREATEST(a, b, c)` 함수를 호출하면 해당 Evaluator가 a, b, c 값들을 비교해서 가장 큰 값을 반환한다.
 
-각 데이터 타입(Integer, Long, Double, String 등)마다 별도의 Evaluator가 존재한다. 이는 타입별로 비교 연산의 방식이 다르기 때문이다:
+데이터 타입(Integer, Long, Double, String 등)마다 별도의 Evaluator가 있다. 타입별로 비교 연산 방식이 다르기 때문이다:
 - `IntegerEvaluator`: 정수형 비교
 - `LongEvaluator`: Long 타입 비교  
 - `DoubleEvaluator`: 실수형 비교
 - `BytesRefEvaluator`: 문자열/바이트 비교
 
-```java
-// Greatest.java
-@Evaluator(extraName = "Int")
-    static int process(int[] values) {
-        int max = values[0];
-        for (int i = 1; i < values.length; i++) {
-            max = Math.max(max, values[i]);
-        }
-        return max;
-    }
-```
-
 ### `2. toEvaluator란?`
 
-**toEvaluator**는 ES|QL 표현식(Expression)을 실제 실행 가능한 Evaluator로 변환하는 메서드이다.  
-이 메서드는 입력 데이터 타입에 따라 적절한 Evaluator를 선택하여 반환한다.
+**toEvaluator**는 ES|QL 표현식(Expression)을 실행 가능한 Evaluator로 변환하는 메서드다.  
+입력 데이터 타입에 따라 적절한 Evaluator를 선택해서 반환한다.
 
 ```java
-// Greatest.java
+// Greatest.java - toEvaluator 메서드
 @Override
-    public ExpressionEvaluator.Factory toEvaluator(ToEvaluator toEvaluator) {
-        // force datatype initialization
-        var dataType = dataType();
-        if (dataType == DataType.NULL) {
-            throw EsqlIllegalArgumentException.illegalDataType(dataType);
-        }
-
-        ExpressionEvaluator.Factory[] factories = children().stream()
-            .map(e -> toEvaluator.apply(new MvMax(e.source(), e)))
-            .toArray(ExpressionEvaluator.Factory[]::new);
-
-        if (DataType.isString(dataType)) {
-            return new GreatestBytesRefEvaluator.Factory(source(), factories);
-        }
-
-        return switch (dataType) {
-            case BOOLEAN -> new GreatestBooleanEvaluator.Factory(source(), factories);
-            case DOUBLE -> new GreatestDoubleEvaluator.Factory(source(), factories);
-            case INTEGER -> new GreatestIntEvaluator.Factory(source(), factories);
-            case LONG -> new GreatestLongEvaluator.Factory(source(), factories);
-            case DATETIME -> new GreatestLongEvaluator.Factory(source(), factories);
-            case DATE_NANOS -> new GreatestLongEvaluator.Factory(source(), factories);
-            case IP -> new GreatestBytesRefEvaluator.Factory(source(), factories);
-            case VERSION -> new GreatestBytesRefEvaluator.Factory(source(), factories);
-            default -> throw EsqlIllegalArgumentException.illegalDataType(dataType);
-        };
+public ExpressionEvaluator.Factory toEvaluator(ToEvaluator toEvaluator) {
+    var dataType = dataType();
+    ExpressionEvaluator.Factory[] factories = children().stream()
+        .map(e -> toEvaluator.apply(new MvMax(e.source(), e)))
+        .toArray(ExpressionEvaluator.Factory[]::new);
+    
+    if (dataType == DataType.INTEGER) {
+        return new GreatestIntEvaluator.Factory(source(), factories);
     }
+    if (dataType == DataType.LONG || dataType == DataType.DATETIME) {
+        return new GreatestLongEvaluator.Factory(source(), factories);
+    }
+    // ... 다른 타입들도 동일한 패턴
+    throw EsqlIllegalArgumentException.illegalDataType(dataType);
+}
+
+// Greatest.java - @Evaluator 어노테이션이 붙은 process 메서드들
+@Evaluator(extraName = "Int")
+static int process(int[] values) {
+    int max = values[0];
+    for (int i = 1; i < values.length; i++) {
+        max = Math.max(max, values[i]);
+    }
+    return max;
+}
+
+@Evaluator(extraName = "Long")
+static long process(long[] values) {
+    long max = values[0];
+    for (int i = 1; i < values.length; i++) {
+        max = Math.max(max, values[i]);
+    }
+    return max;
+}
 ```
 
 #### 연결 관계
 ```txt
-@Evaluator(extraName = "Int")           toEvaluator 메서드
-static int process(int[] values)   -->  case INTEGER -> new GreatestIntEvaluator.Factory(...)
-         ↓                                              ↓
-   코드 생성기가                              런타임에 이 Factory 선택
-         ↓
+@Evaluator(extraName = "Int")              toEvaluator 메서드
+static int process(int[] values)   --->    if (dataType == DataType.INTEGER)
+         ↓                                     return new GreatestIntEvaluator.Factory(...)
+   코드 생성기가                                            ↓
+         ↓                                     런타임에 이 Factory 선택
 GreatestIntEvaluator.java 자동 생성
 (src/main/generated/ 폴더에)
 ```
-즉, @Evaluator(extraName = "Int")가 붙은 process(int[] values) 메서드는 코드 생성기에 의해 GreatestIntEvaluator 클래스로 변환되고, toEvaluator() 메서드에서 DataType.INTEGER인 경우 GreatestIntEvaluator.Factory를 반환하여 연결되는 구조이다.
+`@Evaluator(extraName = "Int")`가 붙은 `process(int[] values)` 메서드가 코드 생성기에 의해 GreatestIntEvaluator 클래스로 변환된다. 그리고 `toEvaluator()` 메서드에서 DataType.INTEGER인 경우 GreatestIntEvaluator.Factory를 반환하면서 연결되는 구조다.
 
 #### 코드 생성기란?
 코드 생성기는 Java Annotation Processor이다.   
@@ -194,15 +193,15 @@ public class EvaluatorImplementer {
                         ▼  자동 생성
 ┌─────────────────────────────────────────────────────────────┐
 │  src/main/generated/                                        │
-│  └── GreatestIntEvaluator.java  (153줄 자동 생성!)          │
+│  └── GreatestIntEvaluator.java            │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-그리고 포인트는, `toEvaluator`는 명시적으로 지원하는 타입 목록을 가지고 있으며, 목록에 없는 타입이 들어오면 예외를 발생시킨다.
+중요한 점은 `toEvaluator`가 지원하는 타입 목록을 명시적으로 가지고 있고, 목록에 없는 타입이 들어오면 예외를 던진다는 것이다.
 
 #### 좀 더 구체화된 플로우
-정리하면서도 이해가 좀 어려워 더 자세히 작성해봤다.  
-`toEvaluator`가 하는 일은 변환이 아니라, 이미 존재하는 Evalutator 클래스를 런타임에 "조립"하여 실행 준비를 하는 것이다.  
+정리하면서도 이해가 어려워 더 자세히 작성해봤다.  
+`toEvaluator`가 하는 일은 변환이 아니다. 이미 존재하는 Evaluator 클래스를 런타임에 "조립"해서 실행 준비를 하는 것이다.  
 
 #### 전체 라이프사이클
 ```txt
@@ -333,20 +332,22 @@ public IntVector eval(int positionCount, IntVector[] valuesVectors) {
 | Factory.get() | 주방에서 실제 요리 준비 | Evaluator 인스턴스 생성 |
 | eval(Page) | 손님에게 서빙 | 데이터 처리 및 결과 반환 |
 
-결론은 "Evaluator에 의해 생성된 GreatestIntEvaluator 클래스를, 런타임에서 toEvaluator에 의해 실제 실행 가능한 형태로 바뀐다"   
+정리하면, @Evaluator 어노테이션에 의해 생성된 GreatestIntEvaluator 클래스가 런타임에 toEvaluator를 통해 실행 가능한 형태로 준비된다.
+
 더 정확히 말하면:  
-컴파일 시: GreatestIntEvaluator 클래스가 이미 완전한 형태로 생성됨  
-런타임 시: toEvaluator()는 단지 데이터 타입을 보고 적절한 Factory를 선택  
-실행 시: Factory.get()이 실제 인스턴스를 생성하고, eval()이 데이터를 처리  
-즉, "변환"보다는 "선택 → 인스턴스화 → 실행" 과정입니다!
+- 컴파일 시: GreatestIntEvaluator 클래스가 이미 완전한 형태로 생성됨  
+- 런타임 시: toEvaluator()가 데이터 타입을 보고 적절한 Factory를 선택  
+- 실행 시: Factory.get()이 인스턴스를 생성하고, eval()이 데이터를 처리  
+
+결국 "변환"보다는 "선택 → 인스턴스화 → 실행" 과정이다.
 
 ### `3. resolveType이란?`
 
-**resolveType**은 ES|QL 쿼리의 타입 분석(Type Resolution) 단계에서 호출되는 메서드이다.  
-이 메서드는 함수의 입력 인자들을 분석하여 결과 타입을 결정하고, 타입 오류가 있는지 검증한다.
+**resolveType**은 ES|QL 쿼리의 타입 분석 단계에서 호출되는 메서드다.  
+함수의 입력 인자들을 분석해서 결과 타입을 결정하고, 타입 오류가 있는지 검증한다.
 
 ```java
-// resolveType 메서드의 기존 구현 (문제가 있던 버전)
+// Greatest.java - resolveType 메서드의 기존 구현 (문제가 있던 버전)
 @Override
 protected TypeResolution resolveType() {
     // 모든 인자의 타입이 동일한지만 확인
@@ -380,7 +381,7 @@ FROM employees
 
 ## 2-2. 이슈 발생 원인 파악
 
-이 이슈의 핵심은 **`resolveType`과 `toEvaluator` 사이의 타입 지원 불일치**에 있다.
+이 이슈의 핵심은 **`resolveType`과 `toEvaluator` 사이의 타입 지원 불일치**다.
 
 ### 문제 상황
 
@@ -408,31 +409,33 @@ FROM some_index
 1. `resolveType` 단계: "두 필드의 타입이 같네? ✅ 통과!"
 2. `toEvaluator` 단계: "이 타입에 대한 Evaluator가 없는데? ❌ 에러!"
 
-이로 인해 사용자는 혼란스러운 에러 메시지를 받게 된다. 타입 분석 단계에서 통과했는데 실행 단계에서 갑자기 "Illegal Data Type" 에러가 발생하기 때문이다.
+사용자 입장에서는 혼란스럽다. 타입 분석 단계에서 통과했는데 실행할 때 갑자기 "Illegal Data Type" 에러가 뜨기 때문이다.
 
 ### 근본 원인
 
 ```java
 // resolveType: 타입 동일성만 체크
+@Override
 protected TypeResolution resolveType() {
     // 모든 입력이 같은 타입이거나 NULL이면 OK
     // BUT: 해당 타입이 실제로 지원되는지는 모름!
 }
 
 // toEvaluator: 명시적 타입 목록으로 체크
-public ExpressionEvaluator.Factory toEvaluator() {
+@Override
+public ExpressionEvaluator.Factory toEvaluator(ToEvaluator toEvaluator) {
     // INTEGER, LONG, DOUBLE 등 명시적 목록만 지원
     // 목록에 없으면 throw!
 }
 ```
 
-**두 메서드가 서로 다른 기준으로 타입을 검증**하고 있어서, `resolveType`에서는 통과하지만 `toEvaluator`에서 실패하는 불일치가 발생한다.
+**두 메서드가 서로 다른 기준으로 타입을 검증**하고 있어서 `resolveType`에서는 통과하지만 `toEvaluator`에서 실패하는 문제가 생긴다.
 
 ---
 
 ## 2-3. 해결 방법
 
-이슈에서 제안된 해결책은 **Binary Comparison 연산자들에서 사용하는 전략**을 채택하는 것이다.
+이슈에서 제안된 해결책은 **Binary Comparison 연산자들에서 사용하는 전략**을 가져오는 것이다.
 
 ### 핵심 아이디어: 타입-Evaluator 매핑 Map 사용
 
@@ -486,10 +489,10 @@ public ExpressionEvaluator.Factory toEvaluator() {
 
 ### 해결 방법의 장점
 
-1. **일관성 보장**: `resolveType`과 `toEvaluator`가 동일한 타입 목록(Map의 키)을 참조
-2. **명확한 에러 메시지**: 타입 분석 단계에서 지원되지 않는 타입을 조기에 감지하여 명확한 에러 제공
-3. **유지보수 용이**: 새로운 타입 지원 시 Map에 항목만 추가하면 됨
-4. **DRY 원칙**: 타입 목록을 한 곳에서만 관리
+- **일관성 보장**: `resolveType`과 `toEvaluator`가 같은 타입 목록(Map의 키)을 참조
+- **에러 메시지 개선**: 타입 분석 단계에서 미지원 타입을 조기에 감지
+- **유지보수 용이**: 새 타입 추가 시 Map에 항목만 넣으면 됨
+- **DRY 원칙**: 타입 목록을 한 곳에서만 관리
 
 ```txt
 [수정 후 흐름]
@@ -507,13 +510,15 @@ resolveType() ─────────────────▶ toEvaluator
 
 # 3. 첫번째 기여 및 피드백 
 
-## 3-1. 2025/05/26: 첫번째 코드 기여
+## 3-1. 2025-05-26 ~ 2025-09-27: 첫번째 코드 기여
 
 ### 1. Greatest.java 리팩토링
 
 #### 1-1. `toEvaluator()` 메서드를 switch 표현식으로 변경
 
-기존에 Map 기반으로 Evaluator를 찾던 방식을 switch 표현식으로 교체했다.
+![es-feedback-2](./images/es-feedback-2.png)  
+idegtiarenko 라는 분께서 주신 제안에 근거하여,  
+기존 Map 기반 Evaluator 조회 방식을 switch 표현식으로 바꿨다.
 
 ```java
 //164:175:x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/scalar/conditional/Greatest.java
@@ -532,7 +537,7 @@ resolveType() ─────────────────▶ toEvaluator
 
 #### 1-2. `isSupportedDataType()` 헬퍼 메서드 추가
 
-지원되는 데이터 타입인지 확인하는 메서드를 switch 표현식으로 구현했다.
+지원되는 데이터 타입인지 확인하는 헬퍼 메서드를 추가했다.
 
 ```java
 //223:228:x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/scalar/conditional/Greatest.java
@@ -546,7 +551,7 @@ resolveType() ─────────────────▶ toEvaluator
 
 ### 1-3. `resolveType()` 메서드에 타입 검증 로직 추가
 
-지원되지 않는 데이터 타입에 대한 에러 메시지를 개선했다.
+미지원 데이터 타입에 대한 에러 메시지를 개선했다.
 
 ```java
 //126:128:x-pack/plugin/esql/src/main/java/org/elasticsearch/xpack/esql/expression/function/scalar/conditional/Greatest.java
@@ -557,7 +562,7 @@ resolveType() ─────────────────▶ toEvaluator
 
 ### 2. Least.java 리팩토링
 
-Greatest.java와 동일한 패턴으로 Least.java도 리팩토링했다.
+Greatest.java와 같은 패턴으로 Least.java도 수정했다.
 
 #### 2-1. `toEvaluator()` 메서드를 switch 표현식으로 변경
 
@@ -599,7 +604,7 @@ Greatest.java와 동일한 패턴으로 Least.java도 리팩토링했다.
 
 #### 3. VerifierTests.java에 테스트 추가
 
-`testGreatestLeastWithUnsupportedDataTypes()` 테스트 메서드를 추가하여 지원되지 않는 데이터 타입에 대한 에러 메시지를 검증했다.
+`testGreatestLeastWithUnsupportedDataTypes()` 테스트 메서드를 추가해서 미지원 데이터 타입에 대한 에러 메시지를 검증했다.
 
 ```java
 //2593:2626:x-pack/plugin/esql/src/test/java/org/elasticsearch/xpack/esql/analysis/VerifierTests.java
@@ -672,12 +677,12 @@ public void testGreatestLeastWithUnsupportedDataTypes() {
 | 에러 메시지 | 일반적인 예외 | `"Cannot use [타입명] with function [함수명]"` |
 | 테스트 커버리지 | 기본 타입만 | 미지원 타입(geo_point, cartesian_point) 추가 |
 
-이번 리팩토링을 통해 Map 조회 오버헤드를 제거하고, 컴파일 타임에 모든 케이스를 검증할 수 있게 되었으며, `resolveType()`과 `toEvaluator()` 간의 타입 일관성을 보장하게 되었다.
+이번 리팩토링으로 Map 조회 오버헤드를 제거하고, 컴파일 타임에 모든 케이스를 검증할 수 있게 됐다. 또한 `resolveType()`과 `toEvaluator()` 간의 타입 일관성도 보장하게 됐다.
 
-## 3-2. 2025/12/23: 첫번째 피드백
+## 3-2. 2025-12-23: 첫번째 피드백
 
-아주 긴 인내의 시간이 흘러, ncordon 메인테이너분께서 피드백이 오셨다.
-> Thanks a lot for the contribution @shinsj4653!
+약 4개월이 지나 ncordon 메인테이너분께서 피드백을 주셨다.
+![es-feedback-1](./images/es-feedback-1.png)
 
 감사 인사와 함께 3가지 주요 피드백이 있었다.
 
@@ -695,8 +700,8 @@ public void testGreatestLeastWithUnsupportedDataTypes() {
 
 | 방식 | 타입 추가 시 수정 필요 위치 | 일관성 보장 |
 |------|---------------------------|-------------|
-| Switch 표현식 | `isSupportedDataType()` + `toEvaluator()` (2곳) | ❌ 수동으로 동기화 필요 |
-| Map 기반 | `EVALUATOR_MAP`만 (1곳) | ✅ 자동 보장 |
+| Switch 표현식 | `isSupportedDataType()` + `toEvaluator()` (2곳) | 수동으로 동기화 필요 |
+| Map 기반 | `EVALUATOR_MAP`만 (1곳) | 자동 보장 |
 
 ### 2. 테스트 코드 포맷팅 문제
 
@@ -714,7 +719,9 @@ public void testGreatestLeastWithUnsupportedDataTypes() {
 
 ### 3. Map에서 Source.EMPTY 사용 불가
 
-가장 핵심적인 피드백이었다. 내가 처음 제출한 코드는 이랬다:
+![es-feedback-3](./images/es-feedback-3.png)
+
+내가 처음 제출한 코드는 이랬다:
 
 ```java
 // ❌ 잘못된 구현 (내가 처음 작성한 코드)
@@ -726,12 +733,29 @@ private static final Map<DataType, Function<ExpressionEvaluator.Factory[], Expre
 );
 ```
 
-> This is not correct. We cannot pass `Source.EMPTY`.
+**문제점: 왜 Source.EMPTY를 쓰면 안 되는가?**
 
-**문제점:**
-- `Source.EMPTY`를 사용하면 **에러 발생 위치 추적이 불가능**
-- 쿼리의 어느 부분에서 에러가 발생했는지 알 수 없음
-- ES|QL에서 `Source`는 **쿼리 내 표현식의 위치 정보**를 담고 있음
+ES|QL에서 `Source`는 쿼리 내 표현식의 **위치 정보**(몇 번째 줄, 몇 번째 칸)를 담고 있다.
+
+예를 들어 이런 쿼리가 있다고 하자:
+```sql
+FROM employees | EVAL max_val = GREATEST(salary, "invalid")
+```
+
+에러가 발생하면 ES|QL은 이렇게 알려준다:
+```
+line 1:42: argument of [GREATEST] must be [numeric], found value ["invalid"] type [keyword]
+         ↑
+         Source에 저장된 위치 정보
+```
+
+그런데 `Source.EMPTY`를 쓰면? 위치 정보가 없으니 에러 메시지가 이렇게 된다:
+```
+argument of [GREATEST] must be [numeric], found value ["invalid"] type [keyword]
+(어디서 에러났는지 알 수 없음)
+```
+
+쿼리가 길어지면 어디서 에러가 났는지 찾기 어렵다. 그래서 Map 정의 시 `Source.EMPTY`를 고정하면 안 되고, 실행 시점에 `source()`를 동적으로 넘겨야 한다.
 
 **참조 코드 (GreaterThan.java):**
 
@@ -762,7 +786,7 @@ evaluatorMap.get(commonType).apply(source(), lhs, rhs);
 |------|-----------------|-------------|
 | Map 값 타입 | `Function<Factory[], Factory>` | `BinaryEvaluator` (메서드 참조) |
 | Source 전달 | Map 정의 시 `Source.EMPTY` 고정 | 사용 시점에 `source()` 동적 전달 |
-| 에러 위치 추적 | ❌ 불가능 | ✅ 가능 |
+| 에러 위치 추적 | 불가능 | 가능 |
 
 **수정 방향:**
 1. Map에는 **생성자 메서드 참조**만 저장 (`Factory::new`)
@@ -771,7 +795,7 @@ evaluatorMap.get(commonType).apply(source(), lhs, rhs);
 
 ### 4. 불필요한 MultiMatch 테스트 코드 포함
 
-> Why are we adding tests for multimatch here?
+![es-feedback-4](./images/es-feedback-4.png)
 
 **피드백 요약:**
 - PR에 `testMultiMatchFunctionNotAllowedAfterCommands` 테스트가 포함되어 있었음
@@ -785,7 +809,7 @@ public void testMultiMatchFunctionNotAllowedAfterCommands() throws Exception {
 }
 ```
 
-AI 기반으로 테스트 코드를 작성하다보니, 이런 실수가 발생했던 것 같다. 꼭 반드시, AI 기반 코드는 2~3 번 이상씩 반복해서 점검하자.
+AI로 테스트 코드를 작성하다 보니 이런 실수가 생겼다. AI가 생성한 코드는 반드시 2~3번 이상 반복해서 점검해야겠다.
 
 ---
 
@@ -797,7 +821,7 @@ AI 기반으로 테스트 코드를 작성하다보니, 이런 실수가 발생�
 
 ### 1. Map 기반 Evaluator로 복구
 
-첫번째 피드백에서 지적받은 대로, switch 표현식을 제거하고 `EVALUATOR_MAP` 방식으로 되돌렸다.
+첫번째 피드백대로 switch 표현식을 제거하고 `EVALUATOR_MAP` 방식으로 되돌렸다.
 
 **핵심 수정:** `Source.EMPTY` 대신 실제 `source()`를 전달하기 위해, Map 값 타입을 `BiFunction`으로 변경했다.
 
@@ -818,14 +842,32 @@ private static final Map<DataType, BiFunction<Source, ExpressionEvaluator.Factor
 return EVALUATOR_MAP.get(dataType).apply(source(), factories);
 ```
 
-**GreaterThan.java 패턴 적용:**
-- 메인테이너가 제안한 `GreaterThan.java`의 패턴을 참고
-- 생성자 메서드 참조(`Factory::new`)를 Map에 저장
-- 사용 시점에 `source()`를 동적으로 전달
+#### BiFunction 사용 이유
+
+`GreaterThan.java`는 비교 연산자라서 `(source, lhs, rhs)` 3개 인자가 필요하다. 그래서 커스텀 `BinaryEvaluator` 인터페이스를 쓴다.
+
+하지만 `Greatest/Least`는 `(source, factories)` 2개 인자만 필요하다. Java 표준 라이브러리의 `BiFunction`으로 충분하다.
+
+```java
+// BiFunction<입력1, 입력2, 반환타입>
+BiFunction<Source, Factory[], Factory>
+//                      ↑              ↑               ↑
+//                  source   factories      반환값
+```
+
+```java
+// GreaterThan: 커스텀 인터페이스로 3개 인자
+evaluatorMap.get(commonType).apply(source(), lhs, rhs);
+
+// Greatest: BiFunction으로 2개 인자
+EVALUATOR_MAP.get(dataType).apply(source(), factories);
+```
+
+핵심은 동일하다. Map에는 생성자 참조(`Factory::new`)만 저장하고, 실행 시점에 `source()`를 동적으로 전달한다.
 
 ### 2. VerifierTests 정리
 
-불필요하게 포함되었던 MultiMatch 관련 테스트들을 제거했다.
+실수로 포함됐던 MultiMatch 관련 테스트들을 제거했다.
 
 ```java
 // 제거된 테스트들
@@ -843,7 +885,7 @@ return EVALUATOR_MAP.get(dataType).apply(source(), factories);
 
 ### 4. Rebase 및 로컬 테스트 검증
 
-최신 main 브랜치에 rebase 후, 아래 테스트들을 로컬에서 실행하여 모두 통과를 확인했다.
+최신 main 브랜치에 rebase 후 아래 테스트들을 로컬에서 실행해서 모두 통과를 확인했다.
 
 ```bash
 # 실행한 테스트 목록
@@ -862,7 +904,7 @@ return EVALUATOR_MAP.get(dataType).apply(source(), factories);
 | 포맷팅 | 들여쓰기 오류 | `spotlessApply` 적용 |
 | Rebase | - | 최신 main 반영 |
 
-위 수정사항을 기반으로, ncordon 메인테이너가 피드백 후, Buildkite CI 테스트를 실행했다.
+위 수정사항을 반영한 후 ncordon 메인테이너가 Buildkite CI 테스트를 실행했다.
 
 ## 4-2. 2025/12/30: 두번째 피드백
 
@@ -871,24 +913,8 @@ return EVALUATOR_MAP.get(dataType).apply(source(), factories);
 ### 1. String 타입 처리도 EVALUATOR_MAP에 포함시키기
 
 **Greatest.java 피드백:**
-```java
-// ❌ 현재 코드 (별도 if문으로 처리)
-if (DataType.isString(dataType)) {
-    return new GreatestBytesRefEvaluator.Factory(source(), factories);
-}
-```
 
-> This can also be put in the evaluator map, there are two possible underlying types that are considered string I think
-
-**Least.java 피드백:**
-```java
-// ❌ 현재 코드 (별도 if문으로 처리)
-if (DataType.isString(dataType)) {
-    return new LeastBytesRefEvaluator.Factory(source(), factories);
-}
-```
-
-> Same here 😄
+![es-feedback-5](./images/es-feedback-5.png)
 
 **피드백 분석:**
 
@@ -921,11 +947,11 @@ private static final Map<DataType, BiFunction<Source, ExpressionEvaluator.Factor
 - `KEYWORD`: 정렬, 집계에 최적화된 문자열 타입
 - `TEXT`: 전문 검색(Full-text search)에 최적화된 문자열 타입
 
-두 타입 모두 내부적으로 `BytesRef`로 처리되므로 같은 `BytesRefEvaluator`를 사용한다.
+두 타입 모두 내부적으로 `BytesRef`로 처리되니까 같은 `BytesRefEvaluator`를 쓴다.
 
 ### 2. Test 코드 전부 삭제하는 실수
 
-관계없는 MultiMatch 테스트 코드들을 삭제하다가 정작 필요한 테스트들도 삭제해버렸다.
+관계없는 MultiMatch 테스트를 삭제하다가 필요한 테스트들까지 같이 삭제해버렸다.
 
 ```java
 public void testConditionalFunctionsWithSupportedNonNumericTypes() {
@@ -951,11 +977,11 @@ public void testConditionalFunctionsWithSupportedNonNumericTypes() {
         }
     }
 ```
-위 테스트코드를 추가하여 피드백을 반영 완료하였다.
+위 테스트코드를 복원해서 피드백을 반영했다.
 
 ## 4-3. 2025/12/29: buildkite 테스트 결과
 
-피드백 후, buildkite 로 테스트를 시행해주셨다.
+피드백 후 buildkite로 테스트를 돌려주셨다.
 
 ![ncordon-buildkite-test-this-please](./images/es-buildkite-test.png)
 
@@ -963,9 +989,8 @@ public void testConditionalFunctionsWithSupportedNonNumericTypes() {
 
 ### buildkite란?
 
-**buildkite**는 하이브리드 CI/CD(Continuous Integration/Continuous Deployment) 플랫폼이다.
+**Buildkite**는 하이브리드 CI/CD 플랫폼이다.
 
-#### 핵심 특징
 
 | 특징 | 설명 |
 |------|------|
@@ -992,22 +1017,30 @@ Elasticsearch 테스트 현황:
 - **민감한 코드**가 외부 서버로 전송되지 않음
 
 **3. 복잡한 파이프라인 지원**
-```yaml
-# Elasticsearch의 Buildkite 파이프라인 구조 예시
-steps:
-  - group: "Part 1 - Unit Tests"
-    steps:
-      - label: ":java: JDK 17 Tests"
-      - label: ":java: JDK 21 Tests"
-  
-  - group: "Part 2 - Integration Tests"
-    steps:
-      - label: ":elasticsearch: REST API Tests"
-      
-  - group: "Part 3 - ESQL Tests"  # ← 여기서 에러 발생
-    steps:
-      - label: ":esql: Greatest/Least Tests"
-```
+
+[Elasticsearch PR 빌드 #111825](https://buildkite.com/elastic/elasticsearch-pull-request/builds/111825)를 보면, 15단계의 테스트 과정을 거친다.
+
+| 순서 | 태스크명 | 설명 | 소요시간 | 결과 |
+|:---:|---------|------|:---:|:---:|
+| 1 | **Pipeline upload** | 파이프라인 설정 업로드 | 50s | ✅ |
+| 2 | **bwc-snapshots** | 하위 호환성 스냅샷 테스트 | - | ✅ |
+| 3 | **eql-correctness** | EQL 쿼리 정확성 테스트 | 7m 28s | ✅ |
+| 4 | **packaging-tests-unix-sample** | Linux/macOS 패키징 샘플 테스트 | - | ✅ |
+| 5 | **packaging-tests-windows-sample** | Windows 패키징 샘플 테스트 | - | ✅ |
+| 6 | **part-1** | Precommit, 문서 빌드, 빠른 단위 테스트 | 45m 6s | ✅ |
+| 7 | **part-2** | 핵심 모듈 단위 테스트 (server, libs) | 52m 12s | ✅ |
+| 8 | **part-3** | ESQL, ML, Security 플러그인 테스트 | 7m 33s | ❌ |
+| 9 | **part-4** | REST API 통합 테스트 | 54m 14s | ✅ |
+| 10 | **part-5** | 분산 시스템 클러스터 테스트 | 21m 36s | ✅ |
+| 11 | **part-6** | 추가 통합 테스트 | 21m 36s | ✅ |
+| 12 | **pr-upgrade** | PR 업그레이드 호환성 검증 | 1m 9s | ✅ |
+| 13 | **pr-upgrade main → shinsj4653** | 메인 브랜치와의 업그레이드 테스트 | - | ✅ |
+| 14 | **rest-compatibility** | REST API 하위 호환성 테스트 | 20m 7s | ✅ |
+| 15 | **validate-changelogs** | changelog YAML 파일 검증 | 3m 19s | ❌ |
+
+이 빌드에서는 **part-3**과 **validate-changelogs** 두 단계에서 에러가 발생했다.
+
+수백 개의 태스크가 병렬로 실행되고, 각 태스크는 다른 JDK/OS 조합에서 돌아간다. 이런 대규모 파이프라인을 효율적으로 처리하려면 Buildkite 같은 확장 가능한 CI가 필요하다.
 
 **4. GitHub 통합**
 - PR에 자동으로 빌드 상태 표시
@@ -1024,9 +1057,9 @@ steps:
 | 대규모 프로젝트 | ✅ 최적화 | ⚠️ 제한적 | ✅ 가능 |
 | 비용 효율성 | ✅ 자체 인프라 활용 | ⚠️ 분당 과금 | ✅ 자체 관리 |
 
-**결론:** Elasticsearch처럼 **대규모 테스트 스위트**와 **다양한 플랫폼 지원**이 필요한 프로젝트에는 Buildkite의 하이브리드 모델이 최적의 선택이다.  
+Elasticsearch처럼 테스트가 많고 다양한 플랫폼을 지원해야 하는 프로젝트에는 Buildkite의 하이브리드 모델이 잘 맞는다.  
 
-Buildkite로 돌린 테스트에서 아래 두 단계에서 에러가 발생했다.
+Buildkite 테스트의 두 에러에 대해 분석한 결과는 아래와 같다. 
 
 
 ### 1. validate-changelogs
@@ -1047,7 +1080,7 @@ BUILD FAILED in 2m 16s
 
 **에러 원인 분석:**
 
-이 에러는 **YAML 파싱 오류**이다. YAML에서 `[` 문자는 **배열(리스트)의 시작**을 의미하는 특수 문자이다.
+이건 **YAML 파싱 오류**다. YAML에서 `[` 문자는 배열의 시작을 의미하는 특수 문자이기 때문이다.
 
 ```yaml 
 # ❌ 잘못된 changelog 파일
@@ -1075,7 +1108,7 @@ summary: [ESQL] Refactor Greatest and Least functions to use evaluator map
 *    # 별칭
 ```
 
-**해결 방법:** 특수 문자가 포함된 문자열은 **따옴표로 감싸야** 한다. 
+**해결 방법:** 특수 문자가 포함된 문자열은 따옴표로 감싸면 된다. 
 
 ```yaml
 pr: 128429
@@ -1096,8 +1129,8 @@ issues:
 
 ### 에러 원인
 
-Elasticsearch 프로젝트의 Checkstyle 규칙 중 BooleanNegation 규칙 위반이었다.
-이 규칙은 ! 연산자를 사용한 boolean 부정을 금지하고, 대신 == false를 사용한 명시적 비교를 요구한다. 이는 코드 가독성과 명확성을 위한 Elasticsearch의 코딩 컨벤션이다.
+Elasticsearch의 Checkstyle 규칙 중 `BooleanNegation` 규칙 위반이었다.
+이 규칙은 `!` 연산자 대신 `== false`를 사용하도록 강제한다. 코드 가독성을 위한 ES의 컨벤션이다.
 
 ### 해결 방법
 ```java
@@ -1106,7 +1139,7 @@ Elasticsearch 프로젝트의 Checkstyle 규칙 중 BooleanNegation 규칙 위�
 if (!isSupportedDataType(dataType) && !DataType.isString(dataType))
 ```
 
-결국, 이 코드의 존재로 인해 buildkite 테스트 과정이 실패가 난 거였다. 위에서 언급한 것 처럼, 이 코드는 더 이상 불필요해졌기 때문에 이 코드를 없앰으로써 자연스럽게 이 에러도 해결되었다.
+위 코드 때문에 buildkite 테스트가 실패했다. 어차피 이 코드는 더 이상 필요 없어서 삭제하니 에러도 자연스럽게 해결됐다.
 
 ---
 
@@ -1114,11 +1147,11 @@ if (!isSupportedDataType(dataType) && !DataType.isString(dataType))
 
 ## 5-1. 2025/12/30: 세번째 코드 기여
 
-ncordon의 개인적인 피드백과 Buildkite 테스트 에러 결과를 토대로, 아래처럼 세번째 기여를 마쳤다.
+ncordon의 피드백과 Buildkite 테스트 에러를 바탕으로 세번째 기여를 마쳤다.
 
 ### 1. Changelog 수정
 
-`validate-changelogs` 실패를 해결하기 위해 YAML summary의 대괄호를 이스케이프 처리했다.
+`validate-changelogs` 실패를 해결하기 위해 YAML summary의 대괄호를 따옴표로 감쌌다.
 
 ```yaml
 # ❌ 수정 전
@@ -1130,7 +1163,7 @@ summary: "[ESQL] Refactor Greatest and Least functions to use evaluator map"
 
 ### 2. 테스트 커버리지 확장
 
-VerifierTests.java에 Greatest.java와 Least.java에 대한 테스트를 복원하고 확장했다.
+VerifierTests.java에 Greatest.java와 Least.java 테스트를 복원하고 확장했다.
 
 **테스트 대상 타입:**
 
@@ -1143,23 +1176,59 @@ VerifierTests.java에 Greatest.java와 Least.java에 대한 테스트를 복원�
 
 ### 3. Text 필드 전용 테스트 추가
 
-String 타입 중 `Text` 필드에 대한 테스트를 `fullTextAnalyzer`를 사용하여 추가했다.
+String 타입 중 `Text` 필드 테스트는 `fullTextAnalyzer`를 사용해서 추가했다.
 
 ```java
-// Text 필드 테스트 예시
-// fullTextAnalyzer를 사용하여 Text 타입 필드 생성 후 Greatest/Least 함수 테스트
+// VerifierTests.java
+public void testConditionalFunctionsWithSupportedNonNumericTypes() {
+        for (String functionName : List.of("greatest", "least")) {
+            // Keyword
+            query("from test | eval x = " + functionName + "(\"a\", \"b\")");
+            query("from test | eval x = " + functionName + "(first_name, last_name)");
+            query("from test | eval x = " + functionName + "(first_name, \"b\")");
+
+            // Text
+            // Note: In ESQL text fields are not optimized for sorting/aggregation but Greatest/Least should work if they implement BytesRefEvaluator
+            query("from test | eval x = " + functionName + "(title, \"b\")", fullTextAnalyzer);
+
+            // IP
+            query("from test | eval x = " + functionName + "(to_ip(\"127.0.0.1\"), to_ip(\"127.0.0.2\"))");
+
+            // Version
+            query("from test | eval x = " + functionName + "(to_version(\"1.0.0\"), to_version(\"1.1.0\"))");
+
+            // Date
+            query("from test | eval x = " + functionName + "(\"2023-01-01\" :: datetime, \"2023-01-02\" :: datetime)");
+            query("from test | eval x = " + functionName + "(\"2023-01-01\" :: date_nanos, \"2023-01-02\" :: date_nanos)");
+        }
+    }
+
 ```
 
 **Keyword vs Text 차이:**
 
-| 타입 | 분석기(Analyzer) | 용도 |
-|------|-----------------|------|
-| Keyword | 분석 없음 (원본 그대로) | 정렬, 집계, 정확한 매칭 |
-| Text | fullTextAnalyzer 적용 | 전문 검색 (토큰화) |
+[Elastic 가이드북](https://esbook.kimjmin.net/07-settings-and-mappings/7.2-mappings/7.2.1)을 참고하면:
+
+| 구분 | Text | Keyword |
+|------|------|---------|
+| **저장 방식** | 텀 단위로 쪼개서 역색인 생성 | 문자열 전체를 하나의 토큰으로 저장 |
+| **분석기** | Analyzer 적용 (토큰화) | 분석 없음 (원본 그대로) |
+| **용도** | 풀텍스트 검색 | 정렬, 집계, 정확한 매칭 |
+| **예시** | `"Hello World"` → `["hello", "world"]` | `"Hello World"` → `["Hello World"]` |
+
+```txt
+Text 타입: "Elasticsearch is awesome"
+  → 역색인: ["elasticsearch", "is", "awesome"]  (검색 가능)
+  
+Keyword 타입: "Elasticsearch is awesome"
+  → 역색인: ["Elasticsearch is awesome"]  (정확히 일치해야 검색)
+```
+
+Greatest/Least 함수에서는 둘 다 내부적으로 `BytesRef`로 처리되므로 같은 `BytesRefEvaluator`를 사용한다.
 
 ### 4. String 타입을 EVALUATOR_MAP에 포함
 
-ncordon의 피드백대로 `KEYWORD`와 `TEXT` 타입을 `EVALUATOR_MAP`에 직접 추가했다.
+ncordon 피드백대로 `KEYWORD`와 `TEXT` 타입을 `EVALUATOR_MAP`에 직접 추가했다.
 
 ```java
 // Greatest.java - String 타입 추가
@@ -1172,7 +1241,7 @@ private static final Map<DataType, BiFunction<Source, ExpressionEvaluator.Factor
 
 ### 5. 로컬 빌드 및 테스트 통과
 
-모든 수정사항 반영 후 로컬에서 빌드와 테스트를 실행하여 통과를 확인했다.
+모든 수정사항을 반영하고 로컬에서 빌드와 테스트를 돌려서 통과를 확인했다.
 
 ```bash
 ./gradlew :x-pack:plugin:esql:test --tests "VerifierTests" 
@@ -1192,9 +1261,8 @@ private static final Map<DataType, BiFunction<Source, ExpressionEvaluator.Factor
 
 ## 5-2. 2025/12/30: Buildkite 테스트
 
-이번엔 ncordon께서 바로 Buildkite test를 시행하셨다.  
 
-답답하셨는지, 아니면 빠르게 마무리 짓고 싶으셨는지 본인께서 직접 에러를 고치시면서 buildkite test를 시행하셨다.
+이번엔 ncordon께서 직접 에러를 고치면서 buildkite test를 돌려주셨다.
 
 ![es-buildkite-final](./images/es-buildkite-last.png)
 
@@ -1203,12 +1271,12 @@ private static final Map<DataType, BiFunction<Source, ExpressionEvaluator.Factor
 ![auto-commit-changes-from-spotless](./images/auto-commit-changes-from-spotless.png)
 
 Spotless 포맷팅 에러가 났다.  
-보여준 커밋 [CI] Auto commit changes from spotless는 Spotless라는 코드 포맷팅 도구가 자동으로 수정한 내용이다.  
+`[CI] Auto commit changes from spotless` 커밋은 Spotless라는 코드 포맷팅 도구가 자동으로 수정한 내용이다.  
 
 ### Spotless란?
-Spotless는 ElasticSearch 사용하는 자동 코드 포맷팅 도구이다. CI 파이프라인에서 코드 스타일을 자동으로 검사하고, 필요시 자동 수정 커밋을 생성한다.
+Spotless는 ES에서 사용하는 자동 코드 포맷팅 도구다. CI 파이프라인에서 코드 스타일을 검사하고, 필요하면 자동 수정 커밋을 생성한다.
 
-ElasticSearch의 코드 스타일 규칙에서는 연속된 빈 줄을 허용하지 않는다. 2개 이상의 연속 빈 줄이 있어서 Spotless가 제거했다.  
+ES 코드 스타일 규칙에서는 연속된 빈 줄을 허용하지 않는다. 빈 줄이 2개 이상 연속되어 있어서 Spotless가 자동으로 제거했다.  
 
 ```java
 // 수정 전 (한 줄이 너무 김)
@@ -1219,7 +1287,7 @@ ElasticSearch의 코드 스타일 규칙에서는 연속된 빈 줄을 허용하
 // BytesRefEvaluator
 ```
 
-원인: Elasticsearch는 한 줄당 최대 글자 수 제한 (보통 140자)이 있다. 주석이 이 제한을 초과해서 Spotless가 자동으로 줄바꿈했다.
+Elasticsearch는 한 줄당 최대 140자 제한이 있다. 주석이 이 제한을 넘어서 Spotless가 자동으로 줄바꿈했다.
 
 ### ES CI 자동 수정 프로세스
 ```txt
@@ -1230,7 +1298,7 @@ PR 제출 → Buildkite CI 실행 → Spotless 검사 실패
                                     ↓
                          "[CI] Auto commit changes from spotless"
 ```
-빈 줄 초과, 줄 길이 초과로 인해 ES의 Spotless 가 자동으로 재포맷팅을 하였다.
+빈 줄 초과와 줄 길이 초과 때문에 ES의 Spotless가 자동으로 재포맷팅했다.
 
 ### 2. format
 
@@ -1251,7 +1319,7 @@ if (dataType != NULL && EVALUATOR_MAP.containsKey(dataType) == false && DataType
 }
 ```
 
-이전 buildkite에서도 등장한 BooleanNegation 에러이다. to-be 처럼 코드 수정을 ncordon께서 직접 해주셨다.
+이전 buildkite에서도 등장한 `BooleanNegation` 에러이다. to-be 처럼 코드 수정을 ncordon께서 직접 해주셨다.
 
 ### 마지막 buildkite
 
@@ -1260,9 +1328,7 @@ if (dataType != NULL && EVALUATOR_MAP.containsKey(dataType) == false && DataType
 
 ### 핵심 에러 로그 분석
 
-#### 📍 핵심 에러 부분
-
-```txt
+```bash
 11007|Tests with failures:
 11009| - org.elasticsearch.xpack.esql.session.EsqlResolvedIndexExpressionIT.testLocalDateMathExpression
 11011| - org.elasticsearch.xpack.esql.plugin.IndexResolutionIT.testResolvesDateMath
@@ -1280,7 +1346,7 @@ if (dataType != NULL && EVALUATOR_MAP.containsKey(dataType) == false && DataType
 11337|BUILD FAILED in 55m 3s
 ```
 
-### ❌ 에러 원인
+### 에러 원인
 
 #### 실패한 테스트 (2개)
 | 테스트 클래스 | 테스트 메서드 |
@@ -1295,12 +1361,12 @@ if (dataType != NULL && EVALUATOR_MAP.containsKey(dataType) == false && DataType
 - ES|QL에서 `<index-{now/M{yyyy.MM}}>` 같은 날짜 기반 인덱스 패턴을 처리하는 로직을 테스트
 - 예: 현재 날짜가 2026년 1월이면 `index-2026.01`로 해석됨
 
-**이 테스트 실패는 사용자의 Greatest/Least 코드 변경과 무관한 것으로 보인다.**
+**이 테스트 실패는 내 Greatest/Least 코드 변경과 무관해 보인다.**
 
 가능한 원인:
-1. **Flaky Test (불안정 테스트)**: 타이밍이나 환경에 따라 간헐적으로 실패하는 테스트
-2. **인덱스 생성 타이밍 문제**: Date math 표현식으로 인덱스를 생성할 때 클러스터 상태와의 동기화 문제
-3. **다른 PR과의 충돌**: 메인 브랜치에서 Date Math 관련 코드가 변경되어 발생한 문제
+- **Flaky Test**: 타이밍이나 환경에 따라 간헐적으로 실패하는 테스트
+- **인덱스 생성 타이밍 문제**: Date math 표현식으로 인덱스 생성 시 클러스터 상태와의 동기화 문제
+- **다른 PR과의 충돌**: 메인 브랜치에서 Date Math 관련 코드가 바뀌어서 생긴 문제
 
 ### 💡 결론
 
@@ -1311,14 +1377,16 @@ if (dataType != NULL && EVALUATOR_MAP.containsKey(dataType) == false && DataType
 | **에러 유형** | ES|QL Date Math Index Resolution 테스트 실패 |
 | **관련성** | Greatest/Least PR과 **무관한** 테스트 실패로 추정 |
 
-이 에러는 **인프라/환경 이슈** 또는 **flaky test**일 가능성이 높으므로, CI를 다시 실행(re-run)하도록 가이드를 받았다.  
-맞는 가이드였는지 ncordon께선 다시 re-run을 하였고, 결국 에러 없이 buildkite가 수행완료되었다.
+인프라/환경 이슈 또는 flaky test일 가능성이 높아서 CI를 다시 실행(re-run)하면 된다는 가이드를 받았다.  
+ncordon께서 re-run을 해주셨고, 이번에는 에러 없이 buildkite가 통과했다.
 
 ![es-contribute-success](./images/es-contribute-success.png)  
 최종 머지까지 성공!
 
 
 # 소감
-airflow 기여에 이어 두번째 오픈소스 기여에 성공하여 이젠 자신감이 붙은 느낌이다.    
-확실히 코드 로직도 중요하지만, 테스트 코드도 어떤 흐름으로 실행되는지를 이해하는 것이 중요하다. 린트나 포맷은 기본이며, Spotless나 BooleanNegation 등 ES 에서 따르는 규칙이 있는 것 처럼 각 오픈소스마다 따르는 규칙을 명확하게 따라야겠다고 느꼈다.  
-다음에는 회사에서 주로 사용중인 `Datadog`이나 `Terraform` 에 기여해보고 싶다.
+Airflow에 이어 두번째 오픈소스 기여에 성공했다. 이제 슬슬 오픈소스 기여에 감이 잡히는 느낌이다.
+
+코드 로직도 중요하지만 테스트 코드가 어떻게 돌아가는지도 잘 알아야 한다. 린트나 포맷은 기본이고, Spotless나 BooleanNegation 같은 ES 고유 규칙도 있다. 오픈소스마다 따르는 규칙이 다르니까 이걸 먼저 파악하는 게 중요하다고 느꼈다.  
+
+다음에는 DBA와 데이터엔지니어링 양쪽에 걸쳐 있는 CDC 오픈소스 `Debezium`이나, Linux 역량 향상을 위한 `Linux Kernel` 기여에 도전해보고 싶다.
